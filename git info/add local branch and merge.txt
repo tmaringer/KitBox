@@ -1,0 +1,16 @@
+ajout d'une branche du dépot distant sur le dépot local
+
+git fetch origin
+git checkout branch_name
+
+	merge :
+
+on se met sur la branche sur laquel on veut merge (par ex. master) et on
+merge la branche sur laquel on a travailler (ex. branch1).
+
+ce qui donne :
+
+git checkout master
+git merge branch1
+
+va appliquer les changement de branch 1 sur master
