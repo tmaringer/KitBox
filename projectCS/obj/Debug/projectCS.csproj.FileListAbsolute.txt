@@ -1,0 +1,6 @@
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\projectCS.exe.config
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\projectCS.exe
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\projectCS.pdb
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.csprojAssemblyReference.cache
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.exe
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.pdb
