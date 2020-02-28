@@ -9,8 +9,8 @@ De Groote Olivier
 Francois Robert
 
 ---------------------------------------------------------------------------------------
-Le git info contiend des info utile concernant des commande usuel de git ou des méthode (comme le branching)
+Le git info contient des infos utiles concernant des commandes usuelles de git ou des méthodes (comme le branching)
 
 ---------------------------------------------------------------------------------------
 
-ProjectCS contient tout le code C#de l'application
+ProjectCS contient tout le code C# de l'application
