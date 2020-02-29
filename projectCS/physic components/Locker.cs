@@ -8,16 +8,16 @@ namespace projectCS
 {
     public class Locker : CupboardComponents
     {
-        public override double price
+        public double price
         {
             get
             {
-                _price = 0;
-                foreach (LockerComponents price in componentsList)
+                double componentsPrice = 0;
+                foreach (LockerComponents component in componentsList)
                 {
-                    _price += price.price; 
+                    componentsPrice += component.price; 
                 } 
-                return _price;
+                return componentsPrice;
             }
         }
 
@@ -63,16 +63,15 @@ namespace projectCS
             get => _componentsList;
         }
 
-        public Locker() : this(0, "null", "0000", 0, false, 0)
+        public Locker() : this("null", "0000", 0, false, 0)
         {
         }
 
-        public Locker(double price,
-                     string reference,
+        public Locker(string reference,
                      string code,
                      int size,
                      bool inStock,
-                     double height) : base(price, reference, code, size, inStock, height)
+                     double height) : base(reference, code, size, inStock, height)
         {
             _width = 0;
             _depth = 0;

@@ -42,6 +42,7 @@ namespace projectCS
                       string orientation,
                       string color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
+            this._color = color;
         }
 
         public override string ToString()
@@ -70,6 +71,7 @@ namespace projectCS
                       string orientation,
                       string color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
+            this._color = color;
         }
 
         public override string ToString()

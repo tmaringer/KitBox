@@ -10,10 +10,11 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            //printPerso.newCompoTest();
-            //printPerso.test2();
-            //printPerso.test3();
+            printPerso.newCompoTest();
+            printPerso.test2();
+            printPerso.test3();
             printPerso.isActive();
+            Console.WriteLine("\n");
         }
     }
 
@@ -27,7 +28,7 @@ namespace projectCS
 
         public static void test2()
         {
-            Locker t = new Locker(0, "referenceTest", "codeTest", 0, false, 0);
+            Locker t = new Locker("referenceTest", "codeTest", 0, false, 0);
 
             CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
             CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, "orientationTest");
