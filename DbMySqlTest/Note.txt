@@ -1,2 +1,13 @@
 => SpecsBoxList(conn, *the column*, *the condition*);
    => return a List<string>
+
+
+##How to use:
+
+MySqlConnection conn = GetDBConnection();
+conn.Open();
+QueryKitbox.SpecsBoxList(conn, *Select*, *Condition*);
+con.Close();
+conn.Dispose();
+
+------------------------------------------------------------------------------------------
