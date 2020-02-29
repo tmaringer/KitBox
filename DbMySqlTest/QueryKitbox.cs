@@ -12,20 +12,25 @@ namespace DbLibrary
         {
             List<string> result = new List<string>();
             string sql = "Select " + SelectSQL +" from kitbox where " + WhereSQL;
-            MySqlCommand cmd = new MySqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = sql;
+            MySqlCommand cmd = new MySqlCommand
             {
-                using (DbDataReader reader = cmd.ExecuteReader())
+                Connection = conn,
+                CommandText = sql
+            };
+            {
+                using DbDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
                 {
-                    if (reader.HasRows)
+
+                    while (reader.Read())
                     {
-
-                        while (reader.Read())
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
+                        if (result.Contains(WhereSQLAnswer))
                         {
-                            string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
+                        }
+                        else
+                        {
                             result.Add(WhereSQLAnswer);
-
                         }
                     }
                 }

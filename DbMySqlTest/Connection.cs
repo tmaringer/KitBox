@@ -7,7 +7,7 @@ namespace DbLibrary
 {
     public class Connection
     {
-        public MySqlConnection
+        public static MySqlConnection
                   GetDBConnection(string host, int port, string database, string username, string password)
         {
             // Connection String.
@@ -19,7 +19,7 @@ namespace DbLibrary
             return conn;
         }
 
-        public MySqlConnection GetDBConnection()
+        public static MySqlConnection GetDBConnection()
         {
             string host = "db4free.net";
             int port = 3306;
