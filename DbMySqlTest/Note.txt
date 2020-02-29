@@ -7,7 +7,7 @@
 MySqlConnection conn = GetDBConnection();
 conn.Open();
 QueryKitbox.SpecsBoxList(conn, *Select*, *Condition*);
-con.Close();
+conn.Close();
 conn.Dispose();
 
 ------------------------------------------------------------------------------------------
