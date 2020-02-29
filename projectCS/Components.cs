@@ -9,7 +9,7 @@ namespace projectCS
     public abstract class Components
     {
         protected double _price;
-        public double price
+        public virtual double price
         {
             get => _price;
         }
@@ -37,6 +37,8 @@ namespace projectCS
         {
             get => _inStock;
         }
+
+
 
         protected Components(double price, string reference, string code, int size, bool inStock)
         {
@@ -66,7 +68,7 @@ namespace projectCS
         {
             get => _orientation;
         }
-
+            
         protected LockerComponents(double price,
                                    string reference,
                                    string code,
@@ -76,7 +78,7 @@ namespace projectCS
                                    string orientation) : base(price, reference, code, size, inStock)
         {            
             this._lenght = lenght;
-            this._orientation = orientation;            
+            this._orientation = orientation;  
         }
 
         public override string ToString()

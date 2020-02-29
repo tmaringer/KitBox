@@ -8,6 +8,9 @@ namespace projectCS
 {
     public class CrossBar : LockerComponents
     {
+        public CrossBar() : this(0, "null", "0000", 0, false, 0, "no orient")
+        {
+        }
         public CrossBar(double price,
                         string reference,
                         string code,
@@ -16,13 +19,6 @@ namespace projectCS
                         int lenght,
                         string orientation) : base(price, reference, code, size, inStock, lenght, orientation)
         {
-            this._price = price;
-            this._reference = reference;
-            this._code = code;
-            this._size = size;
-            this._inStock = inStock;
-            this._lenght = lenght;
-            this._orientation = orientation;
         }
     }
 
@@ -34,6 +30,9 @@ namespace projectCS
             get => _color;
         }
 
+        public Pannel() : this(0, "null", "0000", 0, false, 0, "no orient", "no color")
+        {
+        }
         public Pannel(double price,
                       string reference,
                       string code,
@@ -43,14 +42,11 @@ namespace projectCS
                       string orientation,
                       string color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
-            this._price = price;
-            this._reference = reference;
-            this._code = code;
-            this._size = size;
-            this._inStock = inStock;
-            this._lenght = lenght;
-            this._orientation = orientation;
-            this._color = color;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ", " + _color;
         }
     }
 
@@ -62,6 +58,9 @@ namespace projectCS
             get => _color;
         }
 
+        public Door() : this(0, "null", "0000", 0, false, 0, "no orient", "no color")
+        {
+        }
         public Door(double price,
                       string reference,
                       string code,
@@ -71,20 +70,19 @@ namespace projectCS
                       string orientation,
                       string color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
-            this._price = price;
-            this._reference = reference;
-            this._code = code;
-            this._size = size;
-            this._inStock = inStock;
-            this._lenght = lenght;
-            this._orientation = orientation;
-            this._color = color;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ", " + _color;
         }
     }
 
     public class Cleat : LockerComponents
     {
-
+        public Cleat() : this(0, "null", "0000", 0, false, 0, "no orient")
+        {
+        }
         public Cleat(double price,
                       string reference,
                       string code,
@@ -93,13 +91,6 @@ namespace projectCS
                       int lenght,
                       string orientation) : base(price, reference, code, size, inStock, lenght, orientation)
         {
-            this._price = price;
-            this._reference = reference;
-            this._code = code;
-            this._size = size;
-            this._inStock = inStock;
-            this._lenght = lenght;
-            this._orientation = orientation;
         }
     }
 }
