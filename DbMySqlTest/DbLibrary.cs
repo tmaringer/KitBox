@@ -1,6 +1,7 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 using System.Data.Common;
+using System.Collections.Generic;
 
 namespace DbMySqlTest
 {
@@ -32,9 +33,10 @@ namespace DbMySqlTest
         private class QueryKitbox
         {
 
-            public static void Ninja(MySqlConnection conn, string askSql)
+            public static List<string> SpecsBoxList(MySqlConnection conn, string SelectSQL, string WhereSQL)
             {
-                string sql = "Select " + askSql +" from kitbox";
+                List<string> result = new List<string>();
+                string sql = "Select " + SelectSQL +" from kitbox where " + WhereSQL;
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = sql;
@@ -46,39 +48,37 @@ namespace DbMySqlTest
 
                             while (reader.Read())
                             {
-                                string askSqlAnswer = reader.GetString(reader.GetOrdinal(askSql));
-                                Console.WriteLine(askSql + ": " + askSqlAnswer);
+                                string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
+                                result.Add(WhereSQLAnswer);
+
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+            public static void SelectAll(MySqlConnection conn, string SelectSQL)
+            {
+                string sql = "Select " + SelectSQL + " from kitbox";
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = sql;
+                {
+                    using (DbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+
+                            while (reader.Read())
+                            {
+                                string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
+                                Console.WriteLine(SelectSQL + ": " + WhereSQLAnswer);
 
                             }
                         }
                     }
                 }
             }
-        }
-        static void Main(string[] args)
-        {
-            
-            MySqlConnection conn = GetDBConnection();
-            conn.Open();
-            try
-            {
-                Console.Write("Enter a SQL Request - ");
-                string Mysql = Console.ReadLine();
-                QueryKitbox.Ninja(conn, Mysql);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error: " + e);
-                Console.WriteLine(e.StackTrace);
-            }
-            finally
-            {
-                // Terminez la connexion.
-                conn.Close();
-                // Disposez un objet, libérez des ressources.
-                conn.Dispose();
-            }
-            Console.Read();
         }
     }
 }
