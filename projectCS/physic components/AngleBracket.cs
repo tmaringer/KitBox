@@ -1,27 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace projectCS.physic_components
+﻿namespace projectCS.physic_components
 {
     public class AngleBracket : CupboardComponents
     {
         private int _height;
-        public int height
+        public override int height
         {
             get => _height;
             set => _height = value;
-        } 
-        
+        }
+
         private double _price;
-        public double price
+        public override double price
         {
             get => _price;
         }
 
-        public AngleBracket() : this(0,"null", "0000", 0, false, 0)
+        public AngleBracket() : this(0, "null", "0000", 0, false, 0)
         {
         }
 
@@ -30,10 +24,10 @@ namespace projectCS.physic_components
                      string code,
                      int size,
                      bool inStock,
-                     double height) : base(reference, code, size, inStock, height)
+                     int height) : base(reference, code, size, inStock)
         {
-            this._height = 0;
             this._price = price;
+            this._height = height;
         }
     }
 }

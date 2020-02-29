@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace projectCS
 {
     public class Locker : CupboardComponents
     {
-        public double price
+        public override double price
         {
             get
             {
                 double componentsPrice = 0;
-                foreach (LockerComponents component in componentsList)
+                foreach (LockerComponents component in _componentsList)
                 {
-                    componentsPrice += component.price; 
-                } 
+                    componentsPrice += component.price;
+                }
                 return componentsPrice;
             }
         }
@@ -63,15 +59,14 @@ namespace projectCS
             get => _componentsList;
         }
 
-        public Locker() : this("null", "0000", 0, false, 0)
+        public Locker() : this("null", "0000", 0, false)
         {
         }
 
         public Locker(string reference,
                      string code,
                      int size,
-                     bool inStock,
-                     double height) : base(reference, code, size, inStock, height)
+                     bool inStock) : base(reference, code, size, inStock)
         {
             _width = 0;
             _depth = 0;
@@ -111,7 +106,7 @@ namespace projectCS
         {
             _componentsList.Remove(component);
         }
-        
+
         public bool isComplete()
         {
             bool isOk = false;
@@ -123,7 +118,7 @@ namespace projectCS
             {
                 switch (component)
                 {
-                    case CrossBar c :
+                    case CrossBar c:
                         numberOfCrossBar++;
                         break;
                     case Pannel p:

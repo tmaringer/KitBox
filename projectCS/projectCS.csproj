@@ -68,9 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="components inheritance\Components.cs" />
-    <Compile Include="components inheritance\CupboardComponents.cs" />
-    <Compile Include="components inheritance\LockerComponents.cs" />
+    <Compile Include="super class components\Components.cs" />
+    <Compile Include="super class components\CupboardComponents.cs" />
+    <Compile Include="super class components\LockerComponents.cs" />
     <Compile Include="physic components\AngleBracket.cs" />
     <Compile Include="physic components\Cupboard.cs" />
     <Compile Include="physic components\LockerComponents.cs" />

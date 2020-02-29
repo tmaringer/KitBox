@@ -1,8 +1,6 @@
-﻿using System;
+﻿using projectCS.physic_components;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projectCS
 {
@@ -10,10 +8,14 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
+            /*
             printPerso.newCompoTest();
             printPerso.test2();
             printPerso.test3();
             printPerso.isActive();
+
+            */
+            printPerso.allcomplete();
             Console.WriteLine("\n");
         }
     }
@@ -28,7 +30,7 @@ namespace projectCS
 
         public static void test2()
         {
-            Locker t = new Locker("referenceTest", "codeTest", 0, false, 0);
+            Locker t = new Locker();
 
             CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
             CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, "orientationTest");
@@ -42,7 +44,7 @@ namespace projectCS
             t.addComponent(t4);
             t.addComponent(t5);
 
-            foreach(Components c in t.componentsList)
+            foreach (Components c in t.componentsList)
             {
                 Console.WriteLine(c.code);
             }
@@ -98,17 +100,54 @@ namespace projectCS
             Cleat cl4 = new Cleat();
 
 
-          
+
 
             locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
-            
+
             foreach (LockerComponents lc in locker.componentsList)
             {
                 Console.WriteLine(lc);
             }
             locker.isComplete();
+        }
+
+        public static void allcomplete()
+        {
+            Cupboard cup = new Cupboard();
+
+            AngleBracket an = new AngleBracket(25, "referenceTest", "1", 0, false, 45);
+
+            cup.addCupboardComponent(an);
+
+            Locker locker = new Locker();
+
+            CrossBar c1 = new CrossBar();
+            CrossBar c2 = new CrossBar();
+            CrossBar c3 = new CrossBar();
+            CrossBar c4 = new CrossBar();
+            CrossBar c5 = new CrossBar();
+            CrossBar c6 = new CrossBar();
+            CrossBar c7 = new CrossBar();
+            CrossBar c8 = new CrossBar();
+            Pannel p1 = new Pannel();
+            Pannel p2 = new Pannel();
+            Pannel p3 = new Pannel();
+            Pannel p4 = new Pannel();
+            Pannel p5 = new Pannel();
+            Cleat cl1 = new Cleat();
+            Cleat cl2 = new Cleat();
+            Cleat cl3 = new Cleat();
+            Cleat cl4 = new Cleat();
+
+
+            locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5});
+            cup.addCupboardComponent(locker);
+
+            Console.WriteLine(cup.isComplete());
         }
     }
 }

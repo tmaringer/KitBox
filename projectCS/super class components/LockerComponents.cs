@@ -35,7 +35,7 @@
 
         public override string ToString()
         {
-            return base.ToString() + ", " + _price + ", " + _lenght + ", " + _orientation;
+            return base.ToString() + ", " + ", " + _lenght + ", " + _orientation;
         }
     }
 }

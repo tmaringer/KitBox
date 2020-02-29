@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="LockerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CupboardTest.cs" />
+    <Compile Include="AngleBracketTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

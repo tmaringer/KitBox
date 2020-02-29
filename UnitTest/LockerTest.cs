@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
+using System.Collections.Generic;
 
 namespace UnitTest
 {
@@ -20,7 +19,7 @@ namespace UnitTest
             locker.addComponent(new List<LockerComponents>() { lc1, lc2, lc3 });
             Assert.AreEqual(3, locker.componentsList.Count);
         }
-        
+
         [TestMethod]
         public void price100Test()
         {
