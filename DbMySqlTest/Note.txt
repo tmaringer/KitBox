@@ -1,0 +1,2 @@
+=> SpecsBoxList(conn, *the column*, *the condition*);
+   => return a List<string>
