@@ -9,7 +9,7 @@ De Groote Olivier
 Francois Robert
 
 ---------------------------------------------------------------------------------------
-Le git info contient des infos utiles concernant des commandes usuelles de git ou des méthodes (comme le branching)
+Le dossier info contient des infos utiles concernant des commandes usuelles de git ou des méthodes (comme le branching)
 
 ---------------------------------------------------------------------------------------
 
