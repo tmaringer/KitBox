@@ -12,9 +12,10 @@ namespace projectCS
         private static readonly int maximumDoor = 2;
         private static readonly int maximumCleat = 4;
 
+        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         public override int height 
         { 
-            get => height;
+            get => 0;
         }
 
         public override double price
@@ -88,7 +89,6 @@ namespace projectCS
             _componentsList = new List<LockerComponents>();
         }
 
-        // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
         public void addComponent(LockerComponents component)
         {
             bool isOk = false;
@@ -118,7 +118,7 @@ namespace projectCS
                 _componentsList.Add(component);
         }
 
-        // TODO : pareil que pour le add component simple, vérifier si il ya encore de la place
+        // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
         public void addComponent(List<LockerComponents> componentList)
         {
             _componentsList.AddRange(componentList);

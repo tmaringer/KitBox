@@ -114,12 +114,12 @@ namespace projectCS
 
             public static void autreTest()
             {
-                LockerComponents c = new CrossBar();
-                LockerComponents d = new Door();
-                LockerComponents d2 = new Door();
+                Locker l = new Locker();
+                Door d = new Door();
 
-                Console.WriteLine(c.GetType() == d.GetType());
-                Console.WriteLine(d2.GetType() == d.GetType());
+
+                
+                Console.WriteLine(l);
             }
         }
     }    

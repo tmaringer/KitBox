@@ -35,7 +35,7 @@
             this._size = size;
             this._inStock = inStock;
         }
-
+        
         /// <summary>
         ///     get from object super class ToString method in order to display internal data object
         /// </summary>

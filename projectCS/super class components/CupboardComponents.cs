@@ -13,10 +13,10 @@
                                      bool inStock) : base(reference, code, size, inStock)
         {
         }
-
+        /*
         public override string ToString()
         {
             return base.ToString() + ", " + height;
-        }
+        }*/
     }
 }
