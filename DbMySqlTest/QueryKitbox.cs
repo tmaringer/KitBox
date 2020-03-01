@@ -17,21 +17,19 @@ namespace DbLibrary
                 Connection = conn,
                 CommandText = sql
             };
+            using DbDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
             {
-                using DbDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
 
-                    while (reader.Read())
+                while (reader.Read())
+                {
+                    string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
+                    if (result.Contains(WhereSQLAnswer))
                     {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(SelectSQL));
-                        if (result.Contains(WhereSQLAnswer))
-                        {
-                        }
-                        else
-                        {
-                            result.Add(WhereSQLAnswer);
-                        }
+                    }
+                    else
+                    {
+                        result.Add(WhereSQLAnswer);
                     }
                 }
             }
@@ -47,16 +45,14 @@ namespace DbLibrary
                 Connection = conn,
                 CommandText = sql
             };
+            using DbDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
             {
-                using DbDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
 
-                    while (reader.Read())
-                    {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        result.Add(WhereSQLAnswer);
-                    }
+                while (reader.Read())
+                {
+                    string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
+                    result.Add(WhereSQLAnswer);
                 }
             }
             return result;
@@ -115,11 +111,9 @@ namespace DbLibrary
                 Connection = conn,
                 CommandText = sql
             };
-            {
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.UpdateCommand = cmd;
-                adapter.UpdateCommand.ExecuteNonQuery();
-            }
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.UpdateCommand = cmd;
+            adapter.UpdateCommand.ExecuteNonQuery();
         }
     }
 }
