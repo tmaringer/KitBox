@@ -21,11 +21,11 @@ namespace DbLibrary
 
         public static MySqlConnection GetDBConnection()
         {
-            string host = "db4free.net";
+            string host = "remotemysql.com";
             int port = 3306;
-            string database = "kitbox_kewlax";
-            string username = "kewlaw";
-            string password = "locomac6";
+            string database = "HHFtMTewie";
+            string username = "HHFtMTewie";
+            string password = "yVUAYh6xqO";
 
             return GetDBConnection(host, port, database, username, password);
         }
