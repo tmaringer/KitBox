@@ -7,10 +7,10 @@ namespace projectCS
         /// <summary>
         ///     group all maximum value for each components which the locker can have
         /// </summary>
-        private static readonly int maximumCrossBar = 8;
-        private static readonly int maximumPannel = 5;
-        private static readonly int maximumDoor = 2;
-        private static readonly int maximumCleat = 4;
+        private static readonly int maximumCrossBars = 8;
+        private static readonly int maximumPannels = 5;
+        private static readonly int maximumDoors = 2;
+        private static readonly int maximumCleats = 4;
 
         // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         public override int height 
@@ -79,6 +79,7 @@ namespace projectCS
         {
         }
 
+        // TODO : !!!!!!!!!!!!!! retiré les atribut de tout l'héritage car le locker n'existe pas dans la db, donc aucun para à mettre
         public Locker(string reference,
                      string code,
                      int size,
@@ -95,19 +96,19 @@ namespace projectCS
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfComponentInList(component) < maximumCrossBar)
+                    if (numberOfComponentInList(component) < maximumCrossBars)
                         isOk = true;
                     break;
                 case Pannel p:
-                    if (numberOfComponentInList(component) < maximumPannel)
+                    if (numberOfComponentInList(component) < maximumPannels)
                         isOk = true;
                     break;
                 case Door d:
-                    if (numberOfComponentInList(component) < maximumDoor)
+                    if (numberOfComponentInList(component) < maximumDoors)
                         isOk = true;
                     break;
                 case Cleat cl:
-                    if (numberOfComponentInList(component) < maximumCleat)
+                    if (numberOfComponentInList(component) < maximumCleats)
                         isOk = true;
                     break;
                 default:
@@ -144,7 +145,7 @@ namespace projectCS
             int numberOfCleat = numberOfComponentInList(new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
-            if ((numberOfCrossBar == maximumCrossBar) && (numberOfPannel == maximumPannel) && (numberOfCleat == maximumCleat))
+            if ((numberOfCrossBar == maximumCrossBars) && (numberOfPannel == maximumPannels) && (numberOfCleat == maximumCleats))
                 isOk = true;
 
             return isOk;

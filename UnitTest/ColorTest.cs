@@ -10,7 +10,7 @@ namespace UnitTest
         [TestMethod]
         public void colorTest()
         {
-            Pannel p = new Pannel(0, "reftrest", "testcode", 0, false, 0, "noorient", Color.transparent);
+            Pannel p = new Pannel(0, "reftrest", "testcode", 0, false, 0, Orientation.height, Color.transparent);
             Pannel p2 = new Pannel();
 
             Assert.AreEqual(Color.transparent, p.color);

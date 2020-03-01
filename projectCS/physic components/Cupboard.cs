@@ -60,6 +60,7 @@ namespace projectCS.physic_components
             _cupboardComponentsList.Remove(component);
         }
 
+        // TODO : vérifier si elle est juste, peut être rfactorer
         /// <summary>
         ///     check if the cupboard have all components which it must have 
         /// </summary>

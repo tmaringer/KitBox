@@ -82,9 +82,9 @@ namespace UnitTest
 
             Locker t = new Locker();
 
-            CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
-            CrossBar t2 = new CrossBar(20, "referenceTest", "2", 0, false, 0, "orientationTest");
-            CrossBar t3 = new CrossBar(20, "referenceTest", "3", 0, false, 0, "orientationTest");
+            CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
+            CrossBar t2 = new CrossBar(20, "referenceTest", "2", 0, false, 0, Orientation.height);
+            CrossBar t3 = new CrossBar(20, "referenceTest", "3", 0, false, 0, Orientation.height);
 
             t.addComponent(t1);
             t.addComponent(t2);

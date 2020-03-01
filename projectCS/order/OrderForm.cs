@@ -20,10 +20,10 @@ namespace projectCS
             get => _client;
         }
 
-        private static int _OrderID = 0;
-        public int OrderID
+        private static int _id = 0;
+        public int id
         {
-            get => _OrderID;
+            get => _id;
         }
         
         public OrderForm() : this(new Client())
@@ -35,7 +35,7 @@ namespace projectCS
             this._client = client;
             this._cupboardDictionnary = new Dictionary<Cupboard, int>();
             this._client.addOrderForm(this);
-            _OrderID++;
+            _id++;
         }
 
         public void addCupboard(Cupboard cupboard)
@@ -47,13 +47,22 @@ namespace projectCS
         {
             _cupboardDictionnary[cupboard] = number;
         }
-
+        // TODO : l'adapter pour le dictionnaire
+        public void removeCupboard(Cupboard cupboard)
+        {
+            //_cupboardDictionnary.Remove(cupboard);
+        }
+        // TODO : faire le get price
+        public double getPrice()
+        {
+            return 0;
+        }
         /// <summary>
         ///     reset initial id from which it count
         /// </summary>
         private void resetID()
         {
-            _OrderID = 0;
+            _id = 0;
         }
     }
 }

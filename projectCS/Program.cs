@@ -23,7 +23,7 @@ namespace projectCS
         {
             public static void newCompoTest()
             {
-                CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, "orientationTest");
+                CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, Orientation.height);
                 Console.WriteLine(t.price);
             }
 
@@ -31,11 +31,11 @@ namespace projectCS
             {
                 Locker t = new Locker();
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
-                CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, "orientationTest");
-                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", 0, false, 0, "orientationTest");
-                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", 0, false, 0, "orientationTest");
-                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", 0, false, 0, "orientationTest");
+                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
+                CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, Orientation.height);
+                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", 0, false, 0, Orientation.height);
+                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", 0, false, 0, Orientation.height);
+                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", 0, false, 0, Orientation.height);
 
                 t.addComponent(t1);
                 t.addComponent(t2);
@@ -62,7 +62,7 @@ namespace projectCS
             {
                 Locker l2 = new Locker();
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
+                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
                 Cleat nul = new Cleat();
 
 

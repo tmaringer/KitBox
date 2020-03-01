@@ -11,10 +11,16 @@
         black,
         transparent
     }
+    // TODO : différent param à spécifier
+    public enum Orientation
+    {
+        height,
+        size        
+    }
 
     public class CrossBar : LockerComponents
     {
-        public CrossBar() : this(0, "null", "0000", 0, false, 0, "no orient")
+        public CrossBar() : this(0, "null", "0000", 0, false, 0, Orientation.height)
         {
         }
         public CrossBar(double price,
@@ -23,7 +29,7 @@
                         int size,
                         bool inStock,
                         int lenght,
-                        string orientation) : base(price, reference, code, size, inStock, lenght, orientation)
+                        Orientation orientation) : base(price, reference, code, size, inStock, lenght, orientation)
         {
         }
     }
@@ -36,7 +42,7 @@
             get => _color;
         }
 
-        public Pannel() : this(0, "null", "0000", 0, false, 0, "no orient", Color.white)
+        public Pannel() : this(0, "null", "0000", 0, false, 0, Orientation.size, Color.white)
         {
         }
         public Pannel(double price,
@@ -45,7 +51,7 @@
                       int size,
                       bool inStock,
                       int lenght,
-                      string orientation,
+                      Orientation orientation,
                       Color color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
             this._color = color;
@@ -65,7 +71,7 @@
             get => _color;
         }
 
-        public Door() : this(0, "null", "0000", 0, false, 0, "no orient", Color.white)
+        public Door() : this(0, "null", "0000", 0, false, 0, Orientation.size, Color.white)
         {
         }
         public Door(double price,
@@ -74,7 +80,7 @@
                       int size,
                       bool inStock,
                       int lenght,
-                      string orientation,
+                      Orientation orientation,
                       Color color) : base(price, reference, code, size, inStock, lenght, orientation)
         {
             this._color = color;
@@ -88,7 +94,7 @@
 
     public class Cleat : LockerComponents
     {
-        public Cleat() : this(0, "null", "0000", 0, false, 0, "no orient")
+        public Cleat() : this(0, "null", "0000", 0, false, 0, Orientation.height)
         {
         }
         public Cleat(double price,
@@ -97,7 +103,7 @@
                       int size,
                       bool inStock,
                       int lenght,
-                      string orientation) : base(price, reference, code, size, inStock, lenght, orientation)
+                      Orientation orientation) : base(price, reference, code, size, inStock, lenght, orientation)
         {
         }
     }

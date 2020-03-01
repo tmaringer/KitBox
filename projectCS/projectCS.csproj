@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="managing class\OrderFormUIinterface.cs" />
     <Compile Include="order\Client.cs" />
     <Compile Include="order\OrderForm.cs" />
     <Compile Include="order\ShoppingCart.cs" />

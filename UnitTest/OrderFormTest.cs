@@ -17,13 +17,13 @@ namespace UnitTest
 
             privOrdre.Invoke("resetID");
             
-            Assert.AreEqual(0, order.OrderID);
+            Assert.AreEqual(0, order.id);
 
             order = new OrderForm();
-            Assert.AreEqual(1, order.OrderID);
+            Assert.AreEqual(1, order.id);
 
             OrderForm order2 = new OrderForm();
-            Assert.AreEqual(2, order2.OrderID);
+            Assert.AreEqual(2, order2.id);
         }
 
         /// <summary>

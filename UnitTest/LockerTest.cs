@@ -63,9 +63,9 @@ namespace UnitTest
         {
             Locker locker = new Locker();
 
-            CrossBar lc1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, "orientationTest");
-            Cleat lc2 = new Cleat(50, "referenceTest", "1", 0, false, 0, "orientationTest");
-            Door lc3 = new Door(40, "referenceTest", "1", 0, false, 0, "orientationTest", Color.white);
+            CrossBar lc1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
+            Cleat lc2 = new Cleat(50, "referenceTest", "1", 0, false, 0, Orientation.height);
+            Door lc3 = new Door(40, "referenceTest", "1", 0, false, 0, Orientation.height, Color.white);
 
             locker.addComponent(new List<LockerComponents>() { lc1, lc2, lc3 });
             Assert.AreEqual(100, locker.price);

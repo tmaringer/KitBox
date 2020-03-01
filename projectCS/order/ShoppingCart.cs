@@ -76,6 +76,7 @@ this._angleBracket = new AngleBracket();
             _componentsList.Remove(component);
         }
 
+        // TODO : à finir
         /// <summary>
         ///     build locker from component stored in list
         /// </summary>
@@ -84,6 +85,8 @@ this._angleBracket = new AngleBracket();
         /// </returns>
         public Locker buildLocker()
         {
+            Locker locker = new Locker();
+
             foreach(Components component in _componentsList)
             {
                 /*
@@ -108,6 +111,7 @@ this._angleBracket = new AngleBracket();
             return new Locker();
         }
         
+        // TODO : finir la methode
         public Cupboard buildCupboard(CupboardComponents component)
         {
             return new Cupboard();

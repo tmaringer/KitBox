@@ -14,8 +14,8 @@
             get => _lenght;
         }
 
-        protected string _orientation;
-        public string orientation
+        protected Orientation _orientation;
+        public Orientation orientation
         {
             get => _orientation;
         }
@@ -26,7 +26,7 @@
                                    int size,
                                    bool inStock,
                                    int lenght,
-                                   string orientation) : base(reference, code, size, inStock)
+                                   Orientation orientation) : base(reference, code, size, inStock)
         {
             this._price = price;
             this._lenght = lenght;
