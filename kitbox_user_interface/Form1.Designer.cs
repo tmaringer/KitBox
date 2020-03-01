@@ -1,5 +1,10 @@
-﻿namespace kitbox_user_interface_V1
+﻿using MySql.Data.MySqlClient;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace kitbox_user_interface_V1
 {
+
     partial class Form1
     {
         /// <summary>
@@ -44,6 +49,13 @@
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+
+            //
+            // database connection
+            //
+
+            MySqlConnection conn = Connection.GetDBConnection();
+
             // 
             // textBox1
             // 
@@ -190,15 +202,13 @@
             // 
             // comboBox4
             // 
+            conn.Open();
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "largeur", "Ref = \"Panneau Ar\"");
+            conn.Close();
+            
+
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "32",
-            "42",
-            "52",
-            "62",
-            "80",
-            "100",
-            "120"});
+            this.comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());//trouver un moyen d'importe cette liste
             this.comboBox4.Location = new System.Drawing.Point(157, 151);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(100, 28);
