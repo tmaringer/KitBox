@@ -13,6 +13,7 @@ namespace kitbox_user_interface_V1
             conn.Open();
             Console.WriteLine("largeur: ");
             List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "largeur", "Ref = \"Panneau Ar\"");
+            List<string> Width = WidthBoxList;
             foreach (string i in WidthBoxList)
             {
                 Console.WriteLine(i);
@@ -25,7 +26,7 @@ namespace kitbox_user_interface_V1
             {
                 Console.WriteLine(i);
             }
-            conn.Close();//essai modif commit 2
+            conn.Close();
             conn.Open();
             Console.WriteLine("hauteur: ");
             List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "hauteur", "Ref = \"Panneau GD\"");
