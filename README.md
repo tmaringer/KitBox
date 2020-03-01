@@ -10,7 +10,3 @@ Francois Robert
 
 ---------------------------------------------------------------------------------------
 Le dossier info contient des infos utiles concernant des commandes usuelles de git ou des méthodes (comme le branching)
-
----------------------------------------------------------------------------------------
-
-ProjectCS contient tout le code C# de l'application
