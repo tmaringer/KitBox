@@ -37,6 +37,8 @@ namespace UnitTest
         public void isCompleteTest()
         {
             Locker locker = new Locker();
+            Locker locker2 = new Locker();
+            Locker locker3 = new Locker();
 
             CrossBar c1 = new CrossBar();
             CrossBar c2 = new CrossBar();
@@ -62,7 +64,17 @@ namespace UnitTest
             locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
+            
+            locker2.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1,
+                                                                p1, p2, p3, p4, p5});
+            
+            locker3.addComponent(new List<LockerComponents>() {c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1});
             Assert.AreEqual(true, locker.isComplete());
+            Assert.AreEqual(false, locker2.isComplete());
+            Assert.AreEqual(false, locker3.isComplete());
         }
 
     }

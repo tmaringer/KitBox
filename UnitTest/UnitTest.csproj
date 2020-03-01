@@ -53,6 +53,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CupboardTest.cs" />
     <Compile Include="AngleBracketTest.cs" />
+    <Compile Include="OrderFormTest.cs" />
+    <Compile Include="ClientTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

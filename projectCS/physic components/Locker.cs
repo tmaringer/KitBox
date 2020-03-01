@@ -73,6 +73,7 @@ namespace projectCS
             _componentsList = new List<LockerComponents>();
         }
 
+        // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
         public void addComponent(LockerComponents component)
         {
             /*
@@ -97,11 +98,13 @@ namespace projectCS
             _componentsList.Add(component);
         }
 
+        // TODO : pareil que pour le add component simple, vérifier si il ya encore de la place
         public void addComponent(List<LockerComponents> componentList)
         {
             _componentsList.AddRange(componentList);
         }
 
+        // TODO : vérifier si ca ne bugge pas quand on enlève un composant qui n'existe pas
         public void removeComponent(LockerComponents component)
         {
             _componentsList.Remove(component);

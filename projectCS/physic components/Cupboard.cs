@@ -23,7 +23,7 @@ namespace projectCS.physic_components
             _lockerAvailable = 7;
             _cupboardComponentsList = new List<CupboardComponents>();
         }
-        
+
         public void cutAnglesBracket(int size)
         {
             getAngleBracket().height -= size;
@@ -61,11 +61,9 @@ namespace projectCS.physic_components
             int numberOfAngleBracket = 0;
             int numberOfLocker = 0;
 
-            Locker locker = new Locker();
-
-            foreach(CupboardComponents component in _cupboardComponentsList)
+            foreach (CupboardComponents component in _cupboardComponentsList)
             {
-                if (component.equals(locker))
+                if (component is Locker)
                     numberOfLocker++;
                 else
                     numberOfAngleBracket++;
@@ -82,15 +80,20 @@ namespace projectCS.physic_components
             return (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
         }
 
+        // TODO : terminer la classe qui calcul la haut des lockers
+        private int computeHeightLocker()
+        {
+            return 0;
+        }
+
         private int locationOfAngleInList()
         {
-            AngleBracket angle = new AngleBracket();
             int angleNumberInList = -1;
 
             foreach (CupboardComponents componants in _cupboardComponentsList)
             {
                 angleNumberInList++;
-                if (componants.equals(angle))
+                if (componants is AngleBracket)
                 {
                     break;
                 }
@@ -101,11 +104,11 @@ namespace projectCS.physic_components
         private bool allLockerIsComplete()
         {
             bool isOk = true;
-            Locker locker = new Locker();
 
             foreach (CupboardComponents component in _cupboardComponentsList)
             {
-                if (component.equals(locker))
+                Console.WriteLine(component);
+                if (component is Locker)
                 {
                     if (!((Locker)component).isComplete())
                     {

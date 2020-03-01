@@ -36,14 +36,6 @@
             this._inStock = inStock;
         }
 
-        public bool equals(object obj)
-        {
-            if (this.GetType() == obj.GetType())
-                return true;
-            else
-                return false;
-        }
-
         public override string ToString()
         {
             return base.ToString() + " : " + price + ", " + _reference + ", " + _code + ", " + _size + ", " + _inStock;
