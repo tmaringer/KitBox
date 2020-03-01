@@ -68,8 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="OrderForm.cs" />
+    <Compile Include="LockerLimit.cs" />
+    <Compile Include="order\Client.cs" />
+    <Compile Include="order\OrderForm.cs" />
+    <Compile Include="order\ShoppingCart.cs" />
     <Compile Include="super class components\Components.cs" />
     <Compile Include="super class components\CupboardComponents.cs" />
     <Compile Include="super class components\LockerComponents.cs" />

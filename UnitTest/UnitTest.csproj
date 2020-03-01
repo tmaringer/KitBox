@@ -55,6 +55,8 @@
     <Compile Include="AngleBracketTest.cs" />
     <Compile Include="OrderFormTest.cs" />
     <Compile Include="ClientTest.cs" />
+    <Compile Include="ShoppingCartTest.cs" />
+    <Compile Include="ColorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

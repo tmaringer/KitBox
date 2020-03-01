@@ -26,7 +26,7 @@ namespace projectCS.physic_components
 
         public void cutAnglesBracket(int size)
         {
-            getAngleBracket().height -= size;
+            getAngleBracket().cutHeight(size);
         }
 
         public double getPrice()
@@ -107,7 +107,6 @@ namespace projectCS.physic_components
 
             foreach (CupboardComponents component in _cupboardComponentsList)
             {
-                Console.WriteLine(component);
                 if (component is Locker)
                 {
                     if (!((Locker)component).isComplete())

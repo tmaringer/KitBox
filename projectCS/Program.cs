@@ -114,9 +114,9 @@ namespace projectCS
 
             public static void autreTest()
             {
-                OrderForm o = new OrderForm();
+                Cupboard cup = new Cupboard();
 
-                Console.WriteLine(o.OrderID);
+                Console.WriteLine(cup);
             }
         }
     }    

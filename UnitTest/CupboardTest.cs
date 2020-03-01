@@ -24,6 +24,50 @@ namespace UnitTest
         }
 
         [TestMethod]
+        public void findAnglesTest()
+        {
+            Cupboard cup = new Cupboard();
+
+            AngleBracket an = new AngleBracket(10, "referenceTest", "1", 0, false, 45);
+            Locker l1 = new Locker();
+            Locker l2 = new Locker();
+            Locker l3 = new Locker();
+            Locker l4 = new Locker();
+
+            cup.addCupboardComponent(an);
+            cup.addCupboardComponent(l1);
+            cup.addCupboardComponent(l2);
+            cup.addCupboardComponent(l3);
+            cup.addCupboardComponent(l4);
+
+            var privateCupboard = new PrivateObject(cup);
+
+            Assert.AreEqual(0, privateCupboard.Invoke("locationOfAngleInList"));
+
+            cup = new Cupboard();
+            cup.addCupboardComponent(l3);
+            cup.addCupboardComponent(l1);
+            cup.addCupboardComponent(l2);
+            cup.addCupboardComponent(an);
+            cup.addCupboardComponent(l4);
+
+            privateCupboard = new PrivateObject(cup);
+
+            Assert.AreEqual(3, privateCupboard.Invoke("locationOfAngleInList"));
+
+            cup = new Cupboard();
+            cup.addCupboardComponent(l2);
+            cup.addCupboardComponent(l1);
+            cup.addCupboardComponent(an);
+            cup.addCupboardComponent(l3);
+            cup.addCupboardComponent(l4);
+
+            privateCupboard = new PrivateObject(cup);
+
+            Assert.AreEqual(2, privateCupboard.Invoke("locationOfAngleInList"));
+        }
+
+        [TestMethod]
         public void getPriceTest()
         {
             Cupboard cup = new Cupboard();
@@ -136,6 +180,5 @@ namespace UnitTest
             Assert.AreEqual(true, privateCupboard.Invoke("allLockerIsComplete"));
             Assert.AreEqual(false, privateCupboard2.Invoke("allLockerIsComplete"));
         }
-
     }
 }

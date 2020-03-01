@@ -2,10 +2,9 @@
 {
     public abstract class CupboardComponents : Components
     {
-        public virtual int height
+        public abstract int height
         {
             get;
-            set;
         }
 
         protected CupboardComponents(string reference,

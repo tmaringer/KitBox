@@ -6,7 +6,6 @@
         public override int height
         {
             get => _height;
-            set => _height = value;
         }
 
         private double _price;
@@ -28,6 +27,11 @@
         {
             this._price = price;
             this._height = height;
+        }
+
+        public void cutHeight(int size)
+        {
+            _height -= size;
         }
     }
 }

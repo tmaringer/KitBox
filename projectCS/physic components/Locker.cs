@@ -4,6 +4,11 @@ namespace projectCS
 {
     public class Locker : CupboardComponents
     {
+        public override int height 
+        { 
+            get => height;
+        }
+
         public override double price
         {
             get

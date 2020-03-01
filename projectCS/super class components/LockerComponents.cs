@@ -3,11 +3,11 @@
     public abstract class LockerComponents : Components
     {
         protected double _price;
-        public virtual double price
+        public override double price
         {
             get => _price;
         }
-
+        
         protected int _lenght;
         public int lenght
         {
