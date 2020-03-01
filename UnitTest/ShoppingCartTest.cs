@@ -8,6 +8,7 @@ namespace UnitTest
     [TestClass]
     public class ShoppingCartTest
     {
+        // TODO : finir les test + doc
         [TestMethod]
         public void TestMethod1()
         {

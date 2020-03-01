@@ -76,6 +76,12 @@ this._angleBracket = new AngleBracket();
             _componentsList.Remove(component);
         }
 
+        /// <summary>
+        ///     build locker from component stored in list
+        /// </summary>
+        /// <returns>
+        ///     return the locker builded
+        /// </returns>
         public Locker buildLocker()
         {
             foreach(Components component in _componentsList)

@@ -5,7 +5,9 @@ namespace projectCS
 {
     public class OrderForm
     {
-        
+        /// <summary>
+        ///     the first emplacement take the cupboard build by the client, the second take the number of this cupboard
+        /// </summary>
         private Dictionary<Cupboard, int> _cupboardDictionnary;
         public Dictionary<Cupboard, int> cupboardDictionnary
         {
@@ -46,6 +48,9 @@ namespace projectCS
             _cupboardDictionnary[cupboard] = number;
         }
 
+        /// <summary>
+        ///     reset initial id from which it count
+        /// </summary>
         private void resetID()
         {
             _OrderID = 0;

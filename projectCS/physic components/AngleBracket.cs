@@ -29,6 +29,12 @@
             this._height = height;
         }
 
+        /// <summary>
+        ///     resize the angle bracket
+        /// </summary>
+        /// <param name="size">
+        ///     size to deduct
+        /// </param>
         public void cutHeight(int size)
         {
             _height -= size;

@@ -114,9 +114,12 @@ namespace projectCS
 
             public static void autreTest()
             {
-                Cupboard cup = new Cupboard();
+                LockerComponents c = new CrossBar();
+                LockerComponents d = new Door();
+                LockerComponents d2 = new Door();
 
-                Console.WriteLine(cup);
+                Console.WriteLine(c.GetType() == d.GetType());
+                Console.WriteLine(d2.GetType() == d.GetType());
             }
         }
     }    

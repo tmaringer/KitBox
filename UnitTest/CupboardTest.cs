@@ -23,6 +23,9 @@ namespace UnitTest
             Assert.AreNotEqual(2, cup.getAngleBracket().height);
         }
 
+        /// <summary>
+        ///     check if the function which search an angle in list work fine
+        /// </summary>
         [TestMethod]
         public void findAnglesTest()
         {
@@ -140,6 +143,9 @@ namespace UnitTest
             Assert.AreEqual(false, cup2.isComplete());
         }
 
+        /// <summary>
+        ///     check if the function which 
+        /// </summary>
         [TestMethod]
         public void allLockerIsCompleteTest()
         {

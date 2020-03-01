@@ -18,6 +18,9 @@ namespace UnitTest
             Assert.AreEqual("testClient", client.firstName);
         }
 
+        /// <summary>
+        ///     check if adding an orderForm to client work fine
+        /// </summary>
         [TestMethod]
         public void attachToOrderTest()
         {
@@ -25,8 +28,8 @@ namespace UnitTest
             OrderForm order = new OrderForm(client);
             OrderForm order2 = new OrderForm();
 
-            Assert.AreEqual(true, client.orderFormIsInList(order));
-            Assert.AreEqual(false, client.orderFormIsInList(order2));
+            Assert.AreEqual(true, client.hasThisOrderForm(order));
+            Assert.AreEqual(false, client.hasThisOrderForm(order2));
             Assert.AreEqual(order, client.orderFormsList.ElementAt(0));
         }
     }

@@ -24,6 +24,12 @@ namespace projectCS.physic_components
             _cupboardComponentsList = new List<CupboardComponents>();
         }
 
+        /// <summary>
+        ///     resize the cupboard angles bracket
+        /// </summary>
+        /// <param name="size">
+        ///     size wich will be deduct from cupboard angle bracket
+        /// </param>
         public void cutAnglesBracket(int size)
         {
             getAngleBracket().cutHeight(size);
@@ -54,6 +60,12 @@ namespace projectCS.physic_components
             _cupboardComponentsList.Remove(component);
         }
 
+        /// <summary>
+        ///     check if the cupboard have all components which it must have 
+        /// </summary>
+        /// <returns>
+        ///     return true if the cupboard have all components, false in other case
+        /// </returns>
         public bool isComplete()
         {
             bool isOk = false;
@@ -101,6 +113,12 @@ namespace projectCS.physic_components
             return angleNumberInList;
         }
 
+        /// <summary>
+        ///     check if all lockers of cupboard have all components which it must have 
+        /// </summary>
+        /// <returns>
+        ///      return true if lockers have all components, false in other case
+        /// </returns>
         private bool allLockerIsComplete()
         {
             bool isOk = true;

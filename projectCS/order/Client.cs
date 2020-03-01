@@ -49,12 +49,21 @@ namespace projectCS
             _orderFormList.Add(order);
         }
         
-        public void removeFromOrderForm(OrderForm oder)
+        public void removeOrderForm(OrderForm oder)
         {
             _orderFormList.Remove(oder);
         }
 
-        public bool orderFormIsInList(OrderForm order)
+        /// <summary>
+        ///     check if the client has the order form pass in parameter
+        /// </summary>
+        /// <param name="order">
+        ///     order form to find
+        /// </param>
+        /// <returns>
+        ///     return true if order form is found, false in other case
+        /// </returns>
+        public bool hasThisOrderForm(OrderForm order)
         {
             return _orderFormList.Contains(order);
         }

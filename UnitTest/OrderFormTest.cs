@@ -24,8 +24,11 @@ namespace UnitTest
 
             OrderForm order2 = new OrderForm();
             Assert.AreEqual(2, order2.OrderID);
-        } 
-        
+        }
+
+        /// <summary>
+        ///     check if the adding client work fine and if adding a client to an order add also the order to client
+        /// </summary>
         [TestMethod]
         public void clientOrderTest()
         {
@@ -62,6 +65,9 @@ namespace UnitTest
             Assert.AreEqual(7, order.cupboardDictionnary.Keys.First().lockerAvailable);
         }
 
+        /// <summary>
+        ///     check if the selection of cupboards number work fine
+        /// </summary>
         [TestMethod]
         public void selectNumberOfCupboardTest()
         {

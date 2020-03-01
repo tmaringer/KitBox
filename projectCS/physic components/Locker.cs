@@ -4,6 +4,14 @@ namespace projectCS
 {
     public class Locker : CupboardComponents
     {
+        /// <summary>
+        ///     group all maximum value for each components which the locker can have
+        /// </summary>
+        private static readonly int maximumCrossBar = 8;
+        private static readonly int maximumPannel = 5;
+        private static readonly int maximumDoor = 2;
+        private static readonly int maximumCleat = 4;
+
         public override int height 
         { 
             get => height;
@@ -34,6 +42,8 @@ namespace projectCS
             get => _depth;
         }
 
+        // TODO : a refactorer si inutile par la suite
+        /*
         private int _numberOfLCrossBar;
         public int numberOfLCrossBar
         {
@@ -57,7 +67,7 @@ namespace projectCS
         {
             get => _numberOfCleat;
         }
-
+        */
         private List<LockerComponents> _componentsList;
         public List<LockerComponents> componentsList
         {
@@ -81,26 +91,31 @@ namespace projectCS
         // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
         public void addComponent(LockerComponents component)
         {
-            /*
+            bool isOk = false;
             switch (component)
             {
                 case CrossBar c:
-                    _numberOfLCrossBar++;
+                    if (numberOfComponentInList(component) < maximumCrossBar)
+                        isOk = true;
                     break;
                 case Pannel p:
-                    _numberOfPannel++;
+                    if (numberOfComponentInList(component) < maximumPannel)
+                        isOk = true;
                     break;
                 case Door d:
-                    _numberOfDoor++;
+                    if (numberOfComponentInList(component) < maximumDoor)
+                        isOk = true;
                     break;
                 case Cleat cl:
-                    _numberOfCleat++;
+                    if (numberOfComponentInList(component) < maximumCleat)
+                        isOk = true;
                     break;
                 default:
                     break;
             }          
-            */
-            _componentsList.Add(component);
+            
+            if (isOk)
+                _componentsList.Add(component);
         }
 
         // TODO : pareil que pour le add component simple, vérifier si il ya encore de la place
@@ -115,36 +130,44 @@ namespace projectCS
             _componentsList.Remove(component);
         }
 
+        /// <summary>
+        ///     check if the locker have all components that it must have 
+        /// </summary>
+        /// <returns>
+        ///     return true if the locker have all components, false in other case
+        /// </returns>
         public bool isComplete()
         {
             bool isOk = false;
-            int numberOfCrossBar = 0;
-            int numberOfPannel = 0;
-            int numberOfCleat = 0;
-
-            foreach (LockerComponents component in _componentsList)
-            {
-                switch (component)
-                {
-                    case CrossBar c:
-                        numberOfCrossBar++;
-                        break;
-                    case Pannel p:
-                        numberOfPannel++;
-                        break;
-                    case Cleat cl:
-                        numberOfCleat++;
-                        break;
-                    default:
-                        break;
-                }
-            }
+            int numberOfCrossBar = numberOfComponentInList(new CrossBar());
+            int numberOfPannel = numberOfComponentInList(new Pannel());
+            int numberOfCleat = numberOfComponentInList(new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
-            if ((numberOfCrossBar == 8) && (numberOfPannel == 5) && (numberOfCleat == 4))
+            if ((numberOfCrossBar == maximumCrossBar) && (numberOfPannel == maximumPannel) && (numberOfCleat == maximumCleat))
                 isOk = true;
 
             return isOk;
+        }
+
+        /// <summary>
+        ///     this function return the number of component which is a LockerComponent type and owned by locker class
+        /// </summary>
+        /// <param name="component">
+        ///     take a component to search in locker component list
+        /// </param>
+        /// <returns>
+        ///     return the number of component found
+        /// </returns>
+        private int numberOfComponentInList(LockerComponents componentGiven)
+        {            
+            int numberofComponent = 0;
+            foreach (LockerComponents componentInList in _componentsList)
+            {
+                if(componentInList.GetType() == componentGiven.GetType())
+                    numberofComponent++;
+            }
+            return numberofComponent;
         }
     }
 }

@@ -1,15 +1,17 @@
-﻿
-public enum Color
+﻿namespace projectCS
 {
-    white,
-    brawn,
-    galvanized,
-    black,
-    transparent
-}
+    /// <summary>
+    ///     regroup all color available in catalog
+    /// </summary>
+    public enum Color
+    {
+        white,
+        brawn,
+        galvanized,
+        black,
+        transparent
+    }
 
-namespace projectCS
-{
     public class CrossBar : LockerComponents
     {
         public CrossBar() : this(0, "null", "0000", 0, false, 0, "no orient")
