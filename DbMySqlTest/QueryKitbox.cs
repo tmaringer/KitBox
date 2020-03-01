@@ -61,6 +61,51 @@ namespace DbLibrary
             }
             return result;
         }
+        public static string BestHeight(MySqlConnection conn, string Column, int Value)
+        {
+            string result = "";
+            List<int> Cuttable = new List<int>();
+            string sql = "Select " + Column + " from kitbox";
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = sql
+            };
+            using DbDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+
+                while (reader.Read())
+                {
+                    string ColumnComponent = reader.GetString(reader.GetOrdinal(Column));
+                    int IntColumnComponent = Convert.ToInt32(ColumnComponent);
+                    if (IntColumnComponent % 36 == 0 || IntColumnComponent % 46 == 0 || IntColumnComponent % 56 == 0)
+                    {
+                    }
+                    else
+                    {
+                        Cuttable.Add(IntColumnComponent);
+                    }
+                }
+            }
+            if (Value % 36 != 0 && Value % 46 != 0 && Value % 56 != 0)
+            {
+                int MaxValue = 500;
+                foreach (int i in Cuttable)
+                {
+                    if (i >= Value && i < MaxValue)
+                    {
+                        MaxValue = i;
+                    }
+                }
+                result = MaxValue.ToString();
+            }
+            else
+            {
+                result = Value.ToString();
+            }
+            return result;  
+        }
 
         public static void UpdateDbComponents(MySqlConnection conn, string SetSQL, string WhereSQL)
         {
