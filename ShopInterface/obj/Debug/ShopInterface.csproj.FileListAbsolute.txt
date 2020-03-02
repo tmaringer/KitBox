@@ -1,0 +1,8 @@
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.config
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\ShopInterface.exe
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\ShopInterface.pdb
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.csprojAssemblyReference.cache
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Properties.Resources.resources
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.GenerateResource.cache
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
