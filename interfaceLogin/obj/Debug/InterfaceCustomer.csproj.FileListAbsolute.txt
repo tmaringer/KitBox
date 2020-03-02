@@ -1,9 +1,0 @@
-C:\Users\Thibaut\source\repos\InterfaceCustomer\bin\Debug\InterfaceCustomer.exe.config
-C:\Users\Thibaut\source\repos\InterfaceCustomer\bin\Debug\InterfaceCustomer.exe
-C:\Users\Thibaut\source\repos\InterfaceCustomer\bin\Debug\InterfaceCustomer.pdb
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.csprojAssemblyReference.cache
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.Form1.resources
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.Properties.Resources.resources
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.csproj.GenerateResource.cache
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.exe
-C:\Users\Thibaut\source\repos\InterfaceCustomer\obj\Debug\InterfaceCustomer.pdb

@@ -1,6 +1,8 @@
-﻿using projectCS.physic_components;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace projectCS
 {
@@ -17,6 +19,11 @@ namespace projectCS
             printPerso.autreTest();
 
             Console.WriteLine("\n");
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new kitbox_user_interface_V1.Form1());
+            Application.Run(new ShopInterface.Form1());
+
         }
 
         internal static class printPerso
