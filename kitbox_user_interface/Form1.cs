@@ -52,5 +52,14 @@ namespace kitbox_user_interface_V1
         {
 
         }
+        
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //créer un objet liste de commande
+            //créer un objet armoire
+            //ajouter armoire dans liste de commande ???
+            textBox1.Text = "kewlox";
+            MessageBox.Show(textBox1.Text);
+        }
     }
 }

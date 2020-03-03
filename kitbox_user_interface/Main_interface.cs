@@ -15,6 +15,7 @@ namespace kitbox_user_interface_V1
         [STAThread]
         static void Main()
         {
+            /*
             MySqlConnection conn = Connection.GetDBConnection();
             conn.Open();
             
@@ -50,7 +51,7 @@ namespace kitbox_user_interface_V1
             Console.ReadLine();
             conn.Close();
             conn.Dispose();
-
+            */
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
