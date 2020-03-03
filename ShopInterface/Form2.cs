@@ -32,6 +32,7 @@ namespace ShopInterface
             da.Fill(dataTable);
             this.dataGridView1.DataSource = dataTable;
             conn.Close();
+ 
         }
 
         public Form2(Form1 form1)
