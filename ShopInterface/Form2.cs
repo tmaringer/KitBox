@@ -8,37 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using projectCS;
 
 namespace ShopInterface
 {
     public partial class Form2 : Form
     {
-        public string InitializeDB()
-        {
-            return "SERVER=localhost;" +
-                "DATABASE=kitbox;" +
-                "UID=root;" +
-                "PASSWORD=locomac6;";
-        }
-        public void RefreshDB()
-        {
-            String MyConString = InitializeDB();
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM kitbox;", conn);
-            DataTable dataTable = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            conn.Open();
-            dataTable.Clear();
-            da.Fill(dataTable);
-            this.dataGridView1.DataSource = dataTable;
-            conn.Close();
- 
-        }
-
         public Form2(Form1 form1)
         {
             InitializeComponent();
-            RefreshDB();
+            projectCS.DBUtils.RefreshDB();
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

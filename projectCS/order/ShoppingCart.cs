@@ -1,11 +1,11 @@
-﻿using projectCS.physic_components;
+﻿using projectCS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectCS.order
+namespace projectCS
 {
     public class ShoppingCart
     {

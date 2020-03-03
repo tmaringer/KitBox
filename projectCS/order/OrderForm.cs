@@ -1,4 +1,4 @@
-﻿using projectCS.physic_components;
+﻿using projectCS;
 using System.Collections.Generic;
 
 namespace projectCS

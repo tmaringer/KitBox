@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace projectCS.physic_components
+namespace projectCS
 {
     public class Cupboard
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectCS.Tools_class
+namespace projectCS
 {
     // TODO : regroupera les différents champs/mots
     public static class Utils

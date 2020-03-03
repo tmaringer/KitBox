@@ -21,8 +21,6 @@ namespace projectCS
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new kitbox_user_interface_V1.Form1());
-            Application.Run(new ShopInterface.Form1());
 
         }
 

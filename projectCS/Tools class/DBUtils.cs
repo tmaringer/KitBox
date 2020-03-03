@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Windows.Forms;
 
-namespace projectCS.managing_class
+namespace projectCS
 {
     class DBUtils
     {

@@ -1,4 +1,4 @@
-﻿namespace projectCS.physic_components
+﻿namespace projectCS
 {
     public class AngleBracket : CupboardComponents
     {
