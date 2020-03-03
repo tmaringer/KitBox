@@ -54,7 +54,6 @@ namespace kitbox_user_interface_V1
             // database connection
             //
 
-            MySqlConnection conn = Connection.GetDBConnection();
 
             // 
             // textBox1
@@ -201,12 +200,11 @@ namespace kitbox_user_interface_V1
             this.textBox10.Text = "nombre d\'étages";
             // 
             // comboBox4
-            // 
+            //
+            MySqlConnection conn = Connection.GetDBConnection();
             conn.Open();
             List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "largeur", "Ref = \"Panneau Ar\"");
             conn.Close();
-            
-
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());//trouver un moyen d'importe cette liste
             this.comboBox4.Location = new System.Drawing.Point(157, 151);

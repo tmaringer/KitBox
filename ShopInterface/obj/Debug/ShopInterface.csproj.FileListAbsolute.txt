@@ -6,3 +6,14 @@ C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.P
 C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.GenerateResource.cache
 C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Form1.resources
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Form2.resources
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\Google.Protobuf.dll
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\MySql.Data.dll
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\Renci.SshNet.dll
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\Google.Protobuf.xml
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\MySql.Data.xml
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\Renci.SshNet.xml
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
