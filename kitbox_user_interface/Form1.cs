@@ -52,7 +52,6 @@ namespace kitbox_user_interface_V1
         {
 
         }
-        
         private void button1_Click_1(object sender, EventArgs e)
         {
             //créer un objet liste de commande
@@ -64,12 +63,20 @@ namespace kitbox_user_interface_V1
             
 
         }
-
+        
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmb3 = (ComboBox) sender;
             int cmb3_index = (int) cmb3.SelectedIndex;
-            MessageBox.Show(cmb3_index.ToString());
+            MessageBox.Show(cmb3_index.ToString());//pas moyen de récupérer la value sans accès à la db
+            //armoire.nb_etages = index +1;
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmb4 = (ComboBox)sender;
+            int cmb4_index = (int)cmb4.SelectedIndex;
+            //armoire.width = WidhtBoxList[cmb4_index];
         }
     }
 }
