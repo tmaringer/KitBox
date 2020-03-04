@@ -90,19 +90,19 @@ namespace projectCS
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfComponentInList(component) < maximumCrossBars)
+                    if (numberOfGivenComponentInList(component) < maximumCrossBars)
                         isOk = true;
                     break;
                 case Pannel p:
-                    if (numberOfComponentInList(component) < maximumPannels)
+                    if (numberOfGivenComponentInList(component) < maximumPannels)
                         isOk = true;
                     break;
                 case Door d:
-                    if (numberOfComponentInList(component) < maximumDoors)
+                    if (numberOfGivenComponentInList(component) < maximumDoors)
                         isOk = true;
                     break;
                 case Cleat cl:
-                    if (numberOfComponentInList(component) < maximumCleats)
+                    if (numberOfGivenComponentInList(component) < maximumCleats)
                         isOk = true;
                     break;
                 default:
@@ -134,9 +134,9 @@ namespace projectCS
         public bool isComplete()
         {
             bool isOk = false;
-            int numberOfCrossBar = numberOfComponentInList(new CrossBar());
-            int numberOfPannel = numberOfComponentInList(new Pannel());
-            int numberOfCleat = numberOfComponentInList(new Cleat());
+            int numberOfCrossBar = numberOfGivenComponentInList(new CrossBar());
+            int numberOfPannel = numberOfGivenComponentInList(new Pannel());
+            int numberOfCleat = numberOfGivenComponentInList(new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
             if ((numberOfCrossBar == maximumCrossBars) && (numberOfPannel == maximumPannels) && (numberOfCleat == maximumCleats))
@@ -146,7 +146,7 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     this function return the number of component which is a LockerComponent type and owned by locker class
+        ///     this function return the number of component which is a CatalogueComponents type and owned by locker class
         /// </summary>
         /// <param name="component">
         ///     take a component to search in locker component list
@@ -154,7 +154,7 @@ namespace projectCS
         /// <returns>
         ///     return the number of component found
         /// </returns>
-        private int numberOfComponentInList(CatalogueComponents componentGiven)
+        private int numberOfGivenComponentInList(CatalogueComponents componentGiven)
         {            
             int numberofComponent = 0;
             foreach (CatalogueComponents componentInList in _componentsList)
@@ -163,6 +163,27 @@ namespace projectCS
                     numberofComponent++;
             }
             return numberofComponent;
+        }
+
+
+        public override string ToString()
+        {
+            string tostring = "";
+            foreach (CatalogueComponents composant in _componentsList)
+            {
+                tostring += composant.ToString() + "\n";
+            }
+            return base.ToString() 
+                + ", height : "
+                + height
+                + ", width : "
+                + _width
+                + ", depth : "
+                + _depth
+                + ", is Complete : "
+                + isComplete()
+                + "\n" + "\n" + "components list : " + "\n" + "\n"
+                + tostring;
         }
     }
 }

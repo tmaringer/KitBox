@@ -119,12 +119,33 @@ namespace projectCS
 
             public static void autreTest()
             {
-                Locker l = new Locker();
-                Door d = new Door();
+                Locker locker = new Locker();
+
+                CrossBar c1 = new CrossBar();
+                CrossBar c2 = new CrossBar();
+                CrossBar c3 = new CrossBar();
+                CrossBar c4 = new CrossBar();
+                CrossBar c5 = new CrossBar();
+                CrossBar c6 = new CrossBar();
+                CrossBar c7 = new CrossBar();
+                CrossBar c8 = new CrossBar();
+                Pannel p1 = new Pannel();
+                Pannel p2 = new Pannel();
+                Pannel p3 = new Pannel();
+                Pannel p4 = new Pannel();
+                Pannel p5 = new Pannel();
+                Cleat cl1 = new Cleat();
+                Cleat cl2 = new Cleat();
+                Cleat cl3 = new Cleat();
+                Cleat cl4 = new Cleat();
 
 
-                
-                Console.WriteLine(l);
+
+                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5});
+
+                Console.WriteLine(locker);
             }
         }
     }    
