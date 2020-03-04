@@ -36,3 +36,6 @@ C:\Users\De Groote\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface
 C:\Users\De Groote\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
 C:\Users\De Groote\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 C:\Users\De Groote\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\projectCS.exe
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\projectCS.pdb
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\bin\Debug\projectCS.exe.config

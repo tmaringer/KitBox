@@ -17,7 +17,7 @@ namespace ShopInterface
         public Form2(Form1 form1)
         {
             InitializeComponent();
-            projectCS.DBUtils.RefreshDB();
+            DBUtils.RefreshDB(dataGridView1);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -32,28 +32,8 @@ namespace ShopInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                String MyConString = InitializeDB();
-                MySqlConnection conn = new MySqlConnection(MyConString);
-                String Column = this.textBox1.Text;
-                String Code = this.textBox2.Text;
-                String Value = this.textBox3.Text;
-                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox.kitbox SET " + Column + " =\"" + Value + "\"" + " WHERE Code= \"" + Code + "\";", conn);
-                conn.Open();
-                MySqlDataReader MyReader2;
-                MyReader2 = cmd.ExecuteReader();
-                this.label4.Text = "Done";
-                while (MyReader2.Read())
-                {
-                }
-                RefreshDB();
-                conn.Close();
-            }
-            catch
-            {
-                this.label4.Text = "Error";
-            }
+            this.label4.Text = DBUtils.UpdateDB(dataGridView1, textBox1, textBox2, textBox3);
+            DBUtils.RefreshDB(dataGridView1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -69,6 +49,16 @@ namespace ShopInterface
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            button4.Enabled = DBUtils.SearchDB(dataGridView1, textBox10);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            textBox10.Text = "";
+            button4.Enabled = DBUtils.StopSearchDB(dataGridView1, textBox10);
         }
     }
 }

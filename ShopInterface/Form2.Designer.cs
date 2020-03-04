@@ -32,9 +32,12 @@ namespace ShopInterface
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -56,14 +59,15 @@ namespace ShopInterface
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -82,6 +86,7 @@ namespace ShopInterface
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -94,15 +99,54 @@ namespace ShopInterface
             this.tabPage1.Text = "Database management";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Controls.Add(this.button5);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.textBox10);
+            this.groupBox4.Location = new System.Drawing.Point(698, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(267, 76);
+            this.groupBox4.TabIndex = 8;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Search an element";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(150, 49);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(95, 21);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Search";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(83, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 13);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Search";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(131, 19);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(114, 20);
+            this.textBox10.TabIndex = 1;
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Controls.Add(this.textBox8);
             this.groupBox3.Controls.Add(this.textBox9);
             this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Location = new System.Drawing.Point(698, 226);
+            this.groupBox3.Location = new System.Drawing.Point(698, 308);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(267, 297);
+            this.groupBox3.Size = new System.Drawing.Size(267, 215);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Insert a row";
@@ -141,7 +185,7 @@ namespace ShopInterface
             // 
             this.groupBox2.Controls.Add(this.textBox6);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Location = new System.Drawing.Point(698, 141);
+            this.groupBox2.Location = new System.Drawing.Point(698, 223);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(267, 79);
             this.groupBox2.TabIndex = 4;
@@ -174,7 +218,7 @@ namespace ShopInterface
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Location = new System.Drawing.Point(698, 6);
+            this.groupBox1.Location = new System.Drawing.Point(698, 88);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(267, 129);
             this.groupBox1.TabIndex = 2;
@@ -254,6 +298,7 @@ namespace ShopInterface
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
@@ -291,6 +336,17 @@ namespace ShopInterface
             this.tabPage4.Text = "Supplier orders";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Location = new System.Drawing.Point(49, 49);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 21);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Stop search";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +358,8 @@ namespace ShopInterface
             this.Text = "Form2";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -309,7 +367,6 @@ namespace ShopInterface
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,7 +378,7 @@ namespace ShopInterface
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource bindingSource1;
+        
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
@@ -340,5 +397,11 @@ namespace ShopInterface
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox10;
+        private CustomInstaller customInstaller1;
+        private System.Windows.Forms.Button button4;
     }
 }

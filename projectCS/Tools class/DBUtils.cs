@@ -9,13 +9,13 @@ using System.Windows.Forms;
 
 namespace projectCS
 {
-    class DBUtils
+    public class DBUtils
     {
-        private String MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
+        private static String MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
 
-        public void RefreshDB(DataGridView grid)
+        public static void RefreshDB(DataGridView grid)
         {
-            MySqlConnection conn = new MySqlConnection(this.MyConString);
+            MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM kitbox;", conn);
             DataTable dataTable = new DataTable();
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -26,11 +26,11 @@ namespace projectCS
             conn.Close();
         }
 
-        public string UpdateDB(DataGridView grid, TextBox col, TextBox code, TextBox value)
+        public static string UpdateDB(DataGridView grid, TextBox col, TextBox code, TextBox value)
         {
             try
             {
-                MySqlConnection conn = new MySqlConnection(this.MyConString);
+                MySqlConnection conn = new MySqlConnection(MyConString);
                 String Column = col.Text;
                 String Code = code.Text;
                 String Value = value.Text;
@@ -41,7 +41,7 @@ namespace projectCS
                 while (MyReader2.Read())
                 {
                 }
-                this.RefreshDB(grid);
+                RefreshDB(grid);
                 conn.Close();
                 return "Done";
             }
@@ -50,6 +50,32 @@ namespace projectCS
             {
                 return "Error";
             }
+        }
+        public static bool SearchDB(DataGridView dataGridView1,TextBox value)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    row.Cells[i].Style.BackColor = System.Drawing.Color.White;
+                    if (row.Cells[i].Value.ToString() == value.Text.ToString())
+                    {
+                        row.Cells[i].Style.BackColor = System.Drawing.Color.Green;
+                    }
+                }
+            }
+            return true;
+        }
+        public static bool StopSearchDB(DataGridView dataGridView1, TextBox value)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    row.Cells[i].Style.BackColor = System.Drawing.Color.White;
+                }
+            }
+            return false;
         }
     }
 }
