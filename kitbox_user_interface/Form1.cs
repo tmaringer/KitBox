@@ -59,7 +59,17 @@ namespace kitbox_user_interface_V1
             //créer un objet armoire
             //ajouter armoire dans liste de commande ???
             textBox1.Text = "kewlox";
-            MessageBox.Show(textBox1.Text);
+            MessageBox.Show(textBox1.Text + " ");
+            //tenter d'afficher les paramètres sélectionnés en vue de créer des objets
+            
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cmb3 = (ComboBox) sender;
+            int cmb3_index = (int) cmb3.SelectedIndex;
+            MessageBox.Show(cmb3_index.ToString());
         }
     }
 }

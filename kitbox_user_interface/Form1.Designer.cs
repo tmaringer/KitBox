@@ -49,6 +49,13 @@ namespace kitbox_user_interface_V1
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+
+            //
+            // connection
+            //
+
+            MySqlConnection conn = Connection.GetDBConnection();
+
             // 
             // textBox1
             // 
@@ -182,6 +189,7 @@ namespace kitbox_user_interface_V1
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(100, 28);
             this.comboBox3.TabIndex = 19;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // textBox10
             // 

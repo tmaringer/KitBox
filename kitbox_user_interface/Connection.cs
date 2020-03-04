@@ -22,11 +22,11 @@ namespace kitbox_user_interface_V1
 
         public static MySqlConnection GetDBConnection()
         {
-            string host = "remotemysql.com";
+            string host = "db4free.net";
             int port = 3306;
-            string database = "HHFtMTewie";
-            string username = "HHFtMTewie";
-            string password = "yVUAYh6xqO";
+            string database = "kitbox_kewlax";
+            string username = "kewlaw";
+            string password = "locomac6";
 
             return GetDBConnection(host, port, database, username, password);
         }

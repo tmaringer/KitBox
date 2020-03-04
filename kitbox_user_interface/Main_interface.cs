@@ -13,9 +13,9 @@ namespace kitbox_user_interface_V1
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main(string[] args)
         {
-            /*
+            
             MySqlConnection conn = Connection.GetDBConnection();
             conn.Open();
             
@@ -51,7 +51,6 @@ namespace kitbox_user_interface_V1
             Console.ReadLine();
             conn.Close();
             conn.Dispose();
-            */
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
