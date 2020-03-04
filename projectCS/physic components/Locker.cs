@@ -2,7 +2,7 @@
 
 namespace projectCS
 {
-    public class Locker : CupboardComponents
+    public class Locker : ICupboardComponents
     {
         /// <summary>
         ///     group all maximum value for each components which the locker can have
@@ -13,17 +13,17 @@ namespace projectCS
         private static readonly int maximumCleats = 4;
 
         // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
-        public override int height 
+        public int height 
         { 
             get => 0;
         }
 
-        public override double price
+        public double price
         {
             get
             {
                 double componentsPrice = 0;
-                foreach (LockerComponents component in _componentsList)
+                foreach (CatalogueComponents component in _componentsList)
                 {
                     componentsPrice += component.price;
                 }
@@ -31,12 +31,14 @@ namespace projectCS
             }
         }
 
+        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         private int _width;
         public int width
         {
             get => _width;
         }
 
+        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         private int _depth;
         public int depth
         {
@@ -69,28 +71,20 @@ namespace projectCS
             get => _numberOfCleat;
         }
         */
-        private List<LockerComponents> _componentsList;
-        public List<LockerComponents> componentsList
+        private List<CatalogueComponents> _componentsList;
+        public List<CatalogueComponents> componentsList
         {
             get => _componentsList;
         }
-
-        public Locker() : this("null", "0000", 0, false)
-        {
-        }
-
-        // TODO : !!!!!!!!!!!!!! retiré les atribut de tout l'héritage car le locker n'existe pas dans la db, donc aucun para à mettre
-        public Locker(string reference,
-                     string code,
-                     int size,
-                     bool inStock) : base(reference, code, size, inStock)
+               
+        public Locker()
         {
             _width = 0;
             _depth = 0;
-            _componentsList = new List<LockerComponents>();
+            _componentsList = new List<CatalogueComponents>();
         }
 
-        public void addComponent(LockerComponents component)
+        public void addComponent(CatalogueComponents component)
         {
             bool isOk = false;
             switch (component)
@@ -120,13 +114,13 @@ namespace projectCS
         }
 
         // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
-        public void addComponent(List<LockerComponents> componentList)
+        public void addComponent(List<CatalogueComponents> componentList)
         {
             _componentsList.AddRange(componentList);
         }
 
         // TODO : vérifier si ca ne bugge pas quand on enlève un composant qui n'existe pas
-        public void removeComponent(LockerComponents component)
+        public void removeComponent(CatalogueComponents component)
         {
             _componentsList.Remove(component);
         }
@@ -160,10 +154,10 @@ namespace projectCS
         /// <returns>
         ///     return the number of component found
         /// </returns>
-        private int numberOfComponentInList(LockerComponents componentGiven)
+        private int numberOfComponentInList(CatalogueComponents componentGiven)
         {            
             int numberofComponent = 0;
-            foreach (LockerComponents componentInList in _componentsList)
+            foreach (CatalogueComponents componentInList in _componentsList)
             {
                 if(componentInList.GetType() == componentGiven.GetType())
                     numberofComponent++;

@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
-using projectCS.physic_components;
 
 namespace UnitTest
 {

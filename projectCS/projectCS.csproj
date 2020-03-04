@@ -97,12 +97,11 @@
     <Compile Include="order\Client.cs" />
     <Compile Include="order\OrderForm.cs" />
     <Compile Include="order\ShoppingCart.cs" />
-    <Compile Include="super class components\Components.cs" />
-    <Compile Include="super class components\CupboardComponents.cs" />
-    <Compile Include="super class components\LockerComponents.cs" />
+    <Compile Include="super class components\CatalogueComponents.cs" />
+    <Compile Include="super class components\ICupboardComponents.cs" />
     <Compile Include="physic components\AngleBracket.cs" />
     <Compile Include="physic components\Cupboard.cs" />
-    <Compile Include="physic components\allLockerComponents.cs" />
+    <Compile Include="physic components\LockerComponents.cs" />
     <Compile Include="physic components\Locker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
