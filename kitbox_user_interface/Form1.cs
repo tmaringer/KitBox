@@ -16,6 +16,25 @@ namespace kitbox_user_interface_V1
         public Form1()
         {
             InitializeComponent();
+            string MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=K8tB0x_sql;";
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            conn.Open();
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
+            conn.Close();
+            conn.Open();
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "hauteur", "Ref = \"Panneau GD\"");
+            conn.Close();
+            conn.Open();
+            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Porte\"");
+            conn.Close();
+            conn.Open();
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "profondeur", "Ref = \"Panneau GD\"");
+            conn.Close();
+
+            comboBox3.Items.AddRange(new object[] {"1","2","3","4","5","6","7"});
+            comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
+            comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -52,42 +71,49 @@ namespace kitbox_user_interface_V1
         {
 
         }
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            //créer un objet liste de commande
-            //créer un objet armoire
-            //ajouter armoire dans liste de commande ???
-            textBox1.Text = "kewlox";
-            MessageBox.Show(textBox1.Text + " ");
-            //tenter d'afficher les paramètres sélectionnés en vue de créer des objets
-            
-
-        }
-        
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ComboBox cmb3 = (ComboBox) sender;
-            int cmb3_index = (int) cmb3.SelectedIndex;
-            MessageBox.Show(cmb3_index.ToString());//pas moyen de récupérer la value sans accès à la db
-            //armoire.nb_etages = index +1;
-        }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox cmb4 = (ComboBox)sender;
-            int cmb4_index = (int)cmb4.SelectedIndex;
-            //armoire.width = WidhtBoxList[cmb4_index];
+            
+
+        }
+
+        private void comboBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //créer armoire
+            //créer box
+            //créer commande ?
+            MessageBox.Show("Henlo Frien");
+        }
 
-            //créer un objet liste de commande
-            //créer un objet armoire
-            //ajouter armoire dans liste de commande ???
-            textBox1.Text = "kewlox";
-            MessageBox.Show(textBox1.Text + " ");
-            //tenter d'afficher les paramètres sélectionnés en vue de créer des objets
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

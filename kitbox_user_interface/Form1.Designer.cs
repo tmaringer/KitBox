@@ -15,7 +15,7 @@ namespace kitbox_user_interface_V1
         /// <summary>
         /// Nettoyage des ressources utilisées.
         /// </summary>
-        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -24,13 +24,14 @@ namespace kitbox_user_interface_V1
             }
             base.Dispose(disposing);
         }
-
+        
         #region Code généré par le Concepteur Windows Form
 
         /// <summary>
         /// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
         /// le contenu de cette méthode avec l'éditeur de code.
         /// </summary>
+
         private void InitializeComponent()
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -49,12 +50,6 @@ namespace kitbox_user_interface_V1
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-
-            //
-            // database connection
-
-            MySqlConnection conn = Connection.GetDBConnection();
-
             // 
             // textBox1
             // 
@@ -135,6 +130,7 @@ namespace kitbox_user_interface_V1
             this.button2.TabIndex = 16;
             this.button2.Text = "valider";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox15
             // 
@@ -156,38 +152,34 @@ namespace kitbox_user_interface_V1
             "portes en diamant"});
             this.comboBox1.Location = new System.Drawing.Point(9, 344);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(206, 28);
+            this.comboBox1.Size = new System.Drawing.Size(251, 28);
             this.comboBox1.TabIndex = 17;
             this.comboBox1.Text = "caractéristiques";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // comboBox2
             // 
-            conn.Open();
-            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Porte\"");
-            conn.Close();
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+            this.comboBox2.Items.AddRange(new object[] {
+            "Rouge",
+            "Bleu",
+            "Vert",
+            "Blanc"});
             this.comboBox2.Location = new System.Drawing.Point(9, 378);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(206, 28);
+            this.comboBox2.Size = new System.Drawing.Size(251, 28);
             this.comboBox2.TabIndex = 18;
             this.comboBox2.Text = "couleur";
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7"});
             this.comboBox3.Location = new System.Drawing.Point(157, 117);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(100, 28);
             this.comboBox3.TabIndex = 19;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // textBox10
             // 
@@ -201,27 +193,21 @@ namespace kitbox_user_interface_V1
             // 
             // comboBox4
             // 
-            conn.Open();
-            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
-            conn.Close();
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(157, 151);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(100, 28);
             this.comboBox4.TabIndex = 21;
-            this.comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // comboBox5
             // 
-            conn.Open();
-            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Panneau GD\"");
-            conn.Close();
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(157, 185);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(100, 28);
             this.comboBox5.TabIndex = 22;
-            this.comboBox4.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
+            this.comboBox5.SelectedIndexChanged += new System.EventHandler(this.comboBox5_SelectedIndexChanged);
             // 
             // comboBox6
             // 
@@ -230,6 +216,7 @@ namespace kitbox_user_interface_V1
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(103, 28);
             this.comboBox6.TabIndex = 23;
+            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -278,3 +265,4 @@ namespace kitbox_user_interface_V1
         private System.Windows.Forms.ComboBox comboBox6;
     }
 }
+

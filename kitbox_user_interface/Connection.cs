@@ -8,7 +8,8 @@ namespace kitbox_user_interface_V1
 
     public class Connection
     {
-        public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
+        public static MySqlConnection
+        GetDBConnection(string host, int port, string database, string username, string password)
         {
             // Connection String.
             String connString = "Server=" + host + ";Database=" + database
@@ -21,11 +22,11 @@ namespace kitbox_user_interface_V1
 
         public static MySqlConnection GetDBConnection()
         {
-            string host = "db4free.net";
+            string host = "localhost";
             int port = 3306;
-            string database = "kitbox_kewlax";
-            string username = "kewlaw";
-            string password = "locomac6";
+            string database = "kitbox";
+            string username = "root";
+            string password = "K8tB0x_sql";
 
             return GetDBConnection(host, port, database, username, password);
         }
