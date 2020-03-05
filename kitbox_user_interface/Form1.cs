@@ -78,5 +78,16 @@ namespace kitbox_user_interface_V1
             int cmb4_index = (int)cmb4.SelectedIndex;
             //armoire.width = WidhtBoxList[cmb4_index];
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            //créer un objet liste de commande
+            //créer un objet armoire
+            //ajouter armoire dans liste de commande ???
+            textBox1.Text = "kewlox";
+            MessageBox.Show(textBox1.Text + " ");
+            //tenter d'afficher les paramètres sélectionnés en vue de créer des objets
+        }
     }
 }
