@@ -122,9 +122,37 @@ namespace projectCS
             {
                 Locker locker = new Locker();
 
-                Pannel p = new Pannel();
+                Cleat cl3 = new Cleat();
+                Cleat cl1 = new Cleat();
+                Cleat cl4 = new Cleat();
+                CrossBar c1 = new CrossBar();
+                Pannel p5 = new Pannel();
+                CrossBar c2 = new CrossBar();
+                CrossBar c3 = new CrossBar();
+                Pannel p1 = new Pannel();
+                CrossBar c4 = new CrossBar();
+                CrossBar c5 = new CrossBar();
+                Cleat cl2 = new Cleat();
+                CrossBar c6 = new CrossBar();
+                Pannel p3 = new Pannel();
+                CrossBar c7 = new CrossBar();
+                CrossBar c8 = new CrossBar();
+                Pannel p2 = new Pannel();
+                Pannel p4 = new Pannel();
 
-                locker.addComponent(new List<CatalogueComponents>() { p, p, p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p });
+                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5});
+                Console.WriteLine("\n");
+                Console.WriteLine("appel extern");
+
+                //locker.isComplete();
+                /*
+                foreach(CatalogueComponents c in locker.componentsList)
+                {
+                    Console.WriteLine(c);
+                }
+                */
             }
         }
     }    
