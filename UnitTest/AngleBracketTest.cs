@@ -16,5 +16,15 @@ namespace UnitTest
             Assert.AreEqual(5, az.price);
             Assert.AreEqual(12, az.height);
         }
+        
+        [TestMethod]
+        public void cutHeightTest()
+        {
+            AngleBracket a = new AngleBracket(5, "testtest", "codetest", 10, false, 12, Color.white);
+
+            a.cutHeight(6);
+
+            Assert.AreEqual(6, a.height);
+        }
     }
 }

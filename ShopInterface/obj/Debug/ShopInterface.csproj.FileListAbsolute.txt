@@ -61,3 +61,25 @@ A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterf
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.config
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\ShopInterface.exe
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\ShopInterface.pdb
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\Google.Protobuf.dll
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\MySql.Data.dll
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\projectCS.exe
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\Renci.SshNet.dll
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\projectCS.pdb
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\projectCS.exe.config
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\Google.Protobuf.xml
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\MySql.Data.xml
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\bin\Debug\Renci.SshNet.xml
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.Form1.resources
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.Form2.resources
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.Properties.Resources.resources
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
+C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb

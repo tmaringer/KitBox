@@ -28,3 +28,18 @@ A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\MySql.Data.xml
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\Renci.SshNet.xml
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.csproj.CopyComplete
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\projectCS.exe.config
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\projectCS.exe
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\projectCS.pdb
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\Google.Protobuf.dll
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\MySql.Data.dll
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\Renci.SshNet.dll
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\Google.Protobuf.xml
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\MySql.Data.xml
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\bin\Debug\Renci.SshNet.xml
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\obj\Debug\projectCS.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\obj\Debug\projectCS.csproj.CopyComplete
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\obj\Debug\projectCS.exe
+C:\Users\Admin\Desktop\ps\KitBox\projectCS\obj\Debug\projectCS.pdb

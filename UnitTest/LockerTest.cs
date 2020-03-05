@@ -148,13 +148,13 @@ namespace UnitTest
             var privlocker = new PrivateObject(locker);
             var privlocker2 = new PrivateObject(locker2);
 
-            Assert.AreEqual(3, privlocker.Invoke("numberOfComponentInList", c1));
-            Assert.AreEqual(1, privlocker.Invoke("numberOfComponentInList", cl1));
-            Assert.AreEqual(2, privlocker.Invoke("numberOfComponentInList", p1));
+            Assert.AreEqual(3, privlocker.Invoke("numberOfGivenComponentInList", c1));
+            Assert.AreEqual(1, privlocker.Invoke("numberOfGivenComponentInList", cl1));
+            Assert.AreEqual(2, privlocker.Invoke("numberOfGivenComponentInList", p1));
 
-            Assert.AreEqual(4, privlocker2.Invoke("numberOfComponentInList", c1));
-            Assert.AreEqual(4, privlocker2.Invoke("numberOfComponentInList", cl1));
-            Assert.AreEqual(1, privlocker2.Invoke("numberOfComponentInList", p1));
+            Assert.AreEqual(4, privlocker2.Invoke("numberOfGivenComponentInList", c1));
+            Assert.AreEqual(4, privlocker2.Invoke("numberOfGivenComponentInList", cl1));
+            Assert.AreEqual(1, privlocker2.Invoke("numberOfGivenComponentInList", p1));
         }
     }
 }
