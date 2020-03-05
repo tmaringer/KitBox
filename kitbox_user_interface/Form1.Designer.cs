@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using MySql;
 
 namespace kitbox_user_interface_V1
 {
@@ -49,6 +50,13 @@ namespace kitbox_user_interface_V1
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
+
+            //
+            // connection
+            //
+
+            MySqlConnection conn = Connection.GetDBConnection();
+
             // 
             // textBox1
             // 
@@ -155,12 +163,11 @@ namespace kitbox_user_interface_V1
             // 
             // comboBox2
             // 
+            conn.Open();
+            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Porte\"");
+            conn.Close();
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Rouge",
-            "Bleu",
-            "Vert",
-            "Blanc"});
+            this.comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
             this.comboBox2.Location = new System.Drawing.Point(9, 378);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(248, 28);
@@ -195,11 +202,13 @@ namespace kitbox_user_interface_V1
             this.textBox10.Text = "nombre d\'étages";
             // 
             // comboBox4
-            // 
+            //
+            
+            conn.Open();
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
+            conn.Close();
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "1",
-            "2"});
+            this.comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             this.comboBox4.Location = new System.Drawing.Point(157, 151);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(100, 28);
@@ -207,13 +216,12 @@ namespace kitbox_user_interface_V1
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // comboBox5
-            // 
+            //
+            conn.Open();
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Panneau GD\"");
+            conn.Close();
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "32",
-            "42",
-            "52",
-            "62"});
+            this.comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             this.comboBox5.Location = new System.Drawing.Point(157, 185);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(100, 28);
