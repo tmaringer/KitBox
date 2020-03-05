@@ -120,8 +120,11 @@ namespace projectCS
 
             public static void autreTest()
             {
-                ErrorWindow erw = new ErrorWindow(ErrorMessages.connectionDBFailed);
-                erw.displayWindow();
+                Locker locker = new Locker();
+
+                Pannel p = new Pannel();
+
+                locker.addComponent(new List<CatalogueComponents>() { p, p, p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p,p });
             }
         }
     }    

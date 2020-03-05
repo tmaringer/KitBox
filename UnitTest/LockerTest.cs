@@ -27,6 +27,7 @@ namespace UnitTest
         public void componentsAdditionWithMaxTest()
         {
             Locker locker = new Locker();
+            Locker locker2 = new Locker();
 
             Pannel p = new Pannel();
             Cleat l = new Cleat();

@@ -12,14 +12,14 @@ namespace projectCS.Tools_class
         private string _errorMessage;
         private string _errorTitle;
 
-        public ErrorWindow() : this(ErrorMessages.defaultTitleMsg)
+        public ErrorWindow() : this(ErrorMessages.defaultErrorTitle)
         {
         }
         
-        public ErrorWindow(string errorMsg) : this(ErrorMessages.defaultErrorMsg, ErrorMessages.defaultTitleMsg)
+        public ErrorWindow(string errorMsg) : this(ErrorMessages.defaultErrorMsg, ErrorMessages.defaultErrorTitle)
         {
             this._errorMessage = errorMsg;
-            this._errorTitle = ErrorMessages.defaultTitleMsg;
+            this._errorTitle = ErrorMessages.defaultErrorTitle;
         }
         
         public ErrorWindow(string errorMsg, string errorTitle)
@@ -34,6 +34,5 @@ namespace projectCS.Tools_class
             DialogResult result;
             result = MessageBox.Show(_errorMessage, _errorTitle, buttons);
         }
-
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace projectCS
 {
-    // TODO : voir si utile
+    // todo : voir si utile
     public struct Orientation
     {
         private int _height;

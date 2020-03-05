@@ -14,7 +14,7 @@ namespace projectCS
         { 
             get => _componentsList;
         }
-        // TODO : refactorer quand on saura s'il faut utiliser plusieurs listes ou une seul
+        // todo : refactorer quand on saura s'il faut utiliser plusieurs listes ou une seul
         /*
         private List<CrossBar> _crossBarList;
         public List<CrossBar> crossBarList

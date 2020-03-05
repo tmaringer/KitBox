@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using projectCS.Tools_class;
+using System;
+using System.Collections.Generic;
 
 namespace projectCS
 {
@@ -7,10 +9,10 @@ namespace projectCS
         /// <summary>
         ///     group all maximum value for each components which the locker can have
         /// </summary>
-        private static readonly int maximumCrossBars = 8;
-        private static readonly int maximumPannels = 5;
-        private static readonly int maximumDoors = 2;
-        private static readonly int maximumCleats = 4;
+        private static readonly int _maximumCrossBars = 8;
+        private static readonly int _maximumPannels = 5;
+        private static readonly int _maximumDoors = 2;
+        private static readonly int _maximumCleats = 4;
 
         // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         public int height 
@@ -90,19 +92,19 @@ namespace projectCS
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfGivenComponentInList(component) < maximumCrossBars)
+                    if (numberOfGivenComponentInList(component) < _maximumCrossBars)
                         isOk = true;
                     break;
                 case Pannel p:
-                    if (numberOfGivenComponentInList(component) < maximumPannels)
+                    if (numberOfGivenComponentInList(component) < _maximumPannels)
                         isOk = true;
                     break;
                 case Door d:
-                    if (numberOfGivenComponentInList(component) < maximumDoors)
+                    if (numberOfGivenComponentInList(component) < _maximumDoors)
                         isOk = true;
                     break;
                 case Cleat cl:
-                    if (numberOfGivenComponentInList(component) < maximumCleats)
+                    if (numberOfGivenComponentInList(component) < _maximumCleats)
                         isOk = true;
                     break;
                 default:
@@ -117,6 +119,16 @@ namespace projectCS
         public void addComponent(List<CatalogueComponents> componentList)
         {
             _componentsList.AddRange(componentList);
+            /*
+            if (componentList.Count <= _componentsList.Count)
+                _componentsList.AddRange(componentList);
+            else
+            {
+                
+                ErrorWindow errorWindow = new ErrorWindow(ErrorMessages.componentMaxExceedMsg, ErrorMessages.componentMaxExceedTitle);
+                errorWindow.displayWindow();
+            }
+            */
         }
 
         // TODO : vérifier si ca ne bugge pas quand on enlève un composant qui n'existe pas
@@ -139,7 +151,7 @@ namespace projectCS
             int numberOfCleat = numberOfGivenComponentInList(new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
-            if ((numberOfCrossBar == maximumCrossBars) && (numberOfPannel == maximumPannels) && (numberOfCleat == maximumCleats))
+            if ((numberOfCrossBar == _maximumCrossBars) && (numberOfPannel == _maximumPannels) && (numberOfCleat == _maximumCleats))
                 isOk = true;
 
             return isOk;
