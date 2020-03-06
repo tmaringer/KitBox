@@ -14,6 +14,10 @@ namespace ShopInterface
 {
     public partial class Form2 : Form
     {
+        private int x = 1;
+        private List<string> Columns = new List<string>();
+        private List<string> Types = new List<string>();
+        private List<string> Elements = new List<string>();
         public Form2(Form1 form1)
         {
             InitializeComponent();
@@ -59,6 +63,38 @@ namespace ShopInterface
         {
             textBox10.Text = "";
             button4.Enabled = DBUtils.StopSearchDB(dataGridView1, textBox10);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            label5.Text = DBUtils.DeleteRow(dataGridView1, textBox6);
+            DBUtils.RefreshDB(dataGridView1);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            label9.Text = DBUtils.AddRow(Elements, Types, Columns);
+            DBUtils.RefreshDB(dataGridView1);
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            x = DBUtils.AddItem(label7, x, dataGridView1, Columns, Types, Elements, button7, textBox4, listView1, button6, progressBar1, button3);
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            x = DBUtils.DeleteItem(label7, x, dataGridView1, textBox4, button6, button7, Columns, Types, Elements, listView1, progressBar1, button3);
         }
     }
 }

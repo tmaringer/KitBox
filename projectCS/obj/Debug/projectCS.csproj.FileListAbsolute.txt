@@ -7,7 +7,6 @@ A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\projectCS.exe.config
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\projectCS.exe
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\projectCS.pdb
-C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\obj\Debug\projectCS.csprojAssemblyReference.cache
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\obj\Debug\projectCS.exe
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\obj\Debug\projectCS.pdb
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\obj\Debug\projectCS.csproj.CopyComplete
@@ -19,3 +18,4 @@ C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\Renci.SshNet.dll
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\MySql.Data.xml
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\Google.Protobuf.xml
 C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\bin\Debug\Renci.SshNet.xml
+C:\Users\Thibaut\Documents\GitHub\KitBox\projectCS\obj\Debug\projectCS.csprojAssemblyReference.cache

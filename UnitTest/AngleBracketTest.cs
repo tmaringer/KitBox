@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using projectCS.physic_components;
+using projectCS;
 
 namespace UnitTest
 {

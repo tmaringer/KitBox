@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
-using projectCS.physic_components;
+using projectCS;
 using System.Collections.Generic;
 
 namespace UnitTest

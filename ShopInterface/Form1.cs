@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projectCS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,9 +35,24 @@ namespace ShopInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form2 frm = new Form2(this);
-            frm.Show();
-            this.Hide();
+            label3.Visible = false;
+            int Value = DBUtils.CheckAccess(textBox1, textBox2);
+            if (Value == 0)
+            {
+                Form2 frm = new Form2(this);
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                label3.Visible = true;
+            }
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
