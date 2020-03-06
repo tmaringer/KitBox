@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
-using projectCS;
 using System.Collections.Generic;
 
 namespace UnitTest
@@ -13,7 +12,7 @@ namespace UnitTest
         {
             Cupboard cup = new Cupboard();
 
-            AngleBracket an = new AngleBracket(10, "referenceTest", "1", 0, false, 45);
+            AngleBracket an = new AngleBracket(10, "referenceTest", "1", 0, false, 45, Color.white);
 
             cup.addCupboardComponent(an);
             cup.cutAnglesBracket(25);
@@ -31,7 +30,7 @@ namespace UnitTest
         {
             Cupboard cup = new Cupboard();
 
-            AngleBracket an = new AngleBracket(10, "referenceTest", "1", 0, false, 45);
+            AngleBracket an = new AngleBracket(10, "referenceTest", "1", 0, false, 45, Color.white);
             Locker l1 = new Locker();
             Locker l2 = new Locker();
             Locker l3 = new Locker();
@@ -75,16 +74,16 @@ namespace UnitTest
         {
             Cupboard cup = new Cupboard();
 
-            AngleBracket an = new AngleBracket(25, "referenceTest", "1", 0, false, 45);
+            AngleBracket an = new AngleBracket(25, "referenceTest", "1", 0, false, 0, Color.white);
 
             cup.addCupboardComponent(an);
 
 
             Locker t = new Locker();
 
-            CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
-            CrossBar t2 = new CrossBar(20, "referenceTest", "2", 0, false, 0, Orientation.height);
-            CrossBar t3 = new CrossBar(20, "referenceTest", "3", 0, false, 0, Orientation.height);
+            CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Color.white);
+            CrossBar t2 = new CrossBar(20, "referenceTest", "2", 0, false, 0, Color.white);
+            CrossBar t3 = new CrossBar(20, "referenceTest", "3", 0, false, 0, Color.white);
 
             t.addComponent(t1);
             t.addComponent(t2);
@@ -101,7 +100,7 @@ namespace UnitTest
             Cupboard cup = new Cupboard();
             Cupboard cup2 = new Cupboard();
 
-            AngleBracket an = new AngleBracket(25, "referenceTest", "1", 0, false, 45);
+            AngleBracket an = new AngleBracket(25, "referenceTest", "1", 0, false, 45, Color.white);
 
             cup.addCupboardComponent(an);
             cup2.addCupboardComponent(an);
@@ -128,11 +127,11 @@ namespace UnitTest
             Cleat cl4 = new Cleat();
 
 
-            locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
             
-            locker2.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker2.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1});
 
@@ -173,7 +172,7 @@ namespace UnitTest
             Cleat cl3 = new Cleat();
             Cleat cl4 = new Cleat();
 
-            locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
 

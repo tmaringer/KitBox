@@ -70,3 +70,39 @@ C:\Users\Thibaut\Documents\GitHub\KitBox\kitbox_user_interface\obj\Debug\kitbox_
 C:\Users\Thibaut\Documents\GitHub\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.CopyComplete
 C:\Users\Thibaut\Documents\GitHub\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.exe
 C:\Users\Thibaut\Documents\GitHub\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.pdb
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.exe.config
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.exe
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.pdb
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\BouncyCastle.Crypto.dll
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\Google.Protobuf.dll
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\MySql.Data.dll
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\Renci.SshNet.dll
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\Ubiety.Dns.Core.dll
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\Google.Protobuf.xml
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\MySql.Data.xml
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\bin\Debug\Renci.SshNet.xml
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csprojAssemblyReference.cache
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.Form1.resources
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.Properties.Resources.resources
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.GenerateResource.cache
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.CopyComplete
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.exe
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.pdb
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.exe.config
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.exe
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\kitbox_user_interface_V1.pdb
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\Google.Protobuf.dll
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\MySql.Data.dll
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\Renci.SshNet.dll
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\Google.Protobuf.xml
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\MySql.Data.xml
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\bin\Debug\Renci.SshNet.xml
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csprojAssemblyReference.cache
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.Form1.resources
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.Properties.Resources.resources
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.GenerateResource.cache
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.CopyComplete
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.exe
+C:\Users\Admin\Desktop\ps\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.pdb
