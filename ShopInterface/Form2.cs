@@ -21,7 +21,7 @@ namespace ShopInterface
         public Form2(Form1 form1)
         {
             InitializeComponent();
-            DBUtils.RefreshDB(dataGridView1);
+            DBUtils.RefreshDB("kitbox", dataGridView1);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -36,8 +36,8 @@ namespace ShopInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.label4.Text = DBUtils.UpdateDB(dataGridView1, textBox1, textBox2, textBox3);
-            DBUtils.RefreshDB(dataGridView1);
+            this.label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", textBox1, textBox2, textBox3);
+            DBUtils.RefreshDB("kitbox", dataGridView1);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -67,14 +67,14 @@ namespace ShopInterface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label5.Text = DBUtils.DeleteRow(dataGridView1, textBox6);
-            DBUtils.RefreshDB(dataGridView1);
+            label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", textBox6);
+            DBUtils.RefreshDB("kitbox", dataGridView1);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            label9.Text = DBUtils.AddRow(Elements, Types, Columns);
-            DBUtils.RefreshDB(dataGridView1);
+            label9.Text = DBUtils.AddRow(Elements, Types, Columns, "kitbox");
+            DBUtils.RefreshDB("kitbox", dataGridView1);
         }
 
         private void label7_Click(object sender, EventArgs e)

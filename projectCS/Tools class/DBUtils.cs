@@ -12,7 +12,7 @@ namespace projectCS
 {
     public class DBUtils
     {
-        private static String MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
+        private static String MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
 
         static string ComputeSha256Hash(string rawData)
         {
@@ -66,10 +66,10 @@ namespace projectCS
             return Value;
         }
 
-        public static void RefreshDB(DataGridView grid)
+        public static void RefreshDB(string database, DataGridView grid)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM kitbox;", conn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database  + ";", conn);
             DataTable dataTable = new DataTable();
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             conn.Open();
@@ -79,7 +79,7 @@ namespace projectCS
             conn.Close();
         }
 
-        public static string UpdateDB(DataGridView grid, TextBox col, TextBox code, TextBox value)
+        public static string UpdateDB(DataGridView grid,String database, TextBox col, TextBox code, TextBox value)
         {
             try
             {
@@ -87,14 +87,14 @@ namespace projectCS
                 String Column = col.Text;
                 String Code = code.Text;
                 String Value = value.Text;
-                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox.kitbox SET " + Column + " =\"" + Value + "\"" + " WHERE Code= \"" + Code + "\";", conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE Code= \"" + Code + "\";", conn);
                 conn.Open();
                 MySqlDataReader MyReader2;
                 MyReader2 = cmd.ExecuteReader();
                 while (MyReader2.Read())
                 {
                 }
-                RefreshDB(grid);
+                RefreshDB(database, grid);
                 conn.Close();
                 return "Done";
             }
@@ -132,13 +132,13 @@ namespace projectCS
             }
             return false;
         }
-        public static string DeleteRow(DataGridView dataGridView, TextBox Code)
+        public static string DeleteRow(DataGridView dataGridView,String database, TextBox Code)
         {
             string value;
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("DELETE from kitbox where Code=\"" + Code.Text + "\"", conn);
+                MySqlCommand cmd = new MySqlCommand("DELETE from " + database+ " where Code=\"" + Code.Text + "\"", conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -171,6 +171,18 @@ namespace projectCS
 
                 }
             }
+            //TODO: check type
+            /*
+            int number;
+            try
+            {
+                number = Convert.ToInt32(textBox4.Text);
+            }
+            catch
+            {
+
+            }
+            */
             if (x >= 1 && x <= dataGridView1.ColumnCount)
             {
                 button7.Enabled = true;
@@ -266,7 +278,7 @@ namespace projectCS
             }
             return ColumnString;
         }
-        public static string AddRow(List<string> Elements, List<string> Types, List<string> Columns)
+        public static string AddRow(List<string> Elements, List<string> Types, List<string> Columns, String database)
         {
             string value = "";
             string ElementString = ConvertSQL(Elements, Types);
@@ -275,7 +287,7 @@ namespace projectCS
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "Insert into kitbox (" + ColumnString + ") values (" + ElementString + ");";
+                string sql = "Insert into "+ database + " (" + ColumnString + ") values (" + ElementString + ");";
                 //MySqlCommand cmd = new MySqlCommand(sql, conn);
                 adapter.InsertCommand = new MySqlCommand(sql, conn);
                 conn.Open();
