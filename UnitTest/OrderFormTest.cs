@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
-using projectCS.physic_components;
 
 namespace UnitTest
 {
@@ -64,10 +63,64 @@ namespace UnitTest
             Assert.AreEqual(cup, order.cupboardDictionnary.Keys.First());
             Assert.AreEqual(7, order.cupboardDictionnary.Keys.First().lockerAvailable);
         }
+        
+        [TestMethod]
+        public void removeCupboardTest()
+        {
+            OrderForm order = new OrderForm();
+
+            Cupboard cup = new Cupboard();
+            Cupboard cup2 = new Cupboard();
+
+            AngleBracket a = new AngleBracket(100, "null", "0000", 0, false, 10, Color.white);
+            AngleBracket a2 = new AngleBracket(100, "null", "0000", 0, false, 5, Color.white);
+
+            cup.addCupboardComponent(a);
+            cup2.addCupboardComponent(a2);
+
+            order.addCupboard(cup);
+            order.addCupboard(cup2);
+            
+            Assert.AreEqual(10, order.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
+            Assert.AreEqual(5, order.cupboardDictionnary.ElementAt(1).Key.getAngleBracket().height);
+
+            order.removeCupboard(cup2);
+
+            Assert.AreEqual(10, order.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
+        }
 
         /// <summary>
         ///     check if the selection of cupboards number work fine
         /// </summary>
+        [TestMethod]
+        public void getPriceTest()
+        {
+            OrderForm order = new OrderForm();
+            OrderForm order2 = new OrderForm();
+            AngleBracket a = new AngleBracket(112.3, "null", "0000", 0, false, 10, Color.white);
+            AngleBracket a2 = new AngleBracket(146.69, "null", "0000", 0, false, 10, Color.white);
+            AngleBracket a3 = new AngleBracket(375, "null", "0000", 0, false, 10, Color.white);
+            Cupboard cup = new Cupboard();
+            Cupboard cup2 = new Cupboard();
+
+            cup.addCupboardComponent(a);
+            cup.addCupboardComponent(a2);
+            cup.addCupboardComponent(a3);
+            cup2.addCupboardComponent(a3);
+
+            order.addCupboard(cup);
+            order.addCupboard(cup2);
+            
+            Assert.AreEqual(1008.99, order.getPrice());
+            order2.addCupboard(cup2);
+            order2.addCupboard(cup2, 5);
+
+            Assert.AreEqual(1875, order2.getPrice());
+
+            order.addCupboard(cup,5);
+            Assert.AreEqual(3544.95, order.getPrice());
+        }
+
         [TestMethod]
         public void selectNumberOfCupboardTest()
         {
@@ -80,19 +133,19 @@ namespace UnitTest
             
             Assert.AreEqual(1, order.cupboardDictionnary[cup]);
 
-            order.choiceNumberOfCupboard(cup,5);
+            order.addCupboard(cup,5);
 
             Assert.AreEqual(5, order.cupboardDictionnary[cup]);
             Assert.AreNotEqual(5, order.cupboardDictionnary[cup2]);
             Assert.AreEqual(1, order.cupboardDictionnary[cup2]);
 
-            order.choiceNumberOfCupboard(cup, 3);
+            order.addCupboard(cup, 3);
 
             Assert.AreEqual(3, order.cupboardDictionnary[cup]);
             Assert.AreNotEqual(3, order.cupboardDictionnary[cup2]);
             Assert.AreEqual(1, order.cupboardDictionnary[cup2]);
             
-            order.choiceNumberOfCupboard(cup2, 10);
+            order.addCupboard(cup2, 10);
 
             Assert.AreEqual(3, order.cupboardDictionnary[cup]);
             Assert.AreNotEqual(3, order.cupboardDictionnary[cup2]);

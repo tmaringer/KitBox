@@ -1,20 +1,20 @@
-﻿using projectCS.physic_components;
+﻿using projectCS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectCS.order
+namespace projectCS
 {
     public class ShoppingCart
     {
-        private List<Components> _componentsList;
-        public List<Components> componentsList 
+        private List<CatalogueComponents> _componentsList;
+        public List<CatalogueComponents> componentsList 
         { 
             get => _componentsList;
         }
-        // TODO : refactorer quand on saura s'il faut utiliser plusieurs listes ou une seul
+        // todo : refactorer quand on saura s'il faut utiliser plusieurs listes ou une seul
         /*
         private List<CrossBar> _crossBarList;
         public List<CrossBar> crossBarList
@@ -55,7 +55,7 @@ namespace projectCS.order
         */
         public ShoppingCart()
         {
-            this._componentsList = new List<Components>();
+            this._componentsList = new List<CatalogueComponents>();
             /*
 this._crossBarList = new List<CrossBar>();
 this._pannelList = new List<Pannel>();
@@ -66,12 +66,12 @@ this._angleBracket = new AngleBracket();
 */
         }
                 
-        public void addComponent(Components component) 
+        public void addComponent(CatalogueComponents component) 
         {
             _componentsList.Add(component);
         }
 
-        public void removeComponent(Components component) 
+        public void removeComponent(CatalogueComponents component) 
         {
             _componentsList.Remove(component);
         }
@@ -87,7 +87,7 @@ this._angleBracket = new AngleBracket();
         {
             Locker locker = new Locker();
 
-            foreach(Components component in _componentsList)
+            foreach(CatalogueComponents component in _componentsList)
             {
                 /*
                 switch (component)
@@ -112,7 +112,7 @@ this._angleBracket = new AngleBracket();
         }
         
         // TODO : finir la methode
-        public Cupboard buildCupboard(CupboardComponents component)
+        public Cupboard buildCupboard(ICupboardComponents component)
         {
             return new Cupboard();
         }

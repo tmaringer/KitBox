@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projectCS.Tools_class;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,8 +22,6 @@ namespace projectCS
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new kitbox_user_interface_V1.Form1());
-            Application.Run(new ShopInterface.Form1());
 
         }
 
@@ -30,7 +29,7 @@ namespace projectCS
         {
             public static void newCompoTest()
             {
-                CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, Orientation.height);
+                CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, Color.white);
                 Console.WriteLine(t.price);
             }
 
@@ -38,11 +37,11 @@ namespace projectCS
             {
                 Locker t = new Locker();
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
-                CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, Orientation.height);
-                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", 0, false, 0, Orientation.height);
-                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", 0, false, 0, Orientation.height);
-                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", 0, false, 0, Orientation.height);
+                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Color.white);
+                CrossBar t2 = new CrossBar(100, "referenceTest", "2", 0, false, 0, Color.white);
+                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", 0, false, 0, Color.white);
+                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", 0, false, 0, Color.white);
+                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", 0, false, 0, Color.white);
 
                 t.addComponent(t1);
                 t.addComponent(t2);
@@ -50,7 +49,7 @@ namespace projectCS
                 t.addComponent(t4);
                 t.addComponent(t5);
 
-                foreach (Components c in t.componentsList)
+                foreach (CatalogueComponents c in t.componentsList)
                 {
                     Console.WriteLine(c.code);
                 }
@@ -59,7 +58,7 @@ namespace projectCS
                 t.removeComponent(t2);
                 t.removeComponent(t4);
 
-                foreach (Components c in t.componentsList)
+                foreach (CatalogueComponents c in t.componentsList)
                 {
                     Console.WriteLine(c.code);
                 }
@@ -69,14 +68,14 @@ namespace projectCS
             {
                 Locker l2 = new Locker();
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
+                CrossBar t1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Color.white);
                 Cleat nul = new Cleat();
 
 
                 l2.addComponent(t1);
                 l2.addComponent(nul);
 
-                foreach (Components c in l2.componentsList)
+                foreach (CatalogueComponents c in l2.componentsList)
                 {
                     Console.WriteLine(c.code);
                 }
@@ -108,11 +107,11 @@ namespace projectCS
 
 
 
-                locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c3, c4, c5, c6 ,c7, c8,
+                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
 
-                foreach (LockerComponents lc in locker.componentsList)
+                foreach (CatalogueComponents lc in locker.componentsList)
                 {
                     Console.WriteLine(lc);
                 }
@@ -121,12 +120,39 @@ namespace projectCS
 
             public static void autreTest()
             {
-                Locker l = new Locker();
-                Door d = new Door();
+                Locker locker = new Locker();
 
+                Cleat cl3 = new Cleat();
+                Cleat cl1 = new Cleat();
+                Cleat cl4 = new Cleat();
+                CrossBar c1 = new CrossBar();
+                Pannel p5 = new Pannel();
+                CrossBar c2 = new CrossBar();
+                CrossBar c3 = new CrossBar();
+                Pannel p1 = new Pannel();
+                CrossBar c4 = new CrossBar();
+                CrossBar c5 = new CrossBar();
+                Cleat cl2 = new Cleat();
+                CrossBar c6 = new CrossBar();
+                Pannel p3 = new Pannel();
+                CrossBar c7 = new CrossBar();
+                CrossBar c8 = new CrossBar();
+                Pannel p2 = new Pannel();
+                Pannel p4 = new Pannel();
 
-                
-                Console.WriteLine(l);
+                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5});
+                Console.WriteLine("\n");
+                Console.WriteLine("appel extern");
+
+                //locker.isComplete();
+                /*
+                foreach(CatalogueComponents c in locker.componentsList)
+                {
+                    Console.WriteLine(c);
+                }
+                */
             }
         }
     }    

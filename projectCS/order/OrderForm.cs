@@ -1,4 +1,4 @@
-﻿using projectCS.physic_components;
+﻿using projectCS;
 using System.Collections.Generic;
 
 namespace projectCS
@@ -43,20 +43,26 @@ namespace projectCS
             _cupboardDictionnary.Add(cupboard, 1);
         }
 
-        public void choiceNumberOfCupboard(Cupboard cupboard, int number)
+        public void addCupboard(Cupboard cupboard, int number)
         {
             _cupboardDictionnary[cupboard] = number;
         }
-        // TODO : l'adapter pour le dictionnaire
+
         public void removeCupboard(Cupboard cupboard)
         {
-            //_cupboardDictionnary.Remove(cupboard);
+            _cupboardDictionnary.Remove(cupboard);
         }
-        // TODO : faire le get price
+
         public double getPrice()
         {
-            return 0;
+            double price = 0;
+            foreach(KeyValuePair<Cupboard, int> cupboard in _cupboardDictionnary)
+            {
+                price += cupboard.Key.getPrice() * cupboard.Value;
+            }
+            return price;
         }
+
         /// <summary>
         ///     reset initial id from which it count
         /// </summary>

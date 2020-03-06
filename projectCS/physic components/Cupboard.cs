@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace projectCS.physic_components
+namespace projectCS
 {
     public class Cupboard
     {
@@ -12,8 +12,8 @@ namespace projectCS.physic_components
             get => _lockerAvailable;
         }
 
-        private List<CupboardComponents> _cupboardComponentsList;
-        public List<CupboardComponents> cupboardComponentsList
+        private List<ICupboardComponents> _cupboardComponentsList;
+        public List<ICupboardComponents> cupboardComponentsList
         {
             get => _cupboardComponentsList;
         }
@@ -21,7 +21,7 @@ namespace projectCS.physic_components
         public Cupboard()
         {
             _lockerAvailable = 7;
-            _cupboardComponentsList = new List<CupboardComponents>();
+            _cupboardComponentsList = new List<ICupboardComponents>();
         }
 
         /// <summary>
@@ -38,29 +38,28 @@ namespace projectCS.physic_components
         public double getPrice()
         {
             double componentsPrice = 0;
-            foreach (CupboardComponents component in _cupboardComponentsList)
+            foreach (ICupboardComponents component in _cupboardComponentsList)
             {
                 componentsPrice += component.price;
             }
             return componentsPrice;
         }
 
-        public void addCupboardComponent(CupboardComponents component)
+        public void addCupboardComponent(ICupboardComponents component)
         {
             _cupboardComponentsList.Add(component);
         }
 
-        public void addCupboardComponent(List<CupboardComponents> componentList)
+        public void addCupboardComponent(List<ICupboardComponents> componentList)
         {
             _cupboardComponentsList.AddRange(componentList);
         }
 
-        public void removeCupboardComponent(CupboardComponents component)
+        public void removeCupboardComponent(ICupboardComponents component)
         {
             _cupboardComponentsList.Remove(component);
         }
 
-        // TODO : vérifier si elle est juste, peut être rfactorer
         /// <summary>
         ///     check if the cupboard have all components which it must have 
         /// </summary>
@@ -74,7 +73,7 @@ namespace projectCS.physic_components
             int numberOfAngleBracket = 0;
             int numberOfLocker = 0;
 
-            foreach (CupboardComponents component in _cupboardComponentsList)
+            foreach (ICupboardComponents component in _cupboardComponentsList)
             {
                 if (component is Locker)
                     numberOfLocker++;
@@ -103,7 +102,7 @@ namespace projectCS.physic_components
         {
             int angleNumberInList = -1;
 
-            foreach (CupboardComponents componants in _cupboardComponentsList)
+            foreach (ICupboardComponents componants in _cupboardComponentsList)
             {
                 angleNumberInList++;
                 if (componants is AngleBracket)
@@ -124,7 +123,7 @@ namespace projectCS.physic_components
         {
             bool isOk = true;
 
-            foreach (CupboardComponents component in _cupboardComponentsList)
+            foreach (ICupboardComponents component in _cupboardComponentsList)
             {
                 if (component is Locker)
                 {

@@ -16,7 +16,7 @@ namespace UnitTest
             Cleat lc2 = new Cleat();
             Door lc3 = new Door();
 
-            locker.addComponent(new List<LockerComponents>() { lc1, lc2, lc3 });
+            locker.addComponent(new List<CatalogueComponents>() { lc1, lc2, lc3 });
             Assert.AreEqual(3, locker.componentsList.Count);
         }
         
@@ -63,11 +63,11 @@ namespace UnitTest
         {
             Locker locker = new Locker();
 
-            CrossBar lc1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Orientation.height);
-            Cleat lc2 = new Cleat(50, "referenceTest", "1", 0, false, 0, Orientation.height);
-            Door lc3 = new Door(40, "referenceTest", "1", 0, false, 0, Orientation.height, Color.white);
+            CrossBar lc1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Color.white);
+            Cleat lc2 = new Cleat(50, "referenceTest", "1", 0, false, 0, Color.white);
+            Door lc3 = new Door(40, "referenceTest", "1", 0, false, 0, Color.white);
 
-            locker.addComponent(new List<LockerComponents>() { lc1, lc2, lc3 });
+            locker.addComponent(new List<CatalogueComponents>() { lc1, lc2, lc3 });
             Assert.AreEqual(100, locker.price);
         }
 
@@ -102,15 +102,15 @@ namespace UnitTest
 
             Assert.AreEqual(false, locker.isComplete());
 
-            locker.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
             
-            locker2.addComponent(new List<LockerComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker2.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1,
                                                                 p1, p2, p3, p4, p5});
             
-            locker3.addComponent(new List<LockerComponents>() {c1, c2, c3, c4, c5, c6 ,c7, c8,
+            locker3.addComponent(new List<CatalogueComponents>() {c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1});
             Assert.AreEqual(true, locker.isComplete());
@@ -138,23 +138,107 @@ namespace UnitTest
             Cleat cl3 = new Cleat();
             Cleat cl4 = new Cleat();
 
-            locker.addComponent(new List<LockerComponents>() { c1, c2, c3,
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3,
                                                                 cl1,
                                                                 p1, p2});
 
-            locker2.addComponent(new List<LockerComponents>() {c1, c2, c3, c4,
+            locker2.addComponent(new List<CatalogueComponents>() {c1, c2, c3, c4,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1});
             var privlocker = new PrivateObject(locker);
             var privlocker2 = new PrivateObject(locker2);
 
-            Assert.AreEqual(3, privlocker.Invoke("numberOfComponentInList", c1));
-            Assert.AreEqual(1, privlocker.Invoke("numberOfComponentInList", cl1));
-            Assert.AreEqual(2, privlocker.Invoke("numberOfComponentInList", p1));
+            Assert.AreEqual(3, privlocker.Invoke("numberOfGivenComponentInAlist", locker.componentsList, c1));
+            Assert.AreEqual(1, privlocker.Invoke("numberOfGivenComponentInAlist", locker.componentsList, cl1));
+            Assert.AreEqual(2, privlocker.Invoke("numberOfGivenComponentInAlist", locker.componentsList, p1));
 
-            Assert.AreEqual(4, privlocker2.Invoke("numberOfComponentInList", c1));
-            Assert.AreEqual(4, privlocker2.Invoke("numberOfComponentInList", cl1));
-            Assert.AreEqual(1, privlocker2.Invoke("numberOfComponentInList", p1));
+            Assert.AreEqual(4, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, c1));
+            Assert.AreEqual(4, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, cl1));
+            Assert.AreEqual(1, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, p1));
         }
+        
+        [TestMethod]
+        public void removeComponentTest()
+        {
+            Locker locker = new Locker();
+
+            CrossBar c1 = new CrossBar();
+            CrossBar c2 = new CrossBar();
+            CrossBar c3 = new CrossBar();
+            CrossBar c4 = new CrossBar();
+            Pannel p1 = new Pannel();
+            Pannel p2 = new Pannel();
+            Cleat cl1 = new Cleat();
+            Cleat cl2 = new Cleat();
+            Cleat cl3 = new Cleat();
+            Cleat cl4 = new Cleat();
+
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3,
+                                                                cl1,
+                                                                p1, p2});
+            
+            Assert.AreEqual(true, locker.componentsList.Contains(c1));
+            locker.removeComponent(c1);
+            Assert.AreEqual(false, locker.componentsList.Contains(c1));
+            
+            locker.removeComponent(c1);
+            Assert.AreEqual(false, locker.componentsList.Contains(c1));
+            
+            Assert.AreEqual(true, locker.componentsList.Contains(p2));            
+            locker.removeComponent(p2);
+            Assert.AreEqual(false, locker.componentsList.Contains(p2));
+        }
+
+        [TestMethod]
+        public void numberOfGivenComponentInAlistTest()
+        {
+            Locker locker = new Locker();
+
+            CrossBar c1 = new CrossBar();
+            CrossBar c2 = new CrossBar();
+            CrossBar c3 = new CrossBar();
+            CrossBar c4 = new CrossBar();
+            CrossBar c5 = new CrossBar();
+            CrossBar c6 = new CrossBar();
+            CrossBar c7 = new CrossBar();
+            CrossBar c8 = new CrossBar();
+            Pannel p1 = new Pannel();
+            Pannel p2 = new Pannel();
+            Pannel p3 = new Pannel();
+            Pannel p4 = new Pannel();
+            Pannel p5 = new Pannel();
+            Cleat cl1 = new Cleat();
+            Cleat cl2 = new Cleat();
+            Cleat cl3 = new Cleat();
+            Cleat cl4 = new Cleat();
+
+            var privatelocker = new PrivateObject(locker);
+
+            Assert.AreEqual(0, privatelocker.Invoke("numberOfGivenComponentInAlist", new List<CatalogueComponents>(), c1));
+
+
+            locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5});
+
+            Assert.AreEqual(8, privatelocker.Invoke("numberOfGivenComponentInAlist", new List<CatalogueComponents>(){
+                                                                c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5}, c1));
+            Assert.AreEqual(7, privatelocker.Invoke("numberOfGivenComponentInAlist", new List<CatalogueComponents>(){
+                                                                c1, c2, c3, c4, c5, c6 ,c7,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5}, c1));
+            
+            Assert.AreEqual(4, privatelocker.Invoke("numberOfGivenComponentInAlist", new List<CatalogueComponents>(){
+                                                                c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5}, cl1));
+            
+            Assert.AreEqual(5, privatelocker.Invoke("numberOfGivenComponentInAlist", new List<CatalogueComponents>(){
+                                                                c1, c2, c3, c4, c5, c6 ,c7, c8,
+                                                                cl1, cl2, cl3, cl4,
+                                                                p1, p2, p3, p4, p5}, p1));
+        }            
     }
 }

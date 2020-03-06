@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projectCS.managing_class
+namespace projectCS
 {
-    // TODO : peut être la rendre static
+    // todo : peut être la rendre static
     class OrderFormUIinterface
     {
         private OrderForm _orderForm;
