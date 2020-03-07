@@ -20,7 +20,6 @@ namespace UnitTest
         private Cupboard cupboard1;
         private Cupboard cupboard2;
 
-
         private AngleBracket angleBracketParam1;
         private AngleBracket angleBracketParam2;
         private AngleBracket angleBracketParam3;
