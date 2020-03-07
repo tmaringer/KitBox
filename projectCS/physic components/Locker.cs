@@ -17,8 +17,16 @@ namespace projectCS
 
         // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         public int height 
-        { 
-            get => 0;
+        {
+            get
+            {
+                int height = 0;
+                foreach(CatalogueComponents component in _componentsList)
+                {
+                    height += component.size;
+                }
+                return height;
+            }
         }
 
         public double price
