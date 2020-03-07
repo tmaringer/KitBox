@@ -1,6 +1,6 @@
 ﻿namespace projectCS
 {
-    // todo : voir si utile
+    // todo : incorporer Orientation dans les objets
     public struct Orientation
     {
         private int _height;

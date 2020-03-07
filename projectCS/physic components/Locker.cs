@@ -15,7 +15,7 @@ namespace projectCS
         private static readonly int _maximumCleats = 4;
         private static readonly int _maximumComponents = _maximumCrossBars + _maximumPannels + _maximumDoors + _maximumCleats;
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
+        // TODO : refactorer pour que sa prenne en compte Orientation
         public int height 
         {
             get
@@ -42,11 +42,11 @@ namespace projectCS
             }
         }
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
+        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants en fonction de Orientation
         private int _width;
         public int width
         {
-            get => _width;
+            get => 0;
         }
 
         // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants

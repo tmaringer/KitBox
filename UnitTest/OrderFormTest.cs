@@ -8,20 +8,59 @@ namespace UnitTest
     [TestClass]
     public class OrderFormTest
     {
+        private OrderForm order1;
+        private OrderForm order2;
+        private OrderForm order3;
+        private OrderForm orderorderWithClient1;
+
+        private Client client1;
+        private Client client2;
+        private Client clientWithParam1;
+
+        private Cupboard cupboard1;
+        private Cupboard cupboard2;
+
+
+        private AngleBracket angleBracketParam1;
+        private AngleBracket angleBracketParam2;
+        private AngleBracket angleBracketParam3;
+        private AngleBracket angleBracketParam4;
+        private AngleBracket angleBracketParam5;
+
+        [TestInitialize()]
+        public void testsInitialize()
+        {
+            client1 = new Client();
+            client2 = new Client();
+            clientWithParam1 = new Client("testnfirst", "testname", "000000000");
+
+            order1 = new OrderForm();
+            order2 = new OrderForm();
+            order3 = new OrderForm();
+            orderorderWithClient1 = new OrderForm(clientWithParam1);
+
+            cupboard1 = new Cupboard();
+            cupboard2 = new Cupboard();
+
+            angleBracketParam1 = new AngleBracket(100, "null", "0000", 0, false, 10, Color.white);
+            angleBracketParam2 = new AngleBracket(100, "null", "0000", 0, false, 5, Color.white);
+            angleBracketParam3 = new AngleBracket(375, "null", "0000", 0, false, 10, Color.white);
+            angleBracketParam4 = new AngleBracket(122.37, "null", "0000", 0, false, 10, Color.white);
+            angleBracketParam5 = new AngleBracket(388.96, "null", "0000", 0, false, 10, Color.white);
+        }
+
         [TestMethod]
         public void newOrderAndIDTest()
         {
-            OrderForm order = new OrderForm();
-            PrivateObject privOrdre = new PrivateObject(order);
+            PrivateObject privOrdre = new PrivateObject(order1);
 
             privOrdre.Invoke("resetID");
             
-            Assert.AreEqual(0, order.id);
+            Assert.AreEqual(0, order1.id);
 
-            order = new OrderForm();
-            Assert.AreEqual(1, order.id);
-
-            OrderForm order2 = new OrderForm();
+            order1 = new OrderForm();
+            Assert.AreEqual(1, order1.id);
+            order2 = new OrderForm();
             Assert.AreEqual(2, order2.id);
         }
 
@@ -31,62 +70,46 @@ namespace UnitTest
         [TestMethod]
         public void clientOrderTest()
         {
-            Client cl = new Client("testnfirst", "testname", "000000000");
-            Client cl2 = new Client();
-            OrderForm order = new OrderForm(cl);
-            OrderForm order2 = new OrderForm(cl2);
-            OrderForm order3 = new OrderForm();
-
-            Assert.AreEqual("testnfirst", order.client.firstName);
-            Assert.AreEqual(cl2, order2.client);
-            Assert.AreEqual(new Client().firstName, order3.client.firstName);
+            order2 = new OrderForm(client2);
+            order3 = new OrderForm(client2);
+            Assert.AreEqual("testClient", order1.client.firstName);
+            Assert.AreEqual(client2, order2.client);
+            Assert.AreEqual(clientWithParam1.firstName, orderorderWithClient1.client.firstName);
         }
-        
+
         [TestMethod]
         public void addCupboardTest()
         {
-            Cupboard cup = new Cupboard();
-            Cupboard cup2 = new Cupboard();
-            OrderForm order = new OrderForm();
+            Assert.AreEqual(0, order1.cupboardDictionnary.Count);
 
-            Assert.AreEqual(0, order.cupboardDictionnary.Count);
+            order1.addCupboard(cupboard1);
 
-            order.addCupboard(cup);
+            Assert.AreEqual(1, order1.cupboardDictionnary.Count);
+            Assert.AreEqual(cupboard1, order1.cupboardDictionnary.Keys.First());
+            Assert.AreEqual(7, order1.cupboardDictionnary.Keys.First().lockerAvailable);
 
-            Assert.AreEqual(1, order.cupboardDictionnary.Count);
-            Assert.AreEqual(cup, order.cupboardDictionnary.Keys.First());
-            Assert.AreEqual(7, order.cupboardDictionnary.Keys.First().lockerAvailable);
+            order1.addCupboard(cupboard2);
 
-            order.addCupboard(cup2);
-
-            Assert.AreEqual(2, order.cupboardDictionnary.Count);
-            Assert.AreEqual(cup, order.cupboardDictionnary.Keys.First());
-            Assert.AreEqual(7, order.cupboardDictionnary.Keys.First().lockerAvailable);
+            Assert.AreEqual(2, order1.cupboardDictionnary.Count);
+            Assert.AreEqual(cupboard1, order1.cupboardDictionnary.Keys.First());
+            Assert.AreEqual(7, order1.cupboardDictionnary.Keys.First().lockerAvailable);
         }
         
         [TestMethod]
         public void removeCupboardTest()
         {
-            OrderForm order = new OrderForm();
+            cupboard1.addCupboardComponent(angleBracketParam1);
+            cupboard2.addCupboardComponent(angleBracketParam2);
 
-            Cupboard cup = new Cupboard();
-            Cupboard cup2 = new Cupboard();
-
-            AngleBracket a = new AngleBracket(100, "null", "0000", 0, false, 10, Color.white);
-            AngleBracket a2 = new AngleBracket(100, "null", "0000", 0, false, 5, Color.white);
-
-            cup.addCupboardComponent(a);
-            cup2.addCupboardComponent(a2);
-
-            order.addCupboard(cup);
-            order.addCupboard(cup2);
+            order1.addCupboard(cupboard1);
+            order1.addCupboard(cupboard2);
             
-            Assert.AreEqual(10, order.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
-            Assert.AreEqual(5, order.cupboardDictionnary.ElementAt(1).Key.getAngleBracket().height);
+            Assert.AreEqual(10, order1.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
+            Assert.AreEqual(5, order1.cupboardDictionnary.ElementAt(1).Key.getAngleBracket().height);
 
-            order.removeCupboard(cup2);
+            order1.removeCupboard(cupboard2);
 
-            Assert.AreEqual(10, order.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
+            Assert.AreEqual(10, order1.cupboardDictionnary.ElementAt(0).Key.getAngleBracket().height);
         }
 
         /// <summary>
@@ -95,61 +118,52 @@ namespace UnitTest
         [TestMethod]
         public void getPriceTest()
         {
-            OrderForm order = new OrderForm();
-            OrderForm order2 = new OrderForm();
-            AngleBracket a = new AngleBracket(112.3, "null", "0000", 0, false, 10, Color.white);
-            AngleBracket a2 = new AngleBracket(146.69, "null", "0000", 0, false, 10, Color.white);
-            AngleBracket a3 = new AngleBracket(375, "null", "0000", 0, false, 10, Color.white);
-            Cupboard cup = new Cupboard();
-            Cupboard cup2 = new Cupboard();
+            // the cupboard1 price is 697.37
+            cupboard1.addCupboardComponent(angleBracketParam1);
+            cupboard1.addCupboardComponent(angleBracketParam2);
+            cupboard1.addCupboardComponent(angleBracketParam3);
+            cupboard1.addCupboardComponent(angleBracketParam4);
 
-            cup.addCupboardComponent(a);
-            cup.addCupboardComponent(a2);
-            cup.addCupboardComponent(a3);
-            cup2.addCupboardComponent(a3);
-
-            order.addCupboard(cup);
-            order.addCupboard(cup2);
+            // the cupboard1 price is 886.33
+            cupboard2.addCupboardComponent(angleBracketParam3);
+            cupboard2.addCupboardComponent(angleBracketParam4);
+            cupboard2.addCupboardComponent(angleBracketParam5);
             
-            Assert.AreEqual(1008.99, order.getPrice());
-            order2.addCupboard(cup2);
-            order2.addCupboard(cup2, 5);
+            order2.addCupboard(cupboard2);
+            order2.addCupboard(cupboard2, 5);
+            Assert.AreEqual(4431.65, order2.getPrice());
 
-            Assert.AreEqual(1875, order2.getPrice());
-
-            order.addCupboard(cup,5);
-            Assert.AreEqual(3544.95, order.getPrice());
+            order1.addCupboard(cupboard1);
+            order1.addCupboard(cupboard2);
+            order1.addCupboard(cupboard1,5);
+            Assert.AreEqual(4373.18, order1.getPrice());
         }
 
         [TestMethod]
         public void selectNumberOfCupboardTest()
         {
-            OrderForm order = new OrderForm();
-            Cupboard cup = new Cupboard();
-            Cupboard cup2 = new Cupboard();
-
-            order.addCupboard(cup);
-            order.addCupboard(cup2);
+            order1.addCupboard(cupboard1);
+            order1.addCupboard(cupboard2);
             
-            Assert.AreEqual(1, order.cupboardDictionnary[cup]);
+            Assert.AreEqual(1, order1.cupboardDictionnary[cupboard1]);
 
-            order.addCupboard(cup,5);
+            order1.addCupboard(cupboard1,5);
 
-            Assert.AreEqual(5, order.cupboardDictionnary[cup]);
-            Assert.AreNotEqual(5, order.cupboardDictionnary[cup2]);
-            Assert.AreEqual(1, order.cupboardDictionnary[cup2]);
+            Assert.AreEqual(5, order1.cupboardDictionnary[cupboard1]);
+            Assert.AreNotEqual(5, order1.cupboardDictionnary[cupboard2]);
+            Assert.AreEqual(1, order1.cupboardDictionnary[cupboard2]);
 
-            order.addCupboard(cup, 3);
+            order1.addCupboard(cupboard1, 3);
 
-            Assert.AreEqual(3, order.cupboardDictionnary[cup]);
-            Assert.AreNotEqual(3, order.cupboardDictionnary[cup2]);
-            Assert.AreEqual(1, order.cupboardDictionnary[cup2]);
+            Assert.AreEqual(3, order1.cupboardDictionnary[cupboard1]);
+            Assert.AreNotEqual(3, order1.cupboardDictionnary[cupboard2]);
+            Assert.AreEqual(1, order1.cupboardDictionnary[cupboard2]);
             
-            order.addCupboard(cup2, 10);
+            order1.addCupboard(cupboard2, 10);
 
-            Assert.AreEqual(3, order.cupboardDictionnary[cup]);
-            Assert.AreNotEqual(3, order.cupboardDictionnary[cup2]);
-            Assert.AreEqual(10, order.cupboardDictionnary[cup2]);
+            Assert.AreEqual(3, order1.cupboardDictionnary[cupboard1]);
+            Assert.AreNotEqual(3, order1.cupboardDictionnary[cupboard2]);
+            Assert.AreEqual(10, order1.cupboardDictionnary[cupboard2]);
         }
 
     }
