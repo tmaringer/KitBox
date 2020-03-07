@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace projectCS
 {
+    /// <summary>
+    ///     This class takes several components from catalogue and build locker with objects stored in list.
+    ///     It build also cupboard with lockers and angle bracket stored in a other list.
+    /// </summary>
     public class ShoppingCart
     {
         private List<CatalogueComponents> _catalogueComponentsList;
@@ -32,12 +36,14 @@ namespace projectCS
             this._catalogueComponentsList = new List<CatalogueComponents>();
             this._cupboardComponentsList = new List<ICupboardComponents>();
         }
-                
+
+        // todo : voir si quand on ajoute en trop ca cause pas de prob
         public void addCatalogueComponent(CatalogueComponents component) 
         {
             _catalogueComponentsList.Add(component);
         }
 
+        // todo : voir si quand on enlève en trop ca cause pas de prob
         public void removeCatalogueComponent(CatalogueComponents component) 
         {
             _catalogueComponentsList.Remove(component);
@@ -57,6 +63,7 @@ namespace projectCS
             {
                 locker.addComponent(component);
             }
+            resetLists(locker);
             return locker;
         }
 
@@ -78,15 +85,16 @@ namespace projectCS
             {
                 Cupboard.addCupboardComponent(cupboardComponent);
             }
+            resetLists(new int());
             return Cupboard;
         }
         
-        private void resetLists(List<Object> list)
+        private void resetLists(Object typeListToReset)
         {
-            if(list.GetType() is CatalogueComponents)
-                _catalogueComponentsList = new List<CatalogueComponents>();
-            else
+            if(typeListToReset.GetType() is ICupboardComponents)
                 _cupboardComponentsList = new List<ICupboardComponents>();
+            else
+                _catalogueComponentsList = new List<CatalogueComponents>();
         }
 
         public override string ToString()

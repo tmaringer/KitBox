@@ -69,21 +69,21 @@ namespace UnitTest
             shopcart1.addCatalogueComponent(cleatWithParam2);
             shopcart1.addCatalogueComponent(doorWithParam1);
 
+            // price of locker1 is 160
             locker1 = shopcart1.buildLocker();
 
             shopcart1.addCatalogueComponent(crossBarWithParam2);
             shopcart1.addCatalogueComponent(cleatWithParam1);
             shopcart1.addCatalogueComponent(cleatWithParam2);
 
+            // price of locker2 110
             locker2 = shopcart1.buildLocker();
-            
+
             shopcart1.addCupboardComponent(locker1);
             shopcart1.addCupboardComponent(locker2);
             
             cupboard1 = shopcart1.buildCupboard();
             
-            Assert.AreEqual(2, cupboard1.cupboardComponentsList.Count);
-            Assert.AreEqual(5, cupboard1.lockerAvailable);
             Assert.AreEqual(270, cupboard1.getPrice());
         }
         
@@ -106,16 +106,7 @@ namespace UnitTest
             locker2 = shopcart1.buildLocker();
 
             Assert.AreEqual(5, locker1.componentsList.Count);
-            Assert.AreEqual(160, locker1.price);
-
-            Assert.AreEqual(8, locker2.componentsList.Count);
-            Assert.AreEqual(270, locker2.price);
-
-            locker1.removeComponent(crossBarWithParam1);
-
-            Assert.AreEqual(4, locker1.componentsList.Count);
-            Assert.AreEqual(150, locker1.price);
-            
+            Assert.AreEqual(3, locker2.componentsList.Count);
         }         
     }
 }

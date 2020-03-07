@@ -178,13 +178,13 @@ namespace UnitTest
             var privlocker = new PrivateObject(locker1);
             var privlocker2 = new PrivateObject(locker2);
 
-            Assert.AreEqual(3, privlocker.Invoke("numberOfGivenComponentInAlist", locker1.componentsList, crossBar1));
-            Assert.AreEqual(1, privlocker.Invoke("numberOfGivenComponentInAlist", locker1.componentsList, cleat1));
-            Assert.AreEqual(2, privlocker.Invoke("numberOfGivenComponentInAlist", locker1.componentsList, pannel1));
+            Assert.AreEqual(3, privlocker.Invoke("numberOfComponentInList", locker1.componentsList, crossBar1));
+            Assert.AreEqual(1, privlocker.Invoke("numberOfComponentInList", locker1.componentsList, cleat1));
+            Assert.AreEqual(2, privlocker.Invoke("numberOfComponentInList", locker1.componentsList, pannel1));
 
-            Assert.AreEqual(8, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, crossBar1));
-            Assert.AreEqual(1, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, cleat1));
-            Assert.AreEqual(5, privlocker2.Invoke("numberOfGivenComponentInAlist", locker2.componentsList, pannel1));
+            Assert.AreEqual(8, privlocker2.Invoke("numberOfComponentInList", locker2.componentsList, crossBar1));
+            Assert.AreEqual(1, privlocker2.Invoke("numberOfComponentInList", locker2.componentsList, cleat1));
+            Assert.AreEqual(5, privlocker2.Invoke("numberOfComponentInList", locker2.componentsList, pannel1));
         }
         
         [TestMethod]
@@ -205,18 +205,18 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void numberOfGivenComponentInAlistTest()
+        public void numberOfComponentInListTest()
         {
             var privatelocker = new PrivateObject(locker1);
 
-            Assert.AreEqual(0, privatelocker.Invoke("numberOfGivenComponentInAlist", catalogueComponentsListEmpty, crossBar1));
+            Assert.AreEqual(0, privatelocker.Invoke("numberOfComponentInList", catalogueComponentsListEmpty, crossBar1));
             
             locker1.addComponent(catalogueComponentsListWith14);
 
-            Assert.AreEqual(8, privatelocker.Invoke("numberOfGivenComponentInAlist", catalogueComponentsListWith14, crossBar1));
-            Assert.AreEqual(3, privatelocker.Invoke("numberOfGivenComponentInAlist", catalogueComponentsListWith6, crossBar1));            
-            Assert.AreEqual(3, privatelocker.Invoke("numberOfGivenComponentInAlist", catalogueComponentsListWith10, cleat1));            
-            Assert.AreEqual(5, privatelocker.Invoke("numberOfGivenComponentInAlist", catalogueComponentsListWith14, pannel1));
+            Assert.AreEqual(8, privatelocker.Invoke("numberOfComponentInList", catalogueComponentsListWith14, crossBar1));
+            Assert.AreEqual(3, privatelocker.Invoke("numberOfComponentInList", catalogueComponentsListWith6, crossBar1));            
+            Assert.AreEqual(3, privatelocker.Invoke("numberOfComponentInList", catalogueComponentsListWith10, cleat1));            
+            Assert.AreEqual(5, privatelocker.Invoke("numberOfComponentInList", catalogueComponentsListWith14, pannel1));
         }            
         
         [TestMethod]
