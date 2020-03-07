@@ -6,25 +6,30 @@ namespace UnitTest
     [TestClass]
     public class AngleBracketTest
     {
+        private AngleBracket angleBracket1;
+        private AngleBracket angleBracketParam1;
+
+        [TestInitialize()]
+        public void testsInitialize()
+        {
+            angleBracket1 = new AngleBracket();
+            angleBracketParam1 = new AngleBracket(5, "testtest", "codetest", 10, false, 12, Color.white);
+        }
+
         [TestMethod]
         public void newAngleTest()
         {
-            AngleBracket a = new AngleBracket();
-            AngleBracket az = new AngleBracket(5, "testtest", "codetest", 10, false, 12, Color.white);
-
-            Assert.AreEqual("0000", a.code);
-            Assert.AreEqual(5, az.price);
-            Assert.AreEqual(12, az.height);
+            Assert.AreEqual("0000", angleBracket1.code);
+            Assert.AreEqual(5, angleBracketParam1.price);
+            Assert.AreEqual(12, angleBracketParam1.height);
         }
         
         [TestMethod]
         public void cutHeightTest()
         {
-            AngleBracket a = new AngleBracket(5, "testtest", "codetest", 10, false, 12, Color.white);
+            angleBracketParam1.cutHeight(6);
 
-            a.cutHeight(6);
-
-            Assert.AreEqual(6, a.height);
+            Assert.AreEqual(6, angleBracketParam1.height);
         }
     }
 }
