@@ -70,6 +70,12 @@ namespace projectCS
         }
 
         // todo : refactorer
+        /// <summary>
+        ///     add a component or a component list which are stored in a components list
+        /// </summary>
+        /// <param name="component">
+        ///     component to add in locker list
+        /// </param>
         public void addComponent(CatalogueComponents component)
         {
             bool isOk = false;
@@ -77,25 +83,25 @@ namespace projectCS
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumCrossBars)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCrossBars)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Pannel p:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumPannels)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumPannels)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Door d:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumDoors)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumDoors)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Cleat cl:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumCleats)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCleats)
                         isOk = true;
                     else
                         isOk = false;
@@ -141,9 +147,9 @@ namespace projectCS
         private bool isComplete(List<CatalogueComponents> componentList)
         {
             bool isOk = false;
-            int numberOfCrossBar = numberOfGivenComponentInAlist(componentList, new CrossBar());
-            int numberOfPannel = numberOfGivenComponentInAlist(componentList, new Pannel());
-            int numberOfCleat = numberOfGivenComponentInAlist(componentList, new Cleat());
+            int numberOfCrossBar = numberOfComponentInList(componentList, new CrossBar());
+            int numberOfPannel = numberOfComponentInList(componentList, new Pannel());
+            int numberOfCleat = numberOfComponentInList(componentList, new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
             if ((numberOfCrossBar == _maximumCrossBars) && (numberOfPannel == _maximumPannels) && (numberOfCleat == _maximumCleats))
@@ -153,18 +159,18 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     this function return the number of components of a given type which is in a component list
+        ///     this function return the number of components of a type being in a provided components list
         /// </summary>
         /// <param name="componentList">
-        ///     list of components given in which the function must search an occurence of a component type
+        ///     list of components where the function will search existence of the component type given in second parametre
         /// </param>
         /// <param name="component">
-        ///     the type of component to find occurence
+        ///     the type of component which the function must compute in the list
         /// </param>
         /// <returns>
-        ///     return the number components for a type that the function found
+        ///     return the number of components of the type given in second parametre which the function found
         /// </returns>
-        private int numberOfGivenComponentInAlist(List<CatalogueComponents> componentList, CatalogueComponents component)
+        private int numberOfComponentInList(List<CatalogueComponents> componentList, CatalogueComponents component)
         {            
             int numberOfComponent = 0;
             foreach (CatalogueComponents compo in componentList)

@@ -47,7 +47,6 @@ namespace UnitTest
         private List<CatalogueComponents> catalogueComponentsListFull;
         private List<CatalogueComponents> catalogueComponentsListWith6WithParam;
 
-        // WithParam
         [TestInitialize()]
         public void testsInitialize()
         {

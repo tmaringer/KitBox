@@ -120,6 +120,8 @@ namespace projectCS
 
             public static void autreTest()
             {
+                Cupboard cup = new Cupboard();
+
                 Locker locker = new Locker();
 
                 Cleat cl3 = new Cleat();
@@ -143,8 +145,35 @@ namespace projectCS
                 locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
+
+                cup.addCupboardComponent(locker);
+                cup.addCupboardComponent(locker);
+                cup.addCupboardComponent(locker);
+                cup.addCupboardComponent(locker);
+                cup.addCupboardComponent(locker);
                 Console.WriteLine("\n");
-                Console.WriteLine("appel extern");
+                Console.WriteLine(cup.cupboardComponentsList.Count);
+
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+
+                Console.WriteLine(cup.cupboardComponentsList.Count);
+                
+                cup.removeCupboardComponent(locker);
+
+                Console.WriteLine(cup.cupboardComponentsList.Count);
+                
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+                cup.removeCupboardComponent(locker);
+
+                Console.WriteLine(cup.cupboardComponentsList.Count);
 
                 //locker.isComplete();
                 /*

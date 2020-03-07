@@ -48,6 +48,8 @@ namespace UnitTest
         private List<CatalogueComponents> catalogueComponentsListWith5WithParam;
         private List<CatalogueComponents> catalogueComponentsListWith2WithParam;
 
+        private List<ICupboardComponents> cupboardComponentsListWith3;
+
 
         [TestInitialize()]
         public void testsInitialize()
@@ -102,6 +104,7 @@ namespace UnitTest
             
             catalogueComponentsListWith2WithParam = new List<CatalogueComponents>(){ cleatWithPara1, pannelWithPara1 };
 
+            cupboardComponentsListWith3 = new List<ICupboardComponents>(){ locker1, locker2, locker3 };
         }
 
         [TestMethod]
@@ -121,15 +124,19 @@ namespace UnitTest
         [TestMethod]
         public void findAnglesTest()
         {
-            cupboard1.addCupboardComponent(angleBracketParam1);
+            var privateCupboard = new PrivateObject(cupboard1);
+
             cupboard1.addCupboardComponent(locker1);
             cupboard1.addCupboardComponent(locker2);
             cupboard1.addCupboardComponent(locker3);
             cupboard1.addCupboardComponent(locker4);
+            Assert.AreEqual(-1, privateCupboard.Invoke("locationOfAngleInList"));
 
-            var privateCupboard = new PrivateObject(cupboard1);
+            cupboard1.addCupboardComponent(angleBracketParam1);
 
-            Assert.AreEqual(0, privateCupboard.Invoke("locationOfAngleInList"));
+            privateCupboard = new PrivateObject(cupboard1);
+
+            Assert.AreEqual(4, privateCupboard.Invoke("locationOfAngleInList"));
 
             cupboard1 = new Cupboard();
             cupboard1.addCupboardComponent(locker3);
@@ -203,7 +210,6 @@ namespace UnitTest
             Assert.AreEqual(false, privateCupboard2.Invoke("allLockerIsComplete"));
         }
         
-
         [TestMethod]
         public void computeHeightLockerTest()
         {
@@ -214,6 +220,125 @@ namespace UnitTest
             cupboard1.addCupboardComponent(locker2);
 
             Assert.AreEqual(106, cupboard1.getHeightOfLocker());
+        }
+
+        [TestMethod]
+        public void lockerAvailableTest()
+        {
+            Assert.AreEqual(7, cupboard1.lockerAvailable);
+
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker2);
+            Assert.AreEqual(5, cupboard1.lockerAvailable);
+
+            cupboard1.removeCupboardComponent(locker1);
+            Assert.AreEqual(6, cupboard1.lockerAvailable);
+
+            cupboard1.removeCupboardComponent(locker1);
+            Assert.AreEqual(7, cupboard1.lockerAvailable);
+
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+        }
+
+        [TestMethod]
+        public void addLockerTest()
+        {
+            Assert.AreEqual(0, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(locker1);
+            Assert.AreEqual(1, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(locker2);
+            Assert.AreEqual(2, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker2);
+            cupboard1.addCupboardComponent(locker2);
+            cupboard1.addCupboardComponent(locker3);
+            cupboard1.addCupboardComponent(locker3);
+            cupboard1.addCupboardComponent(locker3);
+            Assert.AreEqual(7, cupboard1.cupboardComponentsList.Count);
+
+            Assert.AreEqual(0, cupboard2.cupboardComponentsList.Count);
+
+            cupboard2.addCupboardComponent(cupboardComponentsListWith3);
+            Assert.AreEqual(3, cupboard2.cupboardComponentsList.Count);
+
+            cupboard2.addCupboardComponent(cupboardComponentsListWith3);
+            cupboard2.addCupboardComponent(cupboardComponentsListWith3);
+            cupboard2.addCupboardComponent(cupboardComponentsListWith3);
+            cupboard2.addCupboardComponent(cupboardComponentsListWith3);
+            Assert.AreEqual(7, cupboard2.cupboardComponentsList.Count);
+        }
+
+        [TestMethod]
+        public void removeLockerTest()
+        {
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker2);
+            cupboard1.addCupboardComponent(locker3);
+
+            cupboard1.removeCupboardComponent(locker2);
+            Assert.AreEqual(4, cupboard1.cupboardComponentsList.Count);
+            
+            cupboard1.removeCupboardComponent(locker1);
+            Assert.AreEqual(3, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker3);
+            Assert.AreEqual(0, cupboard1.cupboardComponentsList.Count);
+        }
+
+        [TestMethod]
+        public void addAngleBracketTest()
+        {
+            Assert.AreEqual(0, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(angleBracketParam1);
+            Assert.AreEqual(1, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(angleBracketParam1);
+            cupboard1.addCupboardComponent(angleBracketParam2);
+            Assert.AreEqual(1, cupboard1.cupboardComponentsList.Count);
+        }
+
+        [TestMethod]
+        public void removeAngleBracketTest()
+        {
+            Assert.AreEqual(0, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker2);
+            cupboard1.addCupboardComponent(locker3);
+            Assert.AreEqual(5, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.removeCupboardComponent(locker2);
+            Assert.AreEqual(4, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.removeCupboardComponent(locker1);
+            Assert.AreEqual(3, cupboard1.cupboardComponentsList.Count);
+
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker3);
+            Assert.AreEqual(0, cupboard1.cupboardComponentsList.Count);
         }
     }
 }

@@ -6,6 +6,8 @@ namespace projectCS
 {
     public class Cupboard
     {
+        private static readonly int _lockerMaxAvailable = 7;
+
         private int _lockerAvailable;
         public int lockerAvailable
         {
@@ -20,7 +22,7 @@ namespace projectCS
 
         public Cupboard()
         {
-            _lockerAvailable = 7;
+            _lockerAvailable = _lockerMaxAvailable;
             _cupboardComponentsList = new List<ICupboardComponents>();
         }
 
@@ -47,17 +49,32 @@ namespace projectCS
 
         public void addCupboardComponent(ICupboardComponents component)
         {
-            _cupboardComponentsList.Add(component);
+            // the first part of "or" boolean expression check if when a locker is pass in parameter, there is enough locker available
+            // the second part check if the angle bracket is in list, if not the function "locationOfAngleInList()" return -1
+            if (((_lockerAvailable > 0) && (component is Locker)) || ((component is AngleBracket) && (locationOfAngleInList() == -1)))
+            {
+                _cupboardComponentsList.Add(component);
+                if (component is Locker)
+                    _lockerAvailable -= 1;
+            }
         }
 
         public void addCupboardComponent(List<ICupboardComponents> componentList)
         {
-            _cupboardComponentsList.AddRange(componentList);
+            foreach(ICupboardComponents cupboardComponents in componentList)
+            {
+                addCupboardComponent(cupboardComponents);
+            }
         }
 
         public void removeCupboardComponent(ICupboardComponents component)
         {
-            _cupboardComponentsList.Remove(component);
+            if ((_cupboardComponentsList.Count > 0) )//&& (_lockerAvailable <= _lockerMaxAvailable))
+            {
+                _cupboardComponentsList.Remove(component);
+                if(component is Locker)
+                    _lockerAvailable += 1;
+            }
         }
 
         /// <summary>
@@ -106,15 +123,19 @@ namespace projectCS
         private int locationOfAngleInList()
         {
             int angleNumberInList = -1;
+            bool angleBracketDontExist = true;
 
             foreach (ICupboardComponents componants in _cupboardComponentsList)
             {
                 angleNumberInList++;
                 if (componants is AngleBracket)
                 {
+                    angleBracketDontExist = false;
                     break;
                 }
             }
+            if (angleBracketDontExist)
+                angleNumberInList = -1;
             return angleNumberInList;
         }
 
