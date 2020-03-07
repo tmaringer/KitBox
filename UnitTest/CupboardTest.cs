@@ -35,14 +35,18 @@ namespace UnitTest
         private Pannel pannel3;
         private Pannel pannel4;
         private Pannel pannel5;
+        private Pannel pannelWithPara1;
 
         private Cleat cleat1;
         private Cleat cleat2;
         private Cleat cleat3;
         private Cleat cleat4;
+        private Cleat cleatWithPara1;
 
         private List<CatalogueComponents> catalogueComponentsListFull;
         private List<CatalogueComponents> catalogueComponentsListWith13;
+        private List<CatalogueComponents> catalogueComponentsListWith5WithParam;
+        private List<CatalogueComponents> catalogueComponentsListWith2WithParam;
 
 
         [TestInitialize()]
@@ -67,20 +71,22 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", 0, false, 0, Color.white);
-            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", 0, false, 0, Color.white);
-            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", 0, false, 0, Color.white);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", 21, false, 0, Color.white);
+            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", 11, false, 0, Color.white);
+            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", 8, false, 0, Color.white);
 
             pannel1 = new Pannel();
             pannel2 = new Pannel();
             pannel3 = new Pannel();
             pannel4 = new Pannel();
             pannel5 = new Pannel();
+            pannelWithPara1 = new Pannel(10, "referenceTest", "1", 23, false, 0, Color.white);
 
             cleat1 = new Cleat();
             cleat2 = new Cleat();
             cleat3 = new Cleat();
             cleat4 = new Cleat();
+            cleatWithPara1 = new Cleat(10, "referenceTest", "1", 10, false, 0, Color.white);
 
             catalogueComponentsListFull = new List<CatalogueComponents>(){ crossBar1, crossBar2, crossBar3, crossBar4, crossBar5, crossBar6 ,crossBar7, crossBar8,
                                                                             cleat1, cleat2, cleat3, cleat4,
@@ -89,6 +95,12 @@ namespace UnitTest
             catalogueComponentsListWith13 = new List<CatalogueComponents>(){ crossBar1, crossBar2, crossBar3, crossBar4, crossBar5, crossBar6 ,crossBar7, crossBar8,
                                                                             cleat1, cleat2, cleat3, cleat4,
                                                                             pannel1};
+
+            catalogueComponentsListWith5WithParam = new List<CatalogueComponents>(){ crossBarWithParam1, crossBarWithParam2, crossBarWithParam3,
+                                                                            cleatWithPara1,
+                                                                            pannelWithPara1};
+            
+            catalogueComponentsListWith2WithParam = new List<CatalogueComponents>(){ cleatWithPara1, pannelWithPara1 };
 
         }
 
@@ -189,6 +201,19 @@ namespace UnitTest
 
             Assert.AreEqual(true, privateCupboard.Invoke("allLockerIsComplete"));
             Assert.AreEqual(false, privateCupboard2.Invoke("allLockerIsComplete"));
+        }
+        
+
+        [TestMethod]
+        public void computeHeightLockerTest()
+        {
+            locker1.addComponent(catalogueComponentsListWith5WithParam);
+            locker2.addComponent(catalogueComponentsListWith2WithParam);
+
+            cupboard1.addCupboardComponent(locker1);
+            cupboard1.addCupboardComponent(locker2);
+
+            Assert.AreEqual(106, cupboard1.getHeightOfLocker());
         }
     }
 }

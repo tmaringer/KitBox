@@ -92,10 +92,15 @@ namespace projectCS
             return (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
         }
 
-        // TODO : terminer la classe qui calcul la haut des lockers
-        private int computeHeightLocker()
+        public int getHeightOfLocker()
         {
-            return 0;
+            int height = 0;
+            foreach(ICupboardComponents component in _cupboardComponentsList)
+            {
+                if (component is Locker)
+                    height += component.height;
+            }
+            return height;
         }
 
         private int locationOfAngleInList()
