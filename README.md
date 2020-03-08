@@ -1,6 +1,6 @@
 # KitBox
 
-**Kitbox** is a c# app designed to meet the needs of a business selling cabinets.
+**KitBox** is a c# app designed to meet the needs of a business selling cabinets.
 
 The main contributers of this project (alphabetical order) are: 
 
