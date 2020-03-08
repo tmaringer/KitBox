@@ -8,6 +8,7 @@ namespace UnitTest
     public class ShoppingCartTest
     {
         private ShoppingCart shopcart1;
+        private ShoppingCart shopcart2;
 
         private Cupboard cupboard1;
 
@@ -20,13 +21,13 @@ namespace UnitTest
         private Cleat cleatWithParam1;
         private Cleat cleatWithParam2;
 
-        private Door door1;
         private Door doorWithParam1;
 
         [TestInitialize()]
         public void testsInitialize()
         {
             shopcart1 = new ShoppingCart();
+            shopcart2 = new ShoppingCart();
 
             cupboard1 = new Cupboard();
 
@@ -36,7 +37,6 @@ namespace UnitTest
             cleatWithParam1 = new Cleat(50, "referenceTest", "1", 0, false, 0, Color.white);
             cleatWithParam2 = new Cleat(50, "referenceTest", "1", 25, false, 0, Color.white);
 
-            door1 = new Door();
             doorWithParam1 = new Door(40, "referenceTest", "1", 0, false, 0, Color.white);
         }
 
@@ -58,6 +58,34 @@ namespace UnitTest
 
             Assert.AreEqual(150, locker1.price);
             Assert.AreEqual(4, locker1.componentsList.Count);
+        }
+
+        // test if when you add catalogue components in excess, the building of locker remove correctly the components added to the locker from catalogue components list
+        [TestMethod]
+        public void buildLockerWithExcessComponentTest()
+        {
+            shopcart1.addCatalogueComponent(crossBarWithParam1);
+            shopcart1.addCatalogueComponent(crossBarWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam1);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(doorWithParam1);
+
+            locker1 = shopcart1.buildLocker();
+
+            Assert.AreEqual(160, locker1.price);
+            Assert.AreEqual(5, locker1.componentsList.Count);
+            Assert.AreEqual(0, shopcart1.catalogueComponentsList.Count);
+
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+            shopcart1.addCatalogueComponent(cleatWithParam2);
+
+            locker1 = shopcart1.buildLocker();
+
+            Assert.AreEqual(2, shopcart1.catalogueComponentsList.Count);
         }
 
         [TestMethod]
@@ -86,27 +114,5 @@ namespace UnitTest
             
             Assert.AreEqual(270, cupboard1.getPrice());
         }
-        
-        [TestMethod]
-        public void resetListTest()
-        {
-            shopcart1.addCatalogueComponent(crossBarWithParam1);
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(doorWithParam1);
-
-            locker1 = shopcart1.buildLocker();
-
-
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-
-            locker2 = shopcart1.buildLocker();
-
-            Assert.AreEqual(5, locker1.componentsList.Count);
-            Assert.AreEqual(3, locker2.componentsList.Count);
-        }         
     }
 }
