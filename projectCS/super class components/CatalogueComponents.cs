@@ -1,5 +1,8 @@
 ﻿namespace projectCS
 {
+    /// <summary>
+    ///     Super class which group all locker component characteristics as well as angle brackets
+    /// </summary>
     public abstract class CatalogueComponents
     {
         protected double _price;

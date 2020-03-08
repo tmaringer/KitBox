@@ -50,10 +50,10 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     build locker from component stored in list
+        ///     Builds locker from components stored in list. It also removes components which are used to build locker.
         /// </summary>
         /// <returns>
-        ///     return the locker built
+        ///     Returns the locker built.
         /// </returns>
         public Locker buildLocker()
         {
@@ -82,11 +82,17 @@ namespace projectCS
             _cupboardComponentsList.Add(cupboardComponent);
         }
 
-        public void removeCupboardComponen(ICupboardComponents cupboardComponent)
+        public void removeCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Remove(cupboardComponent);
         }
 
+        /// <summary>
+        ///     Builds cupboard from components stored. It also removes components which are used to build cupboard.
+        /// </summary>
+        /// <returns>
+        ///     Returns the cupboard built.
+        /// </returns>
         public Cupboard buildCupboard()
         {
             Cupboard Cupboard = new Cupboard();

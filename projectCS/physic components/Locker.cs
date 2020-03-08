@@ -149,6 +149,15 @@ namespace projectCS
             return isComplete(_componentsList);
         }
 
+        /// <summary>
+        ///     Checks if the locker has all components which it be able to contains.
+        /// </summary>
+        /// <param name="componentList">
+        ///     The components list where the function must search.
+        /// </param>
+        /// <returns>
+        ///     Returns true if complete, false otherwise.
+        /// </returns>
         private bool isComplete(List<CatalogueComponents> componentList)
         {
             bool isOk = false;
