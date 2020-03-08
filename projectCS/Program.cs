@@ -24,9 +24,9 @@ namespace projectCS
             Application.SetCompatibleTextRenderingDefault(false);
 
         }
-
+        
         internal static class printPerso
-        {
+        {           
             public static void newCompoTest()
             {
                 CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, Color.white);
@@ -124,6 +124,8 @@ namespace projectCS
 
                 Locker locker = new Locker();
 
+                ShoppingCart shoppingCart = new ShoppingCart();
+
                 Cleat cl3 = new Cleat();
                 Cleat cl1 = new Cleat();
                 Cleat cl4 = new Cleat();
@@ -142,46 +144,43 @@ namespace projectCS
                 Pannel p2 = new Pannel();
                 Pannel p4 = new Pannel();
 
-                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
+                List<CatalogueComponents> l = new List<CatalogueComponents>() { c1, c2, c3, c4, c5, c6 ,c7, c8,
                                                                 cl1, cl2, cl3, cl4,
-                                                                p1, p2, p3, p4, p5});
-
-                cup.addCupboardComponent(locker);
-                cup.addCupboardComponent(locker);
-                cup.addCupboardComponent(locker);
-                cup.addCupboardComponent(locker);
-                cup.addCupboardComponent(locker);
-                Console.WriteLine("\n");
-                Console.WriteLine(cup.cupboardComponentsList.Count);
-
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-
-                Console.WriteLine(cup.cupboardComponentsList.Count);
-                
-                cup.removeCupboardComponent(locker);
-
-                Console.WriteLine(cup.cupboardComponentsList.Count);
-                
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-                cup.removeCupboardComponent(locker);
-
-                Console.WriteLine(cup.cupboardComponentsList.Count);
-
-                //locker.isComplete();
+                                                                p1, p2, p3, p4, p5};
                 /*
-                foreach(CatalogueComponents c in locker.componentsList)
-                {
-                    Console.WriteLine(c);
-                }
-                */
+                locker.addComponent();
+                                                                */
+
+                shoppingCart.addCatalogueComponent(cl3);
+                shoppingCart.addCatalogueComponent(cl1);
+                shoppingCart.addCatalogueComponent(cl4);
+                shoppingCart.addCatalogueComponent(c1);
+                shoppingCart.addCatalogueComponent(p5);
+                shoppingCart.addCatalogueComponent(c2);
+                shoppingCart.addCatalogueComponent(c3);
+                shoppingCart.addCatalogueComponent(p1);
+                shoppingCart.addCatalogueComponent(p1);
+                shoppingCart.addCatalogueComponent(p1);
+                shoppingCart.addCatalogueComponent(p1);
+                shoppingCart.addCatalogueComponent(p1);
+
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
+                shoppingCart.removeCatalogueComponent(p1);
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
+                shoppingCart.removeCatalogueComponent(p1);
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
+                shoppingCart.removeCatalogueComponent(p1);
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
+                shoppingCart.removeCatalogueComponent(p1);
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
+                shoppingCart.removeCatalogueComponent(p1);
+                Console.WriteLine(shoppingCart.catalogueComponentsList.Count);
+
             }
         }
     }    

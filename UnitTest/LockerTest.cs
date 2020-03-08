@@ -7,6 +7,8 @@ namespace UnitTest
     [TestClass]
     public class LockerTest
     {
+        private bool flag;
+
         private Locker locker1;
         private Locker locker2;
         private Locker locker3;
@@ -50,6 +52,8 @@ namespace UnitTest
         [TestInitialize()]
         public void testsInitialize()
         {
+            flag = false;
+
             locker1 = new Locker();
             locker2 = new Locker();
             locker3 = new Locker();
@@ -106,10 +110,29 @@ namespace UnitTest
         [TestMethod]
         public void componentsAdditionTest()
         {
-            locker1.addComponent(catalogueComponentsListWith3);
+            flag = locker1.addComponent(catalogueComponentsListWith3);
             Assert.AreEqual(3, locker1.componentsList.Count);
+            Assert.AreEqual(true, flag);
+
+            flag = locker1.addComponent(catalogueComponentsListWith14);
+            Assert.AreEqual(false, flag);
+
+            locker1.addComponent(catalogueComponentsListWith3);
+            Assert.AreEqual(false, flag);
+
+            locker2.addComponent(pannel1);
+            locker2.addComponent(pannel1);
+            flag = locker2.addComponent(pannel1);
+            Assert.AreEqual(true, flag);
+
+            locker2.addComponent(pannel1);
+            flag = locker2.addComponent(pannel1);
+            Assert.AreEqual(true, flag);
+            
+            flag = locker2.addComponent(pannel1);
+            Assert.AreEqual(false, flag);
         }
-        
+
         /// <summary>
         ///     test if adding an lockerComponent beyond the size limit of locker for a component type 
         /// </summary>

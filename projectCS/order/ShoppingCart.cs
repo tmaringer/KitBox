@@ -37,13 +37,13 @@ namespace projectCS
             this._cupboardComponentsList = new List<ICupboardComponents>();
         }
 
-        // todo : voir si quand on ajoute en trop ca cause pas de prob
+        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
         public void addCatalogueComponent(CatalogueComponents component) 
         {
             _catalogueComponentsList.Add(component);
         }
 
-        // todo : voir si quand on enlève en trop ca cause pas de prob
+        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
         public void removeCatalogueComponent(CatalogueComponents component) 
         {
             _catalogueComponentsList.Remove(component);
@@ -58,12 +58,22 @@ namespace projectCS
         public Locker buildLocker()
         {
             Locker locker = new Locker();
+            // temporary list which store components added to the locker and is used thereafter to remove components in the main list
+            List<CatalogueComponents> tempList = new List<CatalogueComponents>();
+            bool componentWasAdded = false;
 
-            foreach(CatalogueComponents component in _catalogueComponentsList)
+            foreach (CatalogueComponents component in _catalogueComponentsList)
             {
-                locker.addComponent(component);
+                componentWasAdded = locker.addComponent(component);
+                if(componentWasAdded)
+                    tempList.Add(component);
             }
-            resetLists(locker);
+
+            foreach(CatalogueComponents component in tempList)
+            {
+                _catalogueComponentsList.Remove(component);
+            }
+
             return locker;
         }
 
@@ -80,21 +90,20 @@ namespace projectCS
         public Cupboard buildCupboard()
         {
             Cupboard Cupboard = new Cupboard();
+            // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
+            List<ICupboardComponents> tempList = new List<ICupboardComponents>();
 
             foreach (ICupboardComponents cupboardComponent in _cupboardComponentsList)
             {
                 Cupboard.addCupboardComponent(cupboardComponent);
+                tempList.Add(cupboardComponent);
             }
-            resetLists(new int());
+
+            foreach (ICupboardComponents component in tempList)
+            {
+                _cupboardComponentsList.Remove(component);
+            }
             return Cupboard;
-        }
-        
-        private void resetLists(Object typeListToReset)
-        {
-            if(typeListToReset.GetType() is ICupboardComponents)
-                _cupboardComponentsList = new List<ICupboardComponents>();
-            else
-                _catalogueComponentsList = new List<CatalogueComponents>();
         }
 
         public override string ToString()

@@ -76,8 +76,9 @@ namespace projectCS
         /// <param name="component">
         ///     component to add in locker list
         /// </param>
-        public void addComponent(CatalogueComponents component)
+        public bool addComponent(CatalogueComponents component)
         {
+            bool componentIsAdded = false;
             bool isOk = false;
 
             switch (component)
@@ -111,20 +112,24 @@ namespace projectCS
             }          
             
             if (isOk)
+            {
+                componentIsAdded = true;
                 _componentsList.Add(component);
+            }
+            return componentIsAdded;
         }
 
-        // todo : gérer exception et refactorer
-        public void addComponent(List<CatalogueComponents> componentList)
+        public bool addComponent(List<CatalogueComponents> componentList)
         {
-            if (!isComplete())
-                _componentsList.AddRange(componentList);
-
-            else
-            { 
-                   // ErrorWindow errorWindow = new ErrorWindow(ErrorMessages.componentMaxExceedMsg, ErrorMessages.componentMaxExceedTitle);
-                   // errorWindow.displayWindow();                 
+            bool componentIsAdded = true;
+            bool allComponentWereAdded = true;
+            foreach (CatalogueComponents component in componentList)
+            {
+                componentIsAdded = addComponent(component);
+                if (!componentIsAdded)
+                    allComponentWereAdded = false;
             }
+            return allComponentWereAdded;
         }
 
         public void removeComponent(CatalogueComponents component)
@@ -180,7 +185,6 @@ namespace projectCS
             }
             return numberOfComponent;
         }
-                
 
         public override string ToString()
         {
