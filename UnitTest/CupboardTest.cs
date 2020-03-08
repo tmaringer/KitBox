@@ -162,6 +162,12 @@ namespace UnitTest
         }
 
         [TestMethod]
+        public void getAngleBracket()
+        {
+            Assert.AreEqual("null", cupboard1.getAngleBracket().reference);
+        }
+
+        [TestMethod]
         public void getPriceTest()
         {
             cupboard1.addCupboardComponent(angleBracketParam2);

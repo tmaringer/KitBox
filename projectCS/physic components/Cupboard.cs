@@ -27,10 +27,10 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     resize the cupboard angles bracket
+        ///     Resize the cupboard angles bracket
         /// </summary>
         /// <param name="size">
-        ///     size wich will be deduct from cupboard angle bracket
+        ///     Size wich will be cut of angle bracket of cupboard
         /// </param>
         public void cutAnglesBracket(int size)
         {
@@ -47,6 +47,12 @@ namespace projectCS
             return componentsPrice;
         }
 
+        /// <summary>
+        ///     Adds a cupboard component to this cupboard.
+        /// </summary>
+        /// <param name="component">
+        ///     Component to be added which must be eiher locker or angle bracket.
+        /// </param>
         public void addCupboardComponent(ICupboardComponents component)
         {
             // the first part of "or" boolean expression check if when a locker is pass in parameter, there is enough locker available
@@ -59,6 +65,12 @@ namespace projectCS
             }
         }
 
+        /// <summary>
+        ///     Adds a list of cupboard components to this cupboard.
+        /// </summary>
+        /// <param name="componentList">
+        ///     Components list to be added which must be eiher locker or angle bracket.
+        /// </param>
         public void addCupboardComponent(List<ICupboardComponents> componentList)
         {
             foreach(ICupboardComponents cupboardComponents in componentList)
@@ -67,6 +79,12 @@ namespace projectCS
             }
         }
 
+        /// <summary>
+        ///     Removes a component from this cupboard.
+        /// </summary>
+        /// <param name="component">
+        ///     Components to be removed from cupboard
+        /// </param>
         public void removeCupboardComponent(ICupboardComponents component)
         {
             if ((_cupboardComponentsList.Count > 0) )//&& (_lockerAvailable <= _lockerMaxAvailable))
@@ -78,10 +96,10 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     check if the cupboard have all components which it must have 
+        ///     Check if the cupboard has all minimal components which it must have.
         /// </summary>
         /// <returns>
-        ///     return true if the cupboard have all components, false in other case
+        ///     Return true if the cupboard have all components, false in other case
         /// </returns>
         public bool isComplete()
         {
@@ -104,9 +122,18 @@ namespace projectCS
             return isOk;
         }
 
+        /// <summary>
+        ///     Get angle bracket of this cupboard.
+        /// </summary>
+        /// <returns>
+        ///     Return the angle bracket of cubpaord, otherwise return an default angle bracket
+        /// </returns>
         public AngleBracket getAngleBracket()
         {
-            return (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
+            AngleBracket angle = new AngleBracket();
+            if (locationOfAngleInList() != -1)
+                angle = (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
+            return angle;
         }
 
         public int getHeightOfLocker()
@@ -120,6 +147,12 @@ namespace projectCS
             return height;
         }
 
+        /// <summary>
+        ///     Locates the position of angle bracket in CupboardComponent list.
+        /// </summary>
+        /// <returns>
+        ///     Returns the position of angle bracket, otherwise returns -1.
+        /// </returns>
         private int locationOfAngleInList()
         {
             int angleNumberInList = -1;
@@ -140,10 +173,10 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     check if all lockers of cupboard have all components which it must have 
+        ///     Check if all lockers of cupboard have all components which they be able to contains.
         /// </summary>
         /// <returns>
-        ///      return true if lockers have all components, false in other case
+        ///      Returns true if lockers have all components, false in other case
         /// </returns>
         private bool allLockerIsComplete()
         {

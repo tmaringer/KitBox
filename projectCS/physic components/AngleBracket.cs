@@ -34,7 +34,7 @@
         ///     resize the angle bracket
         /// </summary>
         /// <param name="size">
-        ///     size to deduct
+        ///     size to cut of the height from angle bracket
         /// </param>
         public void cutHeight(int size)
         {
