@@ -10,7 +10,7 @@ The main contributers of this project (alphabetical order) are:
 * Sing Martin
 * Vico Nathan
 
-We would like to thanks Messrs P. Dekimpe and A. Lorge for the help they have provided on the realisation of this app.
+We would like to thank Messrs P. Dekimpe and A. Lorge for the help they have provided on the realisation of this app.
 
 
 ---------------------------------------------------------------------------------------
