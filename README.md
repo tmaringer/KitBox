@@ -17,3 +17,4 @@ We would like to thanks Messrs P. Dekimpe and A. Lorge for the help they have pr
 The folder 'info' posesses all the usefull informations regarding the usual commands or methods for an effective use of git (such as branching).
 
 
+! [Image of logo] (https://github.com/titimar16/KitBox/blob/master/image/3.1.png)
