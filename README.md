@@ -2,13 +2,13 @@
 
 **Kitbox** is a c# app designed to meet the needs of a business selling cabinets.
 
-The main contributers of this project (alphabetical order) are : 
+The main contributers of this project (alphabetical order) are: 
 
-*De Groote Olivier
-*Francois Robert
-*Maringer Thibaut
-*Sing Martin
-*Vico Nathan
+* De Groote Olivier
+* Francois Robert
+* Maringer Thibaut
+* Sing Martin
+* Vico Nathan
 
 We would like to thanks Messrs P. Dekimpe and A. Lorge for the help they have provided on the realisation of this app.
 
