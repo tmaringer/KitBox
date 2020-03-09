@@ -27,6 +27,7 @@ namespace projectCS
 
         internal static class printPerso
         {
+            /*
             public static void newCompoTest()
             {
                 CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", 0, false, 0, Color.white);
@@ -117,7 +118,7 @@ namespace projectCS
                 }
                 locker.isComplete();
             }
-
+            */
             public static void autreTest()
             {
                 Locker locker = new Locker();
@@ -144,15 +145,7 @@ namespace projectCS
                                                                 cl1, cl2, cl3, cl4,
                                                                 p1, p2, p3, p4, p5});
                 Console.WriteLine("\n");
-                Console.WriteLine("appel extern");
-
-                //locker.isComplete();
-                /*
-                foreach(CatalogueComponents c in locker.componentsList)
-                {
-                    Console.WriteLine(c);
-                }
-                */
+                //Console.WriteLine(locker);
             }
         }
     }    
