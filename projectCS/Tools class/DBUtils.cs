@@ -7,7 +7,6 @@ using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Data;
 using System.Windows.Forms;
-using System.Data.Common;
 
 namespace projectCS
 {
@@ -67,7 +66,7 @@ namespace projectCS
             return Value;
         }
 
-        public static DataTable RefreshDB(string database)
+        public static void RefreshDB(string database, DataGridView grid)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlCommand cmd = new MySqlCommand("SELECT * from " + database  + ";", conn);
@@ -76,131 +75,8 @@ namespace projectCS
             conn.Open();
             dataTable.Clear();
             da.Fill(dataTable);
+            grid.DataSource = dataTable;
             conn.Close();
-            return dataTable;
-        }
-
-        public static DataTable RefreshDBCond(string database, string cond)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where " + cond + ";", conn);
-            DataTable dataTable = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            conn.Open();
-            dataTable.Clear();
-            da.Fill(dataTable);
-            conn.Close();
-            return dataTable;
-        }
-
-        public static DataTable RefreshDBPartial(string database, string col)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT " + col + " from " + database + ";", conn);
-            DataTable dataTable = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            conn.Open();
-            dataTable.Clear();
-            da.Fill(dataTable);
-            conn.Close();
-            return dataTable;
-        }
-        public static Dictionary<string,int> SelectCondDB(string database, string Code)
-        {
-            Dictionary<string, int> values = new Dictionary<string, int>();
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where Code = \"" + Code + "\";", conn);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            foreach (DataColumn dc in dt.Columns)
-            {
-                try
-                {
-                    string col = dc.ColumnName.ToString();
-                    int value = Convert.ToInt32(dt.Rows[0][col]);
-                    values.Add(col, value);
-                }
-                catch
-                {
-
-                }
-            };
-            return values;
-        }
-        public static Dictionary<string, string> SelectCondDBBis(string database, string Code)
-        {
-            Dictionary<string, string> values = new Dictionary<string, string>();
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where Code = \"" + Code + "\";", conn);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            foreach (DataColumn dc in dt.Columns)
-            {
-                try
-                {
-                    string col = dc.ColumnName.ToString();
-                    string value = dt.Rows[0][col].ToString();
-                    values.Add(col, value);
-                }
-                catch
-                {
-
-                }
-            };
-            return values;
-        }
-        public static List<string> RowValueList(string Column, string table, string Ref)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            List<string> result = new List<string>();
-            string sql = "Select " + Column + " from " + table + " where Ref =\"" + Ref + "\";";
-            MySqlCommand cmd = new MySqlCommand
-            {
-                Connection = conn,
-                CommandText = sql
-            };
-            {
-                DbDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        result.Add(WhereSQLAnswer);
-                    }
-                }
-            }
-            return result;
-        }
-
-        public static List<string> RefList(string Column, string table)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            List<string> result = new List<string>();
-            string sql = "Select " + Column + " from " + table + ";";
-            MySqlCommand cmd = new MySqlCommand
-            {
-                Connection = conn,
-                CommandText = sql
-            };
-            {
-                conn.Open();
-                DbDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        result.Add(WhereSQLAnswer);
-                    }
-                }
-                conn.Close();
-            }
-            return result;
         }
 
         public static string UpdateDB(DataGridView grid,String database, TextBox col, TextBox code, TextBox value)
@@ -218,7 +94,7 @@ namespace projectCS
                 while (MyReader2.Read())
                 {
                 }
-                grid.DataSource = RefreshDB(database);
+                RefreshDB(database, grid);
                 conn.Close();
                 return "Done";
             }
@@ -239,7 +115,7 @@ namespace projectCS
                     row.Cells[i].Style.BackColor = System.Drawing.Color.White;
                     if (row.Cells[i].Value.ToString() == value.Text.ToString())
                     {
-                        row.Cells[i].Style.BackColor = System.Drawing.Color.LimeGreen;
+                        row.Cells[i].Style.BackColor = System.Drawing.Color.Green;
                     }
                 }
             }

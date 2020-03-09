@@ -15,10 +15,17 @@ namespace projectCS
         private static readonly int _maximumCleats = 4;
         private static readonly int _maximumComponents = _maximumCrossBars + _maximumPannels + _maximumDoors + _maximumCleats;
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
         public int height 
-        { 
-            get => 0;
+        {
+            get
+            {
+                int height = 0;
+                foreach(CatalogueComponents component in _componentsList)
+                {
+                    height += component.size.height;
+                }
+                return height;
+            }
         }
 
         public double price
@@ -34,18 +41,33 @@ namespace projectCS
             }
         }
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
-        private int _width;
+        // TODO : tester
         public int width
         {
-            get => _width;
+            get
+            {
+                int width = 0;
+                foreach (CatalogueComponents component in _componentsList)
+                {
+                    width += component.size.width;
+                }
+                return width;
+            }
         }
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
+        // TODO : tester
         private int _depth;
         public int depth
         {
-            get => _depth;
+            get
+            {
+                int depth = 0;
+                foreach (CatalogueComponents component in _componentsList)
+                {
+                    depth += component.size.depth;
+                }
+                return depth;
+            }
         }
 
         private List<CatalogueComponents> _componentsList;
@@ -56,38 +78,43 @@ namespace projectCS
                
         public Locker()
         {
-            _width = 0;
-            _depth = 0;
             _componentsList = new List<CatalogueComponents>();
         }
 
         // todo : refactorer
-        public void addComponent(CatalogueComponents component)
+        /// <summary>
+        ///     add a component or a component list which are stored in a components list
+        /// </summary>
+        /// <param name="component">
+        ///     component to add in locker list
+        /// </param>
+        public bool addComponent(CatalogueComponents component)
         {
+            bool componentIsAdded = false;
             bool isOk = false;
 
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumCrossBars)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCrossBars)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Pannel p:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumPannels)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumPannels)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Door d:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumDoors)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumDoors)
                         isOk = true;
                     else
                         isOk = false;
                     break;
                 case Cleat cl:
-                    if (numberOfGivenComponentInAlist(_componentsList, component) < _maximumCleats)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCleats)
                         isOk = true;
                     else
                         isOk = false;
@@ -97,20 +124,24 @@ namespace projectCS
             }          
             
             if (isOk)
+            {
+                componentIsAdded = true;
                 _componentsList.Add(component);
+            }
+            return componentIsAdded;
         }
 
-        // todo : gérer exception et refactorer
-        public void addComponent(List<CatalogueComponents> componentList)
+        public bool addComponent(List<CatalogueComponents> componentList)
         {
-            if (!isComplete())
-                _componentsList.AddRange(componentList);
-
-            else
-            { 
-                   // ErrorWindow errorWindow = new ErrorWindow(ErrorMessages.componentMaxExceedMsg, ErrorMessages.componentMaxExceedTitle);
-                   // errorWindow.displayWindow();                 
+            bool componentIsAdded = true;
+            bool allComponentWereAdded = true;
+            foreach (CatalogueComponents component in componentList)
+            {
+                componentIsAdded = addComponent(component);
+                if (!componentIsAdded)
+                    allComponentWereAdded = false;
             }
+            return allComponentWereAdded;
         }
 
         public void removeComponent(CatalogueComponents component)
@@ -130,12 +161,21 @@ namespace projectCS
             return isComplete(_componentsList);
         }
 
+        /// <summary>
+        ///     Checks if the locker has all components which it be able to contains.
+        /// </summary>
+        /// <param name="componentList">
+        ///     The components list where the function must search.
+        /// </param>
+        /// <returns>
+        ///     Returns true if complete, false otherwise.
+        /// </returns>
         private bool isComplete(List<CatalogueComponents> componentList)
         {
             bool isOk = false;
-            int numberOfCrossBar = numberOfGivenComponentInAlist(componentList, new CrossBar());
-            int numberOfPannel = numberOfGivenComponentInAlist(componentList, new Pannel());
-            int numberOfCleat = numberOfGivenComponentInAlist(componentList, new Cleat());
+            int numberOfCrossBar = numberOfComponentInList(componentList, new CrossBar());
+            int numberOfPannel = numberOfComponentInList(componentList, new Pannel());
+            int numberOfCleat = numberOfComponentInList(componentList, new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
             if ((numberOfCrossBar == _maximumCrossBars) && (numberOfPannel == _maximumPannels) && (numberOfCleat == _maximumCleats))
@@ -145,18 +185,18 @@ namespace projectCS
         }
 
         /// <summary>
-        ///     this function return the number of components of a given type which is in a component list
+        ///     this function return the number of components of a type being in a provided components list
         /// </summary>
         /// <param name="componentList">
-        ///     list of components given in which the function must search an occurence of a component type
+        ///     list of components where the function will search existence of the component type given in second parametre
         /// </param>
         /// <param name="component">
-        ///     the type of component to find occurence
+        ///     the type of component which the function must compute in the list
         /// </param>
         /// <returns>
-        ///     return the number components for a type that the function found
+        ///     return the number of components of the type given in second parametre which the function found
         /// </returns>
-        private int numberOfGivenComponentInAlist(List<CatalogueComponents> componentList, CatalogueComponents component)
+        private int numberOfComponentInList(List<CatalogueComponents> componentList, CatalogueComponents component)
         {            
             int numberOfComponent = 0;
             foreach (CatalogueComponents compo in componentList)
@@ -166,7 +206,6 @@ namespace projectCS
             }
             return numberOfComponent;
         }
-                
 
         public override string ToString()
         {
@@ -179,9 +218,9 @@ namespace projectCS
                 + ", height : "
                 + height
                 + ", width : "
-                + _width
+                + width
                 + ", depth : "
-                + _depth
+                + depth
                 + ", is Complete : "
                 + isComplete()
                 + "\n" + "\n" + "components list : " + "\n" + "\n"
