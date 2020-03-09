@@ -172,18 +172,18 @@ namespace ShopInterface
         {
             chart1.Visible = true;
             if (chart1.Titles.Count > 0) { chart1.Titles.RemoveAt(0); };
-            Dictionary<string, int> Values = DBUtils.SelectCondDB("sales", textBox5.Text);
+            Dictionary<string, int> Values = DBUtils.SelectCondDB("sales", comboBox3.SelectedItem.ToString());
             if (comboBox1.SelectedItem == "day")
             {
                 while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
-                chart1.Series.Add(textBox5.Text);
-                chart1.Series[textBox5.Text].Color = Color.Black;
+                chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
 
                 foreach (KeyValuePair<string, int> entry in Values)
                 {
-                    chart1.Series[textBox5.Text].Points.AddXY(entry.Key, entry.Value);
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
                 }
-                chart1.Titles.Add(textBox5.Text + " per day");
+                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per day");
                 if (comboBox2.SelectedItem != null)
                 {
                     label14.Text = Values[comboBox2.SelectedItem.ToString()].ToString();
@@ -192,8 +192,8 @@ namespace ShopInterface
             else if (comboBox1.SelectedItem == "month")
             {
                 while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
-                chart1.Series.Add(textBox5.Text);
-                chart1.Series[textBox5.Text].Color = Color.Black;
+                chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
                 Dictionary<string, int> GraphMonth = new Dictionary<string, int>();
                 foreach (KeyValuePair<string, int> entry in Values)
                 {
@@ -212,25 +212,25 @@ namespace ShopInterface
                 foreach (KeyValuePair<string, int> entry in GraphMonth)
                 {
                     months.Add(entry.Key);
-                    chart1.Series[textBox5.Text].Points.AddXY(entry.Key, entry.Value);
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
                 }
-                chart1.Titles.Add(textBox5.Text + " per month");
+                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per month");
                 if (comboBox2.SelectedItem != null)
                 {
                     label14.Text = GraphMonth[comboBox2.SelectedItem.ToString()].ToString();
                 }
                 int all = GraphMonth[months[months.Count-2]] + GraphMonth[months[(months.Count - 3)]] + GraphMonth[months[(months.Count - 4)]] + GraphMonth[months[(months.Count - 5)]] + GraphMonth[months[(months.Count - 6)]] + GraphMonth[months[(months.Count - 7)]];
                 double average = all / 6;
-                chart1.Series[textBox5.Text].Points.AddXY("Average of last 6 months", average);
-                chart1.Series[textBox5.Text].Points.FindByValue(average).Color = Color.LimeGreen;
-                chart1.Series[textBox5.Text].Points.FindByValue(average).IsValueShownAsLabel = true;
+                chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY("Average of last 6 months", average);
+                chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).Color = Color.LimeGreen;
+                chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).IsValueShownAsLabel = true;
                 chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
             }
             else if (comboBox1.SelectedItem == "year")
             {
                 while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
-                chart1.Series.Add(textBox5.Text);
-                chart1.Series[textBox5.Text].Color = Color.Black;
+                chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
                 Dictionary<string, int> GraphMonth = new Dictionary<string, int>();
                 foreach (KeyValuePair<string, int> entry in Values)
                 {
@@ -247,9 +247,9 @@ namespace ShopInterface
                 }
                 foreach (KeyValuePair<string, int> entry in GraphMonth)
                 {
-                    chart1.Series[textBox5.Text].Points.AddXY(entry.Key, entry.Value);
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
                 }
-                chart1.Titles.Add(textBox5.Text + " per year");
+                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per year");
                 if (comboBox2.SelectedItem != null)
                 {
                     label14.Text = GraphMonth[comboBox2.SelectedItem.ToString()].ToString();
@@ -265,30 +265,15 @@ namespace ShopInterface
             else if (tabControl1.SelectedTab.Text == "Orders management")
             {
                 dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
-                foreach (DataGridViewRow row in dataGridView2.Rows)
-                {
-                    if (row.Cells["Status"].Value.Equals("true"))
-                    {
-                        row.Cells["Status"].Style.BackColor = Color.LimeGreen;
-                    }
-                    else if (row.Cells["Status"].Value.Equals("false"))
-                    {
-                        row.Cells["Status"].Style.BackColor = Color.Red;
-                    }
-
-                    else if (row.Cells["Status"].Value.Equals("done"))
-                    {
-                        row.Cells["Status"].Style.BackColor = Color.DeepSkyBlue;
-                    }
-
-                }
+                Colours(dataGridView2, "Status");
             }
             else if (tabControl1.SelectedTab.Text == "Stock management")
             {
-                dataGridView4.Visible = false;
-                groupBox5.Visible = false;
-                label15.Visible = true;
                 dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
+                comboBox3.DataSource = DBUtils.RefList("Code", "kitbox.sales");
+                comboBox3.DisplayMember = "Code";
+                ColoursDiff(dataGridView4, "EnStock", "StockMinimum");
+                dataGridView4.CurrentCell.Selected = false;
                 label15.Visible = false;
                 dataGridView4.Visible = true;
                 groupBox5.Visible = true;
@@ -309,31 +294,119 @@ namespace ShopInterface
         {
             try
             {
-                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = " + textBox7.Text);
+                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = " + textBox9.Text);
+                foreach (DataGridViewColumn col in dataGridView3.Columns)
+                {
+                    col.Visible = true;
+                }
                 dataGridView3.Columns["OrderId"].Visible = false;
                 dataGridView3.CurrentCell.Selected = false;
-                foreach (DataGridViewRow row in dataGridView3.Rows)
-                {
-                    if (row.Cells["Disponibility"].Value.Equals("true"))
-                    {
-                        row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
-                    }
-                    else if (row.Cells["Disponibility"].Value.Equals("false"))
-                    {
-                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                    }
-
-                    else if (row.Cells["Disponibility"].Value.Equals("done"))
-                    {
-                        row.Cells["Disponibility"].Style.BackColor = Color.DeepSkyBlue;
-                    }
-                }
+                Colours(dataGridView3, "Disponibility");
                 label17.Text = "Done";
             }
             catch
             {
                 label17.Text = "Error";
             }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems", "CustomerName = \"" + textBox8.Text + "\"");
+            foreach(DataGridViewColumn col in dataGridView3.Columns)
+            {
+                col.Visible = true;
+            }
+            dataGridView3.Columns["ListItemsId"].Visible = false;
+            dataGridView3.Columns["CustomerId"].Visible = false;
+            dataGridView3.Columns["CustomerName"].Visible = false;
+            dataGridView3.Columns["CustomerPhone"].Visible = false;
+            dataGridView3.Columns["Status"].Visible = false;
+            Colours(dataGridView3, "Disponibility");
+
+        }
+        private void Colours(DataGridView dataGridView3, string Column)
+        {
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Cells[Column].Value.Equals("true"))
+                {
+                    row.Cells[Column].Style.BackColor = Color.LimeGreen;
+                }
+                else if (row.Cells[Column].Value.Equals("false"))
+                {
+                    row.Cells[Column].Style.BackColor = Color.Red;
+                }
+
+                else if (row.Cells[Column].Value.Equals("done"))
+                {
+                    row.Cells[Column].Style.BackColor = Color.DeepSkyBlue;
+                }
+                else if (row.Cells[Column].Value.Equals("pending"))
+                {
+                    row.Cells[Column].Style.BackColor = Color.Gold;
+                }
+            }
+        }
+        private void ColoursDiff(DataGridView dataGridView3, string Column, string ColumnB)
+        {
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) > 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
+                }
+                else if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) < 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                }
+
+                else if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) == 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Gold;
+                }
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + textBox9.Text + "\"");
+            List<int> valueList = new List<int>();
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                DataTable test = new DataTable();
+                test = DBUtils.RefreshDBPartial("kitbox where Code= \"" + row.Cells["Code"].Value.ToString() + "\"", "EnStock, StockMinimum");
+                if (test.Rows.Count != 0)
+                {
+                    int value = Convert.ToInt32(test.Rows[0].ItemArray[0].ToString()) - Convert.ToInt32(row.Cells["Quantity"].Value.ToString());
+                    valueList.Add(value);
+                    if (value >= 0)
+                    {
+                        row.Cells["Disponibility"].Value = "ready";
+                        row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
+                    }
+                    else
+                    {
+                        row.Cells["Disponibility"].Value = "not ready";
+                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                    }
+                }
+                
+
+            }
+            dataGridView3.Columns["ListItemsId"].Visible = false;
+            dataGridView3.Columns["OrderId"].Visible = false;
+            dataGridView3.Columns["ItemId"].Visible = false;
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
