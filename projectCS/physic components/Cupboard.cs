@@ -6,8 +6,6 @@ namespace projectCS
 {
     public class Cupboard
     {
-        private static readonly int _lockerMaxAvailable = 7;
-
         private int _lockerAvailable;
         public int lockerAvailable
         {
@@ -22,15 +20,15 @@ namespace projectCS
 
         public Cupboard()
         {
-            _lockerAvailable = _lockerMaxAvailable;
+            _lockerAvailable = 7;
             _cupboardComponentsList = new List<ICupboardComponents>();
         }
 
         /// <summary>
-        ///     Resize the cupboard angles bracket
+        ///     resize the cupboard angles bracket
         /// </summary>
         /// <param name="size">
-        ///     Size wich will be cut of angle bracket of cupboard
+        ///     size wich will be deduct from cupboard angle bracket
         /// </param>
         public void cutAnglesBracket(int size)
         {
@@ -47,59 +45,26 @@ namespace projectCS
             return componentsPrice;
         }
 
-        /// <summary>
-        ///     Adds a cupboard component to this cupboard.
-        /// </summary>
-        /// <param name="component">
-        ///     Component to be added which must be eiher locker or angle bracket.
-        /// </param>
         public void addCupboardComponent(ICupboardComponents component)
         {
-            // the first part of "or" boolean expression check if when a locker is pass in parameter, there is enough locker available
-            // the second part check if the angle bracket is in list, if not the function "locationOfAngleInList()" return -1
-            if (((_lockerAvailable > 0) && (component is Locker)) || ((component is AngleBracket) && (locationOfAngleInList() == -1)))
-            {
-                _cupboardComponentsList.Add(component);
-                if (component is Locker)
-                    _lockerAvailable -= 1;
-            }
+            _cupboardComponentsList.Add(component);
         }
 
-        /// <summary>
-        ///     Adds a list of cupboard components to this cupboard.
-        /// </summary>
-        /// <param name="componentList">
-        ///     Components list to be added which must be eiher locker or angle bracket.
-        /// </param>
         public void addCupboardComponent(List<ICupboardComponents> componentList)
         {
-            foreach(ICupboardComponents cupboardComponents in componentList)
-            {
-                addCupboardComponent(cupboardComponents);
-            }
+            _cupboardComponentsList.AddRange(componentList);
         }
 
-        /// <summary>
-        ///     Removes a component from this cupboard.
-        /// </summary>
-        /// <param name="component">
-        ///     Components to be removed from cupboard
-        /// </param>
         public void removeCupboardComponent(ICupboardComponents component)
         {
-            if ((_cupboardComponentsList.Count > 0) )//&& (_lockerAvailable <= _lockerMaxAvailable))
-            {
-                _cupboardComponentsList.Remove(component);
-                if(component is Locker)
-                    _lockerAvailable += 1;
-            }
+            _cupboardComponentsList.Remove(component);
         }
 
         /// <summary>
-        ///     Check if the cupboard has all minimal components which it must have.
+        ///     check if the cupboard have all components which it must have 
         /// </summary>
         /// <returns>
-        ///     Return true if the cupboard have all components, false in other case
+        ///     return true if the cupboard have all components, false in other case
         /// </returns>
         public bool isComplete()
         {
@@ -122,61 +87,37 @@ namespace projectCS
             return isOk;
         }
 
-        /// <summary>
-        ///     Get angle bracket of this cupboard.
-        /// </summary>
-        /// <returns>
-        ///     Return the angle bracket of cubpaord, otherwise return an default angle bracket
-        /// </returns>
         public AngleBracket getAngleBracket()
         {
-            AngleBracket angle = new AngleBracket();
-            if (locationOfAngleInList() != -1)
-                angle = (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
-            return angle;
+            return (AngleBracket)_cupboardComponentsList.ElementAt(locationOfAngleInList());
         }
 
-        public int getHeightOfLocker()
+        // TODO : terminer la classe qui calcul la haut des lockers
+        private int computeHeightLocker()
         {
-            int height = 0;
-            foreach(ICupboardComponents component in _cupboardComponentsList)
-            {
-                if (component is Locker)
-                    height += component.height;
-            }
-            return height;
+            return 0;
         }
 
-        /// <summary>
-        ///     Locates the position of angle bracket in CupboardComponent list.
-        /// </summary>
-        /// <returns>
-        ///     Returns the position of angle bracket, otherwise returns -1.
-        /// </returns>
         private int locationOfAngleInList()
         {
             int angleNumberInList = -1;
-            bool angleBracketDontExist = true;
 
             foreach (ICupboardComponents componants in _cupboardComponentsList)
             {
                 angleNumberInList++;
                 if (componants is AngleBracket)
                 {
-                    angleBracketDontExist = false;
                     break;
                 }
             }
-            if (angleBracketDontExist)
-                angleNumberInList = -1;
             return angleNumberInList;
         }
 
         /// <summary>
-        ///     Check if all lockers of cupboard have all components which they be able to contains.
+        ///     check if all lockers of cupboard have all components which it must have 
         /// </summary>
         /// <returns>
-        ///      Returns true if lockers have all components, false in other case
+        ///      return true if lockers have all components, false in other case
         /// </returns>
         private bool allLockerIsComplete()
         {

@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace projectCS
 {
-    // TODO : terminer
-    public static class OrderFormUIinterface
+    // todo : peut être la rendre static
+    class OrderFormUIinterface
     {
-        private static OrderForm _orderForm = new OrderForm();
-        public static OrderForm orderForm
+        private OrderForm _orderForm;
+        public OrderForm orderForm
         {
             get => _orderForm;
-            set => _orderForm = value;
         }
 
-        static void m()
+        public OrderFormUIinterface(OrderForm orderForm)
         {
+            
         }
 
 

@@ -1,8 +1,5 @@
 ﻿namespace projectCS
 {
-    /// <summary>
-    ///     Super class which group all locker component characteristics as well as angle brackets
-    /// </summary>
     public abstract class CatalogueComponents
     {
         protected double _price;
@@ -23,8 +20,8 @@
             get => _code;
         }
 
-        protected Size _size;
-        public Size size
+        protected int _size;
+        public int size
         {
             get => _size;
         }
@@ -47,7 +44,7 @@
             get => _color;
         }
 
-        protected CatalogueComponents(double price, string reference, string code, Size size, bool inStock, int dimension, Color color)
+        protected CatalogueComponents(double price, string reference, string code, int size, bool inStock, int dimension, Color color)
         {            
             this._price = price;
             this._reference = reference;
@@ -95,31 +92,4 @@
         black,
         transparent
     }
-
-    public struct Size
-    {
-        private int _height, _width, _depth;
-        public int height
-        {
-            get => _height;
-        }
-
-        public int width
-        {
-            get => _width;
-        }
-
-        public int depth
-        {
-            get => _depth;
-        }
-
-        public Size(int height, int width, int depth)
-        {
-            _height = height;
-            _width = width;
-            _depth = depth;
-        }
-    }
-
 }

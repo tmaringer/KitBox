@@ -44,36 +44,24 @@ namespace projectCS
             this._phoneNumber = phoneNumber;
         }
 
-        /// <summary>
-        ///     Adds an order form to the client.
-        /// </summary>
-        /// <param name="order">
-        ///     Order form in which the customer will be registered.
-        /// </param>
         public void addOrderForm(OrderForm order)
         {
             _orderFormList.Add(order);
         }
         
-        /// <summary>
-        ///     Removes order form from client.
-        /// </summary>
-        /// <param name="oder">
-        ///     Order from from which the client must be removed.
-        /// </param>
         public void removeOrderForm(OrderForm oder)
         {
             _orderFormList.Remove(oder);
         }
 
         /// <summary>
-        ///     CheckS if the client has the order form pass in parameter.
+        ///     check if the client has the order form pass in parameter
         /// </summary>
         /// <param name="order">
-        ///     order form to find.
+        ///     order form to find
         /// </param>
         /// <returns>
-        ///     Returns true if order form is found, false in other case.
+        ///     return true if order form is found, false in other case
         /// </returns>
         public bool hasThisOrderForm(OrderForm order)
         {
