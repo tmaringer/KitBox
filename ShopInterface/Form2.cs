@@ -19,11 +19,16 @@ namespace ShopInterface
         private List<string> ColumnYear = new List<string>();
         private List<string> ColumnMonth = new List<string>();
         private List<string> ColumnDay = new List<string>();
-        public Form2(Form1 form1)
+        public Form2(Form1 form1, string user)
         {
             InitializeComponent();
-            Start();
+            label28.Text = user;
+            label28.Visible = true;
             tabControl1.SelectedIndexChanged += new EventHandler(tabControl1_Click);
+            DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
             DataTable ninja = new DataTable();
             dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
@@ -48,6 +53,7 @@ namespace ShopInterface
                 }
                 
             }
+            Start();
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -401,6 +407,16 @@ namespace ShopInterface
         {
 
         }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current time 
+            DateTime dateToDisplay = DateTime.Now;
+            label13.Text = dateToDisplay.ToString("D", CultureInfo.CreateSpecificCulture("en-US")) + "\n" + dateToDisplay.ToString("t", CultureInfo.CreateSpecificCulture("en-US"));
+            //time.Split(',');
+            label13.Visible = true;
+        }
+
         private void Start()
         {
             comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
@@ -408,8 +424,13 @@ namespace ShopInterface
             comboBox5.DataSource = DBUtils.RefList("CustomerName", "customers");
             comboBox5.DisplayMember = "CustomerName";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
-            //tabControl1_Click()
+            dataGridView1.Refresh();
             Colours(dataGridView2, "Status");
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

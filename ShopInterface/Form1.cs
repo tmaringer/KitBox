@@ -39,7 +39,7 @@ namespace ShopInterface
             int Value = DBUtils.CheckAccess(textBox1, textBox2);
             if (Value == 0)
             {
-                Form2 frm = new Form2(this);
+                Form2 frm = new Form2(this, textBox1.Text);
                 frm.Show();
                 this.Hide();
             }
