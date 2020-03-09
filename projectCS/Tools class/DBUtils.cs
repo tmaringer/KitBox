@@ -234,15 +234,12 @@ namespace projectCS
             return result;
         }
 
-        public static string UpdateDB(DataGridView grid,String database, TextBox col, TextBox code, TextBox value)
+        public static string UpdateDB(DataGridView grid, string database, string Column, string Cond, string Value)
         {
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                String Column = col.Text;
-                String Code = code.Text;
-                String Value = value.Text;
-                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE Code= \"" + Code + "\";", conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
                 conn.Open();
                 MySqlDataReader MyReader2;
                 MyReader2 = cmd.ExecuteReader();
@@ -257,10 +254,21 @@ namespace projectCS
             {
                 return "Error";
             }
-            col.Text = "";
-            code.Text = "";
-            value.Text = "";
         }
+
+        public static void UpdateDBV(string database, string Column, string Cond, string Value)
+        {
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
+            conn.Open();
+            MySqlDataReader MyReader2;
+            MyReader2 = cmd.ExecuteReader();
+            while (MyReader2.Read())
+            {
+            }
+            conn.Close();
+        }
+
         public static bool SearchDB(DataGridView dataGridView1,TextBox value)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -287,13 +295,13 @@ namespace projectCS
             }
             return false;
         }
-        public static string DeleteRow(DataGridView dataGridView,String database, TextBox Code)
+        public static string DeleteRow(DataGridView dataGridView,String database, string Code)
         {
             string value;
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("DELETE from " + database+ " where Code=\"" + Code.Text + "\"", conn);
+                MySqlCommand cmd = new MySqlCommand("DELETE from " + database+ " where Code=\"" + Code + "\"", conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -304,7 +312,6 @@ namespace projectCS
                 value = "Error";
 
             }
-            Code.Text = "";
             return value;
         }
         public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> Columns, List<string> Types, List<string> Elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 

@@ -101,7 +101,7 @@ namespace ShopInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", textBox1, textBox2, textBox3);
+            this.label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(), "Code = \"" + comboBox11.SelectedItem.ToString() + "\"", textBox3.Text);
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
         }
 
@@ -132,8 +132,9 @@ namespace ShopInterface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", textBox6);
+            label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", comboBox10.SelectedItem.ToString());
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
+            comboBox10.SelectedItem = "";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -255,6 +256,13 @@ namespace ShopInterface
             if (tabControl1.SelectedTab.Text == "Database management")
             {
                 dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
+                comboBox11.DataSource = DBUtils.RefList("Code", "kitbox");
+                comboBox11.DisplayMember = "Code";
+                comboBox11.Text = "";
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    comboBox12.Items.Add(col.Name.ToString());
+                }
             }
             else if (tabControl1.SelectedTab.Text == "Orders management")
             {
@@ -339,6 +347,10 @@ namespace ShopInterface
                 {
                     row.Cells[Column].Style.BackColor = Color.Gold;
                 }
+                else if (row.Cells[Column].Value.Equals("awaiting for removal"))
+                {
+                    row.Cells[Column].Style.BackColor = Color.Fuchsia;
+                }
             }
         }
         private void ColoursDiff(DataGridView dataGridView3, string Column, string ColumnB)
@@ -365,32 +377,40 @@ namespace ShopInterface
         {
 
             dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"");
-            List<int> valueList = new List<int>();
+            foreach (DataGridViewColumn col in dataGridView3.Columns)
+            {
+                col.Visible = true;
+            }
+            int x = 0;
+            int y = 0;
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
-                DataTable test = new DataTable();
-                test = DBUtils.RefreshDBPartial("kitbox where Code= \"" + row.Cells["Code"].Value.ToString() + "\"", "EnStock, StockMinimum");
-                if (test.Rows.Count != 0)
+                List<string> EnStock = DBUtils.RefList("Enstock", "kitbox where Code = \"" + row.Cells["Code"].Value.ToString() + "\"");
+                int Enstock = Convert.ToInt32(EnStock[0]);
+                if ((Enstock - Convert.ToInt32(row.Cells["Quantity"].Value)) >= 0)
                 {
-                    int value = Convert.ToInt32(test.Rows[0].ItemArray[0].ToString()) - Convert.ToInt32(row.Cells["Quantity"].Value.ToString());
-                    valueList.Add(value);
-                    if (value >= 0)
-                    {
-                        row.Cells["Disponibility"].Value = "ready";
-                        row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
-                    }
-                    else
-                    {
-                        row.Cells["Disponibility"].Value = "not ready";
-                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                    }
+                    row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
+                    row.Cells["Disponibility"].Value = "true";
+                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\"", "true");
+                    y += 1;
                 }
-                
-
+                else
+                {
+                    row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                    row.Cells["Disponibility"].Value = "false";
+                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\"", "false");
+                }
+                x += 1;
             }
-            dataGridView3.Columns["ListItemsId"].Visible = false;
-            dataGridView3.Columns["OrderId"].Visible = false;
-            dataGridView3.Columns["ItemId"].Visible = false;
+            if (x == y)
+            {
+                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"", "true");
+            }
+            else
+            {
+                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"", "false");
+            }
+            Start();
         }
 
         private void label20_Click(object sender, EventArgs e)
@@ -421,16 +441,48 @@ namespace ShopInterface
         {
             comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
+            comboBox4.Text = "";
+            comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
+            comboBox6.DisplayMember = "OrderId";
+            comboBox6.Text = "";
+            comboBox7.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"awaiting for removal\"");
+            comboBox7.DisplayMember = "OrderId";
+            comboBox7.Text = "";
+            comboBox8.DataSource = DBUtils.RefList("OrderId", "orders");
+            comboBox8.DisplayMember = "OrderId";
+            comboBox8.Text = "";
+            comboBox10.DataSource = DBUtils.RefList("Code", "kitbox");
+            comboBox10.DisplayMember = "Code";
+            comboBox10.Text = "";
             comboBox5.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox5.DisplayMember = "CustomerName";
+            comboBox5.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
-            dataGridView1.Refresh();
+            dataGridView2.Refresh();
+            dataGridView2.Sort(dataGridView2.Columns["OrderId"], System.ComponentModel.ListSortDirection.Descending);
             Colours(dataGridView2, "Status");
         }
 
         private void label27_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status", "OrderId = \"" + comboBox6.SelectedItem.ToString() + "\"", "false");
+            Start();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status", "OrderId = \"" + comboBox7.SelectedItem.ToString() + "\"", "closed");
+            Start();
         }
     }
 }
