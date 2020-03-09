@@ -187,6 +187,7 @@ namespace projectCS
                 CommandText = sql
             };
             {
+                conn.Open();
                 DbDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
                 {
@@ -197,6 +198,7 @@ namespace projectCS
                         result.Add(WhereSQLAnswer);
                     }
                 }
+                conn.Close();
             }
             return result;
         }

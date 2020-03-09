@@ -22,12 +22,9 @@ namespace ShopInterface
         public Form2(Form1 form1)
         {
             InitializeComponent();
+            Start();
             tabControl1.SelectedIndexChanged += new EventHandler(tabControl1_Click);
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
             DataTable ninja = new DataTable();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
             dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
             ninja = DBUtils.RefreshDB("sales");
@@ -51,15 +48,6 @@ namespace ShopInterface
                 }
                 
             }
-
-            dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
-            
-        }
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            // Updating the Label which displays the current time 
-            DateTime dateToDisplay = DateTime.Now;
-            label13.Text = dateToDisplay.ToString("F", CultureInfo.CreateSpecificCulture("en-US"));
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -264,8 +252,7 @@ namespace ShopInterface
             }
             else if (tabControl1.SelectedTab.Text == "Orders management")
             {
-                dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
-                Colours(dataGridView2, "Status");
+                Start();
             }
             else if (tabControl1.SelectedTab.Text == "Stock management")
             {
@@ -294,7 +281,7 @@ namespace ShopInterface
         {
             try
             {
-                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = " + textBox9.Text);
+                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = " + comboBox4.SelectedItem.ToString());
                 foreach (DataGridViewColumn col in dataGridView3.Columns)
                 {
                     col.Visible = true;
@@ -312,7 +299,7 @@ namespace ShopInterface
 
         private void button10_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems", "CustomerName = \"" + textBox8.Text + "\"");
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems", "CustomerName = \"" + comboBox5.SelectedItem.ToString() + "\"");
             foreach(DataGridViewColumn col in dataGridView3.Columns)
             {
                 col.Visible = true;
@@ -338,7 +325,7 @@ namespace ShopInterface
                     row.Cells[Column].Style.BackColor = Color.Red;
                 }
 
-                else if (row.Cells[Column].Value.Equals("done"))
+                else if (row.Cells[Column].Value.Equals("closed"))
                 {
                     row.Cells[Column].Style.BackColor = Color.DeepSkyBlue;
                 }
@@ -370,7 +357,8 @@ namespace ShopInterface
 
         private void button11_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + textBox9.Text + "\"");
+
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"");
             List<int> valueList = new List<int>();
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
@@ -407,6 +395,21 @@ namespace ShopInterface
         private void label14_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void groupBox8_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void Start()
+        {
+            comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
+            comboBox4.DisplayMember = "OrderId";
+            comboBox5.DataSource = DBUtils.RefList("CustomerName", "customers");
+            comboBox5.DisplayMember = "CustomerName";
+            dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
+            //tabControl1_Click()
+            Colours(dataGridView2, "Status");
         }
     }
 }
