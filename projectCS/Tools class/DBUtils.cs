@@ -203,6 +203,37 @@ namespace projectCS
             return result;
         }
 
+        public static List<string> RefListND(string Column, string table)
+        {
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            List<string> result = new List<string>();
+            string sql = "Select " + Column + " from " + table + ";";
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = sql
+            };
+            {
+                conn.Open();
+                DbDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
+                        if ((result.Contains(WhereSQLAnswer)) == false)
+                        {
+                            result.Add(WhereSQLAnswer);
+                        }
+
+                    }
+                }
+                conn.Close();
+            }
+            return result;
+        }
+
         public static string UpdateDB(DataGridView grid,String database, TextBox col, TextBox code, TextBox value)
         {
             try

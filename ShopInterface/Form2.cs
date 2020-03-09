@@ -421,7 +421,7 @@ namespace ShopInterface
         {
             comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
-            comboBox5.DataSource = DBUtils.RefList("CustomerName", "customers");
+            comboBox5.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox5.DisplayMember = "CustomerName";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView1.Refresh();
