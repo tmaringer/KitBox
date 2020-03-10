@@ -1,29 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using projectCS.Tools_class;
+using System;
+using System.Collections.Generic;
 
 namespace projectCS
 {
-    public class Locker : CupboardComponents
+    public class Locker : ICupboardComponents
     {
         /// <summary>
         ///     group all maximum value for each components which the locker can have
         /// </summary>
-        private static readonly int maximumCrossBars = 8;
-        private static readonly int maximumPannels = 5;
-        private static readonly int maximumDoors = 2;
-        private static readonly int maximumCleats = 4;
+        private static readonly int _maximumCrossBars = 8;
+        private static readonly int _maximumPannels = 5;
+        private static readonly int _maximumDoors = 2;
+        private static readonly int _maximumCleats = 4;
+        private static readonly int _maximumComponents = _maximumCrossBars + _maximumPannels + _maximumDoors + _maximumCleats;
 
-        // TODO : compléter pour que sa calcul automatiquement la hauteur en fonction des composants
-        public override int height 
-        { 
-            get => 0;
+        public int height
+        {
+            get
+            {
+                int height = 0;
+                foreach (CatalogueComponents component in _componentsList)
+                {
+                    height += component.size.height;
+                }
+                return height;
+            }
         }
 
-        public override double price
+        public double price
         {
             get
             {
                 double componentsPrice = 0;
-                foreach (LockerComponents component in _componentsList)
+                foreach (CatalogueComponents component in _componentsList)
                 {
                     componentsPrice += component.price;
                 }
@@ -31,144 +41,190 @@ namespace projectCS
             }
         }
 
-        private int _width;
+        // TODO : tester
         public int width
         {
-            get => _width;
+            get
+            {
+                int width = 0;
+                foreach (CatalogueComponents component in _componentsList)
+                {
+                    width += component.size.width;
+                }
+                return width;
+            }
         }
 
+        // TODO : tester
         private int _depth;
         public int depth
         {
-            get => _depth;
+            get
+            {
+                int depth = 0;
+                foreach (CatalogueComponents component in _componentsList)
+                {
+                    depth += component.size.depth;
+                }
+                return depth;
+            }
         }
 
-        // TODO : a refactorer si inutile par la suite
-        /*
-        private int _numberOfLCrossBar;
-        public int numberOfLCrossBar
-        {
-            get => _numberOfLCrossBar;
-        }
-
-        private int _numberOfPannel;
-        public int numberOfPannel
-        {
-            get => _numberOfPannel;
-        }
-
-        private int _numberOfDoor;
-        public int numberOfDoor
-        {
-            get => _numberOfDoor;
-        }
-
-        private int _numberOfCleat;
-        public int numberOfCleat
-        {
-            get => _numberOfCleat;
-        }
-        */
-        private List<LockerComponents> _componentsList;
-        public List<LockerComponents> componentsList
+        private List<CatalogueComponents> _componentsList;
+        public List<CatalogueComponents> componentsList
         {
             get => _componentsList;
         }
 
-        public Locker() : this("null", "0000", 0, false)
+        public Locker()
         {
+            _componentsList = new List<CatalogueComponents>();
         }
 
-        // TODO : !!!!!!!!!!!!!! retiré les atribut de tout l'héritage car le locker n'existe pas dans la db, donc aucun para à mettre
-        public Locker(string reference,
-                     string code,
-                     int size,
-                     bool inStock) : base(reference, code, size, inStock)
+        // todo : refactorer
+        /// <summary>
+        ///     add a component or a component list which are stored in a components list
+        /// </summary>
+        /// <param name="component">
+        ///     component to add in locker list
+        /// </param>
+        public bool addComponent(CatalogueComponents component)
         {
-            _width = 0;
-            _depth = 0;
-            _componentsList = new List<LockerComponents>();
-        }
-
-        public void addComponent(LockerComponents component)
-        {
+            bool componentIsAdded = false;
             bool isOk = false;
+
             switch (component)
             {
                 case CrossBar c:
-                    if (numberOfComponentInList(component) < maximumCrossBars)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCrossBars)
                         isOk = true;
+                    else
+                        isOk = false;
                     break;
                 case Pannel p:
-                    if (numberOfComponentInList(component) < maximumPannels)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumPannels)
                         isOk = true;
+                    else
+                        isOk = false;
                     break;
                 case Door d:
-                    if (numberOfComponentInList(component) < maximumDoors)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumDoors)
                         isOk = true;
+                    else
+                        isOk = false;
                     break;
                 case Cleat cl:
-                    if (numberOfComponentInList(component) < maximumCleats)
+                    if (numberOfComponentInList(_componentsList, component) < _maximumCleats)
                         isOk = true;
+                    else
+                        isOk = false;
                     break;
                 default:
                     break;
-            }          
-            
+            }
+
             if (isOk)
+            {
+                componentIsAdded = true;
                 _componentsList.Add(component);
+            }
+            return componentIsAdded;
         }
 
-        // TODO : vérifier dans l'ajout qu'il ya encore de la place dans le locker et qu'on a pas atteint le nbr de composant max
-        public void addComponent(List<LockerComponents> componentList)
+        public bool addComponent(List<CatalogueComponents> componentList)
         {
-            _componentsList.AddRange(componentList);
+            bool componentIsAdded = true;
+            bool allComponentWereAdded = true;
+            foreach (CatalogueComponents component in componentList)
+            {
+                componentIsAdded = addComponent(component);
+                if (!componentIsAdded)
+                    allComponentWereAdded = false;
+            }
+            return allComponentWereAdded;
         }
 
-        // TODO : vérifier si ca ne bugge pas quand on enlève un composant qui n'existe pas
-        public void removeComponent(LockerComponents component)
+        public void removeComponent(CatalogueComponents component)
         {
-            _componentsList.Remove(component);
+            if (_componentsList.Contains(component))
+                _componentsList.Remove(component);
         }
 
         /// <summary>
-        ///     check if the locker have all components that it must have 
+        ///     check if the locker has all components which it must have 
         /// </summary>
         /// <returns>
         ///     return true if the locker have all components, false in other case
         /// </returns>
         public bool isComplete()
         {
+            return isComplete(_componentsList);
+        }
+
+        /// <summary>
+        ///     Checks if the locker has all components which it be able to contains.
+        /// </summary>
+        /// <param name="componentList">
+        ///     The components list where the function must search.
+        /// </param>
+        /// <returns>
+        ///     Returns true if complete, false otherwise.
+        /// </returns>
+        private bool isComplete(List<CatalogueComponents> componentList)
+        {
             bool isOk = false;
-            int numberOfCrossBar = numberOfComponentInList(new CrossBar());
-            int numberOfPannel = numberOfComponentInList(new Pannel());
-            int numberOfCleat = numberOfComponentInList(new Cleat());
+            int numberOfCrossBar = numberOfComponentInList(componentList, new CrossBar());
+            int numberOfPannel = numberOfComponentInList(componentList, new Pannel());
+            int numberOfCleat = numberOfComponentInList(componentList, new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
-            if ((numberOfCrossBar == maximumCrossBars) && (numberOfPannel == maximumPannels) && (numberOfCleat == maximumCleats))
+            if ((numberOfCrossBar == _maximumCrossBars) && (numberOfPannel == _maximumPannels) && (numberOfCleat == _maximumCleats))
                 isOk = true;
 
             return isOk;
         }
 
         /// <summary>
-        ///     this function return the number of component which is a LockerComponent type and owned by locker class
+        ///     this function return the number of components of a type being in a provided components list
         /// </summary>
+        /// <param name="componentList">
+        ///     list of components where the function will search existence of the component type given in second parametre
+        /// </param>
         /// <param name="component">
-        ///     take a component to search in locker component list
+        ///     the type of component which the function must compute in the list
         /// </param>
         /// <returns>
-        ///     return the number of component found
+        ///     return the number of components of the type given in second parametre which the function found
         /// </returns>
-        private int numberOfComponentInList(LockerComponents componentGiven)
-        {            
-            int numberofComponent = 0;
-            foreach (LockerComponents componentInList in _componentsList)
+        private int numberOfComponentInList(List<CatalogueComponents> componentList, CatalogueComponents component)
+        {
+            int numberOfComponent = 0;
+            foreach (CatalogueComponents compo in componentList)
             {
-                if(componentInList.GetType() == componentGiven.GetType())
-                    numberofComponent++;
+                if (compo.GetType() == component.GetType())
+                    numberOfComponent++;
             }
-            return numberofComponent;
+            return numberOfComponent;
+        }
+
+        public override string ToString()
+        {
+            string tostring = "";
+            foreach (CatalogueComponents composant in _componentsList)
+            {
+                tostring += composant.ToString() + "\n";
+            }
+            return base.ToString()
+                + ", height : "
+                + height
+                + ", width : "
+                + width
+                + ", depth : "
+                + depth
+                + ", is Complete : "
+                + isComplete()
+                + "\n" + "\n" + "components list : " + "\n" + "\n"
+                + tostring;
         }
     }
 }

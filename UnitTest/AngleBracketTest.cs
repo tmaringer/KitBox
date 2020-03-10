@@ -1,20 +1,35 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using projectCS.physic_components;
+using projectCS;
 
 namespace UnitTest
 {
     [TestClass]
     public class AngleBracketTest
     {
+        private AngleBracket angleBracket1;
+        private AngleBracket angleBracketParam1;
+
+        [TestInitialize()]
+        public void testsInitialize()
+        {
+            angleBracket1 = new AngleBracket();
+            angleBracketParam1 = new AngleBracket(5, "testtest", "codetest", new Size(12, 0, 0), false, 12, Color.white);
+        }
+
         [TestMethod]
         public void newAngleTest()
         {
-            AngleBracket a = new AngleBracket();
-            AngleBracket az = new AngleBracket(5, "testtest", "codetest", 10, false, 12);
+            Assert.AreEqual("0000", angleBracket1.code);
+            Assert.AreEqual(5, angleBracketParam1.price);
+            Assert.AreEqual(12, angleBracketParam1.height);
+        }
 
-            Assert.AreEqual("0000", a.code);
-            Assert.AreEqual(5, az.price);
-            Assert.AreEqual(12, az.height);
+        [TestMethod]
+        public void cutHeightTest()
+        {
+            angleBracketParam1.cutHeight(6);
+
+            Assert.AreEqual(6, angleBracketParam1.height);
         }
     }
 }
