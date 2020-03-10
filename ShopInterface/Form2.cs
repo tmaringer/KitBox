@@ -391,14 +391,14 @@ namespace ShopInterface
                 {
                     row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
                     row.Cells["Disponibility"].Value = "true";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\"", "true");
+                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\" and OrderID = \"" + row.Cells["OrderId"].Value.ToString() + "\"", "true");
                     y += 1;
                 }
                 else
                 {
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
                     row.Cells["Disponibility"].Value = "false";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\"", "false");
+                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\" and OrderID = \"" + row.Cells["OrderId"].Value.ToString() + "\"", "false");
                 }
                 x += 1;
             }
@@ -448,9 +448,12 @@ namespace ShopInterface
             comboBox7.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"awaiting for removal\"");
             comboBox7.DisplayMember = "OrderId";
             comboBox7.Text = "";
-            comboBox8.DataSource = DBUtils.RefList("OrderId", "orders");
+            comboBox8.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox8.DisplayMember = "OrderId";
             comboBox8.Text = "";
+            comboBox9.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"true\"");
+            comboBox9.DisplayMember = "OrderId";
+            comboBox9.Text = "";
             comboBox10.DataSource = DBUtils.RefList("Code", "kitbox");
             comboBox10.DisplayMember = "Code";
             comboBox10.Text = "";
@@ -461,6 +464,41 @@ namespace ShopInterface
             dataGridView2.Refresh();
             dataGridView2.Sort(dataGridView2.Columns["OrderId"], System.ComponentModel.ListSortDirection.Descending);
             Colours(dataGridView2, "Status");
+        }
+
+        private void updateStockMin()
+        {
+            progressBar2.Value = 10;
+            button16.Enabled = false;
+            List<string> code = DBUtils.RefList("Code", "kitbox");
+            foreach (string i in code)
+            {
+                Dictionary<string, int> ValuesIncStock = DBUtils.SelectCondDB("sales", i);
+                Dictionary<string, int> GraphMonthIncStock = new Dictionary<string, int>();
+                foreach (KeyValuePair<string, int> entry in ValuesIncStock)
+                {
+                    string key = entry.Key;
+                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    if (GraphMonthIncStock.ContainsKey(month))
+                    {
+                        GraphMonthIncStock[month] = GraphMonthIncStock[month] + entry.Value;
+                    }
+                    else
+                    {
+                        GraphMonthIncStock.Add(month, entry.Value);
+                    }
+                }
+                List<string> monthsIncStock = new List<string>();
+                foreach (KeyValuePair<string, int> entry in GraphMonthIncStock)
+                {
+                    monthsIncStock.Add(entry.Key);
+                }
+                int all = GraphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 3)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 4)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 5)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 6)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 7)]];
+                int average = all / 6;
+                DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
+                progressBar2.PerformStep();
+            }
+            button16.Enabled = true;
         }
 
         private void label27_Click(object sender, EventArgs e)
@@ -483,6 +521,11 @@ namespace ShopInterface
         {
             label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status", "OrderId = \"" + comboBox7.SelectedItem.ToString() + "\"", "closed");
             Start();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            updateStockMin();
         }
     }
 }
