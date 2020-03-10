@@ -36,6 +36,11 @@ namespace kitbox_user_interface_V1
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
 
+            //philosophie de l'interface V2 :
+            //créer tous les objets possibles avec la db
+            //parcourir les objets
+            //prosposer dynamiquement les choix restants
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -95,6 +100,8 @@ namespace kitbox_user_interface_V1
             //créer box
             //créer commande ?
             MessageBox.Show("Henlo Frien");
+            comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6"});
+
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
