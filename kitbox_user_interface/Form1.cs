@@ -16,7 +16,7 @@ namespace kitbox_user_interface_V1
         public Form1()
         {
             InitializeComponent();
-            string MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=K8tB0x_sql;";
+            string MyConString = "SERVER=db4free.net;" + "PORT=3306;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
             List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
@@ -34,7 +34,8 @@ namespace kitbox_user_interface_V1
             comboBox3.Items.AddRange(new object[] {"1","2","3","4","5","6","7"});
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
-            
+            comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

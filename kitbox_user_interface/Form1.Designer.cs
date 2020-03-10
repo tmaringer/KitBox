@@ -145,11 +145,6 @@ namespace kitbox_user_interface_V1
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "portes en bois",
-            "sans portes",
-            "portes en verre",
-            "portes en diamant"});
             this.comboBox1.Location = new System.Drawing.Point(9, 344);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(251, 28);
@@ -160,11 +155,6 @@ namespace kitbox_user_interface_V1
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Rouge",
-            "Bleu",
-            "Vert",
-            "Blanc"});
             this.comboBox2.Location = new System.Drawing.Point(9, 378);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(251, 28);
