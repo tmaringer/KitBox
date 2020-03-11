@@ -73,3 +73,5 @@ C:\Users\Admin\Desktop\ps\KitBox\UnitTest\obj\Debug\UnitTest.csprojAssemblyRefer
 C:\Users\Admin\Desktop\ps\KitBox\UnitTest\obj\Debug\UnitTest.csproj.CopyComplete
 C:\Users\Admin\Desktop\ps\KitBox\UnitTest\obj\Debug\UnitTest.dll
 C:\Users\Admin\Desktop\ps\KitBox\UnitTest\obj\Debug\UnitTest.pdb
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\UnitTest\bin\Debug\UnitTest.dll.CodeAnalysisLog.xml
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\UnitTest\bin\Debug\UnitTest.dll.lastcodeanalysissucceeded

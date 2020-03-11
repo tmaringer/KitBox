@@ -83,4 +83,5 @@ C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.Ge
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
-C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Form3.resources
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.CodeAnalysisLog.xml
+A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.lastcodeanalysissucceeded
