@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using projectCS;
 
 namespace kitbox_user_interface_V1
 {
@@ -16,7 +17,7 @@ namespace kitbox_user_interface_V1
         public Form1()
         {
             InitializeComponent();
-            string MyConString = "SERVER=localhost;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=K8tB0x_sql;";
+            string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
             List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
@@ -34,7 +35,9 @@ namespace kitbox_user_interface_V1
             comboBox3.Items.AddRange(new object[] {"1","2","3","4","5","6","7"});
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
-            
+            comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
+            comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -93,7 +96,15 @@ namespace kitbox_user_interface_V1
             //créer armoire
             //créer box
             //créer commande ?
-            MessageBox.Show("Henlo Frien");
+            Cupboard cupboard = new Cupboard();
+
+            if (comboBox3.SelectedIndex == 6)//si l'armoire contient 7 étages alors supprimer la hauteur de boite 52
+            {
+                comboBox6.Items.RemoveAt(2);
+                //si d'autres hauteurs peuvent être créées faire une recherche parmi
+                //les éléments de combobox6 et supprimer ceux plus grand que 52
+                //sinon l'extension n'est pas privilégiée
+            }
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)

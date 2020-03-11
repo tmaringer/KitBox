@@ -90,3 +90,6 @@ A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_use
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.csproj.CopyComplete
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.exe
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\kitbox_user_interface\obj\Debug\kitbox_user_interface_V1.pdb
+C:\Users\natha\KitBox\kitbox_user_interface\bin\Debug\projectCS.exe
+C:\Users\natha\KitBox\kitbox_user_interface\bin\Debug\projectCS.pdb
+C:\Users\natha\KitBox\kitbox_user_interface\bin\Debug\projectCS.exe.config
