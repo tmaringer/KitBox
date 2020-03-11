@@ -251,7 +251,6 @@ namespace ShopInterface
             this.label14.Size = new System.Drawing.Size(91, 13);
             this.label14.TabIndex = 6;
             this.label14.Text = "Value of selection";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label12
             // 
@@ -537,7 +536,6 @@ namespace ShopInterface
             this.groupBox8.TabIndex = 11;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Confirm a pending order";
-            this.groupBox8.Enter += new System.EventHandler(this.groupBox8_Enter);
             // 
             // comboBox6
             // 
@@ -636,7 +634,6 @@ namespace ShopInterface
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Show list of items and test availability";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // comboBox4
             // 
@@ -776,7 +773,6 @@ namespace ShopInterface
             this.label7.Size = new System.Drawing.Size(125, 17);
             this.label7.TabIndex = 9;
             this.label7.Text = "Ref (String)";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // progressBar1
             // 
@@ -934,7 +930,6 @@ namespace ShopInterface
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modify an element";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // comboBox12
             // 
@@ -987,7 +982,6 @@ namespace ShopInterface
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Column";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox3
             // 
@@ -995,7 +989,6 @@ namespace ShopInterface
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(114, 20);
             this.textBox3.TabIndex = 3;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // button1
             // 
@@ -1020,7 +1013,6 @@ namespace ShopInterface
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(680, 587);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabControl1
             // 
@@ -1060,7 +1052,6 @@ namespace ShopInterface
             this.label27.TabIndex = 1;
             this.label27.Text = "Welcome";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label28
             // 
@@ -1163,7 +1154,6 @@ namespace ShopInterface
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
             this.tabPage4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();

@@ -1,14 +1,7 @@
 ﻿using projectCS;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShopInterface
@@ -35,18 +28,18 @@ namespace ShopInterface
                 Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
                 if (row.Cells["PrixFourn1"].Value != null)
                 {
-                    double Prix1 = double.Parse(row.Cells["PrixFourn1"].Value.ToString().Replace(",", "."));
-                    double Prix2 = double.Parse(row.Cells["PrixFourn2"].Value.ToString().Replace(",", "."));
-                    if (Prix1 < Prix2)
+                    double prix1 = double.Parse(row.Cells["PrixFourn1"].Value.ToString().Replace(",", "."));
+                    double prix2 = double.Parse(row.Cells["PrixFourn2"].Value.ToString().Replace(",", "."));
+                    if (prix1 < prix2)
                     {
                         DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "1");
-                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Prix1.ToString());
+                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix1.ToString());
                         DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn1"].Value).ToString());
                     }
-                    else if (Prix1 > Prix2)
+                    else if (prix1 > prix2)
                     {
                         DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "2");
-                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Prix2.ToString());
+                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix2.ToString());
                         DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn2"].Value).ToString());
                     }
                     else
@@ -55,13 +48,13 @@ namespace ShopInterface
                         {
                             DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "1");
                             DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn1"].Value).ToString());
-                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Prix1.ToString());
+                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix1.ToString());
                         }
                         else
                         {
                             DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "2");
                             DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn2"].Value).ToString());
-                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Prix2.ToString());
+                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix2.ToString());
                         }
                     }
                 }

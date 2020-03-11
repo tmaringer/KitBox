@@ -1,10 +1,10 @@
 ﻿using projectCS;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Threading;
 using Color = System.Drawing.Color;
 
@@ -12,118 +12,59 @@ namespace ShopInterface
 {
     public partial class Form2 : Form
     {
-        private int x = 1;
-        private List<string> Columns = new List<string>();
-        private List<string> Types = new List<string>();
-        private List<string> Elements = new List<string>();
-        private List<string> ColumnYear = new List<string>();
-        private List<string> ColumnMonth = new List<string>();
-        private List<string> ColumnDay = new List<string>();
-        public Form2(Form1 form1, string user)
+        private readonly List<string> _columnDay = new List<string>();
+        private readonly List<string> _columnMonth = new List<string>();
+        private readonly List<string> _columns = new List<string>();
+        private readonly List<string> _columnYear = new List<string>();
+        private readonly List<string> _elements = new List<string>();
+        private readonly List<string> _types = new List<string>();
+        private int _x = 1;
+
+        public Form2(string user)
         {
             InitializeComponent();
             label28.Text = user;
-            label28.Visible = true;
-            tabControl1.SelectedIndexChanged += new EventHandler(tabControl1_Click);
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-            dispatcherTimer.Start();
-            DataTable ninja = new DataTable();
-            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
-            dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
-            ninja = DBUtils.RefreshDB("sales");
-            foreach (DataColumn col in ninja.Columns)
-            {
-                if (col.ColumnName.ToString() != "Code" && col.ColumnName.ToString() != "Ref")
-                {
-                    string value = col.ColumnName.Split('/')[2].ToString();
-                    
-                    if (ColumnYear.Contains(value) == false)
-                    {
-                        ColumnYear.Add(value);
-                    }
-                    string valueMonth = col.ColumnName.Split('/')[1].ToString() + "/" +col.ColumnName.Split('/')[2].ToString();
-
-                    if (ColumnMonth.Contains(valueMonth) == false)
-                    {
-                        ColumnMonth.Add(valueMonth);
-                    }
-                    ColumnDay.Add(col.ColumnName.ToString());
-                }
-                
-            }
             Start();
+            FirstThings();
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             comboBox2.Items.Clear();
             comboBox2.Text = "";
-            ComboBox senderComboBox = (ComboBox)sender;
+            var senderComboBox = (ComboBox)sender;
 
             // Change the length of the text box depending on what the user has 
             // selected and committed using the SelectionLength property.
             if (senderComboBox.SelectionLength > 0)
             {
-                if (comboBox1.SelectedItem == "year")
-                {
-                    foreach (string year in ColumnYear)
-                    {
+                if (comboBox1.SelectedItem.ToString() == "year")
+                    foreach (var year in _columnYear)
                         comboBox2.Items.Add(year);
-                    }
-                }
-                if (comboBox1.SelectedItem == "month")
-                {
-                    foreach (string month in ColumnMonth)
-                    {
+
+                if (comboBox1.SelectedItem.ToString() == "month")
+                    foreach (var month in _columnMonth)
                         comboBox2.Items.Add(month);
-                    }
-                }
-                if (comboBox1.SelectedItem == "day")
-                {
-                    foreach (string day in ColumnDay)
-                    {
+
+                if (comboBox1.SelectedItem.ToString() == "day")
+                    foreach (var day in _columnDay)
                         comboBox2.Items.Add(day);
-                    }
-                }
             }
-        }
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(), "Code = \"" + comboBox11.SelectedItem.ToString() + "\"", textBox3.Text);
+            label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(),
+                "Code = \"" + comboBox11.SelectedItem + "\"", textBox3.Text);
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void button5_Click(object sender, EventArgs e)
         {
             button4.Enabled = DBUtils.SearchDB(dataGridView1, textBox10);
         }
+
         private void button4_Click(object sender, EventArgs e)
         {
             textBox10.Text = "";
@@ -139,136 +80,118 @@ namespace ShopInterface
 
         private void button3_Click(object sender, EventArgs e)
         {
-            label9.Text = DBUtils.AddRow(Elements, Types, Columns, "kitbox");
+            label9.Text = DBUtils.AddRow(_elements, _types, _columns, "kitbox");
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            x = DBUtils.AddItem(label7, x, dataGridView1, Columns, Types, Elements, button7, textBox4, listView1, button6, progressBar1, button3);
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
+            _x = DBUtils.AddItem(label7, _x, dataGridView1, _columns, _types, _elements, button7, textBox4, listView1,
+                button6, progressBar1, button3);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            x = DBUtils.DeleteItem(label7, x, dataGridView1, textBox4, button6, button7, Columns, Types, Elements, listView1, progressBar1, button3);
+            _x = DBUtils.DeleteItem(label7, _x, dataGridView1, textBox4, button6, button7, _columns, _types, _elements,
+                listView1, progressBar1, button3);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
             chart1.Visible = true;
-            if (chart1.Titles.Count > 0) { chart1.Titles.RemoveAt(0); };
-            Dictionary<string, int> Values = DBUtils.SelectCondDB("sales", comboBox3.SelectedItem.ToString());
-            if (comboBox1.SelectedItem == "day")
+            if (chart1.Titles.Count > 0) chart1.Titles.RemoveAt(0);
+            var values = DBUtils.SelectCondDB("sales", comboBox3.SelectedItem.ToString());
+            if (comboBox1.SelectedItem.ToString() == "day")
             {
-                while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
+                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+
                 chart1.Series.Add(comboBox3.SelectedItem.ToString());
                 chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
 
-                foreach (KeyValuePair<string, int> entry in Values)
-                {
+                foreach (var entry in values)
                     chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
-                }
-                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per day");
-                if (comboBox2.SelectedItem != null)
-                {
-                    label14.Text = Values[comboBox2.SelectedItem.ToString()].ToString();
-                }
+
+                chart1.Titles.Add(comboBox3.SelectedItem + " per day");
+                if (comboBox2.SelectedItem != null) label14.Text = values[comboBox2.SelectedItem.ToString()].ToString();
             }
-            else if (comboBox1.SelectedItem == "month")
+            else if (comboBox1.SelectedItem.ToString() == "month")
             {
-                while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
+                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+
                 chart1.Series.Add(comboBox3.SelectedItem.ToString());
                 chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
-                Dictionary<string, int> GraphMonth = new Dictionary<string, int>();
-                foreach (KeyValuePair<string, int> entry in Values)
+                var graphMonth = new Dictionary<string, int>();
+                foreach (var entry in values)
                 {
-                    string key = entry.Key;
-                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
-                    if (GraphMonth.ContainsKey(month))
-                    {
-                        GraphMonth[month] = GraphMonth[month] + entry.Value;
-                    }
+                    var key = entry.Key;
+                    var month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    if (graphMonth.ContainsKey(month))
+                        graphMonth[month] = graphMonth[month] + entry.Value;
                     else
-                    {
-                        GraphMonth.Add(month, entry.Value);
-                    }
+                        graphMonth.Add(month, entry.Value);
                 }
-                List<string> months = new List<string>();
-                foreach (KeyValuePair<string, int> entry in GraphMonth)
+
+                var months = new List<string>();
+                foreach (var entry in graphMonth)
                 {
                     months.Add(entry.Key);
                     chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
                 }
-                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per month");
+
+                chart1.Titles.Add(comboBox3.SelectedItem + " per month");
                 if (comboBox2.SelectedItem != null)
-                {
-                    label14.Text = GraphMonth[comboBox2.SelectedItem.ToString()].ToString();
-                }
-                int all = GraphMonth[months[months.Count-2]] + GraphMonth[months[(months.Count - 3)]] + GraphMonth[months[(months.Count - 4)]] + GraphMonth[months[(months.Count - 5)]] + GraphMonth[months[(months.Count - 6)]] + GraphMonth[months[(months.Count - 7)]];
+                    label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+
+                var all = graphMonth[months[months.Count - 2]] + graphMonth[months[months.Count - 3]] +
+                          graphMonth[months[months.Count - 4]] + graphMonth[months[months.Count - 5]] +
+                          graphMonth[months[months.Count - 6]] + graphMonth[months[months.Count - 7]];
                 double average = all / 6;
                 chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY("Average of last 6 months", average);
                 chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).Color = Color.LimeGreen;
                 chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).IsValueShownAsLabel = true;
                 chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
             }
-            else if (comboBox1.SelectedItem == "year")
+            else if (comboBox1.SelectedItem.ToString() == "year")
             {
-                while (chart1.Series.Count > 0) { chart1.Series.RemoveAt(0); }
+                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+
                 chart1.Series.Add(comboBox3.SelectedItem.ToString());
                 chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
-                Dictionary<string, int> GraphMonth = new Dictionary<string, int>();
-                foreach (KeyValuePair<string, int> entry in Values)
+                var graphMonth = new Dictionary<string, int>();
+                foreach (var entry in values)
                 {
-                    string key = entry.Key;
-                    string month = key.Split('/')[2];
-                    if (GraphMonth.ContainsKey(month))
-                    {
-                        GraphMonth[month] = GraphMonth[month] + entry.Value;
-                    }
+                    var key = entry.Key;
+                    var month = key.Split('/')[2];
+                    if (graphMonth.ContainsKey(month))
+                        graphMonth[month] = graphMonth[month] + entry.Value;
                     else
-                    {
-                        GraphMonth.Add(month, entry.Value);
-                    }
+                        graphMonth.Add(month, entry.Value);
                 }
-                foreach (KeyValuePair<string, int> entry in GraphMonth)
-                {
+
+                foreach (var entry in graphMonth)
                     chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
-                }
-                chart1.Titles.Add(comboBox3.SelectedItem.ToString() + " per year");
+
+                chart1.Titles.Add(comboBox3.SelectedItem + " per year");
                 if (comboBox2.SelectedItem != null)
-                {
-                    label14.Text = GraphMonth[comboBox2.SelectedItem.ToString()].ToString();
-                }
+                    label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
             }
         }
+
         private void tabControl1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab.Text == "Database management")
+            if (tabControl1.SelectedTab.Text == @"Database management")
             {
                 dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
                 comboBox11.DataSource = DBUtils.RefList("Code", "kitbox");
                 comboBox11.DisplayMember = "Code";
                 comboBox11.Text = "";
-                foreach (DataGridViewColumn col in dataGridView1.Columns)
-                {
-                    comboBox12.Items.Add(col.Name.ToString());
-                }
+                foreach (DataGridViewColumn col in dataGridView1.Columns) comboBox12.Items.Add(col.Name);
             }
-            else if (tabControl1.SelectedTab.Text == "Orders management")
+            else if (tabControl1.SelectedTab.Text == @"Orders management")
             {
                 Start();
             }
-            else if (tabControl1.SelectedTab.Text == "Stock management")
+            else if (tabControl1.SelectedTab.Text == @"Stock management")
             {
                 UpdateStock();
             }
@@ -276,23 +199,16 @@ namespace ShopInterface
 
         private void tabPage4_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBox6_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             try
             {
-                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = " + comboBox4.SelectedItem.ToString());
-                foreach (DataGridViewColumn col in dataGridView3.Columns)
-                {
-                    col.Visible = true;
-                }
+                dataGridView3.DataSource =
+                    DBUtils.RefreshDBCond("listsitems", "OrderId = " + comboBox4.SelectedItem);
+                foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
+
                 dataGridView3.Columns["OrderId"].Visible = false;
                 dataGridView3.CurrentCell.Selected = false;
                 Colours(dataGridView3, "Disponibility");
@@ -306,133 +222,106 @@ namespace ShopInterface
 
         private void button10_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems", "CustomerName = \"" + comboBox5.SelectedItem.ToString() + "\"");
-            foreach(DataGridViewColumn col in dataGridView3.Columns)
-            {
-                col.Visible = true;
-            }
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems",
+                "CustomerName = \"" + comboBox5.SelectedItem + "\"");
+            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
+
             dataGridView3.Columns["ListItemsId"].Visible = false;
             dataGridView3.Columns["CustomerId"].Visible = false;
             dataGridView3.Columns["CustomerName"].Visible = false;
             dataGridView3.Columns["CustomerPhone"].Visible = false;
             dataGridView3.Columns["Status"].Visible = false;
             Colours(dataGridView3, "Disponibility");
-
         }
-        private void Colours(DataGridView dataGridView3, string Column)
+
+        private void Colours(DataGridView dataGridView3, string column)
+        {
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+                if (row.Cells[column].Value.Equals("true"))
+                    row.Cells[column].Style.BackColor = Color.LimeGreen;
+                else if (row.Cells[column].Value.Equals("false"))
+                    row.Cells[column].Style.BackColor = Color.Red;
+
+                else if (row.Cells[column].Value.Equals("closed"))
+                    row.Cells[column].Style.BackColor = Color.DeepSkyBlue;
+                else if (row.Cells[column].Value.Equals("pending"))
+                    row.Cells[column].Style.BackColor = Color.Gold;
+                else if (row.Cells[column].Value.Equals("awaiting for removal"))
+                    row.Cells[column].Style.BackColor = Color.Fuchsia;
+        }
+
+        private void ColoursDiff(DataGridView dataGridView3, string column, string columnB)
         {
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
-                if (row.Cells[Column].Value.Equals("true"))
-                {
-                    row.Cells[Column].Style.BackColor = Color.LimeGreen;
-                }
-                else if (row.Cells[Column].Value.Equals("false"))
-                {
-                    row.Cells[Column].Style.BackColor = Color.Red;
-                }
-
-                else if (row.Cells[Column].Value.Equals("closed"))
-                {
-                    row.Cells[Column].Style.BackColor = Color.DeepSkyBlue;
-                }
-                else if (row.Cells[Column].Value.Equals("pending"))
-                {
-                    row.Cells[Column].Style.BackColor = Color.Gold;
-                }
-                else if (row.Cells[Column].Value.Equals("awaiting for removal"))
-                {
-                    row.Cells[Column].Style.BackColor = Color.Fuchsia;
-                }
-            }
-        }
-        private void ColoursDiff(DataGridView dataGridView3, string Column, string ColumnB)
-        {
-            foreach (DataGridViewRow row in dataGridView3.Rows)
-            {
-                if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) > 0)
-                {
+                if (Convert.ToInt32(row.Cells[column].Value) - Convert.ToInt32(row.Cells[columnB].Value) > 0)
                     row.DefaultCellStyle.BackColor = Color.LimeGreen;
-                }
-                else if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) < 0)
-                {
+                else if (Convert.ToInt32(row.Cells[column].Value) - Convert.ToInt32(row.Cells[columnB].Value) < 0)
                     row.DefaultCellStyle.BackColor = Color.Gold;
-                }
 
-                if ((Convert.ToInt32(row.Cells[Column].Value) < 4))
-                {
-                    row.DefaultCellStyle.BackColor = Color.Red;
-                }
+                if (Convert.ToInt32(row.Cells[column].Value) < 4) row.DefaultCellStyle.BackColor = Color.Red;
             }
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
+            dataGridView3.DataSource =
+                DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
+            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
 
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"");
-            foreach (DataGridViewColumn col in dataGridView3.Columns)
-            {
-                col.Visible = true;
-            }
-            int x = 0;
-            int y = 0;
+            var x = 0;
+            var y = 0;
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
-                List<string> EnStock = DBUtils.RefList("Enstock", "kitbox where Code = \"" + row.Cells["Code"].Value.ToString() + "\"");
-                int Enstock = Convert.ToInt32(EnStock[0]);
-                if ((Enstock - Convert.ToInt32(row.Cells["Quantity"].Value)) >= 0)
+                var enStock = DBUtils.RefList("Enstock",
+                    "kitbox where Code = \"" + row.Cells["Code"].Value + "\"");
+                var enstock = Convert.ToInt32(enStock[0]);
+                if (enstock - Convert.ToInt32(row.Cells["Quantity"].Value) >= 0)
                 {
                     row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
                     row.Cells["Disponibility"].Value = "true";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\" and OrderID = \"" + row.Cells["OrderId"].Value.ToString() + "\"", "true");
+                    DBUtils.UpdateDBV("listsitems", "Disponibility",
+                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                        row.Cells["OrderId"].Value + "\"", "true");
                     y += 1;
                 }
                 else
                 {
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
                     row.Cells["Disponibility"].Value = "false";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility", "Code = \"" + row.Cells["Code"].Value.ToString() + "\" and OrderID = \"" + row.Cells["OrderId"].Value.ToString() + "\"", "false");
+                    DBUtils.UpdateDBV("listsitems", "Disponibility",
+                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                        row.Cells["OrderId"].Value + "\"", "false");
                 }
+
                 x += 1;
             }
+
             if (x == y)
-            {
-                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"", "true");
-            }
+                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem + "\"",
+                    "true");
             else
-            {
-                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem.ToString() + "\"", "false");
-            }
+                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem + "\"",
+                    "false");
+
             Start();
         }
 
-        private void label20_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox8_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // Updating the Label which displays the current time 
-            DateTime dateToDisplay = DateTime.Now;
-            label13.Text = dateToDisplay.ToString("D", CultureInfo.CreateSpecificCulture("en-US")) + "\n" + dateToDisplay.ToString("t", CultureInfo.CreateSpecificCulture("en-US"));
+            var dateToDisplay = DateTime.Now;
+            label13.Text = dateToDisplay.ToString("D", CultureInfo.CreateSpecificCulture("en-US")) + "\n" +
+                           dateToDisplay.ToString("t", CultureInfo.CreateSpecificCulture("en-US"));
             //time.Split(',');
             label13.Visible = true;
         }
 
         private void Start()
         {
-            comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
+            comboBox4.DataSource =
+                DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
             comboBox4.Text = "";
             comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
@@ -455,7 +344,7 @@ namespace ShopInterface
             comboBox5.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView2.Refresh();
-            dataGridView2.Sort(dataGridView2.Columns["OrderId"], System.ComponentModel.ListSortDirection.Descending);
+            dataGridView2.Sort(dataGridView2.Columns["OrderId"], ListSortDirection.Descending);
             Colours(dataGridView2, "Status");
         }
 
@@ -471,49 +360,46 @@ namespace ShopInterface
             groupBox5.Visible = true;
         }
 
-        private void updateStockMin()
+        private void UpdateStockMin()
         {
             progressBar2.Value = 10;
             button16.Enabled = false;
-            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
-            List<string> code = DBUtils.RefList("Code", "kitbox");
-            foreach (string i in code)
+            Cursor.Current = Cursors.WaitCursor;
+            var code = DBUtils.RefList("Code", "kitbox");
+            foreach (var i in code)
             {
-                Dictionary<string, int> ValuesIncStock = DBUtils.SelectCondDB("sales", i);
-                Dictionary<string, int> GraphMonthIncStock = new Dictionary<string, int>();
-                foreach (KeyValuePair<string, int> entry in ValuesIncStock)
+                var valuesIncStock = DBUtils.SelectCondDB("sales", i);
+                var graphMonthIncStock = new Dictionary<string, int>();
+                foreach (var entry in valuesIncStock)
                 {
-                    string key = entry.Key;
-                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
-                    if (GraphMonthIncStock.ContainsKey(month))
-                    {
-                        GraphMonthIncStock[month] = GraphMonthIncStock[month] + entry.Value;
-                    }
+                    var key = entry.Key;
+                    var month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    if (graphMonthIncStock.ContainsKey(month))
+                        graphMonthIncStock[month] = graphMonthIncStock[month] + entry.Value;
                     else
-                    {
-                        GraphMonthIncStock.Add(month, entry.Value);
-                    }
+                        graphMonthIncStock.Add(month, entry.Value);
                 }
-                List<string> monthsIncStock = new List<string>();
-                foreach (KeyValuePair<string, int> entry in GraphMonthIncStock)
-                {
-                    monthsIncStock.Add(entry.Key);
-                }
-                int all = GraphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 3)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 4)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 5)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 6)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 7)]];
-                int average = all / 12;
+
+                var monthsIncStock = new List<string>();
+                foreach (var entry in graphMonthIncStock) monthsIncStock.Add(entry.Key);
+
+                var all = graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 3]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 4]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 5]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
+                var average = all / 12;
                 DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();
             }
-            System.Windows.Forms.Cursor.Current = Cursors.Default;
+
+            Cursor.Current = Cursors.Default;
             button16.Enabled = true;
             UpdateStock();
             progressBar2.Value = 10;
         }
 
-        private void label27_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button14_Click(object sender, EventArgs e)
         {
@@ -522,29 +408,49 @@ namespace ShopInterface
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status", "OrderId = \"" + comboBox6.SelectedItem.ToString() + "\"", "false");
+            label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status",
+                "OrderId = \"" + comboBox6.SelectedItem + "\"", "false");
             Start();
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status", "OrderId = \"" + comboBox7.SelectedItem.ToString() + "\"", "closed");
+            label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status",
+                "OrderId = \"" + comboBox7.SelectedItem + "\"", "closed");
             Start();
         }
 
+        private void FirstThings()
+        {
+            label28.Visible = true;
+            tabControl1.SelectedIndexChanged += tabControl1_Click;
+            var dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Start();
+            var ninja = new DataTable();
+            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
+            dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
+            ninja = DBUtils.RefreshDB("sales");
+            foreach (DataColumn col in ninja.Columns)
+                if (col.ColumnName != "Code" && col.ColumnName != "Ref")
+                {
+                    var value = col.ColumnName.Split('/')[2];
+
+                    if (_columnYear.Contains(value) == false) _columnYear.Add(value);
+
+                    var valueMonth = col.ColumnName.Split('/')[1] + "/" +
+                                     col.ColumnName.Split('/')[2];
+
+                    if (_columnMonth.Contains(valueMonth) == false) _columnMonth.Add(valueMonth);
+
+                    _columnDay.Add(col.ColumnName);
+                }
+        }
+
         private void button16_Click(object sender, EventArgs e)
-        {   
-            updateStockMin();
-        }
-
-        private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
+            UpdateStockMin();
         }
     }
 }

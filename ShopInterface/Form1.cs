@@ -1,13 +1,6 @@
-﻿using projectCS;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using projectCS;
 
 namespace ShopInterface
 {
@@ -20,17 +13,14 @@ namespace ShopInterface
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -38,18 +28,18 @@ namespace ShopInterface
             label3.Visible = false;
             if (textBox1.Text == "secretary")
             {
-                Form3 frm = new Form3();
+                var frm = new Form3();
                 frm.Show();
-                this.Hide();
+                Hide();
             }
             else
             {
-                int Value = DBUtils.CheckAccess(textBox1, textBox2);
-                if (Value == 0)
+                var value = DBUtils.CheckAccess(textBox1, textBox2);
+                if (value == 0)
                 {
-                    Form2 frm = new Form2(this, textBox1.Text);
+                    var frm = new Form2(textBox1.Text);
                     frm.Show();
-                    this.Hide();
+                    Hide();
                 }
                 else
                 {
@@ -60,7 +50,6 @@ namespace ShopInterface
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
