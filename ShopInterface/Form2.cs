@@ -195,6 +195,10 @@ namespace ShopInterface
             {
                 UpdateStock();
             }
+            else if (tabControl1.SelectedTab.Text == @"Suppliers orders")
+            {
+                UpdateSuppliers();
+            }
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
@@ -239,7 +243,7 @@ namespace ShopInterface
             foreach (DataGridViewRow row in dataGridView3.Rows)
                 if (row.Cells[column].Value.Equals("true"))
                     row.Cells[column].Style.BackColor = Color.LimeGreen;
-                else if (row.Cells[column].Value.Equals("false"))
+                else if (row.Cells[column].Value.Equals("false") || row.Cells[column].Value.Equals("added"))
                     row.Cells[column].Style.BackColor = Color.Red;
 
                 else if (row.Cells[column].Value.Equals("closed"))
@@ -287,11 +291,16 @@ namespace ShopInterface
                 }
                 else
                 {
+                    if (row.Cells["Disponibility"].Value.ToString() != "added")
+                    {
+                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                        AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
+                        row.Cells["Disponibility"].Value = "added";
+                        DBUtils.UpdateDBV("listsitems", "Disponibility",
+                            "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                            row.Cells["OrderId"].Value + "\"", "added");
+                    }
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                    row.Cells["Disponibility"].Value = "false";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility",
-                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
-                        row.Cells["OrderId"].Value + "\"", "false");
                 }
 
                 x += 1;
@@ -400,6 +409,104 @@ namespace ShopInterface
             progressBar2.Value = 10;
         }
 
+        private void UpdateSuppliers()
+        {
+            DataTable supplier1 = new DataTable();
+            DataColumn dtColumn = new DataColumn();
+            dtColumn.DataType = typeof(Int32);
+            dtColumn.ColumnName = "Id";
+            dtColumn.ReadOnly = true;
+            dtColumn.Unique = true;
+            DataColumn dtColumn1 = new DataColumn();
+            dtColumn1.DataType = typeof(string);
+            dtColumn1.ColumnName = "Code";
+            dtColumn1.ReadOnly = true;
+            dtColumn1.Unique = true;
+            DataColumn dtColumn2 = new DataColumn();
+            dtColumn2.DataType = typeof(Int32);
+            dtColumn2.ColumnName = "Quantity";
+            dtColumn2.ReadOnly = false;
+            dtColumn2.Unique = false;
+            DataColumn dtColumn3 = new DataColumn();
+            dtColumn3.DataType = typeof(double);
+            dtColumn3.ColumnName = "Price";
+            dtColumn3.ReadOnly = true;
+            dtColumn3.Unique = false;
+            supplier1.Columns.Add(dtColumn);
+            supplier1.Columns.Add(dtColumn1);
+            supplier1.Columns.Add(dtColumn2);
+            supplier1.Columns.Add(dtColumn3);
+            DataTable supplier2 = new DataTable();
+            DataColumn dtColumn4 = new DataColumn();
+            dtColumn4.DataType = typeof(Int32);
+            dtColumn4.ColumnName = "Id";
+            dtColumn4.ReadOnly = true;
+            dtColumn4.Unique = true;
+            DataColumn dtColumn5 = new DataColumn();
+            dtColumn5.DataType = typeof(string);
+            dtColumn5.ColumnName = "Code";
+            dtColumn5.ReadOnly = true;
+            dtColumn5.Unique = true;
+            DataColumn dtColumn6 = new DataColumn();
+            dtColumn6.DataType = typeof(Int32);
+            dtColumn6.ColumnName = "Quantity";
+            dtColumn6.ReadOnly = false;
+            dtColumn6.Unique = false;
+            DataColumn dtColumn7 = new DataColumn();
+            dtColumn7.DataType = typeof(double);
+            dtColumn7.ColumnName = "Price";
+            dtColumn7.ReadOnly = true;
+            dtColumn7.Unique = false;
+            supplier2.Columns.Add(dtColumn4);
+            supplier2.Columns.Add(dtColumn5);
+            supplier2.Columns.Add(dtColumn6);
+            supplier2.Columns.Add(dtColumn7);
+            DataTable dataTable = DBUtils.RefreshDB("supplierspending");
+            int index1 = 1;
+            int index2 = 1;
+            dataGridView5.DataSource = null;
+            dataGridView5.Refresh();
+            dataGridView6.DataSource = null;
+            dataGridView6.Refresh();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                List<string> Suppliers = DBUtils.RefList("SupplierNumber",
+                    "suppliersprices where Code = \"" + row["Code"] + "\"");
+                List<string> Prices = DBUtils.RefList("PrixFourn",
+                    "suppliersprices where Code = \"" + row["Code"] + "\"");
+
+                if (Suppliers[0] == "1")
+                {
+                    DataRow myDataRow;
+                    myDataRow = supplier1.NewRow();
+                    myDataRow["Id"] = index1;
+                    myDataRow["Code"] = row["Code"].ToString();
+                    myDataRow["Quantity"] = row["Quantity"];
+                    myDataRow["Price"] = Prices[0];
+                    supplier1.Rows.Add(myDataRow);
+                    index1 += 1;
+                }
+                else
+                {
+                    DataRow myDataRow1;
+                    myDataRow1 = supplier2.NewRow();
+                    myDataRow1["Id"] = index2;
+                    myDataRow1["Code"] = row["Code"].ToString();
+                    myDataRow1["Quantity"] = row["Quantity"];
+                    myDataRow1["Price"] = Prices[0];
+                    supplier2.Rows.Add(myDataRow1);
+                    index2 += 1;
+                }
+            }
+
+            dataGridView6.DataSource = supplier1;
+            dataGridView5.DataSource = supplier2;
+        }
+
+        private void AddToPendingSuppliers(string code, string quantity)
+        {
+            DBUtils.Insert("supplierspending", code, quantity);
+        }
 
         private void button14_Click(object sender, EventArgs e)
         {
@@ -451,6 +558,21 @@ namespace ShopInterface
         private void button16_Click(object sender, EventArgs e)
         {
             UpdateStockMin();
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            DataTable datata =
+                DBUtils.RefreshDB("listsitems where OrderId = \"" + comboBox9.SelectedItem + "\"");
+            foreach (DataRow row in datata.Rows)
+            {
+                int valueStock = Convert.ToInt32(DBUtils.RefList("EnStock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
+                int actual = valueStock - Convert.ToInt32(row["Quantity"]);
+                DBUtils.UpdateDBV("kitbox", "EnStock", "Code = \"" + row["Code"] + "\"", actual.ToString());
+                DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
+            }
+            DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
+            Start();
         }
     }
 }

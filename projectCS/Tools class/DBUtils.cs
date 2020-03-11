@@ -33,6 +33,18 @@ namespace projectCS
             }
         }
 
+        public static void Insert(string database, string code, string quantity)
+        {
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            string sql = "Insert into " + database + " (Code, Quantity) values (\"" + code + "\", \"" + quantity +
+                         "\");";
+            adapter.InsertCommand = new MySqlCommand(sql, conn);
+            conn.Open();
+            adapter.InsertCommand.ExecuteNonQuery();
+            conn.Close();
+        }
+
         public static int CheckAccess(TextBox login, TextBox password)
         {
             int Value; 
