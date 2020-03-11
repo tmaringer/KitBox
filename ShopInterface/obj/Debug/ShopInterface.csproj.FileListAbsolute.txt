@@ -83,3 +83,4 @@ C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.Ge
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Form3.resources

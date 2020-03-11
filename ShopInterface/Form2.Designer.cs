@@ -32,11 +32,13 @@ namespace ShopInterface
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.button16 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -119,8 +121,6 @@ namespace ShopInterface
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button16 = new System.Windows.Forms.Button();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -159,6 +159,30 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
+            this.progressBar2.Location = new System.Drawing.Point(489, 572);
+            this.progressBar2.MarqueeAnimationSpeed = 160;
+            this.progressBar2.Maximum = 3080;
+            this.progressBar2.Minimum = 10;
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(178, 13);
+            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar2.TabIndex = 16;
+            this.progressBar2.Value = 10;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(489, 543);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(178, 23);
+            this.button16.TabIndex = 15;
+            this.button16.Text = "Update minimum stock value";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // groupBox5
             // 
@@ -230,22 +254,22 @@ namespace ShopInterface
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.LemonChiffon;
-            chartArea3.BackColor = System.Drawing.Color.LemonChiffon;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.BackColor = System.Drawing.Color.Transparent;
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.BackColor = System.Drawing.Color.LemonChiffon;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(251, 17);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.BorderColor = System.Drawing.Color.Black;
-            series3.ChartArea = "ChartArea1";
-            series3.Color = System.Drawing.Color.Black;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart1.Series.Add(series3);
+            series1.BorderColor = System.Drawing.Color.Black;
+            series1.ChartArea = "ChartArea1";
+            series1.Color = System.Drawing.Color.Black;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(689, 326);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -1048,30 +1072,6 @@ namespace ShopInterface
             this.label13.Text = "label13";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label13.Visible = false;
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(489, 543);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(178, 23);
-            this.button16.TabIndex = 15;
-            this.button16.Text = "Update the minimum stock value";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
-            this.progressBar2.Location = new System.Drawing.Point(489, 572);
-            this.progressBar2.MarqueeAnimationSpeed = 160;
-            this.progressBar2.Maximum = 3080;
-            this.progressBar2.Minimum = 10;
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(178, 13);
-            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 16;
-            this.progressBar2.Value = 10;
             // 
             // tabPage5
             // 

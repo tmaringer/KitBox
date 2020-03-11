@@ -470,6 +470,7 @@ namespace ShopInterface
         {
             progressBar2.Value = 10;
             button16.Enabled = false;
+            System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
             List<string> code = DBUtils.RefList("Code", "kitbox");
             foreach (string i in code)
             {
@@ -498,6 +499,7 @@ namespace ShopInterface
                 DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();
             }
+            System.Windows.Forms.Cursor.Current = Cursors.Default;
             button16.Enabled = true;
         }
 
@@ -524,7 +526,7 @@ namespace ShopInterface
         }
 
         private void button16_Click(object sender, EventArgs e)
-        {
+        {   
             updateStockMin();
         }
     }
