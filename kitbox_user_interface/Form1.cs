@@ -93,10 +93,12 @@ namespace kitbox_user_interface_V1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //créer armoire
+            
             //créer box
             //créer commande ?
-            Cupboard cupboard = new Cupboard();
+            //Cupboard cupboard = new Cupboard();
+            //CrossBar traverses = new CrossBar();
+            //TODO créer objet armoire intermédiaire 
 
             if (comboBox3.SelectedIndex == 6)//si l'armoire contient 7 étages alors supprimer la hauteur de boite 52
             {
