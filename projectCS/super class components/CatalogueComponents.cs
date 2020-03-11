@@ -1,11 +1,14 @@
 ﻿namespace projectCS
 {
+    /// <summary>
+    ///     Super class which group all locker component characteristics as well as angle brackets
+    /// </summary>
     public abstract class CatalogueComponents
     {
         protected double _price;
-        public double price 
-        { 
-            get => _price; 
+        public double price
+        {
+            get => _price;
         }
 
         protected string _reference;
@@ -20,8 +23,8 @@
             get => _code;
         }
 
-        protected int _size;
-        public int size
+        protected Size _size;
+        public Size size
         {
             get => _size;
         }
@@ -44,8 +47,8 @@
             get => _color;
         }
 
-        protected CatalogueComponents(double price, string reference, string code, int size, bool inStock, int dimension, Color color)
-        {            
+        protected CatalogueComponents(double price, string reference, string code, Size size, bool inStock, int dimension, Color color)
+        {
             this._price = price;
             this._reference = reference;
             this._code = code;
@@ -54,7 +57,7 @@
             this._dimension = dimension;
             this._color = color;
         }
-        
+
         /// <summary>
         ///     get from object super class ToString method in order to display internal data object
         /// </summary>
@@ -77,7 +80,7 @@
                    + ", dimension : "
                    + _dimension
                    + ", color : "
-                   + _color; 
+                   + _color;
         }
     }
 
@@ -92,4 +95,31 @@
         black,
         transparent
     }
+
+    public struct Size
+    {
+        private int _height, _width, _depth;
+        public int height
+        {
+            get => _height;
+        }
+
+        public int width
+        {
+            get => _width;
+        }
+
+        public int depth
+        {
+            get => _depth;
+        }
+
+        public Size(int height, int width, int depth)
+        {
+            _height = height;
+            _width = width;
+            _depth = depth;
+        }
+    }
+
 }

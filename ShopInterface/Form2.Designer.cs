@@ -32,13 +32,11 @@ namespace ShopInterface
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
-            this.button16 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -121,13 +119,9 @@ namespace ShopInterface
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.button16 = new System.Windows.Forms.Button();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.dataGridView5 = new System.Windows.Forms.DataGridView();
-            this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -149,11 +143,6 @@ namespace ShopInterface
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -170,30 +159,6 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
-            this.progressBar2.Location = new System.Drawing.Point(489, 572);
-            this.progressBar2.MarqueeAnimationSpeed = 160;
-            this.progressBar2.Maximum = 3080;
-            this.progressBar2.Minimum = 10;
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(178, 13);
-            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 16;
-            this.progressBar2.Value = 10;
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(489, 543);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(178, 23);
-            this.button16.TabIndex = 15;
-            this.button16.Text = "Update minimum stock value";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // groupBox5
             // 
@@ -251,6 +216,7 @@ namespace ShopInterface
             this.label14.Size = new System.Drawing.Size(91, 13);
             this.label14.TabIndex = 6;
             this.label14.Text = "Value of selection";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label12
             // 
@@ -264,22 +230,22 @@ namespace ShopInterface
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.LemonChiffon;
-            chartArea6.BackColor = System.Drawing.Color.LemonChiffon;
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.BackColor = System.Drawing.Color.Transparent;
-            legend6.Enabled = false;
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
+            chartArea3.BackColor = System.Drawing.Color.LemonChiffon;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.BackColor = System.Drawing.Color.Transparent;
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(251, 17);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series6.BorderColor = System.Drawing.Color.Black;
-            series6.ChartArea = "ChartArea1";
-            series6.Color = System.Drawing.Color.Black;
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chart1.Series.Add(series6);
+            series3.BorderColor = System.Drawing.Color.Black;
+            series3.ChartArea = "ChartArea1";
+            series3.Color = System.Drawing.Color.Black;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(689, 326);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -536,6 +502,7 @@ namespace ShopInterface
             this.groupBox8.TabIndex = 11;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Confirm a pending order";
+            this.groupBox8.Enter += new System.EventHandler(this.groupBox8_Enter);
             // 
             // comboBox6
             // 
@@ -634,6 +601,7 @@ namespace ShopInterface
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Show list of items and test availability";
+            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // comboBox4
             // 
@@ -773,6 +741,7 @@ namespace ShopInterface
             this.label7.Size = new System.Drawing.Size(125, 17);
             this.label7.TabIndex = 9;
             this.label7.Text = "Ref (String)";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // progressBar1
             // 
@@ -930,6 +899,7 @@ namespace ShopInterface
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modify an element";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // comboBox12
             // 
@@ -982,6 +952,7 @@ namespace ShopInterface
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Column";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox3
             // 
@@ -989,6 +960,7 @@ namespace ShopInterface
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(114, 20);
             this.textBox3.TabIndex = 3;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // button1
             // 
@@ -1013,6 +985,7 @@ namespace ShopInterface
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(680, 587);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabControl1
             // 
@@ -1052,6 +1025,7 @@ namespace ShopInterface
             this.label27.TabIndex = 1;
             this.label27.Text = "Welcome";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label28
             // 
@@ -1075,10 +1049,32 @@ namespace ShopInterface
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label13.Visible = false;
             // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(489, 543);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(178, 23);
+            this.button16.TabIndex = 15;
+            this.button16.Text = "Update the minimum stock value";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
+            this.progressBar2.Location = new System.Drawing.Point(489, 572);
+            this.progressBar2.MarqueeAnimationSpeed = 160;
+            this.progressBar2.Maximum = 3080;
+            this.progressBar2.Minimum = 10;
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(178, 13);
+            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar2.TabIndex = 16;
+            this.progressBar2.Value = 10;
+            // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.groupBox13);
-            this.tabPage5.Controls.Add(this.groupBox12);
             this.tabPage5.Location = new System.Drawing.Point(4, 4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -1087,62 +1083,6 @@ namespace ShopInterface
             this.tabPage5.Text = "Suppliers\' orders";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.button17);
-            this.groupBox12.Controls.Add(this.dataGridView6);
-            this.groupBox12.Location = new System.Drawing.Point(532, 8);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(433, 290);
-            this.groupBox12.TabIndex = 2;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Supplier1 order";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.button18);
-            this.groupBox13.Controls.Add(this.dataGridView5);
-            this.groupBox13.Location = new System.Drawing.Point(532, 303);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(433, 290);
-            this.groupBox13.TabIndex = 3;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Supplier2 order";
-            // 
-            // dataGridView5
-            // 
-            this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(421, 203);
-            this.dataGridView5.TabIndex = 0;
-            // 
-            // dataGridView6
-            // 
-            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(421, 203);
-            this.dataGridView6.TabIndex = 1;
-            // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(292, 243);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(103, 22);
-            this.button17.TabIndex = 2;
-            this.button17.Text = "Order";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button18
-            // 
-            this.button18.Location = new System.Drawing.Point(292, 247);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(103, 22);
-            this.button18.TabIndex = 3;
-            this.button18.Text = "Order";
-            this.button18.UseVisualStyleBackColor = true;
-            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1150,7 +1090,7 @@ namespace ShopInterface
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(981, 626);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
@@ -1186,11 +1126,6 @@ namespace ShopInterface
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.tabPage5.ResumeLayout(false);
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1283,11 +1218,5 @@ namespace ShopInterface
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.DataGridView dataGridView5;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.DataGridView dataGridView6;
     }
 }

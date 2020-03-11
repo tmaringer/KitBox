@@ -7,114 +7,118 @@ using System.Threading.Tasks;
 
 namespace projectCS
 {
+    /// <summary>
+    ///     This class takes several components from catalogue and build locker with objects stored in list.
+    ///     It build also cupboard with lockers and angle bracket stored in a other list.
+    /// </summary>
     public class ShoppingCart
     {
-        private List<CatalogueComponents> _componentsList;
-        public List<CatalogueComponents> componentsList 
-        { 
-            get => _componentsList;
-        }
-        // todo : refactorer quand on saura s'il faut utiliser plusieurs listes ou une seul
-        /*
-        private List<CrossBar> _crossBarList;
-        public List<CrossBar> crossBarList
+        private List<CatalogueComponents> _catalogueComponentsList;
+        public List<CatalogueComponents> catalogueComponentsList
         {
-            get => _crossBarList;
+            get => _catalogueComponentsList;
         }
-        
-        private List<Pannel> _pannelList;
-        public List<Pannel> pannelList
+
+        private List<ICupboardComponents> _cupboardComponentsList;
+        public List<ICupboardComponents> cupboardComponentsList
         {
-            get => _pannelList;
+            get => _cupboardComponentsList;
         }
-        
-        private List<Door> _doorList;
-        public List<Door> doorList
+
+        private Cupboard _cupboard;
+        public Cupboard cupboard
         {
-            get => _doorList;
+            get => _cupboard;
         }
-        
-        private List<Cleat> _cleatList;
-        public List<Cleat> cleatList
-        {
-            get => _cleatList;
-        }
-        
-        private List<Locker> _lockerList;
-        public List<Locker> lockerList
-        {
-            get => _lockerList;
-        }
-        
-        private AngleBracket _angleBracket;
-        public AngleBracket angleBracket
-        {
-            get => _angleBracket;
-            set => _angleBracket = value;
-        }
-        */
+
         public ShoppingCart()
         {
-            this._componentsList = new List<CatalogueComponents>();
-            /*
-this._crossBarList = new List<CrossBar>();
-this._pannelList = new List<Pannel>();
-this._doorList = new List<Door>();
-this._cleatList = new List<Cleat>();
-this._lockerList = new List<Locker>();
-this._angleBracket = new AngleBracket();
-*/
-        }
-                
-        public void addComponent(CatalogueComponents component) 
-        {
-            _componentsList.Add(component);
+            this._catalogueComponentsList = new List<CatalogueComponents>();
+            this._cupboardComponentsList = new List<ICupboardComponents>();
         }
 
-        public void removeComponent(CatalogueComponents component) 
+        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
+        public void addCatalogueComponent(CatalogueComponents component)
         {
-            _componentsList.Remove(component);
+            _catalogueComponentsList.Add(component);
         }
 
-        // TODO : à finir
+        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
+        public void removeCatalogueComponent(CatalogueComponents component)
+        {
+            _catalogueComponentsList.Remove(component);
+        }
+
         /// <summary>
-        ///     build locker from component stored in list
+        ///     Builds locker from components stored in list. It also removes components which are used to build locker.
         /// </summary>
         /// <returns>
-        ///     return the locker builded
+        ///     Returns the locker built.
         /// </returns>
         public Locker buildLocker()
         {
             Locker locker = new Locker();
+            // temporary list which store components added to the locker and is used thereafter to remove components in the main list
+            List<CatalogueComponents> tempList = new List<CatalogueComponents>();
+            bool componentWasAdded = false;
 
-            foreach(CatalogueComponents component in _componentsList)
+            foreach (CatalogueComponents component in _catalogueComponentsList)
             {
-                /*
-                switch (component)
-                {
-                    case CrossBar c:
-                        _numberOfLCrossBar++;
-                        break;
-                    case Pannel p:
-                        _numberOfPannel++;
-                        break;
-                    case Door d:
-                        _numberOfDoor++;
-                        break;
-                    case Cleat cl:
-                        _numberOfCleat++;
-                        break;
-                    default:
-                        break;
-                }*/
+                componentWasAdded = locker.addComponent(component);
+                if (componentWasAdded)
+                    tempList.Add(component);
             }
-            return new Locker();
+
+            foreach (CatalogueComponents component in tempList)
+            {
+                _catalogueComponentsList.Remove(component);
+            }
+
+            return locker;
         }
-        
-        // TODO : finir la methode
-        public Cupboard buildCupboard(ICupboardComponents component)
+
+        public void addCupboardComponent(ICupboardComponents cupboardComponent)
         {
-            return new Cupboard();
+            _cupboardComponentsList.Add(cupboardComponent);
+        }
+
+        public void removeCupboardComponent(ICupboardComponents cupboardComponent)
+        {
+            _cupboardComponentsList.Remove(cupboardComponent);
+        }
+
+        /// <summary>
+        ///     Builds cupboard from components stored. It also removes components which are used to build cupboard.
+        /// </summary>
+        /// <returns>
+        ///     Returns the cupboard built.
+        /// </returns>
+        public Cupboard buildCupboard()
+        {
+            Cupboard Cupboard = new Cupboard();
+            // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
+            List<ICupboardComponents> tempList = new List<ICupboardComponents>();
+
+            foreach (ICupboardComponents cupboardComponent in _cupboardComponentsList)
+            {
+                Cupboard.addCupboardComponent(cupboardComponent);
+                tempList.Add(cupboardComponent);
+            }
+
+            foreach (ICupboardComponents component in tempList)
+            {
+                _cupboardComponentsList.Remove(component);
+            }
+            return Cupboard;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString()
+                   + ", catalogue components list : "
+                   + _catalogueComponentsList
+                   + ", cupboard componentsList list : "
+                   + _cupboardComponentsList;
         }
     }
 }
