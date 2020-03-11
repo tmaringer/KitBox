@@ -270,14 +270,7 @@ namespace ShopInterface
             }
             else if (tabControl1.SelectedTab.Text == "Stock management")
             {
-                dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
-                comboBox3.DataSource = DBUtils.RefList("Code", "kitbox.sales");
-                comboBox3.DisplayMember = "Code";
-                ColoursDiff(dataGridView4, "EnStock", "StockMinimum");
-                dataGridView4.CurrentCell.Selected = false;
-                label15.Visible = false;
-                dataGridView4.Visible = true;
-                groupBox5.Visible = true;
+                UpdateStock();
             }
         }
 
@@ -363,12 +356,12 @@ namespace ShopInterface
                 }
                 else if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) < 0)
                 {
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.BackColor = Color.Gold;
                 }
 
-                else if ((Convert.ToInt32(row.Cells[Column].Value) - Convert.ToInt32(row.Cells[ColumnB].Value)) == 0)
+                if ((Convert.ToInt32(row.Cells[Column].Value) < 4))
                 {
-                    row.DefaultCellStyle.BackColor = Color.Gold;
+                    row.DefaultCellStyle.BackColor = Color.Red;
                 }
             }
         }
@@ -466,6 +459,18 @@ namespace ShopInterface
             Colours(dataGridView2, "Status");
         }
 
+        private void UpdateStock()
+        {
+            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
+            comboBox3.DataSource = DBUtils.RefList("Code", "kitbox.sales");
+            comboBox3.DisplayMember = "Code";
+            ColoursDiff(dataGridView4, "EnStock", "StockMinimum");
+            dataGridView4.CurrentCell.Selected = false;
+            label15.Visible = false;
+            dataGridView4.Visible = true;
+            groupBox5.Visible = true;
+        }
+
         private void updateStockMin()
         {
             progressBar2.Value = 10;
@@ -495,12 +500,14 @@ namespace ShopInterface
                     monthsIncStock.Add(entry.Key);
                 }
                 int all = GraphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 3)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 4)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 5)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 6)]] + GraphMonthIncStock[monthsIncStock[(monthsIncStock.Count - 7)]];
-                int average = all / 6;
+                int average = all / 12;
                 DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();
             }
             System.Windows.Forms.Cursor.Current = Cursors.Default;
             button16.Enabled = true;
+            UpdateStock();
+            progressBar2.Value = 10;
         }
 
         private void label27_Click(object sender, EventArgs e)
@@ -528,6 +535,16 @@ namespace ShopInterface
         private void button16_Click(object sender, EventArgs e)
         {   
             updateStockMin();
+        }
+
+        private void dataGridView6_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
