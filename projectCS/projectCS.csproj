@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tools class\DBUtils.cs" />
-    <Compile Include="ManagingClass\OrderFormUIinterface.cs" />
+    <Compile Include="ManagingClass\OrderFormViewInterface.cs" />
     <Compile Include="order\Client.cs" />
     <Compile Include="order\OrderForm.cs" />
     <Compile Include="order\ShoppingCart.cs" />

@@ -20,10 +20,39 @@ namespace projectCS
             get => _cupboardComponentsList;
         }
 
-        public Cupboard()
+        private int _width;
+        public int width
+        {
+            get => _width;
+        }
+
+        private int _depth;
+        public int depth
+        {
+            get => _depth;
+        }
+
+        private int _boxNumber;
+        public int boxNumber
+        {
+            get => _boxNumber;
+        }
+
+        private Color _colorAngleBracket;
+        public Color colorAngleBracket
+        {
+            get => _colorAngleBracket;
+        }
+
+        // todo : voir test
+        public Cupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
         {
             _lockerAvailable = _lockerMaxAvailable;
             _cupboardComponentsList = new List<ICupboardComponents>();
+            _width = width;
+            _depth = depth;
+            _boxNumber = boxNumber;
+            _colorAngleBracket = colorAngleBracket;
         }
 
         /// <summary>

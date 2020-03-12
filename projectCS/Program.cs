@@ -17,14 +17,14 @@ namespace projectCS
             printPerso.test3();
             printPerso.isActive();
             */
-            //printPerso.autreTest();
+            printPerso.autreTest();
 
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
         }
-        /*
+        
         internal static class printPerso
         {
             public static void newCompoTest()
@@ -120,10 +120,10 @@ namespace projectCS
 
             public static void autreTest()
             {
-
-
+                OrderFormViewInterface.createCupbaord(10,150,6,Color.galvanized);
+                Console.WriteLine(OrderFormViewInterface.shoppingCart.cupboard.depth);
             }
         }
-        */
+        
     }
 }
