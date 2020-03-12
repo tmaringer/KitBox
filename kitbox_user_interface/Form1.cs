@@ -99,9 +99,13 @@ namespace kitbox_user_interface_V1
         private void button1_Click(object sender, EventArgs e)
         {
             
+            //TODO taille standadisée validée
+
+
             //créer box
             //créer commande ?
-            //Cupboard cupboard = new Cupboard();
+            Cupboard cupboard = new Cupboard();
+
             //CrossBar traverses = new CrossBar();
             //TODO créer objet armoire intermédiaire 
 

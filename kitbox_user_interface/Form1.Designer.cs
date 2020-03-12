@@ -142,7 +142,7 @@ namespace kitbox_user_interface_V1
             this.textBox15.Location = new System.Drawing.Point(9, 343);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(139, 26);
+            this.textBox15.Size = new System.Drawing.Size(157, 26);
             this.textBox15.TabIndex = 10;
             this.textBox15.Text = "height";
             // 
@@ -151,7 +151,7 @@ namespace kitbox_user_interface_V1
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(9, 375);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(251, 28);
+            this.comboBox1.Size = new System.Drawing.Size(266, 28);
             this.comboBox1.TabIndex = 17;
             this.comboBox1.Text = "doors";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -161,7 +161,7 @@ namespace kitbox_user_interface_V1
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(9, 409);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(251, 28);
+            this.comboBox2.Size = new System.Drawing.Size(266, 28);
             this.comboBox2.TabIndex = 18;
             this.comboBox2.Text = "pannel colors";
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
@@ -183,7 +183,7 @@ namespace kitbox_user_interface_V1
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(160, 26);
             this.textBox10.TabIndex = 20;
-            this.textBox10.Text = "nombre d\'étages";
+            this.textBox10.Text = "number of lockers";
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged_1);
             // 
             // comboBox4
@@ -207,7 +207,7 @@ namespace kitbox_user_interface_V1
             // comboBox6
             // 
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(157, 341);
+            this.comboBox6.Location = new System.Drawing.Point(172, 341);
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(103, 28);
             this.comboBox6.TabIndex = 23;
