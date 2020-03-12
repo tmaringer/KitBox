@@ -31,6 +31,11 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "profondeur", "Ref = \"Panneau GD\"");
             conn.Close();
+            /*
+            conn.Open();
+            List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
+            conn.Close();
+            */
 
             comboBox3.Items.AddRange(new object[] {"1","2","3","4","5","6","7"});
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
@@ -94,9 +99,13 @@ namespace kitbox_user_interface_V1
         private void button1_Click(object sender, EventArgs e)
         {
             
+            //TODO taille standadisée validée
+
+
             //créer box
             //créer commande ?
-            //Cupboard cupboard = new Cupboard();
+            Cupboard cupboard = new Cupboard();
+            
             //CrossBar traverses = new CrossBar();
             //TODO créer objet armoire intermédiaire 
 
@@ -107,7 +116,11 @@ namespace kitbox_user_interface_V1
                 //les éléments de combobox6 et supprimer ceux plus grand que 52
                 //sinon l'extension n'est pas privilégiée
             }
+            //gérer dynamiquement la hauteur des box et la hauteur max
+
+            
             button1.Enabled = false;
+
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
