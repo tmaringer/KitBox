@@ -83,5 +83,27 @@ C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.Ge
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.exe
 C:\Users\Admin\Desktop\ps\KitBox\ShopInterface\obj\Debug\ShopInterface.pdb
-A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.CodeAnalysisLog.xml
-A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\ShopInterface\bin\Debug\ShopInterface.exe.lastcodeanalysissucceeded
+C:\Users\Thibaut\Documents\GitHub\KitBox\ShopInterface\obj\Debug\ShopInterface.Form3.resources
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\ShopInterface.exe.config
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\ShopInterface.exe
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\ShopInterface.pdb
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\Google.Protobuf.dll
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\MySql.Data.dll
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\projectCS.exe
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\Renci.SshNet.dll
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\projectCS.pdb
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\projectCS.exe.config
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\Google.Protobuf.xml
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\MySql.Data.xml
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\bin\Debug\Renci.SshNet.xml
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.csprojAssemblyReference.cache
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.Form1.resources
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.Form2.resources
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.Form3.resources
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.Properties.Resources.resources
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.csproj.GenerateResource.cache
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.csproj.CopyComplete
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.exe
+C:\Users\Thibaut\Documents\Kitbox_local\ShopInterface\obj\Debug\ShopInterface.pdb
