@@ -105,7 +105,7 @@ namespace kitbox_user_interface_V1
             //créer box
             //créer commande ?
             Cupboard cupboard = new Cupboard();
-
+            
             //CrossBar traverses = new CrossBar();
             //TODO créer objet armoire intermédiaire 
 
