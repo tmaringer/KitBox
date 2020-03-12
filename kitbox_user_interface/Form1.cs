@@ -107,7 +107,11 @@ namespace kitbox_user_interface_V1
                 //les éléments de combobox6 et supprimer ceux plus grand que 52
                 //sinon l'extension n'est pas privilégiée
             }
+            //gérer dynamiquement la hauteur des box et la hauteur max
+
+            
             button1.Enabled = false;
+
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
