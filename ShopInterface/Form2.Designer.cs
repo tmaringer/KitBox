@@ -37,6 +37,8 @@ namespace ShopInterface
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.progressBar2 = new System.Windows.Forms.ProgressBar();
+            this.button16 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -119,15 +121,29 @@ namespace ShopInterface
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button16 = new System.Windows.Forms.Button();
-            this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridView8 = new System.Windows.Forms.DataGridView();
+            this.dataGridView7 = new System.Windows.Forms.DataGridView();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.comboBox16 = new System.Windows.Forms.ComboBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button20 = new System.Windows.Forms.Button();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.comboBox14 = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.button19 = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.button18 = new System.Windows.Forms.Button();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.button17 = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -150,6 +166,10 @@ namespace ShopInterface
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
+            this.groupBox15.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.groupBox13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.groupBox12.SuspendLayout();
@@ -170,6 +190,30 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // progressBar2
+            // 
+            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
+            this.progressBar2.Location = new System.Drawing.Point(489, 572);
+            this.progressBar2.MarqueeAnimationSpeed = 160;
+            this.progressBar2.Maximum = 3080;
+            this.progressBar2.Minimum = 10;
+            this.progressBar2.Name = "progressBar2";
+            this.progressBar2.Size = new System.Drawing.Size(178, 13);
+            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar2.TabIndex = 16;
+            this.progressBar2.Value = 10;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(489, 543);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(178, 23);
+            this.button16.TabIndex = 15;
+            this.button16.Text = "Update minimum stock value";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // groupBox5
             // 
@@ -227,7 +271,6 @@ namespace ShopInterface
             this.label14.Size = new System.Drawing.Size(91, 13);
             this.label14.TabIndex = 6;
             this.label14.Text = "Value of selection";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label12
             // 
@@ -514,7 +557,6 @@ namespace ShopInterface
             this.groupBox8.TabIndex = 11;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Confirm a pending order";
-            this.groupBox8.Enter += new System.EventHandler(this.groupBox8_Enter);
             // 
             // comboBox6
             // 
@@ -613,7 +655,6 @@ namespace ShopInterface
             this.groupBox6.TabIndex = 5;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Show list of items and test availability";
-            this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
             // comboBox4
             // 
@@ -753,7 +794,6 @@ namespace ShopInterface
             this.label7.Size = new System.Drawing.Size(125, 17);
             this.label7.TabIndex = 9;
             this.label7.Text = "Ref (String)";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // progressBar1
             // 
@@ -911,7 +951,6 @@ namespace ShopInterface
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modify an element";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // comboBox12
             // 
@@ -964,7 +1003,6 @@ namespace ShopInterface
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Column";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBox3
             // 
@@ -972,7 +1010,6 @@ namespace ShopInterface
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(114, 20);
             this.textBox3.TabIndex = 3;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // button1
             // 
@@ -997,7 +1034,6 @@ namespace ShopInterface
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(680, 587);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tabControl1
             // 
@@ -1017,7 +1053,7 @@ namespace ShopInterface
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.BackColor = System.Drawing.Color.White;
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.label28);
             this.tabPage2.Controls.Add(this.label13);
@@ -1037,7 +1073,6 @@ namespace ShopInterface
             this.label27.TabIndex = 1;
             this.label27.Text = "Welcome";
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label27.Click += new System.EventHandler(this.label27_Click);
             // 
             // label28
             // 
@@ -1061,42 +1096,162 @@ namespace ShopInterface
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label13.Visible = false;
             // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(489, 543);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(178, 23);
-            this.button16.TabIndex = 15;
-            this.button16.Text = "Update the minimum stock value";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // progressBar2
-            // 
-            this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.progressBar2.ForeColor = System.Drawing.Color.Gold;
-            this.progressBar2.Location = new System.Drawing.Point(489, 572);
-            this.progressBar2.MarqueeAnimationSpeed = 160;
-            this.progressBar2.Maximum = 3080;
-            this.progressBar2.Minimum = 10;
-            this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(178, 13);
-            this.progressBar2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar2.TabIndex = 16;
-            this.progressBar2.Value = 10;
-            // 
             // tabPage5
             // 
+            this.tabPage5.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage5.Controls.Add(this.dataGridView8);
+            this.tabPage5.Controls.Add(this.dataGridView7);
+            this.tabPage5.Controls.Add(this.groupBox15);
+            this.tabPage5.Controls.Add(this.groupBox14);
+            this.tabPage5.Controls.Add(this.groupBox13);
+            this.tabPage5.Controls.Add(this.groupBox12);
             this.tabPage5.Location = new System.Drawing.Point(4, 4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage5.Size = new System.Drawing.Size(972, 599);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Suppliers orders";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView8
+            // 
+            this.dataGridView8.AllowUserToAddRows = false;
+            this.dataGridView8.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView8.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView8.Location = new System.Drawing.Point(6, 375);
+            this.dataGridView8.Name = "dataGridView8";
+            this.dataGridView8.Size = new System.Drawing.Size(520, 218);
+            this.dataGridView8.TabIndex = 18;
+            // 
+            // dataGridView7
+            // 
+            this.dataGridView7.AllowUserToAddRows = false;
+            this.dataGridView7.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView7.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView7.Location = new System.Drawing.Point(6, 8);
+            this.dataGridView7.Name = "dataGridView7";
+            this.dataGridView7.Size = new System.Drawing.Size(520, 226);
+            this.dataGridView7.TabIndex = 3;
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.Controls.Add(this.comboBox16);
+            this.groupBox15.Controls.Add(this.label35);
+            this.groupBox15.Controls.Add(this.label36);
+            this.groupBox15.Controls.Add(this.label37);
+            this.groupBox15.Controls.Add(this.textBox2);
+            this.groupBox15.Controls.Add(this.button20);
+            this.groupBox15.Location = new System.Drawing.Point(268, 240);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(258, 129);
+            this.groupBox15.TabIndex = 17;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Add an item";
+            // 
+            // comboBox16
+            // 
+            this.comboBox16.FormattingEnabled = true;
+            this.comboBox16.Location = new System.Drawing.Point(108, 28);
+            this.comboBox16.Name = "comboBox16";
+            this.comboBox16.Size = new System.Drawing.Size(114, 21);
+            this.comboBox16.TabIndex = 15;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(21, 106);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(39, 13);
+            this.label35.TabIndex = 7;
+            this.label35.Text = "Output";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(56, 66);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(46, 13);
+            this.label36.TabIndex = 6;
+            this.label36.Text = "Quantity";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(70, 31);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(32, 13);
+            this.label37.TabIndex = 5;
+            this.label37.Text = "Code";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(108, 63);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(114, 20);
+            this.textBox2.TabIndex = 3;
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(127, 98);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(95, 21);
+            this.button20.TabIndex = 0;
+            this.button20.Text = "Add";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.comboBox14);
+            this.groupBox14.Controls.Add(this.label31);
+            this.groupBox14.Controls.Add(this.label33);
+            this.groupBox14.Controls.Add(this.button19);
+            this.groupBox14.Location = new System.Drawing.Point(6, 240);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(256, 129);
+            this.groupBox14.TabIndex = 4;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Show an order";
+            // 
+            // comboBox14
+            // 
+            this.comboBox14.FormattingEnabled = true;
+            this.comboBox14.Location = new System.Drawing.Point(113, 45);
+            this.comboBox14.Name = "comboBox14";
+            this.comboBox14.Size = new System.Drawing.Size(114, 21);
+            this.comboBox14.TabIndex = 15;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(21, 106);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(39, 13);
+            this.label31.TabIndex = 7;
+            this.label31.Text = "Output";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(75, 48);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(32, 13);
+            this.label33.TabIndex = 5;
+            this.label33.Text = "Code";
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(132, 82);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(95, 21);
+            this.button19.TabIndex = 0;
+            this.button19.Text = "Modify";
+            this.button19.UseVisualStyleBackColor = true;
             // 
             // groupBox13
             // 
+            this.groupBox13.Controls.Add(this.label34);
             this.groupBox13.Controls.Add(this.button18);
             this.groupBox13.Controls.Add(this.dataGridView5);
             this.groupBox13.Location = new System.Drawing.Point(532, 303);
@@ -1128,6 +1283,7 @@ namespace ShopInterface
             // 
             // groupBox12
             // 
+            this.groupBox12.Controls.Add(this.label32);
             this.groupBox12.Controls.Add(this.button17);
             this.groupBox12.Controls.Add(this.dataGridView6);
             this.groupBox12.Location = new System.Drawing.Point(532, 8);
@@ -1157,6 +1313,24 @@ namespace ShopInterface
             this.dataGridView6.Size = new System.Drawing.Size(421, 203);
             this.dataGridView6.TabIndex = 1;
             // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(51, 248);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(61, 13);
+            this.label32.TabIndex = 8;
+            this.label32.Text = "Amount: 0€";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(51, 252);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(61, 13);
+            this.label34.TabIndex = 9;
+            this.label34.Text = "Amount: 0€";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1164,7 +1338,7 @@ namespace ShopInterface
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(981, 626);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
@@ -1201,9 +1375,17 @@ namespace ShopInterface
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox15.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();
             this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             this.ResumeLayout(false);
 
@@ -1297,5 +1479,27 @@ namespace ShopInterface
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.DataGridView dataGridView5;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.DataGridView dataGridView8;
+        private System.Windows.Forms.DataGridView dataGridView7;
+        private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.ComboBox comboBox16;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.ComboBox comboBox14;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label34;
     }
 }
