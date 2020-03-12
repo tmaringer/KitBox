@@ -49,6 +49,7 @@ namespace kitbox_user_interface_V1
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -208,12 +209,24 @@ namespace kitbox_user_interface_V1
             this.comboBox6.TabIndex = 23;
             this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(130)))), ((int)(((byte)(130)))));
+            this.button3.Location = new System.Drawing.Point(9, 452);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(251, 34);
+            this.button3.TabIndex = 24;
+            this.button3.Text = "valider l\'armoire";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(600, 466);
+            this.ClientSize = new System.Drawing.Size(600, 510);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.comboBox6);
             this.Controls.Add(this.comboBox5);
             this.Controls.Add(this.comboBox4);
@@ -253,6 +266,7 @@ namespace kitbox_user_interface_V1
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox5;
         private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.Button button3;
     }
 }
 

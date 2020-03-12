@@ -107,6 +107,7 @@ namespace kitbox_user_interface_V1
                 //les éléments de combobox6 et supprimer ceux plus grand que 52
                 //sinon l'extension n'est pas privilégiée
             }
+            button1.Enabled = false;
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
@@ -127,6 +128,18 @@ namespace kitbox_user_interface_V1
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            conn.Open();
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "hauteur", "Ref = \"Panneau GD\"");
+            conn.Close();
+            comboBox6.Items.Clear();
+            comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
+            button1.Enabled = true;
         }
     }
 }
