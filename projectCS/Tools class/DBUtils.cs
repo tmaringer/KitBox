@@ -326,6 +326,14 @@ namespace projectCS
             }
             return value;
         }
+        public static void DeleteRowVD(string database, string Cond)
+        {
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            MySqlCommand cmd = new MySqlCommand("DELETE from " + database + " where " + Cond, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
         public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> Columns, List<string> Types, List<string> Elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
         {
             label7.RightToLeft = RightToLeft.Yes;
