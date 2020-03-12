@@ -132,6 +132,7 @@ namespace kitbox_user_interface_V1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //refresh combobox height
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
@@ -139,7 +140,28 @@ namespace kitbox_user_interface_V1
             conn.Close();
             comboBox6.Items.Clear();
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
+            //allow to create new cupboard
             button1.Enabled = true;
+        }
+
+        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox10_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
