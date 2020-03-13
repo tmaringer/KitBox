@@ -8,10 +8,18 @@ namespace projectCS
     {
         private static readonly int _lockerMaxAvailable = 7;
 
-        private int _lockerAvailable;
         public int lockerAvailable
         {
-            get => _lockerAvailable;
+            get
+            {
+                int currentAvailableLockers = _lockerMaxAvailable;
+                foreach (ICupboardComponents component in _cupboardComponentsList)
+                {
+                    if (component is Locker)
+                        currentAvailableLockers--;
+                }
+                return currentAvailableLockers;
+            }
         }
 
         private List<ICupboardComponents> _cupboardComponentsList;
@@ -44,10 +52,13 @@ namespace projectCS
             get => _colorAngleBracket;
         }
 
-        // todo : voir test
+
+        public Cupboard() : this(0, 0, 5, Color.black)
+        {
+        }
+            
         public Cupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
         {
-            _lockerAvailable = _lockerMaxAvailable;
             _cupboardComponentsList = new List<ICupboardComponents>();
             _width = width;
             _depth = depth;
@@ -86,11 +97,9 @@ namespace projectCS
         {
             // the first part of "or" boolean expression check if when a locker is pass in parameter, there is enough locker available
             // the second part check if the angle bracket is in list, if not the function "locationOfAngleInList()" return -1
-            if (((_lockerAvailable > 0) && (component is Locker)) || ((component is AngleBracket) && (locationOfAngleInList() == -1)))
+            if (((lockerAvailable > 0) && (component is Locker)) || ((component is AngleBracket) && (locationOfAngleInList() == -1)))
             {
                 _cupboardComponentsList.Add(component);
-                if (component is Locker)
-                    _lockerAvailable -= 1;
             }
         }
 
@@ -116,12 +125,7 @@ namespace projectCS
         /// </param>
         public void removeCupboardComponent(ICupboardComponents component)
         {
-            if ((_cupboardComponentsList.Count > 0))//&& (_lockerAvailable <= _lockerMaxAvailable))
-            {
-                _cupboardComponentsList.Remove(component);
-                if (component is Locker)
-                    _lockerAvailable += 1;
-            }
+            _cupboardComponentsList.Remove(component);
         }
 
         /// <summary>

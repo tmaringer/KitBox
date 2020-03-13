@@ -28,6 +28,6 @@ namespace projectCS
             _shoppingCart.buildCupboard(width, depth, boxNumber, colorAngleBracket);
         }
 
-
+        
     }
 }

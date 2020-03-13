@@ -240,12 +240,13 @@ namespace UnitTest
             cupboard1.removeCupboardComponent(locker1);
             Assert.AreEqual(6, cupboard1.lockerAvailable);
 
-            cupboard1.removeCupboardComponent(locker1);
+            cupboard1.removeCupboardComponent(locker2);
             Assert.AreEqual(7, cupboard1.lockerAvailable);
 
             cupboard1.removeCupboardComponent(locker1);
             cupboard1.removeCupboardComponent(locker1);
             cupboard1.removeCupboardComponent(locker1);
+            Assert.AreEqual(7, cupboard1.lockerAvailable);
         }
 
         [TestMethod]

@@ -27,8 +27,6 @@ A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\MySql.Data.xml
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\Renci.SshNet.xml
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.csproj.CopyComplete
-A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\projectCS.exe.CodeAnalysisLog.xml
-A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\bin\Debug\projectCS.exe.lastcodeanalysissucceeded
 A:\3)_Bibliotheque\Documents\Ecam\Anne3\Q2\software ingenering\KitBox\projectCS\obj\Debug\projectCS.csprojAssemblyReference.cache
 C:\Users\natha\KitBox\projectCS\bin\Debug\projectCS.exe.config
 C:\Users\natha\KitBox\projectCS\bin\Debug\projectCS.exe
