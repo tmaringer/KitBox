@@ -2,8 +2,3 @@ language: csharp
 solution: "./projectCS/projectCS.sln"
 os:
   - windows
-install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./projectCS/projectCS.sln
-script:
-- msbuild /p:Configuration=Release projetCS.sln
-- mono ./UnitTest/NUnit.ConsoleRunner.3.9.0/tools/nunit3-console.exe ./UnitTest/bin/Release/UnitTest.dll
