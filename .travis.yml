@@ -1,2 +1,6 @@
 language: csharp
-solution: /projectCS/projectCS.sln
+solution: "./projectCS/projectCS.sln"
+install:
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./projectCS/projectCS.sln
+script:
+- xbuild ./projectCS/projectCS.sln
