@@ -2,3 +2,5 @@ language: csharp
 solution: "./projectCS/projectCS.sln"
 os:
   - windows
+mono:
+  - none
