@@ -1,2 +1,2 @@
 language: csharp
-solution: projectCS.sln
+solution: /projectCS/projectCS.sln
