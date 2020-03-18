@@ -339,6 +339,8 @@ namespace projectCS
             label7.RightToLeft = RightToLeft.Yes;
             if (x == 1)
             {
+                int size = dataGridView1.Columns.Count;
+                progressBar1.Maximum = (size * 10)+10;
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     Columns.Add(col.Name.ToString());

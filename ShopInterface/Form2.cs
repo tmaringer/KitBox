@@ -603,5 +603,6 @@ namespace ShopInterface
             AddToPendingSuppliers(comboBox16.SelectedItem.ToString(), textBox2.Text);
             UpdateSuppliers();
         }
+
     }
 }
