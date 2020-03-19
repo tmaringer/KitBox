@@ -215,6 +215,9 @@ namespace ShopInterface
             else if (tabControl1.SelectedTab.Text == @"Stock management")
             {
                 UpdateStock();
+                foreach (var day in _columnDay)
+                    comboBox2.Items.Add(day);
+
             }
             else if (tabControl1.SelectedTab.Text == @"Suppliers orders")
             {
