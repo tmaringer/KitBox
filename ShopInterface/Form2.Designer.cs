@@ -269,7 +269,7 @@ namespace ShopInterface
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.LemonChiffon;
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             this.tabPage4.Controls.Add(this.progressBar2);
             this.tabPage4.Controls.Add(this.button16);
             this.tabPage4.Controls.Add(this.groupBox5);
@@ -281,7 +281,6 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
-            this.tabPage4.BackColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // progressBar2
             // 
@@ -375,6 +374,7 @@ namespace ShopInterface
             // 
             // chart1
             // 
+            this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.Transparent;
@@ -394,7 +394,6 @@ namespace ShopInterface
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
             this.chart1.Visible = false;
-            this.chart1.BackColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // label11
             // 
@@ -451,7 +450,7 @@ namespace ShopInterface
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToResizeColumns = false;
             this.dataGridView4.AllowUserToResizeRows = false;
-            this.dataGridView4.BackgroundColor = System.Drawing.Color.LemonChiffon;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             this.dataGridView4.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(8, 363);
@@ -459,11 +458,10 @@ namespace ShopInterface
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(460, 230);
             this.dataGridView4.TabIndex = 2;
-            this.dataGridView4.BackgroundColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Azure;
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.tabPage3.Controls.Add(this.groupBox11);
             this.tabPage3.Controls.Add(this.button14);
             this.tabPage3.Controls.Add(this.groupBox10);
@@ -479,7 +477,6 @@ namespace ShopInterface
             this.tabPage3.Size = new System.Drawing.Size(972, 599);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Orders management";
-            this.tabPage3.BackColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // groupBox11
             // 
@@ -791,7 +788,7 @@ namespace ShopInterface
             this.dataGridView3.AllowUserToResizeColumns = false;
             this.dataGridView3.AllowUserToResizeRows = false;
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.BackgroundColor = System.Drawing.Color.Azure;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(6, 303);
@@ -799,7 +796,6 @@ namespace ShopInterface
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(543, 290);
             this.dataGridView3.TabIndex = 3;
-            this.dataGridView3.BackgroundColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // dataGridView2
             // 
@@ -807,7 +803,7 @@ namespace ShopInterface
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.Azure;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(6, 6);
@@ -815,11 +811,10 @@ namespace ShopInterface
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(543, 206);
             this.dataGridView2.TabIndex = 2;
-            this.dataGridView2.BackgroundColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Bisque;
+            this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -831,7 +826,6 @@ namespace ShopInterface
             this.tabPage1.Size = new System.Drawing.Size(972, 599);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Database management";
-            this.tabPage1.BackColor = ColorTranslator.FromHtml("#e74c3c");
             // 
             // groupBox3
             // 
@@ -1122,7 +1116,7 @@ namespace ShopInterface
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
@@ -1130,7 +1124,6 @@ namespace ShopInterface
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(680, 587);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.BackgroundColor = ColorTranslator.FromHtml("#e74c3c");
             // 
             // tabControl1
             // 
@@ -1152,7 +1145,7 @@ namespace ShopInterface
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.label28);
             this.tabPage2.Controls.Add(this.label13);
@@ -1162,7 +1155,6 @@ namespace ShopInterface
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Welcome page";
             this.tabPage2.ToolTipText = "ninja";
-            this.tabPage2.BackColor = ColorTranslator.FromHtml("#3498db");
             // 
             // label27
             // 
@@ -1198,6 +1190,7 @@ namespace ShopInterface
             // 
             // tabPage7
             // 
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.tabPage7.Controls.Add(this.dataGridView12);
             this.tabPage7.Controls.Add(this.groupBox23);
             this.tabPage7.Controls.Add(this.dataGridView11);
@@ -1211,23 +1204,20 @@ namespace ShopInterface
             this.tabPage7.Size = new System.Drawing.Size(972, 599);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Order visualisation";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            this.tabPage7.BackColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // dataGridView12
             // 
             this.dataGridView12.AllowUserToAddRows = false;
             this.dataGridView12.AllowUserToResizeColumns = false;
             this.dataGridView12.AllowUserToResizeRows = false;
-            this.dataGridView12.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView12.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView12.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView12.Location = new System.Drawing.Point(479, 195);
+            this.dataGridView12.Location = new System.Drawing.Point(477, 195);
             this.dataGridView12.Name = "dataGridView12";
             this.dataGridView12.ReadOnly = true;
-            this.dataGridView12.Size = new System.Drawing.Size(486, 381);
+            this.dataGridView12.Size = new System.Drawing.Size(489, 398);
             this.dataGridView12.TabIndex = 28;
-            this.dataGridView12.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // groupBox23
             // 
@@ -1245,9 +1235,9 @@ namespace ShopInterface
             this.groupBox23.Controls.Add(this.label61);
             this.groupBox23.Controls.Add(this.label62);
             this.groupBox23.Controls.Add(this.button28);
-            this.groupBox23.Location = new System.Drawing.Point(8, 393);
+            this.groupBox23.Location = new System.Drawing.Point(6, 396);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(465, 183);
+            this.groupBox23.Size = new System.Drawing.Size(465, 197);
             this.groupBox23.TabIndex = 27;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Modify an element";
@@ -1377,16 +1367,15 @@ namespace ShopInterface
             this.dataGridView11.AllowUserToAddRows = false;
             this.dataGridView11.AllowUserToResizeColumns = false;
             this.dataGridView11.AllowUserToResizeRows = false;
-            this.dataGridView11.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView11.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView11.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView11.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView11.Location = new System.Drawing.Point(8, 195);
+            this.dataGridView11.Location = new System.Drawing.Point(6, 198);
             this.dataGridView11.Name = "dataGridView11";
             this.dataGridView11.ReadOnly = true;
-            this.dataGridView11.Size = new System.Drawing.Size(248, 183);
+            this.dataGridView11.Size = new System.Drawing.Size(248, 192);
             this.dataGridView11.TabIndex = 26;
             this.dataGridView11.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView11_CellClick);
-            this.dataGridView11.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // groupBox20
             // 
@@ -1398,7 +1387,7 @@ namespace ShopInterface
             this.groupBox20.Controls.Add(this.label57);
             this.groupBox20.Controls.Add(this.label58);
             this.groupBox20.Controls.Add(this.button25);
-            this.groupBox20.Location = new System.Drawing.Point(262, 195);
+            this.groupBox20.Location = new System.Drawing.Point(260, 198);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Size = new System.Drawing.Size(211, 192);
             this.groupBox20.TabIndex = 25;
@@ -1486,7 +1475,7 @@ namespace ShopInterface
             this.groupBox22.Controls.Add(this.label53);
             this.groupBox22.Controls.Add(this.label54);
             this.groupBox22.Controls.Add(this.button27);
-            this.groupBox22.Location = new System.Drawing.Point(425, 8);
+            this.groupBox22.Location = new System.Drawing.Point(425, 6);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Size = new System.Drawing.Size(267, 183);
             this.groupBox22.TabIndex = 24;
@@ -1575,7 +1564,7 @@ namespace ShopInterface
             this.groupBox21.Controls.Add(this.label51);
             this.groupBox21.Controls.Add(this.label52);
             this.groupBox21.Controls.Add(this.button26);
-            this.groupBox21.Location = new System.Drawing.Point(698, 8);
+            this.groupBox21.Location = new System.Drawing.Point(699, 6);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(267, 183);
             this.groupBox21.TabIndex = 21;
@@ -1642,20 +1631,19 @@ namespace ShopInterface
             this.dataGridView6.AllowUserToResizeColumns = false;
             this.dataGridView6.AllowUserToResizeRows = false;
             this.dataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView6.BackgroundColor = System.Drawing.Color.Aquamarine;
+            this.dataGridView6.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView6.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(6, 3);
+            this.dataGridView6.Location = new System.Drawing.Point(6, 6);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
             this.dataGridView6.Size = new System.Drawing.Size(413, 186);
             this.dataGridView6.TabIndex = 20;
             this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
-            this.dataGridView6.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // tabPage5
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.Lavender;
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.tabPage5.Controls.Add(this.dataGridView8);
             this.tabPage5.Controls.Add(this.dataGridView7);
             this.tabPage5.Controls.Add(this.groupBox15);
@@ -1668,31 +1656,28 @@ namespace ShopInterface
             this.tabPage5.Size = new System.Drawing.Size(972, 599);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Suppliers orders";
-            this.tabPage5.BackColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView8
             // 
             this.dataGridView8.AllowUserToAddRows = false;
             this.dataGridView8.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView8.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView8.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView8.Location = new System.Drawing.Point(6, 375);
             this.dataGridView8.Name = "dataGridView8";
             this.dataGridView8.Size = new System.Drawing.Size(520, 218);
             this.dataGridView8.TabIndex = 18;
-            this.dataGridView8.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView7
             // 
             this.dataGridView7.AllowUserToAddRows = false;
             this.dataGridView7.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView7.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView7.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView7.Location = new System.Drawing.Point(6, 8);
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.Size = new System.Drawing.Size(520, 226);
             this.dataGridView7.TabIndex = 3;
-            this.dataGridView7.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox15
             // 
@@ -1843,13 +1828,12 @@ namespace ShopInterface
             // 
             this.dataGridView5.AllowUserToAddRows = false;
             this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView5.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(6, 19);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(421, 406);
             this.dataGridView5.TabIndex = 0;
-            this.dataGridView5.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox12
             // 
@@ -1881,6 +1865,7 @@ namespace ShopInterface
             // 
             // tabPage6
             // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.tabPage6.Controls.Add(this.groupBox19);
             this.tabPage6.Controls.Add(this.groupBox18);
             this.tabPage6.Controls.Add(this.groupBox17);
@@ -1893,15 +1878,13 @@ namespace ShopInterface
             this.tabPage6.Size = new System.Drawing.Size(972, 599);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Suppliers update";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.BackColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox19
             // 
             this.groupBox19.Controls.Add(this.progressBar3);
             this.groupBox19.Controls.Add(this.label47);
             this.groupBox19.Controls.Add(this.button24);
-            this.groupBox19.Location = new System.Drawing.Point(708, 143);
+            this.groupBox19.Location = new System.Drawing.Point(708, 141);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Size = new System.Drawing.Size(258, 99);
             this.groupBox19.TabIndex = 21;
@@ -1951,7 +1934,7 @@ namespace ShopInterface
             this.groupBox18.Controls.Add(this.label46);
             this.groupBox18.Controls.Add(this.textBox6);
             this.groupBox18.Controls.Add(this.button23);
-            this.groupBox18.Location = new System.Drawing.Point(433, 143);
+            this.groupBox18.Location = new System.Drawing.Point(444, 143);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(258, 177);
             this.groupBox18.TabIndex = 20;
@@ -2041,7 +2024,7 @@ namespace ShopInterface
             this.groupBox17.Controls.Add(this.label38);
             this.groupBox17.Controls.Add(this.label43);
             this.groupBox17.Controls.Add(this.button22);
-            this.groupBox17.Location = new System.Drawing.Point(711, 8);
+            this.groupBox17.Location = new System.Drawing.Point(708, 6);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(258, 129);
             this.groupBox17.TabIndex = 19;
@@ -2091,7 +2074,7 @@ namespace ShopInterface
             this.groupBox16.Controls.Add(this.label41);
             this.groupBox16.Controls.Add(this.textBox1);
             this.groupBox16.Controls.Add(this.button21);
-            this.groupBox16.Location = new System.Drawing.Point(433, 8);
+            this.groupBox16.Location = new System.Drawing.Point(444, 6);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(258, 129);
             this.groupBox16.TabIndex = 18;
@@ -2154,21 +2137,20 @@ namespace ShopInterface
             this.dataGridView10.AllowUserToAddRows = false;
             this.dataGridView10.AllowUserToResizeColumns = false;
             this.dataGridView10.AllowUserToResizeRows = false;
-            this.dataGridView10.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView10.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView10.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView10.Location = new System.Drawing.Point(6, 6);
             this.dataGridView10.Name = "dataGridView10";
             this.dataGridView10.ReadOnly = true;
-            this.dataGridView10.Size = new System.Drawing.Size(421, 587);
+            this.dataGridView10.Size = new System.Drawing.Size(432, 587);
             this.dataGridView10.TabIndex = 16;
-            this.dataGridView10.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView9
             // 
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.dataGridView9.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView9.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dataGridView9.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView9.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -2178,14 +2160,13 @@ namespace ShopInterface
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView9.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView9.Location = new System.Drawing.Point(433, 326);
+            this.dataGridView9.Location = new System.Drawing.Point(444, 326);
             this.dataGridView9.Name = "dataGridView9";
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             this.dataGridView9.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView9.Size = new System.Drawing.Size(533, 267);
+            this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
-            this.dataGridView9.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // Form2
             // 
