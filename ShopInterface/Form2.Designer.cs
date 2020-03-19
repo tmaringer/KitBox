@@ -126,19 +126,33 @@ namespace ShopInterface
             this.label28 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.dataGridView11 = new System.Windows.Forms.DataGridView();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.comboBox25 = new System.Windows.Forms.ComboBox();
+            this.comboBox26 = new System.Windows.Forms.ComboBox();
+            this.comboBox27 = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.button25 = new System.Windows.Forms.Button();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.comboBox24 = new System.Windows.Forms.ComboBox();
+            this.comboBox23 = new System.Windows.Forms.ComboBox();
+            this.comboBox20 = new System.Windows.Forms.ComboBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.button27 = new System.Windows.Forms.Button();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.comboBox21 = new System.Windows.Forms.ComboBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.comboBox22 = new System.Windows.Forms.ComboBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.button26 = new System.Windows.Forms.Button();
             this.dataGridView6 = new System.Windows.Forms.DataGridView();
-            this.groupBox20 = new System.Windows.Forms.GroupBox();
-            this.comboBox21 = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label49 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button25 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
@@ -191,15 +205,21 @@ namespace ShopInterface
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
-            this.comboBox23 = new System.Windows.Forms.ComboBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.label60 = new System.Windows.Forms.Label();
+            this.comboBox28 = new System.Windows.Forms.ComboBox();
+            this.comboBox29 = new System.Windows.Forms.ComboBox();
+            this.comboBox30 = new System.Windows.Forms.ComboBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
             this.button28 = new System.Windows.Forms.Button();
-            this.groupBox22 = new System.Windows.Forms.GroupBox();
-            this.comboBox20 = new System.Windows.Forms.ComboBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.button27 = new System.Windows.Forms.Button();
+            this.dataGridView12 = new System.Windows.Forms.DataGridView();
+            this.comboBox31 = new System.Windows.Forms.ComboBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.comboBox32 = new System.Windows.Forms.ComboBox();
+            this.label65 = new System.Windows.Forms.Label();
+            this.comboBox33 = new System.Windows.Forms.ComboBox();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -222,9 +242,11 @@ namespace ShopInterface
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).BeginInit();
+            this.groupBox20.SuspendLayout();
+            this.groupBox22.SuspendLayout();
             this.groupBox21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
-            this.groupBox20.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
@@ -241,7 +263,7 @@ namespace ShopInterface
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
             this.groupBox23.SuspendLayout();
-            this.groupBox22.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -1168,11 +1190,13 @@ namespace ShopInterface
             // 
             // tabPage7
             // 
-            this.tabPage7.Controls.Add(this.groupBox22);
+            this.tabPage7.Controls.Add(this.dataGridView12);
             this.tabPage7.Controls.Add(this.groupBox23);
+            this.tabPage7.Controls.Add(this.dataGridView11);
+            this.tabPage7.Controls.Add(this.groupBox20);
+            this.tabPage7.Controls.Add(this.groupBox22);
             this.tabPage7.Controls.Add(this.groupBox21);
             this.tabPage7.Controls.Add(this.dataGridView6);
-            this.tabPage7.Controls.Add(this.groupBox20);
             this.tabPage7.Location = new System.Drawing.Point(4, 4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
@@ -1181,18 +1205,223 @@ namespace ShopInterface
             this.tabPage7.Text = "Order visualisation";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
+            // dataGridView11
+            // 
+            this.dataGridView11.AllowUserToAddRows = false;
+            this.dataGridView11.AllowUserToResizeColumns = false;
+            this.dataGridView11.AllowUserToResizeRows = false;
+            this.dataGridView11.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView11.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dataGridView11.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView11.Location = new System.Drawing.Point(8, 195);
+            this.dataGridView11.Name = "dataGridView11";
+            this.dataGridView11.ReadOnly = true;
+            this.dataGridView11.Size = new System.Drawing.Size(678, 183);
+            this.dataGridView11.TabIndex = 26;
+            // 
+            // groupBox20
+            // 
+            this.groupBox20.Controls.Add(this.label55);
+            this.groupBox20.Controls.Add(this.label56);
+            this.groupBox20.Controls.Add(this.comboBox25);
+            this.groupBox20.Controls.Add(this.comboBox26);
+            this.groupBox20.Controls.Add(this.comboBox27);
+            this.groupBox20.Controls.Add(this.label57);
+            this.groupBox20.Controls.Add(this.label58);
+            this.groupBox20.Controls.Add(this.button25);
+            this.groupBox20.Location = new System.Drawing.Point(698, 195);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(267, 192);
+            this.groupBox20.TabIndex = 25;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Modify a box";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(91, 108);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(38, 13);
+            this.label55.TabIndex = 19;
+            this.label55.Text = "Height";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(83, 68);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(34, 13);
+            this.label56.TabIndex = 18;
+            this.label56.Text = "BoxId";
+            // 
+            // comboBox25
+            // 
+            this.comboBox25.FormattingEnabled = true;
+            this.comboBox25.Location = new System.Drawing.Point(131, 105);
+            this.comboBox25.Name = "comboBox25";
+            this.comboBox25.Size = new System.Drawing.Size(114, 21);
+            this.comboBox25.TabIndex = 17;
+            // 
+            // comboBox26
+            // 
+            this.comboBox26.FormattingEnabled = true;
+            this.comboBox26.Location = new System.Drawing.Point(131, 65);
+            this.comboBox26.Name = "comboBox26";
+            this.comboBox26.Size = new System.Drawing.Size(114, 21);
+            this.comboBox26.TabIndex = 16;
+            // 
+            // comboBox27
+            // 
+            this.comboBox27.FormattingEnabled = true;
+            this.comboBox27.Location = new System.Drawing.Point(131, 28);
+            this.comboBox27.Name = "comboBox27";
+            this.comboBox27.Size = new System.Drawing.Size(114, 21);
+            this.comboBox27.TabIndex = 15;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(35, 152);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(39, 13);
+            this.label57.TabIndex = 7;
+            this.label57.Text = "Output";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Location = new System.Drawing.Point(63, 31);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(62, 13);
+            this.label58.TabIndex = 5;
+            this.label58.Text = "CupboardId";
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(150, 148);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(95, 21);
+            this.button25.TabIndex = 0;
+            this.button25.Text = "Modify";
+            this.button25.UseVisualStyleBackColor = true;
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.label49);
+            this.groupBox22.Controls.Add(this.label48);
+            this.groupBox22.Controls.Add(this.comboBox24);
+            this.groupBox22.Controls.Add(this.comboBox23);
+            this.groupBox22.Controls.Add(this.comboBox20);
+            this.groupBox22.Controls.Add(this.label53);
+            this.groupBox22.Controls.Add(this.label54);
+            this.groupBox22.Controls.Add(this.button27);
+            this.groupBox22.Location = new System.Drawing.Point(698, 6);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Size = new System.Drawing.Size(267, 183);
+            this.groupBox22.TabIndex = 24;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "Modify a cupboard";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(91, 108);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(34, 13);
+            this.label49.TabIndex = 19;
+            this.label49.Text = "Value";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(83, 68);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(42, 13);
+            this.label48.TabIndex = 18;
+            this.label48.Text = "Column";
+            // 
+            // comboBox24
+            // 
+            this.comboBox24.FormattingEnabled = true;
+            this.comboBox24.Location = new System.Drawing.Point(131, 105);
+            this.comboBox24.Name = "comboBox24";
+            this.comboBox24.Size = new System.Drawing.Size(114, 21);
+            this.comboBox24.TabIndex = 17;
+            // 
+            // comboBox23
+            // 
+            this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Location = new System.Drawing.Point(131, 65);
+            this.comboBox23.Name = "comboBox23";
+            this.comboBox23.Size = new System.Drawing.Size(114, 21);
+            this.comboBox23.TabIndex = 16;
+            // 
+            // comboBox20
+            // 
+            this.comboBox20.FormattingEnabled = true;
+            this.comboBox20.Location = new System.Drawing.Point(131, 23);
+            this.comboBox20.Name = "comboBox20";
+            this.comboBox20.Size = new System.Drawing.Size(114, 21);
+            this.comboBox20.TabIndex = 15;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(35, 149);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(39, 13);
+            this.label53.TabIndex = 7;
+            this.label53.Text = "Output";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(63, 31);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(62, 13);
+            this.label54.TabIndex = 5;
+            this.label54.Text = "CupboardId";
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(150, 145);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(95, 21);
+            this.button27.TabIndex = 0;
+            this.button27.Text = "Modify";
+            this.button27.UseVisualStyleBackColor = true;
+            // 
             // groupBox21
             // 
+            this.groupBox21.Controls.Add(this.comboBox21);
+            this.groupBox21.Controls.Add(this.label32);
             this.groupBox21.Controls.Add(this.comboBox22);
             this.groupBox21.Controls.Add(this.label51);
             this.groupBox21.Controls.Add(this.label52);
             this.groupBox21.Controls.Add(this.button26);
-            this.groupBox21.Location = new System.Drawing.Point(702, 3);
+            this.groupBox21.Location = new System.Drawing.Point(425, 14);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(267, 79);
+            this.groupBox21.Size = new System.Drawing.Size(267, 175);
             this.groupBox21.TabIndex = 21;
             this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Find orders";
+            this.groupBox21.Text = "Find order";
+            // 
+            // comboBox21
+            // 
+            this.comboBox21.FormattingEnabled = true;
+            this.comboBox21.Location = new System.Drawing.Point(131, 56);
+            this.comboBox21.Name = "comboBox21";
+            this.comboBox21.Size = new System.Drawing.Size(114, 21);
+            this.comboBox21.TabIndex = 16;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(83, 59);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(42, 13);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "OrderId";
             // 
             // comboBox22
             // 
@@ -1205,7 +1434,7 @@ namespace ShopInterface
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(35, 22);
+            this.label51.Location = new System.Drawing.Point(35, 21);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(90, 13);
             this.label51.TabIndex = 8;
@@ -1214,7 +1443,7 @@ namespace ShopInterface
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(21, 56);
+            this.label52.Location = new System.Drawing.Point(30, 141);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(39, 13);
             this.label52.TabIndex = 8;
@@ -1222,7 +1451,7 @@ namespace ShopInterface
             // 
             // button26
             // 
-            this.button26.Location = new System.Drawing.Point(150, 48);
+            this.button26.Location = new System.Drawing.Point(150, 141);
             this.button26.Name = "button26";
             this.button26.Size = new System.Drawing.Size(95, 21);
             this.button26.TabIndex = 0;
@@ -1237,77 +1466,11 @@ namespace ShopInterface
             this.dataGridView6.BackgroundColor = System.Drawing.Color.Bisque;
             this.dataGridView6.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView6.Location = new System.Drawing.Point(6, 3);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
-            this.dataGridView6.Size = new System.Drawing.Size(678, 584);
+            this.dataGridView6.Size = new System.Drawing.Size(413, 186);
             this.dataGridView6.TabIndex = 20;
-            // 
-            // groupBox20
-            // 
-            this.groupBox20.Controls.Add(this.comboBox21);
-            this.groupBox20.Controls.Add(this.label32);
-            this.groupBox20.Controls.Add(this.label48);
-            this.groupBox20.Controls.Add(this.label49);
-            this.groupBox20.Controls.Add(this.textBox5);
-            this.groupBox20.Controls.Add(this.button25);
-            this.groupBox20.Location = new System.Drawing.Point(702, 88);
-            this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(267, 129);
-            this.groupBox20.TabIndex = 19;
-            this.groupBox20.TabStop = false;
-            this.groupBox20.Text = "Add an item";
-            // 
-            // comboBox21
-            // 
-            this.comboBox21.FormattingEnabled = true;
-            this.comboBox21.Location = new System.Drawing.Point(108, 28);
-            this.comboBox21.Name = "comboBox21";
-            this.comboBox21.Size = new System.Drawing.Size(114, 21);
-            this.comboBox21.TabIndex = 15;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(21, 106);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(39, 13);
-            this.label32.TabIndex = 7;
-            this.label32.Text = "Output";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(56, 66);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(46, 13);
-            this.label48.TabIndex = 6;
-            this.label48.Text = "Quantity";
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(70, 31);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(32, 13);
-            this.label49.TabIndex = 5;
-            this.label49.Text = "Code";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(108, 63);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(114, 20);
-            this.textBox5.TabIndex = 3;
-            // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(127, 98);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(95, 21);
-            this.button25.TabIndex = 0;
-            this.button25.Text = "Add";
-            this.button25.UseVisualStyleBackColor = true;
             // 
             // tabPage5
             // 
@@ -1838,99 +2001,160 @@ namespace ShopInterface
             // 
             // groupBox23
             // 
-            this.groupBox23.Controls.Add(this.comboBox23);
-            this.groupBox23.Controls.Add(this.label56);
-            this.groupBox23.Controls.Add(this.label58);
+            this.groupBox23.Controls.Add(this.comboBox33);
+            this.groupBox23.Controls.Add(this.label65);
+            this.groupBox23.Controls.Add(this.comboBox32);
+            this.groupBox23.Controls.Add(this.label64);
+            this.groupBox23.Controls.Add(this.label63);
+            this.groupBox23.Controls.Add(this.comboBox31);
+            this.groupBox23.Controls.Add(this.label59);
+            this.groupBox23.Controls.Add(this.label60);
+            this.groupBox23.Controls.Add(this.comboBox28);
+            this.groupBox23.Controls.Add(this.comboBox29);
+            this.groupBox23.Controls.Add(this.comboBox30);
+            this.groupBox23.Controls.Add(this.label61);
+            this.groupBox23.Controls.Add(this.label62);
             this.groupBox23.Controls.Add(this.button28);
-            this.groupBox23.Location = new System.Drawing.Point(702, 328);
+            this.groupBox23.Location = new System.Drawing.Point(500, 393);
             this.groupBox23.Name = "groupBox23";
-            this.groupBox23.Size = new System.Drawing.Size(267, 99);
-            this.groupBox23.TabIndex = 23;
+            this.groupBox23.Size = new System.Drawing.Size(465, 183);
+            this.groupBox23.TabIndex = 27;
             this.groupBox23.TabStop = false;
-            this.groupBox23.Text = "Delete an item";
+            this.groupBox23.Text = "Modify an element";
             // 
-            // comboBox23
+            // label59
             // 
-            this.comboBox23.FormattingEnabled = true;
-            this.comboBox23.Location = new System.Drawing.Point(108, 28);
-            this.comboBox23.Name = "comboBox23";
-            this.comboBox23.Size = new System.Drawing.Size(114, 21);
-            this.comboBox23.TabIndex = 15;
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(301, 102);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(31, 13);
+            this.label59.TabIndex = 19;
+            this.label59.Text = "Color";
             // 
-            // label56
+            // label60
             // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(21, 68);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(39, 13);
-            this.label56.TabIndex = 7;
-            this.label56.Text = "Output";
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(281, 65);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(54, 13);
+            this.label60.TabIndex = 18;
+            this.label60.Text = "ElementId";
             // 
-            // label58
+            // comboBox28
             // 
-            this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(70, 31);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(32, 13);
-            this.label58.TabIndex = 5;
-            this.label58.Text = "Code";
+            this.comboBox28.FormattingEnabled = true;
+            this.comboBox28.Location = new System.Drawing.Point(341, 99);
+            this.comboBox28.Name = "comboBox28";
+            this.comboBox28.Size = new System.Drawing.Size(114, 21);
+            this.comboBox28.TabIndex = 17;
+            // 
+            // comboBox29
+            // 
+            this.comboBox29.FormattingEnabled = true;
+            this.comboBox29.Location = new System.Drawing.Point(341, 65);
+            this.comboBox29.Name = "comboBox29";
+            this.comboBox29.Size = new System.Drawing.Size(114, 21);
+            this.comboBox29.TabIndex = 16;
+            // 
+            // comboBox30
+            // 
+            this.comboBox30.FormattingEnabled = true;
+            this.comboBox30.Location = new System.Drawing.Point(131, 28);
+            this.comboBox30.Name = "comboBox30";
+            this.comboBox30.Size = new System.Drawing.Size(114, 21);
+            this.comboBox30.TabIndex = 15;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(35, 149);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(39, 13);
+            this.label61.TabIndex = 7;
+            this.label61.Text = "Output";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(63, 31);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(62, 13);
+            this.label62.TabIndex = 5;
+            this.label62.Text = "CupboardId";
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(131, 64);
+            this.button28.Location = new System.Drawing.Point(360, 141);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(95, 21);
             this.button28.TabIndex = 0;
-            this.button28.Text = "Add";
+            this.button28.Text = "Modify";
             this.button28.UseVisualStyleBackColor = true;
             // 
-            // groupBox22
+            // dataGridView12
             // 
-            this.groupBox22.Controls.Add(this.comboBox20);
-            this.groupBox22.Controls.Add(this.label53);
-            this.groupBox22.Controls.Add(this.label54);
-            this.groupBox22.Controls.Add(this.button27);
-            this.groupBox22.Location = new System.Drawing.Point(702, 223);
-            this.groupBox22.Name = "groupBox22";
-            this.groupBox22.Size = new System.Drawing.Size(267, 99);
-            this.groupBox22.TabIndex = 24;
-            this.groupBox22.TabStop = false;
-            this.groupBox22.Text = "Modify an item";
+            this.dataGridView12.AllowUserToAddRows = false;
+            this.dataGridView12.AllowUserToResizeColumns = false;
+            this.dataGridView12.AllowUserToResizeRows = false;
+            this.dataGridView12.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView12.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView12.Location = new System.Drawing.Point(8, 397);
+            this.dataGridView12.Name = "dataGridView12";
+            this.dataGridView12.ReadOnly = true;
+            this.dataGridView12.Size = new System.Drawing.Size(486, 183);
+            this.dataGridView12.TabIndex = 28;
             // 
-            // comboBox20
+            // comboBox31
             // 
-            this.comboBox20.FormattingEnabled = true;
-            this.comboBox20.Location = new System.Drawing.Point(108, 28);
-            this.comboBox20.Name = "comboBox20";
-            this.comboBox20.Size = new System.Drawing.Size(114, 21);
-            this.comboBox20.TabIndex = 15;
+            this.comboBox31.FormattingEnabled = true;
+            this.comboBox31.Location = new System.Drawing.Point(341, 28);
+            this.comboBox31.Name = "comboBox31";
+            this.comboBox31.Size = new System.Drawing.Size(114, 21);
+            this.comboBox31.TabIndex = 20;
             // 
-            // label53
+            // label63
             // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(21, 68);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(39, 13);
-            this.label53.TabIndex = 7;
-            this.label53.Text = "Output";
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(301, 31);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(34, 13);
+            this.label63.TabIndex = 21;
+            this.label63.Text = "BoxId";
             // 
-            // label54
+            // label64
             // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(70, 31);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(32, 13);
-            this.label54.TabIndex = 5;
-            this.label54.Text = "Code";
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(35, 65);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(83, 13);
+            this.label64.TabIndex = 22;
+            this.label64.Text = "Type of element";
             // 
-            // button27
+            // comboBox32
             // 
-            this.button27.Location = new System.Drawing.Point(131, 64);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(95, 21);
-            this.button27.TabIndex = 0;
-            this.button27.Text = "Add";
-            this.button27.UseVisualStyleBackColor = true;
+            this.comboBox32.FormattingEnabled = true;
+            this.comboBox32.Location = new System.Drawing.Point(132, 62);
+            this.comboBox32.Name = "comboBox32";
+            this.comboBox32.Size = new System.Drawing.Size(114, 21);
+            this.comboBox32.TabIndex = 23;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(40, 99);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(85, 13);
+            this.label65.TabIndex = 24;
+            this.label65.Text = "Number of doors";
+            // 
+            // comboBox33
+            // 
+            this.comboBox33.FormattingEnabled = true;
+            this.comboBox33.Location = new System.Drawing.Point(131, 94);
+            this.comboBox33.Name = "comboBox33";
+            this.comboBox33.Size = new System.Drawing.Size(114, 21);
+            this.comboBox33.TabIndex = 25;
             // 
             // Form2
             // 
@@ -1977,11 +2201,14 @@ namespace ShopInterface
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView11)).EndInit();
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
+            this.groupBox22.ResumeLayout(false);
+            this.groupBox22.PerformLayout();
             this.groupBox21.ResumeLayout(false);
             this.groupBox21.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
-            this.groupBox20.ResumeLayout(false);
-            this.groupBox20.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
@@ -2006,8 +2233,7 @@ namespace ShopInterface
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).EndInit();
             this.groupBox23.ResumeLayout(false);
             this.groupBox23.PerformLayout();
-            this.groupBox22.ResumeLayout(false);
-            this.groupBox22.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView12)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2152,13 +2378,6 @@ namespace ShopInterface
         private System.Windows.Forms.ComboBox comboBox18;
         private System.Windows.Forms.TabPage tabPage7;
         public System.Windows.Forms.DataGridView dataGridView6;
-        private System.Windows.Forms.GroupBox groupBox20;
-        private System.Windows.Forms.ComboBox comboBox21;
-        private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button25;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.ComboBox comboBox22;
         private System.Windows.Forms.Label label51;
@@ -2169,10 +2388,37 @@ namespace ShopInterface
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.GroupBox groupBox23;
         private System.Windows.Forms.ComboBox comboBox23;
+        private System.Windows.Forms.ComboBox comboBox21;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.ComboBox comboBox24;
+        public System.Windows.Forms.DataGridView dataGridView11;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.ComboBox comboBox25;
+        private System.Windows.Forms.ComboBox comboBox26;
+        private System.Windows.Forms.ComboBox comboBox27;
+        private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Button button25;
+        public System.Windows.Forms.DataGridView dataGridView12;
+        private System.Windows.Forms.GroupBox groupBox23;
+        private System.Windows.Forms.ComboBox comboBox33;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.ComboBox comboBox32;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.ComboBox comboBox31;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.ComboBox comboBox28;
+        private System.Windows.Forms.ComboBox comboBox29;
+        private System.Windows.Forms.ComboBox comboBox30;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Button button28;
     }
 }
