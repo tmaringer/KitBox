@@ -26,25 +26,16 @@ namespace ShopInterface
         private void button1_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            if (textBox1.Text == "secretary")
+            var value = DBUtils.CheckAccess(textBox1, textBox2);
+            if (value == 0)
             {
-                var frm = new Form3();
+                var frm = new Form2(textBox1.Text);
                 frm.Show();
                 Hide();
             }
             else
             {
-                var value = DBUtils.CheckAccess(textBox1, textBox2);
-                if (value == 0)
-                {
-                    var frm = new Form2(textBox1.Text);
-                    frm.Show();
-                    Hide();
-                }
-                else
-                {
-                    label3.Visible = true;
-                }
+                label3.Visible = true;
             }
         }
 
