@@ -65,6 +65,30 @@ namespace ShopInterface
                         comboBox22.Items.Add(OrderId);
             }
         }
+
+        private void comboBox23_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            comboBox24.Items.Clear();
+            comboBox24.Text = "";
+            var senderComboBox = (ComboBox)sender;
+            if (senderComboBox.SelectionLength > 0)
+            {
+                List<string> orderList2 = new List<string>();
+                if (comboBox23.SelectedItem == "Width")
+                {
+                    orderList2 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
+
+                }
+                else if (comboBox23.SelectedItem == "Depth")
+                {
+                    orderList2 = DBUtils.RefListND("Profondeur", "kitbox where Ref = \"Panneau GD\"");
+
+                }
+                foreach (var OrderId in orderList2)
+                    comboBox24.Items.Add(OrderId);
+
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(),
@@ -211,6 +235,11 @@ namespace ShopInterface
                 orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
                 foreach (var OrderId in orderList1)
                     comboBox22.Items.Add(OrderId);
+                List<string> orderList3 = new List<string>();
+                orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
+                foreach (var OrderId in orderList3)
+                    comboBox24.Items.Add(OrderId);
+
             }
             else if (tabControl1.SelectedTab.Text == @"Stock management")
             {
@@ -359,28 +388,20 @@ namespace ShopInterface
             comboBox4.DataSource =
                 DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
-            comboBox4.Text = "";
             comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox6.DisplayMember = "OrderId";
-            comboBox6.Text = "";
             comboBox7.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"awaiting for removal\"");
             comboBox7.DisplayMember = "OrderId";
-            comboBox7.Text = "";
             comboBox8.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox8.DisplayMember = "OrderId";
-            comboBox8.Text = "";
             comboBox9.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"true\"");
             comboBox9.DisplayMember = "OrderId";
-            comboBox9.Text = "";
             comboBox10.DataSource = DBUtils.RefList("Code", "kitbox");
             comboBox10.DisplayMember = "Code";
-            comboBox10.Text = "";
             comboBox5.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox5.DisplayMember = "CustomerName";
-            comboBox5.Text = "";
             comboBox21.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox21.DisplayMember = "CustomerName";
-            comboBox21.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView2.Refresh();
             dataGridView2.Sort(dataGridView2.Columns["OrderId"], ListSortDirection.Descending);
@@ -629,6 +650,35 @@ namespace ShopInterface
         {
             AddToPendingSuppliers(comboBox16.SelectedItem.ToString(), textBox2.Text);
             UpdateSuppliers();
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            comboBox20.Items.Clear();
+            comboBox20.Text = "";
+            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+            foreach (DataGridViewRow row in dataGridView6.Rows)
+            {
+                comboBox20.Items.Add(row.Cells["CupboardId"].Value);
+            }
+            comboBox27.Items.Clear();
+            comboBox27.Text = "";
+            foreach (DataGridViewRow row in dataGridView6.Rows)
+            {
+                comboBox27.Items.Add(row.Cells["CupboardId"].Value);
+            }
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            if (comboBox23.SelectedItem == "Width")
+            {
+                DBUtils.UpdateDB(dataGridView6, "cupboards", "Largeur", "CupboardId=\"" + comboBox20.SelectedItem + "\"", comboBox24.SelectedItem.ToString());
+            }
+            else if (comboBox23.SelectedItem == "Depth")
+            {
+                DBUtils.UpdateDB(dataGridView6, "cupboards", "Profondeur", "CupboardId=\"" + comboBox20.SelectedItem + "\"", comboBox24.SelectedItem.ToString());
+            }
         }
     }
 }

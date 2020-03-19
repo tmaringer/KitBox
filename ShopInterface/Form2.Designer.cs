@@ -1508,10 +1508,14 @@ namespace ShopInterface
             // comboBox23
             // 
             this.comboBox23.FormattingEnabled = true;
+            this.comboBox23.Items.AddRange(new object[] {
+            "Width",
+            "Depth"});
             this.comboBox23.Location = new System.Drawing.Point(131, 65);
             this.comboBox23.Name = "comboBox23";
             this.comboBox23.Size = new System.Drawing.Size(114, 21);
             this.comboBox23.TabIndex = 16;
+            this.comboBox23.SelectionChangeCommitted += new System.EventHandler(this.comboBox23_SelectionChangeCommitted);
             // 
             // comboBox20
             // 
@@ -1547,6 +1551,7 @@ namespace ShopInterface
             this.button27.TabIndex = 0;
             this.button27.Text = "Modify";
             this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
             // groupBox21
             // 
@@ -1615,6 +1620,7 @@ namespace ShopInterface
             this.button26.TabIndex = 0;
             this.button26.Text = "Find";
             this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // dataGridView6
             // 
