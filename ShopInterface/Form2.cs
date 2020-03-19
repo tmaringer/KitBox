@@ -61,8 +61,8 @@ namespace ShopInterface
             {
                 List<string> orderList = new List<string>();
                 orderList = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.SelectedItem.ToString() + "\"");
-                    foreach (var OrderId in orderList)
-                        comboBox22.Items.Add(OrderId);
+                foreach (var OrderId in orderList)
+                    comboBox22.Items.Add(OrderId);
             }
         }
 
@@ -385,8 +385,7 @@ namespace ShopInterface
 
         private void Start()
         {
-            comboBox4.DataSource =
-                DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
+            comboBox4.DataSource =DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
             comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox6.DisplayMember = "OrderId";
@@ -402,6 +401,9 @@ namespace ShopInterface
             comboBox5.DisplayMember = "CustomerName";
             comboBox21.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox21.DisplayMember = "CustomerName";
+            comboBox25.DataSource = DBUtils.RefListND("Hauteur", "kitbox where Ref = \"Panneau GD\"");
+            comboBox25.DisplayMember = "Hauteur";
+            comboBox25.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView2.Refresh();
             dataGridView2.Sort(dataGridView2.Columns["OrderId"], ListSortDirection.Descending);
@@ -654,31 +656,49 @@ namespace ShopInterface
 
         private void button26_Click(object sender, EventArgs e)
         {
-            comboBox20.Items.Clear();
-            comboBox20.Text = "";
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
-            foreach (DataGridViewRow row in dataGridView6.Rows)
-            {
-                comboBox20.Items.Add(row.Cells["CupboardId"].Value);
-            }
-            comboBox27.Items.Clear();
-            comboBox27.Text = "";
-            foreach (DataGridViewRow row in dataGridView6.Rows)
-            {
-                comboBox27.Items.Add(row.Cells["CupboardId"].Value);
-            }
         }
 
         private void button27_Click(object sender, EventArgs e)
         {
             if (comboBox23.SelectedItem == "Width")
             {
-                DBUtils.UpdateDB(dataGridView6, "cupboards", "Largeur", "CupboardId=\"" + comboBox20.SelectedItem + "\"", comboBox24.SelectedItem.ToString());
+                DBUtils.UpdateDB(dataGridView6, "cupboards", "Largeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
             }
             else if (comboBox23.SelectedItem == "Depth")
             {
-                DBUtils.UpdateDB(dataGridView6, "cupboards", "Profondeur", "CupboardId=\"" + comboBox20.SelectedItem + "\"", comboBox24.SelectedItem.ToString());
+                DBUtils.UpdateDB(dataGridView6, "cupboards", "Profondeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
             }
+        }
+        private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView6.CurrentCell.ColumnIndex == 0)
+            {
+                dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
+                label66.Text = dataGridView6.CurrentCell.Value.ToString();
+                label67.Text = dataGridView6.CurrentCell.Value.ToString();
+                label68.Text = dataGridView6.CurrentCell.Value.ToString();
+            }
+
+        }
+        private void dataGridView11_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView11.CurrentCell.ColumnIndex == 1)
+            {
+                label69.Text = dataGridView11.CurrentCell.Value.ToString();
+                label70.Text = dataGridView11.CurrentCell.Value.ToString();
+            }
+
+        }
+
+        private void groupBox20_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
         }
     }
 }
