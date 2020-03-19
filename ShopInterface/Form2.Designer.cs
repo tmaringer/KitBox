@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 
 namespace ShopInterface
 {
@@ -280,6 +281,7 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            this.tabPage4.BackColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // progressBar2
             // 
@@ -373,8 +375,6 @@ namespace ShopInterface
             // 
             // chart1
             // 
-            this.chart1.BackColor = System.Drawing.Color.LemonChiffon;
-            chartArea1.BackColor = System.Drawing.Color.LemonChiffon;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.Transparent;
@@ -394,6 +394,7 @@ namespace ShopInterface
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
             this.chart1.Visible = false;
+            this.chart1.BackColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // label11
             // 
@@ -458,6 +459,7 @@ namespace ShopInterface
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.Size = new System.Drawing.Size(460, 230);
             this.dataGridView4.TabIndex = 2;
+            this.dataGridView4.BackgroundColor = ColorTranslator.FromHtml("#f39c12");
             // 
             // tabPage3
             // 
@@ -477,6 +479,7 @@ namespace ShopInterface
             this.tabPage3.Size = new System.Drawing.Size(972, 599);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Orders management";
+            this.tabPage3.BackColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // groupBox11
             // 
@@ -796,6 +799,7 @@ namespace ShopInterface
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.Size = new System.Drawing.Size(543, 290);
             this.dataGridView3.TabIndex = 3;
+            this.dataGridView3.BackgroundColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // dataGridView2
             // 
@@ -811,6 +815,7 @@ namespace ShopInterface
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(543, 206);
             this.dataGridView2.TabIndex = 2;
+            this.dataGridView2.BackgroundColor = ColorTranslator.FromHtml("#1abc9c");
             // 
             // tabPage1
             // 
@@ -826,6 +831,7 @@ namespace ShopInterface
             this.tabPage1.Size = new System.Drawing.Size(972, 599);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Database management";
+            this.tabPage1.BackColor = ColorTranslator.FromHtml("#e74c3c");
             // 
             // groupBox3
             // 
@@ -1124,6 +1130,7 @@ namespace ShopInterface
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(680, 587);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.BackgroundColor = ColorTranslator.FromHtml("#e74c3c");
             // 
             // tabControl1
             // 
@@ -1155,6 +1162,7 @@ namespace ShopInterface
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "Welcome page";
             this.tabPage2.ToolTipText = "ninja";
+            this.tabPage2.BackColor = ColorTranslator.FromHtml("#3498db");
             // 
             // label27
             // 
@@ -1204,6 +1212,7 @@ namespace ShopInterface
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Order visualisation";
             this.tabPage7.UseVisualStyleBackColor = true;
+            this.tabPage7.BackColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // dataGridView12
             // 
@@ -1213,11 +1222,12 @@ namespace ShopInterface
             this.dataGridView12.BackgroundColor = System.Drawing.Color.Bisque;
             this.dataGridView12.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView12.Location = new System.Drawing.Point(8, 397);
+            this.dataGridView12.Location = new System.Drawing.Point(479, 195);
             this.dataGridView12.Name = "dataGridView12";
             this.dataGridView12.ReadOnly = true;
-            this.dataGridView12.Size = new System.Drawing.Size(486, 183);
+            this.dataGridView12.Size = new System.Drawing.Size(486, 381);
             this.dataGridView12.TabIndex = 28;
+            this.dataGridView12.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // groupBox23
             // 
@@ -1235,7 +1245,7 @@ namespace ShopInterface
             this.groupBox23.Controls.Add(this.label61);
             this.groupBox23.Controls.Add(this.label62);
             this.groupBox23.Controls.Add(this.button28);
-            this.groupBox23.Location = new System.Drawing.Point(500, 393);
+            this.groupBox23.Location = new System.Drawing.Point(8, 393);
             this.groupBox23.Name = "groupBox23";
             this.groupBox23.Size = new System.Drawing.Size(465, 183);
             this.groupBox23.TabIndex = 27;
@@ -1373,9 +1383,10 @@ namespace ShopInterface
             this.dataGridView11.Location = new System.Drawing.Point(8, 195);
             this.dataGridView11.Name = "dataGridView11";
             this.dataGridView11.ReadOnly = true;
-            this.dataGridView11.Size = new System.Drawing.Size(678, 183);
+            this.dataGridView11.Size = new System.Drawing.Size(248, 183);
             this.dataGridView11.TabIndex = 26;
             this.dataGridView11.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView11_CellClick);
+            this.dataGridView11.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // groupBox20
             // 
@@ -1387,9 +1398,9 @@ namespace ShopInterface
             this.groupBox20.Controls.Add(this.label57);
             this.groupBox20.Controls.Add(this.label58);
             this.groupBox20.Controls.Add(this.button25);
-            this.groupBox20.Location = new System.Drawing.Point(698, 195);
+            this.groupBox20.Location = new System.Drawing.Point(262, 195);
             this.groupBox20.Name = "groupBox20";
-            this.groupBox20.Size = new System.Drawing.Size(267, 192);
+            this.groupBox20.Size = new System.Drawing.Size(211, 192);
             this.groupBox20.TabIndex = 25;
             this.groupBox20.TabStop = false;
             this.groupBox20.Text = "Modify a box";
@@ -1398,7 +1409,7 @@ namespace ShopInterface
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(185, 68);
+            this.label69.Location = new System.Drawing.Point(131, 68);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(0, 13);
             this.label69.TabIndex = 21;
@@ -1406,7 +1417,7 @@ namespace ShopInterface
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(185, 31);
+            this.label66.Location = new System.Drawing.Point(131, 31);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(0, 13);
             this.label66.TabIndex = 20;
@@ -1414,7 +1425,7 @@ namespace ShopInterface
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(91, 108);
+            this.label55.Location = new System.Drawing.Point(37, 108);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(38, 13);
             this.label55.TabIndex = 19;
@@ -1423,7 +1434,7 @@ namespace ShopInterface
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(83, 68);
+            this.label56.Location = new System.Drawing.Point(29, 68);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(37, 13);
             this.label56.TabIndex = 18;
@@ -1432,7 +1443,7 @@ namespace ShopInterface
             // comboBox25
             // 
             this.comboBox25.FormattingEnabled = true;
-            this.comboBox25.Location = new System.Drawing.Point(131, 105);
+            this.comboBox25.Location = new System.Drawing.Point(77, 105);
             this.comboBox25.Name = "comboBox25";
             this.comboBox25.Size = new System.Drawing.Size(114, 21);
             this.comboBox25.TabIndex = 17;
@@ -1440,7 +1451,7 @@ namespace ShopInterface
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(35, 152);
+            this.label57.Location = new System.Drawing.Point(8, 152);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(39, 13);
             this.label57.TabIndex = 7;
@@ -1449,7 +1460,7 @@ namespace ShopInterface
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(63, 31);
+            this.label58.Location = new System.Drawing.Point(9, 31);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(65, 13);
             this.label58.TabIndex = 5;
@@ -1457,7 +1468,7 @@ namespace ShopInterface
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(150, 148);
+            this.button25.Location = new System.Drawing.Point(96, 148);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(95, 21);
             this.button25.TabIndex = 0;
@@ -1475,7 +1486,7 @@ namespace ShopInterface
             this.groupBox22.Controls.Add(this.label53);
             this.groupBox22.Controls.Add(this.label54);
             this.groupBox22.Controls.Add(this.button27);
-            this.groupBox22.Location = new System.Drawing.Point(698, 6);
+            this.groupBox22.Location = new System.Drawing.Point(425, 8);
             this.groupBox22.Name = "groupBox22";
             this.groupBox22.Size = new System.Drawing.Size(267, 183);
             this.groupBox22.TabIndex = 24;
@@ -1564,9 +1575,9 @@ namespace ShopInterface
             this.groupBox21.Controls.Add(this.label51);
             this.groupBox21.Controls.Add(this.label52);
             this.groupBox21.Controls.Add(this.button26);
-            this.groupBox21.Location = new System.Drawing.Point(425, 14);
+            this.groupBox21.Location = new System.Drawing.Point(698, 8);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Size = new System.Drawing.Size(267, 175);
+            this.groupBox21.Size = new System.Drawing.Size(267, 183);
             this.groupBox21.TabIndex = 21;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Find order";
@@ -1631,7 +1642,7 @@ namespace ShopInterface
             this.dataGridView6.AllowUserToResizeColumns = false;
             this.dataGridView6.AllowUserToResizeRows = false;
             this.dataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView6.BackgroundColor = System.Drawing.Color.Bisque;
+            this.dataGridView6.BackgroundColor = System.Drawing.Color.Aquamarine;
             this.dataGridView6.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Location = new System.Drawing.Point(6, 3);
@@ -1640,6 +1651,7 @@ namespace ShopInterface
             this.dataGridView6.Size = new System.Drawing.Size(413, 186);
             this.dataGridView6.TabIndex = 20;
             this.dataGridView6.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView6_CellClick);
+            this.dataGridView6.BackgroundColor = ColorTranslator.FromHtml("#2ecc71");
             // 
             // tabPage5
             // 
@@ -1656,6 +1668,7 @@ namespace ShopInterface
             this.tabPage5.Size = new System.Drawing.Size(972, 599);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Suppliers orders";
+            this.tabPage5.BackColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView8
             // 
@@ -1667,6 +1680,7 @@ namespace ShopInterface
             this.dataGridView8.Name = "dataGridView8";
             this.dataGridView8.Size = new System.Drawing.Size(520, 218);
             this.dataGridView8.TabIndex = 18;
+            this.dataGridView8.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView7
             // 
@@ -1678,6 +1692,7 @@ namespace ShopInterface
             this.dataGridView7.Name = "dataGridView7";
             this.dataGridView7.Size = new System.Drawing.Size(520, 226);
             this.dataGridView7.TabIndex = 3;
+            this.dataGridView7.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox15
             // 
@@ -1834,6 +1849,7 @@ namespace ShopInterface
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.Size = new System.Drawing.Size(421, 406);
             this.dataGridView5.TabIndex = 0;
+            this.dataGridView5.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox12
             // 
@@ -1878,6 +1894,7 @@ namespace ShopInterface
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Suppliers update";
             this.tabPage6.UseVisualStyleBackColor = true;
+            this.tabPage6.BackColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // groupBox19
             // 
@@ -2145,6 +2162,7 @@ namespace ShopInterface
             this.dataGridView10.ReadOnly = true;
             this.dataGridView10.Size = new System.Drawing.Size(421, 587);
             this.dataGridView10.TabIndex = 16;
+            this.dataGridView10.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // dataGridView9
             // 
@@ -2167,6 +2185,7 @@ namespace ShopInterface
             this.dataGridView9.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView9.Size = new System.Drawing.Size(533, 267);
             this.dataGridView9.TabIndex = 12;
+            this.dataGridView9.BackgroundColor = ColorTranslator.FromHtml("#f1c40f");
             // 
             // Form2
             // 

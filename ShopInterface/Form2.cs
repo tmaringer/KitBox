@@ -231,6 +231,7 @@ namespace ShopInterface
             else if (tabControl1.SelectedTab.Text == @"Order visualisation")
             {
                 Start();
+                comboBox22.Items.Clear();
                 List<string> orderList1 = new List<string>();
                 orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
                 foreach (var OrderId in orderList1)
@@ -521,8 +522,6 @@ namespace ShopInterface
             int index2 = 1;
             dataGridView5.DataSource = null;
             dataGridView5.Refresh();
-            dataGridView6.DataSource = null;
-            dataGridView6.Refresh();
             foreach (DataRow row in dataTable.Rows)
             {
                 List<string> Suppliers = DBUtils.RefList("SupplierNumber",
@@ -555,9 +554,6 @@ namespace ShopInterface
                     index2 += 1;
                 }
             }
-
-            dataGridView6.DataSource = supplier1;
-            label32.Text = "Amount: " + amount1 + "€";
             label34.Text = "Amount: " + amount2 + "€";
             dataGridView5.DataSource = supplier2;
         }
