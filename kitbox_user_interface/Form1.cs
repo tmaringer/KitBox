@@ -37,11 +37,13 @@ namespace kitbox_user_interface_V1
             conn.Close();
             */
 
-            comboBox3.Items.AddRange(new object[] {"1","2","3","4","5","6","7"});
+            comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+
+            ShoppingCart basket = new ShoppingCart();
 
         }
 
@@ -82,7 +84,6 @@ namespace kitbox_user_interface_V1
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
 
         }
 
@@ -98,18 +99,17 @@ namespace kitbox_user_interface_V1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            button1.Enabled = false;
+
             //TODO taille standadisée validée
 
 
-            //créer box
-            //créer commande ?
             Cupboard cupboard = new Cupboard();
-            
+
             //CrossBar traverses = new CrossBar();
             //TODO créer objet armoire intermédiaire 
-
-            if (comboBox3.SelectedIndex == 6)//si l'armoire contient 7 étages alors supprimer la hauteur de boite 52
+            /*
+            if (comboBox3.SelectedIndex == 6)
             {
                 comboBox6.Items.RemoveAt(2);
                 //si d'autres hauteurs peuvent être créées faire une recherche parmi
@@ -117,9 +117,13 @@ namespace kitbox_user_interface_V1
                 //sinon l'extension n'est pas privilégiée
             }
             //gérer dynamiquement la hauteur des box et la hauteur max
+            */
 
-            
-            button1.Enabled = false;
+            int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
+            CrossBar traverseAV = new CrossBar(0, "null", "0000", new Size(0, 0, 0), false, width, Color.black);
+            CrossBar traverseAR = new CrossBar(0, "null", "0000", new Size(0, 0, 0), false, width, Color.black);
+
+            MessageBox.Show(comboBox4.SelectedItem.ToString());
 
         }
 
@@ -140,7 +144,9 @@ namespace kitbox_user_interface_V1
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //int height = comboBox6.SelectedIndex;
+            //combobox1 : type doors
+            //combobox2 : panel colors
         }
 
         private void button3_Click(object sender, EventArgs e)
