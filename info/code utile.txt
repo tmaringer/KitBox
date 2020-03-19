@@ -1,7 +1,0 @@
-list.OfType<LockerComponents>() => cherche ce qui a le mm type
-
-x.GetType().Equals(y.GetType()) ==> return true si x est de mm type que y
-
-typeof(Locker) ==> normalement renvois le type du locker sans instancier
-
-lock is Locker ==> vérifie si lock est de type locker
