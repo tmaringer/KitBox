@@ -52,6 +52,19 @@ namespace ShopInterface
             }
         }
 
+        private void comboBox21_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            comboBox22.Items.Clear();
+            comboBox22.Text = "";
+            var senderComboBox = (ComboBox)sender;
+            if (senderComboBox.SelectionLength > 0)
+            {
+                List<string> orderList = new List<string>();
+                orderList = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.SelectedItem.ToString() + "\"");
+                    foreach (var OrderId in orderList)
+                        comboBox22.Items.Add(OrderId);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(),
@@ -188,6 +201,10 @@ namespace ShopInterface
                 foreach (DataGridViewColumn col in dataGridView1.Columns) comboBox12.Items.Add(col.Name);
             }
             else if (tabControl1.SelectedTab.Text == @"Orders management")
+            {
+                Start();
+            }
+            else if (tabControl1.SelectedTab.Text == @"Order visualisation")
             {
                 Start();
             }
@@ -354,6 +371,9 @@ namespace ShopInterface
             comboBox5.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox5.DisplayMember = "CustomerName";
             comboBox5.Text = "";
+            comboBox21.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
+            comboBox21.DisplayMember = "CustomerName";
+            comboBox21.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView2.Refresh();
             dataGridView2.Sort(dataGridView2.Columns["OrderId"], ListSortDirection.Descending);
