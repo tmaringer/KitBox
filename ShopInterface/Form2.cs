@@ -207,6 +207,10 @@ namespace ShopInterface
             else if (tabControl1.SelectedTab.Text == @"Order visualisation")
             {
                 Start();
+                List<string> orderList1 = new List<string>();
+                orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
+                foreach (var OrderId in orderList1)
+                    comboBox22.Items.Add(OrderId);
             }
             else if (tabControl1.SelectedTab.Text == @"Stock management")
             {
