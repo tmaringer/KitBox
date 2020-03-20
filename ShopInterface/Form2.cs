@@ -74,12 +74,12 @@ namespace ShopInterface
             if (senderComboBox.SelectionLength > 0)
             {
                 List<string> orderList2 = new List<string>();
-                if (comboBox23.SelectedItem == "Width")
+                if (comboBox23.SelectedItem.ToString() == "Width")
                 {
                     orderList2 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
 
                 }
-                else if (comboBox23.SelectedItem == "Depth")
+                else if (comboBox23.SelectedItem.ToString() == "Depth")
                 {
                     orderList2 = DBUtils.RefListND("Profondeur", "kitbox where Ref = \"Panneau GD\"");
 
@@ -295,9 +295,9 @@ namespace ShopInterface
             Colours(dataGridView3, "Disponibility");
         }
 
-        private void Colours(DataGridView dataGridView3, string column)
+        private void Colours(DataGridView dataGridView, string column)
         {
-            foreach (DataGridViewRow row in dataGridView3.Rows)
+            foreach (DataGridViewRow row in dataGridView.Rows)
                 if (row.Cells[column].Value.Equals("true"))
                     row.Cells[column].Style.BackColor = Color.LimeGreen;
                 else if (row.Cells[column].Value.Equals("false") || row.Cells[column].Value.Equals("added"))
@@ -311,9 +311,9 @@ namespace ShopInterface
                     row.Cells[column].Style.BackColor = Color.Fuchsia;
         }
 
-        private void ColoursDiff(DataGridView dataGridView3, string column, string columnB)
+        private void ColoursDiff(DataGridView dataGridView, string column, string columnB)
         {
-            foreach (DataGridViewRow row in dataGridView3.Rows)
+            foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 if (Convert.ToInt32(row.Cells[column].Value) - Convert.ToInt32(row.Cells[columnB].Value) > 0)
                     row.DefaultCellStyle.BackColor = Color.LimeGreen;
@@ -465,52 +465,69 @@ namespace ShopInterface
 
         private void UpdateSuppliers()
         {
-            DataTable supplier1 = new DataTable();
-            DataColumn dtColumn = new DataColumn();
-            dtColumn.DataType = typeof(Int32);
-            dtColumn.ColumnName = "Id";
-            dtColumn.ReadOnly = true;
-            dtColumn.Unique = true;
-            DataColumn dtColumn1 = new DataColumn();
-            dtColumn1.DataType = typeof(string);
-            dtColumn1.ColumnName = "Code";
-            dtColumn1.ReadOnly = true;
-            dtColumn1.Unique = true;
-            DataColumn dtColumn2 = new DataColumn();
-            dtColumn2.DataType = typeof(Int32);
-            dtColumn2.ColumnName = "Quantity";
-            dtColumn2.ReadOnly = false;
-            dtColumn2.Unique = false;
-            DataColumn dtColumn3 = new DataColumn();
-            dtColumn3.DataType = typeof(double);
-            dtColumn3.ColumnName = "Price";
-            dtColumn3.ReadOnly = true;
-            dtColumn3.Unique = false;
+            DataTable dataTable1 = new DataTable();
+            DataTable supplier1 = dataTable1;
+            DataColumn dtColumn = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = true
+            };
+            DataColumn dtColumn1 = new DataColumn
+            {
+                DataType = typeof(string),
+                ColumnName = "Code",
+                ReadOnly = true,
+                Unique = true
+            };
+            DataColumn dtColumn2 = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Quantity",
+                ReadOnly = false,
+                Unique = false
+            };
+            DataColumn dtColumn3 = new DataColumn
+            {
+                DataType = typeof(double),
+                ColumnName = "Price",
+                ReadOnly = true,
+                Unique = false
+            };
             supplier1.Columns.Add(dtColumn);
             supplier1.Columns.Add(dtColumn1);
             supplier1.Columns.Add(dtColumn2);
             supplier1.Columns.Add(dtColumn3);
             DataTable supplier2 = new DataTable();
-            DataColumn dtColumn4 = new DataColumn();
-            dtColumn4.DataType = typeof(Int32);
-            dtColumn4.ColumnName = "Id";
-            dtColumn4.ReadOnly = true;
-            dtColumn4.Unique = true;
-            DataColumn dtColumn5 = new DataColumn();
-            dtColumn5.DataType = typeof(string);
-            dtColumn5.ColumnName = "Code";
-            dtColumn5.ReadOnly = true;
-            dtColumn5.Unique = true;
-            DataColumn dtColumn6 = new DataColumn();
-            dtColumn6.DataType = typeof(Int32);
-            dtColumn6.ColumnName = "Quantity";
-            dtColumn6.ReadOnly = false;
-            dtColumn6.Unique = false;
-            DataColumn dtColumn7 = new DataColumn();
-            dtColumn7.DataType = typeof(double);
-            dtColumn7.ColumnName = "Price";
-            dtColumn7.ReadOnly = true;
-            dtColumn7.Unique = false;
+            DataColumn dtColumn4 = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = true
+            };
+            DataColumn dtColumn5 = new DataColumn
+            {
+                DataType = typeof(string),
+                ColumnName = "Code",
+                ReadOnly = true,
+                Unique = true
+            };
+            DataColumn dtColumn6 = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Quantity",
+                ReadOnly = false,
+                Unique = false
+            };
+            DataColumn dtColumn7 = new DataColumn
+            {
+                DataType = typeof(double),
+                ColumnName = "Price",
+                ReadOnly = true,
+                Unique = false
+            };
             supplier2.Columns.Add(dtColumn4);
             supplier2.Columns.Add(dtColumn5);
             supplier2.Columns.Add(dtColumn6);
@@ -657,11 +674,11 @@ namespace ShopInterface
 
         private void button27_Click(object sender, EventArgs e)
         {
-            if (comboBox23.SelectedItem == "Width")
+            if (comboBox23.SelectedItem.ToString() == "Width")
             {
                 DBUtils.UpdateDB(dataGridView6, "cupboards", "Largeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
             }
-            else if (comboBox23.SelectedItem == "Depth")
+            else if (comboBox23.SelectedItem.ToString() == "Depth")
             {
                 DBUtils.UpdateDB(dataGridView6, "cupboards", "Profondeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
             }
