@@ -41,7 +41,6 @@ namespace projectCS
             }
         }
 
-        // TODO : tester
         public int width
         {
             get
@@ -55,7 +54,6 @@ namespace projectCS
             }
         }
 
-        // TODO : tester
         private int _depth;
         public int depth
         {

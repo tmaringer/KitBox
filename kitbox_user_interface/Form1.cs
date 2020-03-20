@@ -120,8 +120,10 @@ namespace kitbox_user_interface_V1
             */
 
             int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
-            CrossBar traverseAV = new CrossBar(0, "null", "0000", new Size(0, 0, 0), false, width, Color.black);
-            CrossBar traverseAR = new CrossBar(0, "null", "0000", new Size(0, 0, 0), false, width, Color.black);
+            projectCS.Color color = projectCS.Color.black;
+            projectCS.Size sier = new projectCS.Size(0,0,0);
+            CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
+            CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
 
             MessageBox.Show(comboBox4.SelectedItem.ToString());
 

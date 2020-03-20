@@ -110,7 +110,8 @@ namespace UnitTest
             shopcart1.addCupboardComponent(locker1);
             shopcart1.addCupboardComponent(locker2);
 
-            cupboard1 = shopcart1.buildCupboard();
+            shopcart1.buildCupboard();
+            cupboard1 = shopcart1.cupboard;
 
             Assert.AreEqual(270, cupboard1.getPrice());
         }

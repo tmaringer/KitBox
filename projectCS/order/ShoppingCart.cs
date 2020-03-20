@@ -87,22 +87,26 @@ namespace projectCS
             _cupboardComponentsList.Remove(cupboardComponent);
         }
 
-        // todo : voir si on garde
         /// <summary>
         ///     Builds cupboard from components stored. It also removes components which are used to build cupboard.
         /// </summary>
         /// <returns>
         ///     Returns the cupboard built.
         /// </returns>
-        public Cupboard buildCupboard()
+        public void buildCupboard()
         {
-            Cupboard Cupboard = new Cupboard(0, 0, 5, Color.brawn);
+            buildCupboard(0, 0, 5, Color.brawn);
+        }
+
+        public void buildCupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
+        {
+            _cupboard = new Cupboard(width, depth, boxNumber, colorAngleBracket);
             // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
             List<ICupboardComponents> tempList = new List<ICupboardComponents>();
 
             foreach (ICupboardComponents cupboardComponent in _cupboardComponentsList)
             {
-                Cupboard.addCupboardComponent(cupboardComponent);
+                _cupboard.addCupboardComponent(cupboardComponent);
                 tempList.Add(cupboardComponent);
             }
 
@@ -110,13 +114,6 @@ namespace projectCS
             {
                 _cupboardComponentsList.Remove(component);
             }
-            return Cupboard;
-        }
-
-        // todo : voir comment on gère build cupboard
-        public void buildCupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
-        {
-            _cupboard = new Cupboard(width, depth, boxNumber, colorAngleBracket);
         }
 
         public override string ToString()
