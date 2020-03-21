@@ -118,15 +118,22 @@ namespace kitbox_user_interface_V1
             }
             //gérer dynamiquement la hauteur des box et la hauteur max
             */
-            if(comboBox4.SelectedItem.ToString() != null)
+            if(comboBox4.SelectedItem.ToString() != null && comboBox5.SelectedItem.ToString() != null)
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
+                int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 projectCS.Color color = projectCS.Color.black;
                 projectCS.Size sier = new projectCS.Size(0, 0, 0);
                 CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
                 CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
+                Panel panneauH = new Panel(0, "null", "0000", new Size(0/*width*/, 0 /*depth*/, 0), false, 0, Color.black);
+                Panel panneauB = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
+                Panel panneauG = new Panel(0, "null", "0000", new Size(0/*width*/, 0 /*depth*/, 0), false, 0, Color.black);
+                Panel panneauD = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
+                //TODO size est défini où et comment ?  normalement Lxlxh soit width x depth x height
+                // ou alors depth x width x height ?
             }
-            
+
 
             MessageBox.Show(comboBox4.SelectedItem.ToString());
 
