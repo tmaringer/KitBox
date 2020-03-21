@@ -118,12 +118,15 @@ namespace kitbox_user_interface_V1
             }
             //gérer dynamiquement la hauteur des box et la hauteur max
             */
-
-            int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
-            projectCS.Color color = projectCS.Color.black;
-            projectCS.Size sier = new projectCS.Size(0,0,0);
-            CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
-            CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
+            if(comboBox4.SelectedItem.ToString() != null)
+            {
+                int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
+                projectCS.Color color = projectCS.Color.black;
+                projectCS.Size sier = new projectCS.Size(0, 0, 0);
+                CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
+                CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
+            }
+            
 
             MessageBox.Show(comboBox4.SelectedItem.ToString());
 
