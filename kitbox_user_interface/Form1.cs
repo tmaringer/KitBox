@@ -126,13 +126,17 @@ namespace kitbox_user_interface_V1
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
-                projectCS.Color color = projectCS.Color.black;
-                projectCS.Size sier = new projectCS.Size(0, 0, 0);
-                CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
-                CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
-                Panel panneauH = new Panel(0, "null", "0000", new Size(0, width , depth), false, 0, Color.black);
-                Panel panneauB = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
-                Panel panneauG = new Panel(0, "null", "0000", new Size(0, width, depth), false, 0, Color.black);
+
+                projectCS.Color default_color = projectCS.Color.black;
+                projectCS.Size default_size = new projectCS.Size(0, 0, 0);
+                projectCS.Size traverse_size = new projectCS.Size(0, 0, 0);
+                projectCS.Size panneau_size = new projectCS.Size(0, width, depth);
+
+                CrossBar traverseAV = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
+                CrossBar traverseAR = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
+                Panel panneauH = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
+                Panel panneauB = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
+                Panel panneauG = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
                 Panel panneauD = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
                 
                 //Size (height, width, depth) 
