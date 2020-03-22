@@ -38,6 +38,29 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
             conn.Close();
+
+
+
+            -------------------TEST MARTIN -----------------------
+            conn.Open();
+            List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
+            conn.Close();
+
+
+            --------------------------------------------------------
+
+
+
+
+
             */
 
             comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
