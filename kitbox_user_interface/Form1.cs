@@ -131,15 +131,15 @@ namespace kitbox_user_interface_V1
                 projectCS.Size default_size = new projectCS.Size(0, 0, 0);
                 projectCS.Size traverse_size = new projectCS.Size(0, 0, 0);
                 projectCS.Size panneau_size = new projectCS.Size(0, width, depth);
-
+                //Size (height, width, depth) 
                 CrossBar traverseAV = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
                 CrossBar traverseAR = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
                 Panel panneauH = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
                 Panel panneauB = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
-                Panel panneauG = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
-                Panel panneauD = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
+                Panel panneauG = new Panel(0, "null", "0000", default_size, false, 0, default_color);
+                Panel panneauD = new Panel(0, "null", "0000", default_size, false, 0, default_color);
                 
-                //Size (height, width, depth) 
+                
                 if(width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
