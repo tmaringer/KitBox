@@ -34,18 +34,7 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
             conn.Close();
-            /*
-            conn.Open();
-            List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
-            conn.Close();
-
-            */
-
-            /*
-             -------------------------------------------------------------------------------------------------------------------
-             -------------------------------------------------------------------------------------------------------------------
-             -------------------------------------------------------------------------------------------------------------------
-             */
+           
 
             /*
              Cornieres
@@ -227,11 +216,6 @@ namespace kitbox_user_interface_V1
             List<string> ColorCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse Ar\"");
             conn.Close();
 
-            /*
-             -------------------------------------------------------------------------------------------------------------------
-             -------------------------------------------------------------------------------------------------------------------
-             -------------------------------------------------------------------------------------------------------------------
-             */
 
 
 
@@ -243,6 +227,7 @@ namespace kitbox_user_interface_V1
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
             comboBox7.Items.AddRange(BracketsColorList.Cast<object>().ToArray());
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+            comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
 
             ShoppingCart basket = new ShoppingCart();
 
