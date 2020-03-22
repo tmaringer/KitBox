@@ -39,8 +39,6 @@ namespace kitbox_user_interface_V1
             List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
             conn.Close();
 
-
-
             -------------------TEST MARTIN -----------------------
             conn.Open();
             List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
@@ -54,14 +52,65 @@ namespace kitbox_user_interface_V1
             List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
             conn.Close();
 
-
             --------------------------------------------------------
 
-
-
-
-
             */
+
+            /*
+             -------------------------------------------------------------------------------------------------------------------
+             -------------------------------------------------------------------------------------------------------------------
+             -------------------------------------------------------------------------------------------------------------------
+             */
+
+            /*
+             Brackets
+             */
+
+            conn.Open();
+            List<string> HightBracketsList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> DepthBracketsList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> WidthBracketsList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> ColorBracketsList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            /*
+             Box
+             */
+
+            conn.Open();
+            List<string> HightBoxList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Cornieres\"");
+            conn.Close();
+                        
+            conn.Open();
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            conn.Open();
+            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
+            conn.Close();
+
+            /*
+             -------------------------------------------------------------------------------------------------------------------
+             -------------------------------------------------------------------------------------------------------------------
+             -------------------------------------------------------------------------------------------------------------------
+             */
+
+
+
+
 
             comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
