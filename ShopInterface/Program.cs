@@ -14,12 +14,12 @@ namespace ShopInterface
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            Sandbox.SandBox();
-            Sandbox.Height("4", 42);
-            Sandbox.SandBox();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+            //Sandbox.SandBox();
+            //Sandbox.Height("4", 42);
+            //Sandbox.SandBox();
         }
     }
 }
