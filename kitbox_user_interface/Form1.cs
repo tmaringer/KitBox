@@ -138,7 +138,7 @@ namespace kitbox_user_interface_V1
                 // ou alors depth x width x height ?
                 if(width<62)
                 {
-                    //comboBox6.Items.RemoveAt(2);
+                    //comboBox1.Items.RemoveAt(2);
                     //TODO retirer le bon item
                 }
             }
