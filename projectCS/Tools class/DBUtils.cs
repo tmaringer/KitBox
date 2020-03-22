@@ -13,7 +13,7 @@ namespace projectCS
 {
     public class DBUtils
     {
-        private static String MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
+        private static String MyConString = "SERVER=127.0.0.1;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=sPbqRw;";
 
         static string ComputeSha256Hash(string rawData)
         {
