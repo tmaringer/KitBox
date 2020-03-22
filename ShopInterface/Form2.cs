@@ -682,14 +682,13 @@ namespace ShopInterface
         {
             if (comboBox23.SelectedItem.ToString() == "Width")
             {
-                //DBUtils.UpdateDB(dataGridView6, "cupboards", "Largeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
                 Sandbox.Width(label66.Text, Convert.ToInt32(comboBox24.SelectedItem));
             }
             else if (comboBox23.SelectedItem.ToString() == "Depth")
             {
-                //DBUtils.UpdateDB(dataGridView6, "cupboards", "Profondeur", "CupboardId=\"" + label66.Text + "\"", comboBox24.SelectedItem.ToString());
                 Sandbox.Depth(label66.Text, Convert.ToInt32(comboBox24.SelectedItem));
             }
+            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
         }
         private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
         {
