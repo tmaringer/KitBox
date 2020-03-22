@@ -700,7 +700,7 @@ namespace ShopInterface
         }
         private void dataGridView11_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView11.CurrentCell.ColumnIndex == 1)
+            if (dataGridView11.CurrentCell.ColumnIndex == 0)
             {
                 label69.Text = dataGridView11.CurrentCell.Value.ToString();
                 label70.Text = dataGridView11.CurrentCell.Value.ToString();
@@ -715,7 +715,10 @@ namespace ShopInterface
 
         private void button25_Click(object sender, EventArgs e)
         {
-            DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
+            //DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
+            Sandbox.Height(label69.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
+            dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
+            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
         }
     }
 }

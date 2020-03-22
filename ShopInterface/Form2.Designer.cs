@@ -1527,6 +1527,7 @@ namespace ShopInterface
             this.comboBox23.Name = "comboBox23";
             this.comboBox23.Size = new System.Drawing.Size(114, 21);
             this.comboBox23.TabIndex = 16;
+            this.comboBox23.Text = "Width";
             this.comboBox23.SelectionChangeCommitted += new System.EventHandler(this.comboBox23_SelectionChangeCommitted);
             // 
             // label53
