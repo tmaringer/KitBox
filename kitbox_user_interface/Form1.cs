@@ -32,7 +32,7 @@ namespace kitbox_user_interface_V1
             List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "profondeur", "Ref = \"Panneau GD\"");
             conn.Close();
             conn.Open();
-            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Corniere\"");
+            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
             conn.Close();
             /*
             conn.Open();
