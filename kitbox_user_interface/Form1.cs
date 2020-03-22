@@ -31,6 +31,9 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "profondeur", "Ref = \"Panneau GD\"");
             conn.Close();
+            conn.Open();
+            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Corniere\"");
+            conn.Close();
             /*
             conn.Open();
             List<string> ColorcrossList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse AR\"");
@@ -41,6 +44,7 @@ namespace kitbox_user_interface_V1
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
+            comboBox7.Items.AddRange(BracketsColorList.Cast<object>().ToArray());
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
 
             ShoppingCart basket = new ShoppingCart();
@@ -118,7 +122,7 @@ namespace kitbox_user_interface_V1
             }
             //gérer dynamiquement la hauteur des box et la hauteur max
             */
-            if(comboBox4.SelectedItem.ToString() != null && comboBox5.SelectedItem.ToString() != null)
+            if(comboBox4.SelectedItem != null && comboBox5.SelectedItem != null)
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
@@ -140,7 +144,7 @@ namespace kitbox_user_interface_V1
             }
 
 
-            MessageBox.Show(comboBox4.SelectedItem.ToString());
+            //MessageBox.Show(comboBox4.SelectedItem.ToString());
 
         }
 
