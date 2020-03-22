@@ -402,8 +402,13 @@ namespace ShopInterface
             comboBox5.DisplayMember = "CustomerName";
             comboBox21.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox21.DisplayMember = "CustomerName";
-            comboBox25.DataSource = DBUtils.RefListND("Hauteur", "kitbox where Ref = \"Panneau GD\"");
-            comboBox25.DisplayMember = "Hauteur";
+            List<string> heightValue = DBUtils.RefListND("Hauteur", "kitbox where Ref = \"Panneau GD\"");
+            //fix combobox25s
+            foreach (string i in heightValue)
+            {
+                string adjust = (Convert.ToInt32(i) + 4).ToString();
+                comboBox25.Items.Add(adjust);
+            }
             comboBox25.Text = "";
             dataGridView2.DataSource = DBUtils.RefreshDB("customers natural join orders");
             dataGridView2.Refresh();
