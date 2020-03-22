@@ -130,12 +130,12 @@ namespace kitbox_user_interface_V1
                 projectCS.Size sier = new projectCS.Size(0, 0, 0);
                 CrossBar traverseAV = new CrossBar(0, "null", "0000", sier, false, width, color);
                 CrossBar traverseAR = new CrossBar(0, "null", "0000", sier, false, width, color);
-                //Panel panneauH = new Panel(0, "null", "0000", new Size(0/*width*/, 0 /*depth*/, 0), false, 0, Color.black);
-                //Panel panneauB = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
-                //Panel panneauG = new Panel(0, "null", "0000", new Size(0/*width*/, 0 /*depth*/, 0), false, 0, Color.black);
-                //Panel panneauD = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
-                //TODO size est défini où et comment ?  normalement Lxlxh soit width x depth x height
-                // ou alors depth x width x height ?
+                Panel panneauH = new Panel(0, "null", "0000", new Size(0, width , depth), false, 0, Color.black);
+                Panel panneauB = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
+                Panel panneauG = new Panel(0, "null", "0000", new Size(0, width, depth), false, 0, Color.black);
+                Panel panneauD = new Panel(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black);
+                
+                //Size (height, width, depth) 
                 if(width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
