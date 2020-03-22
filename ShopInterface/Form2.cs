@@ -69,7 +69,6 @@ namespace ShopInterface
         private void comboBox23_SelectionChangeCommitted(object sender, EventArgs e)
         {
             comboBox24.Items.Clear();
-            comboBox24.Text = "";
             var senderComboBox = (ComboBox)sender;
             if (senderComboBox.SelectionLength > 0)
             {
@@ -232,12 +231,10 @@ namespace ShopInterface
             {
                 Start();
                 comboBox22.Items.Clear();
-                List<string> orderList1 = new List<string>();
-                orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
+                List<string> orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
                 foreach (var OrderId in orderList1)
                     comboBox22.Items.Add(OrderId);
-                List<string> orderList3 = new List<string>();
-                orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
+                List<string> orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
                 foreach (var OrderId in orderList3)
                     comboBox24.Items.Add(OrderId);
 
