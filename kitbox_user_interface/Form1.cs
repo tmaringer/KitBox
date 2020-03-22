@@ -134,10 +134,10 @@ namespace kitbox_user_interface_V1
                 //Size (height, width, depth) 
                 CrossBar traverseAV = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
                 CrossBar traverseAR = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
-                Panel panneauH = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
-                Panel panneauB = new Panel(0, "null", "0000", panneau_size, false, 0, default_color);
-                Panel panneauG = new Panel(0, "null", "0000", default_size, false, 0, default_color);
-                Panel panneauD = new Panel(0, "null", "0000", default_size, false, 0, default_color);
+                Pannel panneauH = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
+                Pannel panneauB = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
+                Pannel panneauG = new Pannel(0, "null", "0000", default_size, false, 0, default_color);
+                Pannel panneauD = new Pannel(0, "null", "0000", default_size, false, 0, default_color);
                 
                 
                 if(width<62)
