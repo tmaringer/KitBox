@@ -673,17 +673,23 @@ namespace ShopInterface
         private void button26_Click(object sender, EventArgs e)
         {
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+            comboBox26.DataSource = dataGridView6.DataSource;
+            comboBox26.DisplayMember = "CupboardId";
+            comboBox30.DataSource = dataGridView6.DataSource;
+            comboBox30.DisplayMember = "CupboardId";
+            comboBox20.DataSource = dataGridView6.DataSource;
+            comboBox20.DisplayMember = "CupboardId";
         }
 
         private void button27_Click(object sender, EventArgs e)
         {
             if (comboBox23.SelectedItem.ToString() == "Width")
             {
-                Sandbox.Width(label66.Text, Convert.ToInt32(comboBox24.SelectedItem));
+                Sandbox.Width(comboBox26.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
             }
             else if (comboBox23.SelectedItem.ToString() == "Depth")
             {
-                Sandbox.Depth(label66.Text, Convert.ToInt32(comboBox24.SelectedItem));
+                Sandbox.Depth(comboBox26.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
             }
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
         }
@@ -692,9 +698,13 @@ namespace ShopInterface
             if (dataGridView6.CurrentCell.ColumnIndex == 0)
             {
                 dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
-                label66.Text = dataGridView6.CurrentCell.Value.ToString();
-                label67.Text = dataGridView6.CurrentCell.Value.ToString();
-                label68.Text = dataGridView6.CurrentCell.Value.ToString();
+                comboBox26.Text = dataGridView6.CurrentCell.Value.ToString();
+                comboBox20.Text = dataGridView6.CurrentCell.Value.ToString();
+                comboBox30.Text = dataGridView6.CurrentCell.Value.ToString();
+                comboBox27.DataSource = dataGridView11.DataSource;
+                comboBox27.DisplayMember = "BoxeId";
+                comboBox31.DataSource = dataGridView11.DataSource;
+                comboBox31.DisplayMember = "BoxeId";
             }
 
         }
@@ -702,8 +712,8 @@ namespace ShopInterface
         {
             if (dataGridView11.CurrentCell.ColumnIndex == 0)
             {
-                label69.Text = dataGridView11.CurrentCell.Value.ToString();
-                label70.Text = dataGridView11.CurrentCell.Value.ToString();
+                comboBox27.Text = dataGridView11.CurrentCell.Value.ToString();
+                comboBox31.Text = dataGridView11.CurrentCell.Value.ToString();
             }
 
         }
@@ -716,7 +726,7 @@ namespace ShopInterface
         private void button25_Click(object sender, EventArgs e)
         {
             //DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
-            Sandbox.Height(label69.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
+            Sandbox.Height(comboBox27.SelectedItem.ToString(), Convert.ToInt32(comboBox25.SelectedItem.ToString()));
             dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
         }
