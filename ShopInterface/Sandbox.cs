@@ -272,6 +272,7 @@ namespace ShopInterface
                 {
                     myDataRow["Stock"] = "true";
                 }
+                elements.Rows.Add(myDataRow);
                 index += 1;
             }
             foreach (string i in DBUtils.RefList("CrossbarId", "crossbars where BoxeId= \"" + BoxeId + "\""))
@@ -292,6 +293,7 @@ namespace ShopInterface
                 {
                     myDataRow["Stock"] = "true";
                 }
+                elements.Rows.Add(myDataRow);
                 index += 1;
             }
             foreach (string i in DBUtils.RefList("PanelId", "panels where BoxeId= \"" + BoxeId + "\""))
@@ -312,6 +314,7 @@ namespace ShopInterface
                 {
                     myDataRow["Stock"] = "true";
                 }
+                elements.Rows.Add(myDataRow);
                 index += 1;
             }
             foreach (string i in DBUtils.RefList("CleatId", "cleats where BoxeId= \"" + BoxeId + "\""))
@@ -331,6 +334,7 @@ namespace ShopInterface
                 {
                     myDataRow["Stock"] = "true";
                 }
+                elements.Rows.Add(myDataRow);
                 index += 1;
             }
             dataGridView.DataSource = dataTable;
