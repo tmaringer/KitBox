@@ -121,7 +121,10 @@ namespace projectCS
             public static void autreTest()
             {
                 AngleBracket a = new AngleBracket();
-                Console.WriteLine(a);
+                Console.WriteLine(a.height);
+                a.size = new Size(1005050, 100, 100);
+
+                Console.WriteLine(a.height);
             }
         }
         

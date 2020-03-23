@@ -2,11 +2,20 @@
 {
     public class AngleBracket : CatalogueComponents, ICupboardComponents
     {
+        public override Size size 
+        { 
+            get => base.size;
+            set            
+            { 
+                base.size = value;
+                _height = _size.height;
+            }
+        }
+
         private int _height;
         public int height
         {
             get => _height;
-            set => _height = value;
         }
 
         private double _price;
