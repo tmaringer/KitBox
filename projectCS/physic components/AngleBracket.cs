@@ -1,7 +1,23 @@
-﻿namespace projectCS
+﻿using projectCS.Tools_class;
+
+namespace projectCS
 {
     public class AngleBracket : CatalogueComponents, ICupboardComponents
     {
+        public override Color color
+        {
+            set
+            {
+                if (value == Color.transparent)
+                {
+                    ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
+                    window.displayWindow();
+                }
+                else
+                    base.color = value;
+            }
+        }
+
         public override Size size 
         { 
             get => base.size;

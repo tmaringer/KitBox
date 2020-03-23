@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace projectCS
 {
-    // TODO : mettre les différentes phrases qu'on utilisera, regroupera les différents champs/mots
+    // todo : mettre les différentes phrases qu'on utilisera, regroupera les différents champs/mots
     public static class ErrorMessages
     {
         public static string defaultErrorMsg = "default error message";
@@ -16,5 +16,8 @@ namespace projectCS
 
         public static string componentMaxExceedMsg = "The number of components maximum have been reach";
         public static string componentMaxExceedTitle = "Maximum exceed";
+
+        public static string invalidColorMsg = "You have choiced a bad color for this item";
+        public static string invalidColorTitle = "Bad Color";
     }
 }

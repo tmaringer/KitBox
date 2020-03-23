@@ -122,9 +122,9 @@ namespace projectCS
             {
                 AngleBracket a = new AngleBracket();
                 Console.WriteLine(a.height);
-                a.size = new Size(1005050, 100, 100);
+                a.color = Color.transparent;
 
-                Console.WriteLine(a.height);
+                Console.WriteLine(a.color);
             }
         }
         

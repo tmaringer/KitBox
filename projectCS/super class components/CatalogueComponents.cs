@@ -48,7 +48,7 @@
         }
 
         protected Color _color;
-        public Color color
+        public virtual Color color
         {
             get => _color;
             set => _color = value;

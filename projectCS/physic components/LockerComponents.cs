@@ -1,4 +1,6 @@
-﻿namespace projectCS
+﻿using projectCS.Tools_class;
+
+namespace projectCS
 {
     public class CrossBar : CatalogueComponents
     {
@@ -19,6 +21,21 @@
 
     public class Pannel : CatalogueComponents
     {
+        public override Color color 
+        { 
+            set
+            {
+                if (value == Color.transparent)
+                {
+                    ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
+                    window.displayWindow();
+                }
+                else
+                    base.color = value;
+            }
+        }
+
+
         public Pannel() : this(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black)
         {
         }
