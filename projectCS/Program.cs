@@ -120,8 +120,11 @@ namespace projectCS
 
             public static void autreTest()
             {
-                OrderFormViewInterface.createCupbaord(10,150,6,Color.galvanized);
-                Console.WriteLine(OrderFormViewInterface.shoppingCart.cupboard.depth);
+                AngleBracket a = new AngleBracket();
+                Console.WriteLine(a.height);
+                a.size = new Size(1005050, 100, 100);
+
+                Console.WriteLine(a.height);
             }
         }
         

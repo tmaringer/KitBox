@@ -27,7 +27,7 @@
         }
 
         protected Size _size;
-        public Size size
+        public virtual Size size
         {
             get => _size;
             set => _size = value;
