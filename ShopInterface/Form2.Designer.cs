@@ -1280,6 +1280,11 @@ namespace ShopInterface
             // comboBox32
             // 
             this.comboBox32.FormattingEnabled = true;
+            this.comboBox32.Items.AddRange(new object[] {
+            "Angles",
+            "Doors",
+            "Panels",
+            "Crossbars"});
             this.comboBox32.Location = new System.Drawing.Point(138, 65);
             this.comboBox32.Name = "comboBox32";
             this.comboBox32.Size = new System.Drawing.Size(114, 21);

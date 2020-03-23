@@ -237,11 +237,6 @@ namespace ShopInterface
                 List<string> orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
                 foreach (var OrderId in orderList3)
                     comboBox24.Items.Add(OrderId);
-                comboBox32.Items.Clear();
-                foreach(string i in DBUtils.RefListND("Ref","kitbox"))
-                {
-                    comboBox32.Items.Add(i);
-                }
 
             }
             else if (tabControl1.SelectedTab.Text == @"Stock management")
@@ -747,6 +742,8 @@ namespace ShopInterface
             Sandbox.Height(comboBox27.SelectedItem.ToString(), Convert.ToInt32(comboBox25.SelectedItem.ToString()));
             dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+            dataGridView12.DataSource = null;
+            Sandbox.ElementList(comboBox27.SelectedItem.ToString(), dataGridView12);
         }
 
         private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
