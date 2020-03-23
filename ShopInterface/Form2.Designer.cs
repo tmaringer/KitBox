@@ -284,6 +284,7 @@ namespace ShopInterface
             // 
             // progressBar2
             // 
+            this.progressBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBar2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.progressBar2.ForeColor = System.Drawing.Color.Gold;
             this.progressBar2.Location = new System.Drawing.Point(489, 572);
@@ -298,6 +299,7 @@ namespace ShopInterface
             // 
             // button16
             // 
+            this.button16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button16.Location = new System.Drawing.Point(489, 543);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(178, 23);
@@ -308,6 +310,8 @@ namespace ShopInterface
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.label22);
             this.groupBox5.Controls.Add(this.label15);
             this.groupBox5.Controls.Add(this.comboBox3);
@@ -374,6 +378,9 @@ namespace ShopInterface
             // 
             // chart1
             // 
+            this.chart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
@@ -450,6 +457,8 @@ namespace ShopInterface
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToResizeColumns = false;
             this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
             this.dataGridView4.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -480,6 +489,7 @@ namespace ShopInterface
             // 
             // groupBox11
             // 
+            this.groupBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox11.Controls.Add(this.comboBox9);
             this.groupBox11.Controls.Add(this.label29);
             this.groupBox11.Controls.Add(this.label30);
@@ -529,6 +539,7 @@ namespace ShopInterface
             // 
             // button14
             // 
+            this.button14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button14.Location = new System.Drawing.Point(880, 561);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(75, 23);
@@ -539,6 +550,7 @@ namespace ShopInterface
             // 
             // groupBox10
             // 
+            this.groupBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox10.Controls.Add(this.comboBox7);
             this.groupBox10.Controls.Add(this.label25);
             this.groupBox10.Controls.Add(this.label26);
@@ -588,6 +600,7 @@ namespace ShopInterface
             // 
             // groupBox9
             // 
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox9.Controls.Add(this.comboBox8);
             this.groupBox9.Controls.Add(this.label23);
             this.groupBox9.Controls.Add(this.label24);
@@ -637,6 +650,7 @@ namespace ShopInterface
             // 
             // groupBox8
             // 
+            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.Controls.Add(this.comboBox6);
             this.groupBox8.Controls.Add(this.label20);
             this.groupBox8.Controls.Add(this.label21);
@@ -787,6 +801,8 @@ namespace ShopInterface
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.AllowUserToResizeColumns = false;
             this.dataGridView3.AllowUserToResizeRows = false;
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.dataGridView3.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
@@ -802,6 +818,8 @@ namespace ShopInterface
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.dataGridView2.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
@@ -829,6 +847,7 @@ namespace ShopInterface
             // 
             // groupBox3
             // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.listView1);
             this.groupBox3.Controls.Add(this.button6);
@@ -877,11 +896,11 @@ namespace ShopInterface
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(0, 22);
+            this.label7.Location = new System.Drawing.Point(6, 22);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
             this.label7.Name = "label7";
             this.label7.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label7.Size = new System.Drawing.Size(125, 17);
+            this.label7.Size = new System.Drawing.Size(119, 17);
             this.label7.TabIndex = 9;
             this.label7.Text = "Ref (String)";
             // 
@@ -928,6 +947,7 @@ namespace ShopInterface
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox4.Controls.Add(this.textBox10);
             this.groupBox4.Controls.Add(this.button4);
             this.groupBox4.Controls.Add(this.button5);
@@ -978,6 +998,7 @@ namespace ShopInterface
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.comboBox10);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
@@ -1027,6 +1048,7 @@ namespace ShopInterface
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.comboBox12);
             this.groupBox1.Controls.Add(this.comboBox11);
             this.groupBox1.Controls.Add(this.label4);
@@ -1116,6 +1138,9 @@ namespace ShopInterface
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.dataGridView1.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1128,6 +1153,9 @@ namespace ShopInterface
             // tabControl1
             // 
             this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -1158,6 +1186,9 @@ namespace ShopInterface
             // 
             // label27
             // 
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F);
             this.label27.Location = new System.Drawing.Point(105, 280);
             this.label27.Name = "label27";
@@ -1168,6 +1199,7 @@ namespace ShopInterface
             // 
             // label28
             // 
+            this.label28.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
             this.label28.Location = new System.Drawing.Point(110, 350);
             this.label28.Name = "label28";
@@ -1179,6 +1211,9 @@ namespace ShopInterface
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
             this.label13.Location = new System.Drawing.Point(105, 103);
             this.label13.Name = "label13";
@@ -1210,6 +1245,9 @@ namespace ShopInterface
             this.dataGridView12.AllowUserToAddRows = false;
             this.dataGridView12.AllowUserToResizeColumns = false;
             this.dataGridView12.AllowUserToResizeRows = false;
+            this.dataGridView12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView12.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView12.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView12.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
@@ -1223,6 +1261,7 @@ namespace ShopInterface
             // 
             // groupBox23
             // 
+            this.groupBox23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox23.Controls.Add(this.comboBox31);
             this.groupBox23.Controls.Add(this.comboBox30);
             this.groupBox23.Controls.Add(this.comboBox33);
@@ -1369,6 +1408,8 @@ namespace ShopInterface
             this.dataGridView11.AllowUserToAddRows = false;
             this.dataGridView11.AllowUserToResizeColumns = false;
             this.dataGridView11.AllowUserToResizeRows = false;
+            this.dataGridView11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView11.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView11.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView11.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
@@ -1382,6 +1423,8 @@ namespace ShopInterface
             // 
             // groupBox20
             // 
+            this.groupBox20.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox20.Controls.Add(this.comboBox27);
             this.groupBox20.Controls.Add(this.comboBox26);
             this.groupBox20.Controls.Add(this.label55);
@@ -1470,6 +1513,7 @@ namespace ShopInterface
             // 
             // groupBox22
             // 
+            this.groupBox22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox22.Controls.Add(this.comboBox20);
             this.groupBox22.Controls.Add(this.label49);
             this.groupBox22.Controls.Add(this.label48);
@@ -1562,6 +1606,7 @@ namespace ShopInterface
             // 
             // groupBox21
             // 
+            this.groupBox21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox21.Controls.Add(this.comboBox21);
             this.groupBox21.Controls.Add(this.label32);
             this.groupBox21.Controls.Add(this.comboBox22);
@@ -1634,6 +1679,8 @@ namespace ShopInterface
             this.dataGridView6.AllowUserToAddRows = false;
             this.dataGridView6.AllowUserToResizeColumns = false;
             this.dataGridView6.AllowUserToResizeRows = false;
+            this.dataGridView6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView6.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView6.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView6.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
@@ -1664,6 +1711,8 @@ namespace ShopInterface
             // dataGridView8
             // 
             this.dataGridView8.AllowUserToAddRows = false;
+            this.dataGridView8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView8.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView8.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1800,6 +1849,9 @@ namespace ShopInterface
             // 
             // groupBox13
             // 
+            this.groupBox13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox13.Controls.Add(this.label34);
             this.groupBox13.Controls.Add(this.button18);
             this.groupBox13.Controls.Add(this.dataGridView5);
@@ -1812,6 +1864,7 @@ namespace ShopInterface
             // 
             // label34
             // 
+            this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label34.AutoSize = true;
             this.label34.Location = new System.Drawing.Point(6, 440);
             this.label34.Name = "label34";
@@ -1821,6 +1874,7 @@ namespace ShopInterface
             // 
             // button18
             // 
+            this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button18.Location = new System.Drawing.Point(298, 431);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(103, 22);
@@ -1831,6 +1885,9 @@ namespace ShopInterface
             // dataGridView5
             // 
             this.dataGridView5.AllowUserToAddRows = false;
+            this.dataGridView5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView5.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1841,6 +1898,8 @@ namespace ShopInterface
             // 
             // groupBox12
             // 
+            this.groupBox12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox12.Controls.Add(this.button17);
             this.groupBox12.Controls.Add(this.comboBox18);
             this.groupBox12.Location = new System.Drawing.Point(532, 8);
@@ -1852,6 +1911,7 @@ namespace ShopInterface
             // 
             // button17
             // 
+            this.button17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button17.Location = new System.Drawing.Point(181, 58);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(75, 23);
@@ -1861,6 +1921,7 @@ namespace ShopInterface
             // 
             // comboBox18
             // 
+            this.comboBox18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.comboBox18.FormattingEnabled = true;
             this.comboBox18.Location = new System.Drawing.Point(161, 19);
             this.comboBox18.Name = "comboBox18";
@@ -1885,6 +1946,7 @@ namespace ShopInterface
             // 
             // groupBox19
             // 
+            this.groupBox19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox19.Controls.Add(this.progressBar3);
             this.groupBox19.Controls.Add(this.label47);
             this.groupBox19.Controls.Add(this.button24);
@@ -1929,6 +1991,7 @@ namespace ShopInterface
             // 
             // groupBox18
             // 
+            this.groupBox18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox18.Controls.Add(this.label50);
             this.groupBox18.Controls.Add(this.comboBox19);
             this.groupBox18.Controls.Add(this.label42);
@@ -1938,7 +2001,7 @@ namespace ShopInterface
             this.groupBox18.Controls.Add(this.label46);
             this.groupBox18.Controls.Add(this.textBox6);
             this.groupBox18.Controls.Add(this.button23);
-            this.groupBox18.Location = new System.Drawing.Point(444, 143);
+            this.groupBox18.Location = new System.Drawing.Point(444, 141);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(258, 177);
             this.groupBox18.TabIndex = 20;
@@ -2024,6 +2087,7 @@ namespace ShopInterface
             // 
             // groupBox17
             // 
+            this.groupBox17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox17.Controls.Add(this.comboBox15);
             this.groupBox17.Controls.Add(this.label38);
             this.groupBox17.Controls.Add(this.label43);
@@ -2072,6 +2136,7 @@ namespace ShopInterface
             // 
             // groupBox16
             // 
+            this.groupBox16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox16.Controls.Add(this.comboBox13);
             this.groupBox16.Controls.Add(this.label39);
             this.groupBox16.Controls.Add(this.label40);
@@ -2141,6 +2206,9 @@ namespace ShopInterface
             this.dataGridView10.AllowUserToAddRows = false;
             this.dataGridView10.AllowUserToResizeColumns = false;
             this.dataGridView10.AllowUserToResizeRows = false;
+            this.dataGridView10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView10.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView10.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView10.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -2154,6 +2222,8 @@ namespace ShopInterface
             // 
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             this.dataGridView9.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView9.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
             this.dataGridView9.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -2179,7 +2249,6 @@ namespace ShopInterface
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(981, 626);
             this.Controls.Add(this.tabControl1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
