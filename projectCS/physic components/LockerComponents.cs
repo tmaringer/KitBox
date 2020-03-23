@@ -35,7 +35,6 @@ namespace projectCS
             }
         }
 
-
         public Pannel() : this(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.black)
         {
         }

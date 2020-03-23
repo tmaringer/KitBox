@@ -18,6 +18,6 @@ namespace projectCS
         public static string componentMaxExceedTitle = "Maximum exceed";
 
         public static string invalidColorMsg = "You have choiced a bad color for this item";
-        public static string invalidColorTitle = "Bad Color";
+        public static string invalidColorTitle = "Bad Color choice";
     }
 }

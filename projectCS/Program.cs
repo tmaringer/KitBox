@@ -17,7 +17,11 @@ namespace projectCS
             printPerso.test3();
             printPerso.isActive();
             */
-            printPerso.autreTest();
+
+            ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
+            window.displayWindow();
+
+            //printPerso.autreTest();
 
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
@@ -27,6 +31,7 @@ namespace projectCS
         
         internal static class printPerso
         {
+            /*
             public static void newCompoTest()
             {
                 CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", new Size(0, 0, 0), false, 0, Color.white);
@@ -117,7 +122,7 @@ namespace projectCS
                 }
                 locker.isComplete();
             }
-
+            */
             public static void autreTest()
             {
                 AngleBracket a = new AngleBracket();
