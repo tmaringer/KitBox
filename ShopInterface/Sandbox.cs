@@ -319,7 +319,7 @@ namespace ShopInterface
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "panels where CleatId = \"" + i + "\"")[0];
+                string code = DBUtils.RefList("Code", "cleats where CleatId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
                 myDataRow["Position"] = null;
                 string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
