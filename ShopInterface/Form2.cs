@@ -237,6 +237,11 @@ namespace ShopInterface
                 List<string> orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
                 foreach (var OrderId in orderList3)
                     comboBox24.Items.Add(OrderId);
+                comboBox32.Items.Clear();
+                foreach(string i in DBUtils.RefListND("Ref","kitbox"))
+                {
+                    comboBox32.Items.Add(i);
+                }
 
             }
             else if (tabControl1.SelectedTab.Text == @"Stock management")

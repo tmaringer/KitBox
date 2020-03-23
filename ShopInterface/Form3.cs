@@ -62,7 +62,7 @@ namespace ShopInterface
             }
             else if (label5.Text == "Traverse Av")
             {
-                pictureBox1.Image = (Image) Properties.Resources.Tasseau;
+                pictureBox1.Image = (Image) Properties.Resources.traverse_av;
             }
             else if (label5.Text == "Tasseau")
             {
