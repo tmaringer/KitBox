@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Windows.Forms;
 using projectCS;
+using Color = System.Drawing.Color;
 namespace ShopInterface
 {
     class Sandbox
@@ -13,33 +16,26 @@ namespace ShopInterface
                 {
                     foreach (string k in DBUtils.RefList("Code", "doors where BoxeId= \"" + j + "\""))
                     {
-                        //Modify door property
                         Console.WriteLine("Cupboard " + i + ", Box " + j + ", Door code: " + k);
                     }
                     foreach (string k in DBUtils.RefList("Code", "crossbars where BoxeId= \"" + j + "\""))
                     {
-                        //Modify crossbar property
                         Console.WriteLine("Cupboard " + i + ", Box " + j + ", Crossbar code: " + k);
                     }
                     foreach (string k in DBUtils.RefList("Code", "panels where BoxeId= \"" + j + "\""))
                     {
-                        //Modify panels property
                         Console.WriteLine("Cupboard " + i + ", Box " + j + ", Panel code: " + k);
                     }
                     foreach (string k in DBUtils.RefList("Code", "cleats where BoxeId= \"" + j + "\""))
                     {
-                        //Modify cleats property
                         Console.WriteLine("Cupboard " + i + ", Box " + j + ", Cleat code: " + k);
                     }
-                    //Modify box property
                     Console.WriteLine("Box Height:" + DBUtils.RefList("Hauteur", "boxes where CupboardId= \"" + i + "\"")[0]);
                 }
                 foreach (string j in DBUtils.RefList("Code", "angles where CupboardId= \"" + i + "\""))
                 {
-                    //modify Angle bracket property
                     Console.WriteLine("Cupboard " + i + ", Angle bracket " + j);
                 }
-                //Modify Cupboard property
             }
             Console.ReadLine();
         }
@@ -219,6 +215,131 @@ namespace ShopInterface
                 }
                 DBUtils.UpdateDBV("cupboards", "Hauteur", "CupboardId = \"" + cupboardid + "\"", heightCupboard.ToString());
                 DBUtils.UpdateDBV("boxes", "Hauteur", "BoxeId= \"" + BoxeId + "\"", height.ToString());
+            }
+        }
+
+        public static void ElementList(string BoxeId, DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+            DataTable elements = dataTable;
+            DataColumn dtColumn = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = true
+            };
+            elements.Columns.Add(dtColumn);
+            DataColumn dtColumn1 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Code",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn1);
+            DataColumn dtColumn2 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Position",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn2);
+            DataColumn dtColumn3 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Stock",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn3);
+            int index = 1;
+            foreach (string i in DBUtils.RefList("DoorId", "doors where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                myDataRow["Position"] = null;
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                index += 1;
+            }
+            foreach (string i in DBUtils.RefList("CrossbarId", "crossbars where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", "crossbars where CrossbarId = \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                string position = DBUtils.RefList("Position", "crossbars where CrossbarId = \"" + i + "\"")[0];
+                myDataRow["Position"] = position;
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                index += 1;
+            }
+            foreach (string i in DBUtils.RefList("PanelId", "panels where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                string position = DBUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
+                myDataRow["Position"] = position;
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                index += 1;
+            }
+            foreach (string i in DBUtils.RefList("CleatId", "cleats where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", "panels where CleatId = \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                myDataRow["Position"] = null;
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                index += 1;
+            }
+            dataGridView.DataSource = dataTable;
+            foreach(DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells["Stock"].Value.ToString() == "false")
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                else
+                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
             }
         }
     }

@@ -721,6 +721,7 @@ namespace ShopInterface
         {
             if (dataGridView11.CurrentCell.ColumnIndex == 0)
             {
+                Sandbox.ElementList(dataGridView11.CurrentCell.Value.ToString(), dataGridView12);
                 comboBox27.Text = dataGridView11.CurrentCell.Value.ToString();
                 comboBox31.Text = dataGridView11.CurrentCell.Value.ToString();
             }
