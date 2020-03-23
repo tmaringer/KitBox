@@ -6,18 +6,19 @@
         public int height
         {
             get => _height;
+            set => _height = value;
         }
 
         private double _price;
         public double price
         {
             get => _price;
+            set => _price = value;
         }
 
         public AngleBracket() : this(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.white)
         {
         }
-        // todo : voir si on doit juste prendre "hieght" la struc size en entier
         public AngleBracket(double price,
                         string reference,
                         string code,
@@ -39,6 +40,11 @@
         public void cutHeight(int size)
         {
             _height -= size;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ", height : " + _height;
         }
     }
 }
