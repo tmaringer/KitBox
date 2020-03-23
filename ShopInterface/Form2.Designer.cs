@@ -129,6 +129,8 @@ namespace ShopInterface
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.dataGridView12 = new System.Windows.Forms.DataGridView();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.comboBox31 = new System.Windows.Forms.ComboBox();
+            this.comboBox30 = new System.Windows.Forms.ComboBox();
             this.comboBox33 = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
             this.comboBox32 = new System.Windows.Forms.ComboBox();
@@ -143,6 +145,8 @@ namespace ShopInterface
             this.button28 = new System.Windows.Forms.Button();
             this.dataGridView11 = new System.Windows.Forms.DataGridView();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.comboBox27 = new System.Windows.Forms.ComboBox();
+            this.comboBox26 = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label56 = new System.Windows.Forms.Label();
             this.comboBox25 = new System.Windows.Forms.ComboBox();
@@ -150,6 +154,7 @@ namespace ShopInterface
             this.label58 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.comboBox20 = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.comboBox24 = new System.Windows.Forms.ComboBox();
@@ -216,11 +221,6 @@ namespace ShopInterface
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.comboBox20 = new System.Windows.Forms.ComboBox();
-            this.comboBox26 = new System.Windows.Forms.ComboBox();
-            this.comboBox27 = new System.Windows.Forms.ComboBox();
-            this.comboBox30 = new System.Windows.Forms.ComboBox();
-            this.comboBox31 = new System.Windows.Forms.ComboBox();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -1210,6 +1210,7 @@ namespace ShopInterface
             this.dataGridView12.AllowUserToAddRows = false;
             this.dataGridView12.AllowUserToResizeColumns = false;
             this.dataGridView12.AllowUserToResizeRows = false;
+            this.dataGridView12.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView12.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.dataGridView12.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dataGridView12.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1241,6 +1242,22 @@ namespace ShopInterface
             this.groupBox23.TabIndex = 27;
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Modify an element";
+            // 
+            // comboBox31
+            // 
+            this.comboBox31.FormattingEnabled = true;
+            this.comboBox31.Location = new System.Drawing.Point(341, 28);
+            this.comboBox31.Name = "comboBox31";
+            this.comboBox31.Size = new System.Drawing.Size(114, 21);
+            this.comboBox31.TabIndex = 27;
+            // 
+            // comboBox30
+            // 
+            this.comboBox30.FormattingEnabled = true;
+            this.comboBox30.Location = new System.Drawing.Point(138, 28);
+            this.comboBox30.Name = "comboBox30";
+            this.comboBox30.Size = new System.Drawing.Size(114, 21);
+            this.comboBox30.TabIndex = 26;
             // 
             // comboBox33
             // 
@@ -1380,6 +1397,22 @@ namespace ShopInterface
             this.groupBox20.Text = "Modify a box";
             this.groupBox20.Enter += new System.EventHandler(this.groupBox20_Enter);
             // 
+            // comboBox27
+            // 
+            this.comboBox27.FormattingEnabled = true;
+            this.comboBox27.Location = new System.Drawing.Point(77, 65);
+            this.comboBox27.Name = "comboBox27";
+            this.comboBox27.Size = new System.Drawing.Size(114, 21);
+            this.comboBox27.TabIndex = 22;
+            // 
+            // comboBox26
+            // 
+            this.comboBox26.FormattingEnabled = true;
+            this.comboBox26.Location = new System.Drawing.Point(77, 28);
+            this.comboBox26.Name = "comboBox26";
+            this.comboBox26.Size = new System.Drawing.Size(114, 21);
+            this.comboBox26.TabIndex = 21;
+            // 
             // label55
             // 
             this.label55.AutoSize = true;
@@ -1450,6 +1483,14 @@ namespace ShopInterface
             this.groupBox22.TabIndex = 24;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Modify a cupboard";
+            // 
+            // comboBox20
+            // 
+            this.comboBox20.FormattingEnabled = true;
+            this.comboBox20.Location = new System.Drawing.Point(131, 28);
+            this.comboBox20.Name = "comboBox20";
+            this.comboBox20.Size = new System.Drawing.Size(114, 21);
+            this.comboBox20.TabIndex = 20;
             // 
             // label49
             // 
@@ -2129,46 +2170,6 @@ namespace ShopInterface
             this.dataGridView9.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
-            // 
-            // comboBox20
-            // 
-            this.comboBox20.FormattingEnabled = true;
-            this.comboBox20.Location = new System.Drawing.Point(131, 28);
-            this.comboBox20.Name = "comboBox20";
-            this.comboBox20.Size = new System.Drawing.Size(114, 21);
-            this.comboBox20.TabIndex = 20;
-            // 
-            // comboBox26
-            // 
-            this.comboBox26.FormattingEnabled = true;
-            this.comboBox26.Location = new System.Drawing.Point(77, 28);
-            this.comboBox26.Name = "comboBox26";
-            this.comboBox26.Size = new System.Drawing.Size(114, 21);
-            this.comboBox26.TabIndex = 21;
-            // 
-            // comboBox27
-            // 
-            this.comboBox27.FormattingEnabled = true;
-            this.comboBox27.Location = new System.Drawing.Point(77, 65);
-            this.comboBox27.Name = "comboBox27";
-            this.comboBox27.Size = new System.Drawing.Size(114, 21);
-            this.comboBox27.TabIndex = 22;
-            // 
-            // comboBox30
-            // 
-            this.comboBox30.FormattingEnabled = true;
-            this.comboBox30.Location = new System.Drawing.Point(138, 28);
-            this.comboBox30.Name = "comboBox30";
-            this.comboBox30.Size = new System.Drawing.Size(114, 21);
-            this.comboBox30.TabIndex = 26;
-            // 
-            // comboBox31
-            // 
-            this.comboBox31.FormattingEnabled = true;
-            this.comboBox31.Location = new System.Drawing.Point(341, 28);
-            this.comboBox31.Name = "comboBox31";
-            this.comboBox31.Size = new System.Drawing.Size(114, 21);
-            this.comboBox31.TabIndex = 27;
             // 
             // Form2
             // 

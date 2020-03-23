@@ -341,9 +341,9 @@ namespace ShopInterface
             foreach(DataGridViewRow row in dataGridView.Rows)
             {
                 if (row.Cells["Stock"].Value.ToString() == "false")
-                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.Cells["Stock"].Style.BackColor = Color.Red;
                 else
-                    row.DefaultCellStyle.BackColor = Color.LimeGreen;
+                    row.Cells["Stock"].Style.BackColor = Color.LimeGreen;
             }
         }
     }
