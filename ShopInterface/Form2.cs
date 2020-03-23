@@ -36,7 +36,7 @@ namespace ShopInterface
 
             // Change the length of the text box depending on what the user has 
             // selected and committed using the SelectionLength property.
-            if (senderComboBox.SelectionLength > 0)
+            if (senderComboBox.SelectionLength >= 0)
             {
                 if (comboBox1.SelectedItem.ToString() == "year")
                     foreach (var year in _columnYear)
@@ -70,7 +70,7 @@ namespace ShopInterface
         {
             comboBox24.Items.Clear();
             var senderComboBox = (ComboBox)sender;
-            if (senderComboBox.SelectionLength > 0)
+            if (senderComboBox.SelectionLength >= 0)
             {
                 List<string> orderList2 = new List<string>();
                 if (comboBox23.SelectedItem.ToString() == "Width")
@@ -383,7 +383,7 @@ namespace ShopInterface
 
         private void Start()
         {
-            comboBox4.DataSource =DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
+            comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
             comboBox4.DisplayMember = "OrderId";
             comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox6.DisplayMember = "OrderId";
@@ -752,6 +752,26 @@ namespace ShopInterface
             {
                 Form frm = new Form3(dataGridView12.CurrentCell.Value.ToString());
                 frm.Show();
+            }
+        }
+
+        private void comboBox32_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var senderComboBox = (ComboBox)sender;
+            if (senderComboBox.SelectionLength >= 0)
+            {
+                if (comboBox32.SelectedItem.ToString() == "Angles")
+                {
+                    dataGridView12.DataSource = null;
+                    Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
+                    comboBox31.Enabled = false;
+                    comboBox33.Enabled = false;
+                    comboBox29.Items.Clear();
+                    foreach(DataGridViewRow row in dataGridView12.Rows)
+                    {
+                        comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
+                    }
+                }
             }
         }
     }

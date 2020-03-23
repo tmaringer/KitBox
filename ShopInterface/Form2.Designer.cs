@@ -1286,7 +1286,7 @@ namespace ShopInterface
             // comboBox31
             // 
             this.comboBox31.FormattingEnabled = true;
-            this.comboBox31.Location = new System.Drawing.Point(341, 28);
+            this.comboBox31.Location = new System.Drawing.Point(324, 39);
             this.comboBox31.Name = "comboBox31";
             this.comboBox31.Size = new System.Drawing.Size(114, 21);
             this.comboBox31.TabIndex = 27;
@@ -1294,7 +1294,7 @@ namespace ShopInterface
             // comboBox30
             // 
             this.comboBox30.FormattingEnabled = true;
-            this.comboBox30.Location = new System.Drawing.Point(138, 28);
+            this.comboBox30.Location = new System.Drawing.Point(121, 39);
             this.comboBox30.Name = "comboBox30";
             this.comboBox30.Size = new System.Drawing.Size(114, 21);
             this.comboBox30.TabIndex = 26;
@@ -1302,7 +1302,7 @@ namespace ShopInterface
             // comboBox33
             // 
             this.comboBox33.FormattingEnabled = true;
-            this.comboBox33.Location = new System.Drawing.Point(137, 99);
+            this.comboBox33.Location = new System.Drawing.Point(120, 110);
             this.comboBox33.Name = "comboBox33";
             this.comboBox33.Size = new System.Drawing.Size(114, 21);
             this.comboBox33.TabIndex = 25;
@@ -1310,7 +1310,7 @@ namespace ShopInterface
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(46, 102);
+            this.label65.Location = new System.Drawing.Point(29, 113);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(85, 13);
             this.label65.TabIndex = 24;
@@ -1324,15 +1324,16 @@ namespace ShopInterface
             "Doors",
             "Panels",
             "Crossbars"});
-            this.comboBox32.Location = new System.Drawing.Point(138, 65);
+            this.comboBox32.Location = new System.Drawing.Point(121, 76);
             this.comboBox32.Name = "comboBox32";
             this.comboBox32.Size = new System.Drawing.Size(114, 21);
             this.comboBox32.TabIndex = 23;
+            this.comboBox32.SelectionChangeCommitted += new System.EventHandler(this.comboBox32_SelectionChangeCommitted);
             // 
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(49, 68);
+            this.label64.Location = new System.Drawing.Point(32, 79);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(83, 13);
             this.label64.TabIndex = 22;
@@ -1341,7 +1342,7 @@ namespace ShopInterface
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(301, 31);
+            this.label63.Location = new System.Drawing.Point(284, 42);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(34, 13);
             this.label63.TabIndex = 21;
@@ -1350,7 +1351,7 @@ namespace ShopInterface
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(301, 102);
+            this.label59.Location = new System.Drawing.Point(284, 113);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(31, 13);
             this.label59.TabIndex = 19;
@@ -1359,7 +1360,7 @@ namespace ShopInterface
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(281, 68);
+            this.label60.Location = new System.Drawing.Point(264, 79);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(54, 13);
             this.label60.TabIndex = 18;
@@ -1368,7 +1369,7 @@ namespace ShopInterface
             // comboBox28
             // 
             this.comboBox28.FormattingEnabled = true;
-            this.comboBox28.Location = new System.Drawing.Point(341, 99);
+            this.comboBox28.Location = new System.Drawing.Point(324, 110);
             this.comboBox28.Name = "comboBox28";
             this.comboBox28.Size = new System.Drawing.Size(114, 21);
             this.comboBox28.TabIndex = 17;
@@ -1376,7 +1377,7 @@ namespace ShopInterface
             // comboBox29
             // 
             this.comboBox29.FormattingEnabled = true;
-            this.comboBox29.Location = new System.Drawing.Point(341, 65);
+            this.comboBox29.Location = new System.Drawing.Point(324, 76);
             this.comboBox29.Name = "comboBox29";
             this.comboBox29.Size = new System.Drawing.Size(114, 21);
             this.comboBox29.TabIndex = 16;
@@ -1384,7 +1385,7 @@ namespace ShopInterface
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(35, 149);
+            this.label61.Location = new System.Drawing.Point(18, 160);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(39, 13);
             this.label61.TabIndex = 7;
@@ -1393,7 +1394,7 @@ namespace ShopInterface
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(69, 31);
+            this.label62.Location = new System.Drawing.Point(52, 42);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(62, 13);
             this.label62.TabIndex = 5;
@@ -1401,7 +1402,8 @@ namespace ShopInterface
             // 
             // button28
             // 
-            this.button28.Location = new System.Drawing.Point(360, 141);
+            this.button28.Enabled = false;
+            this.button28.Location = new System.Drawing.Point(343, 152);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(95, 21);
             this.button28.TabIndex = 0;
