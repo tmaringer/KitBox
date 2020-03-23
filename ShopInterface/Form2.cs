@@ -709,6 +709,8 @@ namespace ShopInterface
                 comboBox30.Text = dataGridView6.CurrentCell.Value.ToString();
                 comboBox27.Items.Clear();
                 comboBox31.Items.Clear();
+                dataGridView12.DataSource = null;
+                Sandbox.Angles(dataGridView6.CurrentCell.Value.ToString(), dataGridView12);
                 foreach (DataGridViewRow row in dataGridView11.Rows)
                 {
                     comboBox27.Items.Add(row.Cells["BoxeId"].Value.ToString());
@@ -721,6 +723,7 @@ namespace ShopInterface
         {
             if (dataGridView11.CurrentCell.ColumnIndex == 0)
             {
+                dataGridView12.DataSource = null;
                 Sandbox.ElementList(dataGridView11.CurrentCell.Value.ToString(), dataGridView12);
                 comboBox27.Text = dataGridView11.CurrentCell.Value.ToString();
                 comboBox31.Text = dataGridView11.CurrentCell.Value.ToString();
@@ -739,6 +742,15 @@ namespace ShopInterface
             Sandbox.Height(comboBox27.SelectedItem.ToString(), Convert.ToInt32(comboBox25.SelectedItem.ToString()));
             dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+        }
+
+        private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView12.CurrentCell.ColumnIndex == 1)
+            {
+                Form frm = new Form3(dataGridView12.CurrentCell.Value.ToString());
+                frm.Show();
+            }
         }
     }
 }

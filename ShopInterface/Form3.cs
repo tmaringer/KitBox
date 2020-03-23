@@ -1,68 +1,88 @@
-﻿using projectCS;
-using System;
-using System.Globalization;
-using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using projectCS;
 
 namespace ShopInterface
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        public Form3(string value)
         {
             InitializeComponent();
-            dataGridView1.DataSource = DBUtils.RefreshDBPartial("kitbox", "Code, PrixFourn1, DelaiFourn1, PrixFourn2, DelaiFourn2");
+            ninja(value);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ninja(string value)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            button1.Enabled = false;
-            progressBar1.Value = 10;
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            label1.Text = value;
+            label5.Text = DBUtils.RefList("Ref", "kitbox where Code = \"" + value + "\"")[0];
+            label6.Text = DBUtils.RefList("Dimensions", "kitbox where Code = \"" + value + "\"")[0];
+            label7.Text = DBUtils.RefList("Couleur", "kitbox where Code = \"" + value + "\"")[0];
+            if (label5.Text == "Cornieres")
             {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
-                if (row.Cells["PrixFourn1"].Value != null)
+                if (label7.Text == "Blanc")
                 {
-                    double prix1 = double.Parse(row.Cells["PrixFourn1"].Value.ToString().Replace(",", "."));
-                    double prix2 = double.Parse(row.Cells["PrixFourn2"].Value.ToString().Replace(",", "."));
-                    if (prix1 < prix2)
-                    {
-                        DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "1");
-                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix1.ToString());
-                        DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn1"].Value).ToString());
-                    }
-                    else if (prix1 > prix2)
-                    {
-                        DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "2");
-                        DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix2.ToString());
-                        DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn2"].Value).ToString());
-                    }
-                    else
-                    {
-                        if (Convert.ToInt32(row.Cells["DelaiFourn1"].Value) < Convert.ToInt32(row.Cells["DelaiFourn2"].Value))
-                        {
-                            DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "1");
-                            DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn1"].Value).ToString());
-                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix1.ToString());
-                        }
-                        else
-                        {
-                            DBUtils.UpdateDBV("suppliersprices", "SupplierNumber", "Code =\"" + row.Cells["Code"].Value + "\"", "2");
-                            DBUtils.UpdateDBV("suppliersprices", "DelaiFourn", "Code =\"" + row.Cells["Code"].Value + "\"", Convert.ToInt32(row.Cells["DelaiFourn2"].Value).ToString());
-                            DBUtils.UpdateDBV("suppliersprices", "PrixFourn", "Code =\"" + row.Cells["Code"].Value + "\"", prix2.ToString());
-                        }
-                    }
+                    pictureBox1.Image = Properties.Resources.Corniere_blanc;
                 }
-                progressBar1.PerformStep();
+                else if (label7.Text == "Brun")
+                {
+                    pictureBox1.Image = Properties.Resources.Corniere_brown;
+                }
+                else if (label7.Text == "Galvanise")
+                {
+                    pictureBox1.Image = Properties.Resources.Corniere_galv;
+                }
+                else if (label7.Text == "Noir")
+                {
+                    pictureBox1.Image = Properties.Resources.Corniere_black;
+                }
             }
-            button1.Enabled = true;
-            progressBar1.Value = 10;
-            dataGridView2.DataSource = DBUtils.RefreshDB("suppliersprices");
+            else if (label5.Text == "Panneau GD" || label5.Text == "Panneau HB" || label5.Text == "Panneau Ar")
+            {
+                if (label7.Text == "Blanc")
+                {
+                    pictureBox1.Image = Properties.Resources.panel_white;
+                }
+                else if (label7.Text == "Brun")
+                {
+                    pictureBox1.Image = Properties.Resources.porte_brown;
+                }
+            }
+            else if (label5.Text == "Traverse GD" || label5.Text == "Traverse Ar")
+            {
+                pictureBox1.Image = Properties.Resources.traverse;
+            }
+            else if (label5.Text == "Traverse Av")
+            {
+                pictureBox1.Image = (Image) Properties.Resources.Tasseau;
+            }
+            else if (label5.Text == "Tasseau")
+            {
+                pictureBox1.Image = Properties.Resources.Tasseau;
+            }
+            else if (label5.Text == "Porte")
+            {
+                if (label7.Text == "Blanc")
+                {
+                    pictureBox1.Image = Properties.Resources.porte_blanc;
+                }
+                else if (label7.Text == "Brun")
+                {
+                    pictureBox1.Image = Properties.Resources.porte_brown;
+                }
+                else if (label7.Text == "Verre")
+                {
+                    pictureBox1.Image = Properties.Resources.porte_verre;
+                }
+            }
         }
     }
 }

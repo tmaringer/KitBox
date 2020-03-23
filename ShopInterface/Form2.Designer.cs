@@ -1219,6 +1219,7 @@ namespace ShopInterface
             this.dataGridView12.ReadOnly = true;
             this.dataGridView12.Size = new System.Drawing.Size(489, 398);
             this.dataGridView12.TabIndex = 28;
+            this.dataGridView12.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView12_CellDoubleClick);
             // 
             // groupBox23
             // 
