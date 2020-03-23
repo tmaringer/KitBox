@@ -673,12 +673,18 @@ namespace ShopInterface
         private void button26_Click(object sender, EventArgs e)
         {
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
-            comboBox26.DataSource = dataGridView6.DataSource;
-            comboBox26.DisplayMember = "CupboardId";
-            comboBox30.DataSource = dataGridView6.DataSource;
-            comboBox30.DisplayMember = "CupboardId";
-            comboBox20.DataSource = dataGridView6.DataSource;
-            comboBox20.DisplayMember = "CupboardId";
+            comboBox26.Items.Clear();
+            comboBox30.Items.Clear();
+            comboBox20.Items.Clear();
+            comboBox31.Items.Clear();
+            comboBox27.Items.Clear();
+            dataGridView11.DataSource = null;
+            foreach (DataGridViewRow row in dataGridView6.Rows)
+            {
+                comboBox30.Items.Add(row.Cells["CupboardId"].Value.ToString());
+                comboBox26.Items.Add(row.Cells["CupboardId"].Value.ToString());
+                comboBox20.Items.Add(row.Cells["CupboardId"].Value.ToString());
+            }
         }
 
         private void button27_Click(object sender, EventArgs e)
@@ -701,10 +707,13 @@ namespace ShopInterface
                 comboBox26.Text = dataGridView6.CurrentCell.Value.ToString();
                 comboBox20.Text = dataGridView6.CurrentCell.Value.ToString();
                 comboBox30.Text = dataGridView6.CurrentCell.Value.ToString();
-                comboBox27.DataSource = dataGridView11.DataSource;
-                comboBox27.DisplayMember = "BoxeId";
-                comboBox31.DataSource = dataGridView11.DataSource;
-                comboBox31.DisplayMember = "BoxeId";
+                comboBox27.Items.Clear();
+                comboBox31.Items.Clear();
+                foreach (DataGridViewRow row in dataGridView11.Rows)
+                {
+                    comboBox27.Items.Add(row.Cells["BoxeId"].Value.ToString());
+                    comboBox31.Items.Add(row.Cells["BoxeId"].Value.ToString());
+                }
             }
 
         }
