@@ -19,16 +19,18 @@ namespace projectCS
             */
 
             ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
-            window.displayWindow();
+            //window.displayWindow();
 
             //printPerso.autreTest();
+           
+
 
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
         }
-        
+
         internal static class printPerso
         {
             /*
