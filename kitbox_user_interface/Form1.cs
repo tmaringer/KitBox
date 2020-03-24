@@ -401,14 +401,14 @@ namespace kitbox_user_interface_V1
                 //Size (height, width, depth)
 
 
-                CrossBar traverseAV = new CrossBar(0, "null", "0000", traverseA_size, false, width, default_color);
-                CrossBar traverseAR = new CrossBar(0, "null", "0000", traverseA_size, false, width, default_color);
-                CrossBar traverseG = new CrossBar(0, "null", "0000", traverseGD_size, false, width, default_color);
-                CrossBar traverseD = new CrossBar(0, "null", "0000", traverseGD_size, false, width, default_color);
-                Pannel panneauH = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
-                Pannel panneauB = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
-                Pannel panneauG = new Pannel(0, "null", "0000", default_size, false, 0, default_color);
-                Pannel panneauD = new Pannel(0, "null", "0000", default_size, false, 0, default_color);
+                CrossBar traverseAV = new CrossBar();
+                CrossBar traverseAR = new CrossBar();
+                CrossBar traverseG = new CrossBar();
+                CrossBar traverseD = new CrossBar();
+                Pannel panneauH = new Pannel();
+                Pannel panneauB = new Pannel();
+                Pannel panneauG = new Pannel();
+                Pannel panneauD = new Pannel();
                 
                 
                 if(width<62)

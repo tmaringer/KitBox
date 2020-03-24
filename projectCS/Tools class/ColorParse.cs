@@ -13,9 +13,14 @@ namespace projectCS.Tools_class
             get => Enum.GetNames(typeof(ComponentColor)).ToList();
         }
 
-        public static ComponentColor parseToEnum(string value)
+        public static ComponentColor parseToEnum(string str)
         {
-            return (ComponentColor)Enum.Parse(typeof(ComponentColor), value, true);
+            return (ComponentColor)Enum.Parse(typeof(ComponentColor), str, true);
+        }
+
+        public static String parseToStr(ComponentColor color)
+        {
+            return Enum.GetName(color.GetType(), color);
         }
     }
 }

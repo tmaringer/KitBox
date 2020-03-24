@@ -22,7 +22,10 @@ namespace projectCS
             //window.displayWindow();
 
             //printPerso.autreTest();
-           
+
+            Console.WriteLine(ColorParse.parseToStr(ComponentColor.black));
+            Console.WriteLine(ColorParse.parseToStr(ComponentColor.black).GetType());
+
 
 
             Console.WriteLine("\n");
