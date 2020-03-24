@@ -742,16 +742,24 @@ namespace ShopInterface
 
         private void button27_Click(object sender, EventArgs e)
         {
-            if (comboBox23.SelectedItem.ToString() == "Width")
+            if (comboBox20.SelectedItem != null && comboBox23.SelectedItem != null && comboBox24.SelectedItem != null)
             {
-                Sandbox.Width(comboBox26.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
+                if (comboBox23.SelectedItem.ToString() == "Width")
+                {
+                    Sandbox.Width(comboBox20.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
+                }
+                else if (comboBox23.SelectedItem.ToString() == "Depth")
+                {
+                    Sandbox.Depth(comboBox20.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
+                }
+                dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
             }
-            else if (comboBox23.SelectedItem.ToString() == "Depth")
+            else
             {
-                Sandbox.Depth(comboBox26.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
-            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
         }
+
         private void dataGridView6_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView6.CurrentCell.ColumnIndex == 0)
@@ -792,11 +800,11 @@ namespace ShopInterface
         private void button25_Click(object sender, EventArgs e)
         {
             //DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
-            Sandbox.Height(comboBox27.SelectedItem.ToString(), Convert.ToInt32(comboBox25.SelectedItem.ToString()));
-            dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + dataGridView6.CurrentCell.Value.ToString() + "\"");
+            Sandbox.Height(comboBox27.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
+            dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + comboBox26.SelectedItem + "\"");
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
             dataGridView12.DataSource = null;
-            Sandbox.ElementList(comboBox27.SelectedItem.ToString(), dataGridView12);
+            Sandbox.ElementList(comboBox27.Text, dataGridView12);
         }
 
         private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
