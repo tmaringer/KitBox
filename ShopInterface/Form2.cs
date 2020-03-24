@@ -797,9 +797,11 @@ namespace ShopInterface
         private void comboBox32_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var senderComboBox = (ComboBox)sender;
+            comboBox33.Enabled = false;
+            groupBox24.Visible = false;
             if (senderComboBox.SelectionLength >= 0)
             {
-                if (comboBox32.SelectedItem.ToString() == "Angles")
+                if (comboBox32.SelectedItem.ToString() == "Angle")
                 {
                     dataGridView12.DataSource = null;
                     Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
@@ -809,6 +811,28 @@ namespace ShopInterface
                     foreach(DataGridViewRow row in dataGridView12.Rows)
                     {
                         comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
+                    }
+                }
+                else if (comboBox32.SelectedItem.ToString() == "Door")
+                {
+                    comboBox31.Enabled = true;
+                    dataGridView12.DataSource = null;
+                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                    string cupboardid = DBUtils.RefList("CupboardId", "boxes where BoxeId = \"" + comboBox31.SelectedItem.ToString() + "\"")[0];
+                    if (Convert.ToInt32(DBUtils.RefList("Largeur", "cupboards where CupboardId = \"" + cupboardid + "\"")[0]) >= 62)
+                    {
+                        groupBox24.Visible = true;
+                        comboBox33.Enabled = true;
+                        comboBox29.Items.Clear();
+                        foreach (DataGridViewRow row in dataGridView12.Rows)
+                        {
+                            comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
+                        }
+                        comboBox28.Items.Clear();
+                        foreach (string i in DBUtils.RefListND("Couleur","kitbox where Ref = \"Porte \""))
+                        {
+                            comboBox28.Items.Add(i);
+                        }
                     }
                 }
             }

@@ -96,6 +96,7 @@ namespace ShopInterface
             }
             DBUtils.UpdateDBV("cupboards", "Profondeur", "CupboardId= \"" + CupboardId + "\"", depth.ToString());
         }
+
         public static void Width(string CupboardId, int width)
         {
             foreach (string i in DBUtils.RefList("BoxeId", "boxes where CupboardId = \"" + CupboardId + "\""))
@@ -141,6 +142,7 @@ namespace ShopInterface
             }
             DBUtils.UpdateDBV("cupboards", "Largeur", "CupboardId= \"" + CupboardId + "\"", width.ToString());
         }
+
         public static void Height(string BoxeId, int height)
         {
             int specialheight = height - 4;
@@ -240,6 +242,73 @@ namespace ShopInterface
                 }
                 DBUtils.UpdateDBV("cupboards", "Hauteur", "CupboardId = \"" + cupboardid + "\"", heightCupboard.ToString());
                 DBUtils.UpdateDBV("boxes", "Hauteur", "BoxeId= \"" + BoxeId + "\"", height.ToString());
+            }
+        }
+
+        public static void Doors(string BoxeId, DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+            DataTable elements = dataTable;
+            DataColumn dtColumn = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = true
+            };
+            elements.Columns.Add(dtColumn);
+            DataColumn dtColumn1 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Code",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn1);
+            DataColumn dtColumn2 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Position",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn2);
+            DataColumn dtColumn3 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Stock",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn3);
+            int index = 1;
+            foreach (string i in DBUtils.RefList("DoorId", "doors where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                myDataRow["Position"] = null;
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                elements.Rows.Add(myDataRow);
+                index += 1;
+            }
+            dataGridView.DataSource = dataTable;
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells["Stock"].Value.ToString() == "false")
+                    row.Cells["Stock"].Style.BackColor = Color.Red;
+                else
+                    row.Cells["Stock"].Style.BackColor = Color.LimeGreen;
             }
         }
 
