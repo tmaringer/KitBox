@@ -55,15 +55,34 @@ namespace projectCS
             adapter.InsertCommand.ExecuteNonQuery();
             conn.Close();
         }
-        public static void InsertSupplier(string database, string code, string price, string delay, string supplierid)
+        public static void InsertDoor(string database, string code, string boxeid)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string sql = "Insert into " + database + " (SupplierId, Code, PrixFourn, DelaiFourn) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay +"\");";
+            string sql = "Insert into " + database + " (BoxeId,Code) values (\""+ boxeid + "\", \"" + code + "\");";
             adapter.InsertCommand = new MySqlCommand(sql, conn);
             conn.Open();
             adapter.InsertCommand.ExecuteNonQuery();
             conn.Close();
+        }
+        public static string InsertSupplier(string database, string code, string price, string delay, string supplierid)
+        {
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(MyConString);
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                string sql = "Insert into " + database + " (SupplierId, Code, PrixFourn, DelaiFourn) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay + "\");";
+                adapter.InsertCommand = new MySqlCommand(sql, conn);
+                conn.Open();
+                adapter.InsertCommand.ExecuteNonQuery();
+                conn.Close();
+                return "Done";
+            }
+            catch
+            {
+                return "Error";
+            }
+
         }
 
         public static int CheckAccess(TextBox login, TextBox password)
@@ -289,17 +308,26 @@ namespace projectCS
             }
         }
 
-        public static void UpdateDBV(string database, string Column, string Cond, string Value)
+        public static string UpdateDBV(string database, string Column, string Cond, string Value)
         {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
-            conn.Open();
-            MySqlDataReader MyReader2;
-            MyReader2 = cmd.ExecuteReader();
-            while (MyReader2.Read())
+            try
             {
+                MySqlConnection conn = new MySqlConnection(MyConString);
+                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
+                conn.Open();
+                MySqlDataReader MyReader2;
+                MyReader2 = cmd.ExecuteReader();
+                while (MyReader2.Read())
+                {
+                }
+                conn.Close();
+                return "Done";
             }
-            conn.Close();
+            catch
+            {
+                return "Error";
+            }
+            
         }
 
         public static bool SearchDB(DataGridView dataGridView1,TextBox value)
@@ -347,13 +375,22 @@ namespace projectCS
             }
             return value;
         }
-        public static void DeleteRowVD(string database, string Cond)
+        public static string DeleteRowVD(string database, string Cond)
         {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("DELETE from " + database + " where " + Cond, conn);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(MyConString);
+                MySqlCommand cmd = new MySqlCommand("DELETE from " + database + " where " + Cond, conn);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return "Done";
+            }
+            catch
+            {
+                return "Error";
+            }
+            
         }
         public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> Columns, List<string> Types, List<string> Elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
         {

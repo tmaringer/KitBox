@@ -296,6 +296,7 @@ namespace ShopInterface
             dataGridView3.Columns["CustomerPhone"].Visible = false;
             dataGridView3.Columns["Status"].Visible = false;
             Colours(dataGridView3, "Disponibility");
+            label19.Text = "Done";
         }
 
         private void Colours(DataGridView dataGridView, string column)
@@ -346,7 +347,7 @@ namespace ShopInterface
                 {
                     row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
                     row.Cells["Disponibility"].Value = "true";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility",
+                    label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
                         "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
                         row.Cells["OrderId"].Value + "\"", "true");
                     //y += 1;
@@ -356,7 +357,7 @@ namespace ShopInterface
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
                     //AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
                     //row.Cells["Disponibility"].Value = "added";
-                    DBUtils.UpdateDBV("listsitems", "Disponibility",
+                    label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
                         "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
                         row.Cells["OrderId"].Value + "\"", "false");
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
@@ -453,7 +454,7 @@ namespace ShopInterface
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
                 var average = all / 12;
-                DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
+                label67.Text = DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();
             }
 
@@ -581,7 +582,7 @@ namespace ShopInterface
             {
                 string valueadd = (Convert.ToInt32(quantity) + Convert.ToInt32(DBUtils.RefList("Quantity",
                     "supplierspending where Code = \"" + code + "\"")[0])).ToString();
-                DBUtils.UpdateDBV("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
+                label35.Text = DBUtils.UpdateDBV("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
             }
             else
             {
@@ -655,10 +656,10 @@ namespace ShopInterface
             {
                 int valueStock = Convert.ToInt32(DBUtils.RefList("EnStock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
                 int actual = valueStock - Convert.ToInt32(row["Quantity"]);
-                DBUtils.UpdateDBV("kitbox", "EnStock", "Code = \"" + row["Code"] + "\"", actual.ToString());
-                DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
+                label30.Text = DBUtils.UpdateDBV("kitbox", "EnStock", "Code = \"" + row["Code"] + "\"", actual.ToString());
+                label30.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
             }
-            DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
+            label30.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
             Start();
         }
 
@@ -733,6 +734,7 @@ namespace ShopInterface
                     comboBox26.Items.Add(row.Cells["CupboardId"].Value.ToString());
                     comboBox20.Items.Add(row.Cells["CupboardId"].Value.ToString());
                 }
+                label52.Text = "Done";
             }
             else
             {
@@ -754,6 +756,7 @@ namespace ShopInterface
                     Sandbox.Depth(comboBox20.SelectedItem.ToString(), Convert.ToInt32(comboBox24.SelectedItem));
                 }
                 dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+                label53.Text = "Done";
             }
             else
             {
@@ -806,6 +809,7 @@ namespace ShopInterface
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
             dataGridView12.DataSource = null;
             Sandbox.ElementList(comboBox27.Text, dataGridView12);
+            label57.Text = "Done";
         }
 
         private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -872,15 +876,21 @@ namespace ShopInterface
 
         private void button29_Click(object sender, EventArgs e)
         {
-            while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox23.SelectedItem.ToString()) != 0)
+            while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox33.SelectedItem.ToString()) != 0)
             {
-                if (dataGridView12.Rows.Count > Convert.ToInt32(comboBox23.SelectedItem.ToString()))
+                if (dataGridView12.Rows.Count < Convert.ToInt32(comboBox33.SelectedItem.ToString()))
                 {
-                    //TODO: faire ici hehe
                     string height = DBUtils.RefList("Hauteur", "boxes where BoxeId = \"" + comboBox31.SelectedItem + "\"")[0];
                     string width = DBUtils.RefList("Largeur", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
-                    string code = "POR" + height + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "BL";
-                    //DBUtils.
+                    string code = "POR" + (Convert.ToInt32(height) - 4).ToString() + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "BL";
+                    DBUtils.InsertDoor("doors", code, comboBox31.SelectedItem.ToString());
+                    dataGridView12.DataSource = null;
+                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                }
+                else if (dataGridView12.Rows.Count > Convert.ToInt32(comboBox33.SelectedItem.ToString()))
+                {
+                    List<string> id = DBUtils.RefList("DoorId", "doors where BoxeId = \"" + comboBox31.SelectedItem.ToString() + "\"");
+                    DBUtils.DeleteRowVD("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                 }
@@ -903,19 +913,19 @@ namespace ShopInterface
 
         private void button21_Click(object sender, EventArgs e)
         {
-            DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
+            label39.Text = DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
+            label38.Text = DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(),"Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
+            label44.Text = DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(),"Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
         }
 
@@ -1032,6 +1042,12 @@ namespace ShopInterface
                 DBUtils.InsertSupplier("suppliersprices", row["Code"].ToString(), price1, row["DelaiFourn"].ToString(), row["SupplierId"].ToString());
                 progressBar3.PerformStep();
             }
+            label47.Text = "Done";
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            label24.Text = "Done";
         }
     }
 }
