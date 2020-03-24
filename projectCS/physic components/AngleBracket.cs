@@ -20,18 +20,16 @@ namespace projectCS
 
         public override Size size 
         { 
-            get => base.size;
+            get => base._size;
             set            
             { 
-                base.size = value;
-                _height = _size.height;
+                base._size = value;
             }
         }
 
-        private int _height;
         public int height
         {
-            get => _height;
+            get => _size.height;
         }
 
         private double _price;
@@ -53,7 +51,6 @@ namespace projectCS
                         Color color) : base(price, reference, code, size, inStock, dimension, color)
         {
             this._price = price;
-            this._height = size.height;
         }
 
         /// <summary>
@@ -64,12 +61,12 @@ namespace projectCS
         /// </param>
         public void cutHeight(int size)
         {
-            _height -= size;
+            _size.height -= size;
         }
 
         public override string ToString()
         {
-            return base.ToString() + ", height : " + _height;
+            return base.ToString() + ", height : " + height;
         }
     }
 }

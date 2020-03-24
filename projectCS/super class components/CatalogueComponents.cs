@@ -109,6 +109,7 @@
         public int height
         {
             get => _height;
+            set => _height = value;
         }
 
         public int width
