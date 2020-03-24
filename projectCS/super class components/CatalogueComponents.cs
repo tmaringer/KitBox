@@ -26,8 +26,8 @@
             set => _code = value;
         }
 
-        protected Size _size;
-        public virtual Size size
+        protected ComponentSize _size;
+        public virtual ComponentSize size
         {
             get => _size;
             set => _size = value;
@@ -47,14 +47,14 @@
             set => _dimension = value;
         }
 
-        protected Color _color;
-        public virtual Color color
+        protected ComponentColor _color;
+        public virtual ComponentColor color
         {
             get => _color;
             set => _color = value;
         }
 
-        protected CatalogueComponents(double price, string reference, string code, Size size, bool inStock, int dimension, Color color)
+        protected CatalogueComponents(double price, string reference, string code, ComponentSize size, bool inStock, int dimension, ComponentColor color)
         {
             this._price = price;
             this._reference = reference;
@@ -94,7 +94,7 @@
     /// <summary>
     ///     regroup all color available in catalog
     /// </summary>
-    public enum Color
+    public enum ComponentColor
     {
         white,
         brawn,
@@ -103,7 +103,7 @@
         transparent
     }
 
-    public struct Size
+    public struct ComponentSize
     {
         private int _height, _width, _depth;
         public int height
@@ -122,7 +122,7 @@
             get => _depth;
         }
 
-        public Size(int height, int width, int depth)
+        public ComponentSize(int height, int width, int depth)
         {
             _height = height;
             _width = width;

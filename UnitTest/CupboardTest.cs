@@ -57,8 +57,8 @@ namespace UnitTest
             cupboard1 = new Cupboard();
             cupboard2 = new Cupboard();
 
-            angleBracketParam1 = new AngleBracket(100, "null", "0000", new Size(45, 0, 0), false, 45, Color.white);
-            angleBracketParam2 = new AngleBracket(25, "null", "0000", new Size(0, 0, 0), false, 5, Color.white);
+            angleBracketParam1 = new AngleBracket(100, "null", "0000", new ComponentSize(45, 0, 0), false, 45, ComponentColor.white);
+            angleBracketParam2 = new AngleBracket(25, "null", "0000", new ComponentSize(0, 0, 0), false, 5, ComponentColor.white);
 
             locker1 = new Locker();
             locker2 = new Locker();
@@ -73,22 +73,22 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new Size(21, 0, 0), false, 0, Color.white);
-            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new Size(11, 0, 0), false, 0, Color.white);
-            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new Size(8, 0, 0), false, 0, Color.white);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(21, 0, 0), false, 0, ComponentColor.white);
+            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new ComponentSize(11, 0, 0), false, 0, ComponentColor.white);
+            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new ComponentSize(8, 0, 0), false, 0, ComponentColor.white);
 
             pannel1 = new Pannel();
             pannel2 = new Pannel();
             pannel3 = new Pannel();
             pannel4 = new Pannel();
             pannel5 = new Pannel();
-            pannelWithPara1 = new Pannel(10, "referenceTest", "1", new Size(23, 0, 0), false, 0, Color.white);
+            pannelWithPara1 = new Pannel(10, "referenceTest", "1", new ComponentSize(23, 0, 0), false, 0, ComponentColor.white);
 
             cleat1 = new Cleat();
             cleat2 = new Cleat();
             cleat3 = new Cleat();
             cleat4 = new Cleat();
-            cleatWithPara1 = new Cleat(10, "referenceTest", "1", new Size(10, 0, 0), false, 0, Color.white);
+            cleatWithPara1 = new Cleat(10, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0, ComponentColor.white);
 
             catalogueComponentsListFull = new List<CatalogueComponents>(){ crossBar1, crossBar2, crossBar3, crossBar4, crossBar5, crossBar6 ,crossBar7, crossBar8,
                                                                             cleat1, cleat2, cleat3, cleat4,

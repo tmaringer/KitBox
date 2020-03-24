@@ -23,7 +23,7 @@ namespace projectCS
         }
         
         // todo : faire test
-        public static void createCupbaord(int width, int depth, int boxNumber, Color colorAngleBracket)
+        public static void createCupbaord(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _shoppingCart.buildCupboard(width, depth, boxNumber, colorAngleBracket);
         }

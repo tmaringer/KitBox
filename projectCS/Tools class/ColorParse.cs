@@ -10,12 +10,12 @@ namespace projectCS.Tools_class
     {
         public static List<String> colorsList
         {
-            get => Enum.GetNames(typeof(Color)).ToList();
+            get => Enum.GetNames(typeof(ComponentColor)).ToList();
         }
 
-        public static Color parseToEnum(string value)
+        public static ComponentColor parseToEnum(string value)
         {
-            return (Color)Enum.Parse(typeof(Color), value, true);
+            return (ComponentColor)Enum.Parse(typeof(ComponentColor), value, true);
         }
     }
 }

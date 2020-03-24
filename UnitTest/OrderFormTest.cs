@@ -54,16 +54,16 @@ namespace UnitTest
             locker1 = new Locker();
             locker2 = new Locker();
 
-            angleBracketParam1 = new AngleBracket(100, "null", "0000", new Size(0, 0, 0), false, 10, Color.white);
+            angleBracketParam1 = new AngleBracket(100, "null", "0000", new ComponentSize(0, 0, 0), false, 10, ComponentColor.white);
 
-            crossBarWithParam1 = new CrossBar(100, "referenceTest", "1", new Size(10, 0, 0), false, 0, Color.white);
-            crossBarWithParam2 = new CrossBar(100, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            crossBarWithParam1 = new CrossBar(100, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0, ComponentColor.white);
+            crossBarWithParam2 = new CrossBar(100, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
-            cleatWithParam1 = new Cleat(375, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-            cleatWithParam2 = new Cleat(122.37, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            cleatWithParam1 = new Cleat(375, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+            cleatWithParam2 = new Cleat(122.37, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
-            doorWithParam1 = new Door(388.96, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-            doorWithParam2 = new Door(38.16, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            doorWithParam1 = new Door(388.96, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+            doorWithParam2 = new Door(38.16, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
             catalogueComponentsListWith2WithParam = new List<CatalogueComponents>() { crossBarWithParam1, crossBarWithParam2 };
 

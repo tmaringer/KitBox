@@ -95,10 +95,10 @@ namespace projectCS
         /// </returns>
         public void buildCupboard()
         {
-            buildCupboard(0, 0, 5, Color.brawn);
+            buildCupboard(0, 0, 5, ComponentColor.brawn);
         }
 
-        public void buildCupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
+        public void buildCupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _cupboard = new Cupboard(width, depth, boxNumber, colorAngleBracket);
             // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list

@@ -10,17 +10,17 @@ namespace UnitTest
         [TestMethod]
         public void colorTest()
         {
-            Pannel pannel1 = new Pannel(0, "reftrest", "testcode", new Size(0, 0, 0), false, 0, Color.transparent);
+            Pannel pannel1 = new Pannel(0, "reftrest", "testcode", new ComponentSize(0, 0, 0), false, 0, ComponentColor.transparent);
             Pannel pannel2 = new Pannel();
 
-            Assert.AreEqual(Color.transparent, pannel1.color);
-            Assert.AreEqual(Color.black, pannel2.color);
+            Assert.AreEqual(ComponentColor.transparent, pannel1.color);
+            Assert.AreEqual(ComponentColor.black, pannel2.color);
 
             Assert.AreEqual(4, (int)pannel1.color);
             Assert.AreEqual(3, (int)pannel2.color);
 
-            Assert.AreEqual("brawn", "" + (Color)1);
-            Assert.AreEqual("black", "" + (Color)3);
+            Assert.AreEqual("brawn", "" + (ComponentColor)1);
+            Assert.AreEqual("black", "" + (ComponentColor)3);
         }
     }
 }

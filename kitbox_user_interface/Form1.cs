@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using projectCS;
+using projectCS.Tools_class;
 
 namespace kitbox_user_interface_V1
 {
@@ -386,16 +387,17 @@ namespace kitbox_user_interface_V1
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
                 /*
-                foreach (string colors in projectCS.Color)
+                foreach (string colors in ColorParse.colorsList)
                 {
 
                 }
                 */
-                projectCS.Color default_color = projectCS.Color.black;
-                projectCS.Size default_size = new projectCS.Size(0, 0, 0);
-                projectCS.Size traverseA_size = new projectCS.Size(0, width, 0);
-                projectCS.Size traverseGD_size = new projectCS.Size(0, 0, depth);
-                projectCS.Size panneau_size = new projectCS.Size(0, width, depth);
+
+                ComponentColor default_color = ComponentColor.black;
+                projectCS.ComponentSize default_size = new projectCS.ComponentSize(0, 0, 0);
+                projectCS.ComponentSize traverseA_size = new projectCS.ComponentSize(0, width, 0);
+                projectCS.ComponentSize traverseGD_size = new projectCS.ComponentSize(0, 0, depth);
+                projectCS.ComponentSize panneau_size = new projectCS.ComponentSize(0, width, depth);
                 //Size (height, width, depth)
 
 

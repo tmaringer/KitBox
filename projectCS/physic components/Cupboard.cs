@@ -46,18 +46,18 @@ namespace projectCS
             get => _boxNumber;
         }
 
-        private Color _colorAngleBracket;
-        public Color colorAngleBracket
+        private ComponentColor _colorAngleBracket;
+        public ComponentColor colorAngleBracket
         {
             get => _colorAngleBracket;
         }
 
 
-        public Cupboard() : this(0, 0, 5, Color.black)
+        public Cupboard() : this(0, 0, 5, ComponentColor.black)
         {
         }
             
-        public Cupboard(int width, int depth, int boxNumber, Color colorAngleBracket)
+        public Cupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _cupboardComponentsList = new List<ICupboardComponents>();
             _width = width;

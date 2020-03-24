@@ -31,13 +31,13 @@ namespace UnitTest
 
             cupboard1 = new Cupboard();
 
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
-            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
-            doorWithParam1 = new Door(40, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
+            doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
         }
 
         [TestMethod]

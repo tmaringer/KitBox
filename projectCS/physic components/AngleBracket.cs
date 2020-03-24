@@ -4,11 +4,11 @@ namespace projectCS
 {
     public class AngleBracket : CatalogueComponents, ICupboardComponents
     {
-        public override Color color
+        public override ComponentColor color
         {
             set
             {
-                if (value == Color.transparent)
+                if (value == ComponentColor.transparent)
                 {
                     ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
                     window.displayWindow();
@@ -18,7 +18,7 @@ namespace projectCS
             }
         }
 
-        public override Size size 
+        public override ComponentSize size 
         { 
             get => base._size;
             set            
@@ -39,16 +39,16 @@ namespace projectCS
             set => _price = value;
         }
 
-        public AngleBracket() : this(0, "null", "0000", new Size(0, 0, 0), false, 0, Color.white)
+        public AngleBracket() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white)
         {
         }
         public AngleBracket(double price,
                         string reference,
                         string code,
-                        Size size,
+                        ComponentSize size,
                         bool inStock,
                         int dimension,
-                        Color color) : base(price, reference, code, size, inStock, dimension, color)
+                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
         {
             this._price = price;
         }

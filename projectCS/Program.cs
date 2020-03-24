@@ -129,7 +129,7 @@ namespace projectCS
             {
                 AngleBracket a = new AngleBracket();
                 Console.WriteLine(a.height);
-                a.color = Color.transparent;
+                a.color = ComponentColor.transparent;
 
                 Console.WriteLine(a.color);
             }
