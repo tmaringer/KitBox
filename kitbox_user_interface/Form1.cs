@@ -394,10 +394,10 @@ namespace kitbox_user_interface_V1
                 */
 
                 ComponentColor default_color = ComponentColor.black;
-                projectCS.ComponentSize default_size = new projectCS.ComponentSize(0, 0, 0);
-                projectCS.ComponentSize traverseA_size = new projectCS.ComponentSize(0, width, 0);
-                projectCS.ComponentSize traverseGD_size = new projectCS.ComponentSize(0, 0, depth);
-                projectCS.ComponentSize panneau_size = new projectCS.ComponentSize(0, width, depth);
+                ComponentSize default_size = new ComponentSize(0, 0, 0);
+                ComponentSize traverseA_size = new ComponentSize(0, width, 0);
+                ComponentSize traverseGD_size = new ComponentSize(0, 0, depth);
+                ComponentSize panneau_size = new ComponentSize(0, width, depth);
                 //Size (height, width, depth)
 
 
