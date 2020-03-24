@@ -253,6 +253,12 @@ namespace ShopInterface
                 comboBox16.DisplayMember = "Code";
                 comboBox16.Text = "";
             }
+            else if (tabControl1.SelectedTab.Text == @"Suppliers update")
+            {
+                comboBox34.DataSource = DBUtils.RefList("SupplierId", "suppliers");
+                comboBox34.DisplayMember = "SupplierId";
+                comboBox34.Text = "";
+            }
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
@@ -871,6 +877,17 @@ namespace ShopInterface
                 }
             }
 
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
+            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
         }
     }
 }

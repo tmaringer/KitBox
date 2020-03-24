@@ -55,6 +55,16 @@ namespace projectCS
             adapter.InsertCommand.ExecuteNonQuery();
             conn.Close();
         }
+        public static void InsertSupplier(string database, string code, string price, string delay, string supplierid)
+        {
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            string sql = "Insert into " + database + " (SupplierId, Code, PrixFourn, DelaiFourn) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay +"\");";
+            adapter.InsertCommand = new MySqlCommand(sql, conn);
+            conn.Open();
+            adapter.InsertCommand.ExecuteNonQuery();
+            conn.Close();
+        }
 
         public static int CheckAccess(TextBox login, TextBox password)
         {
