@@ -1,4 +1,5 @@
-﻿using projectCS;
+﻿using MySql.Data.MySqlClient;
+using projectCS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -920,6 +921,9 @@ namespace ShopInterface
 
         private void button24_Click(object sender, EventArgs e)
         {
+            progressBar3.Value = 10;
+            button24.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
             DataTable supplier1 = new DataTable();
             foreach (string i in DBUtils.RefList("SupplierId","suppliers"))
             {
@@ -929,6 +933,7 @@ namespace ShopInterface
                 }
                 else
                 {
+
                     foreach (string j in DBUtils.RefList("Code", "supplierslistprices where SupplierId = \"" + i + "\""))
                     {
                         double value1 = Convert.ToDouble(DBUtils.RefList("PrixFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
@@ -1010,8 +1015,23 @@ namespace ShopInterface
                         }
                     }
                 }
+                button24.Enabled = true;
+                progressBar3.Value = 10;
             }
             dataGridView9.DataSource = supplier1;
+            MySqlConnection connection = new MySqlConnection("Server = localhost; Port = 3306; Database = kitbox; Uid = root; password = locomac6;");
+            string query = "TRUNCATE TABLE suppliersprices";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+            foreach (DataRow row in supplier1.Rows)
+            {
+                string price = row["PrixFourn"].ToString();
+                string price1 = price.Replace(',', '.');
+                DBUtils.InsertSupplier("suppliersprices", row["Code"].ToString(), price1, row["DelaiFourn"].ToString(), row["SupplierId"].ToString());
+                progressBar3.PerformStep();
+            }
         }
     }
 }

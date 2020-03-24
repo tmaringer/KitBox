@@ -200,6 +200,7 @@ namespace ShopInterface
             this.button30 = new System.Windows.Forms.Button();
             this.comboBox34 = new System.Windows.Forms.ComboBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label47 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
@@ -217,6 +218,8 @@ namespace ShopInterface
             this.label43 = new System.Windows.Forms.Label();
             this.button22 = new System.Windows.Forms.Button();
             this.groupBox16 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
@@ -225,8 +228,6 @@ namespace ShopInterface
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -2036,6 +2037,7 @@ namespace ShopInterface
             // groupBox19
             // 
             this.groupBox19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox19.Controls.Add(this.progressBar3);
             this.groupBox19.Controls.Add(this.label47);
             this.groupBox19.Controls.Add(this.button24);
             this.groupBox19.Location = new System.Drawing.Point(447, 221);
@@ -2044,6 +2046,20 @@ namespace ShopInterface
             this.groupBox19.TabIndex = 21;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Update prices";
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.progressBar3.ForeColor = System.Drawing.Color.Gold;
+            this.progressBar3.Location = new System.Drawing.Point(130, 69);
+            this.progressBar3.MarqueeAnimationSpeed = 160;
+            this.progressBar3.Maximum = 3000;
+            this.progressBar3.Minimum = 10;
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(95, 15);
+            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar3.TabIndex = 23;
+            this.progressBar3.Value = 10;
             // 
             // label47
             // 
@@ -2219,6 +2235,22 @@ namespace ShopInterface
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Add an item";
             // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(70, 111);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(34, 13);
+            this.label42.TabIndex = 10;
+            this.label42.Text = "Delay";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(108, 108);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(114, 20);
+            this.textBox7.TabIndex = 9;
+            // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(108, 72);
@@ -2311,22 +2343,6 @@ namespace ShopInterface
             this.dataGridView9.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(70, 111);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(34, 13);
-            this.label42.TabIndex = 10;
-            this.label42.Text = "Delay";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(108, 108);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(114, 20);
-            this.textBox7.TabIndex = 9;
             // 
             // Form2
             // 
@@ -2601,5 +2617,6 @@ namespace ShopInterface
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.ProgressBar progressBar3;
     }
 }
