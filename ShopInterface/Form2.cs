@@ -663,67 +663,75 @@ namespace ShopInterface
 
         private void button26_Click(object sender, EventArgs e)
         {
-            if (DBUtils.RefList("Status","orders where OrderId = \""+ comboBox22.SelectedItem.ToString() + "\"")[0] != "pending")
+            if (comboBox22.SelectedItem != null)
             {
-                foreach (Control cont in groupBox23.Controls)
+                if (DBUtils.RefList("Status", "orders where OrderId = \"" + comboBox22.SelectedItem.ToString() + "\"")[0] != "pending")
                 {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    foreach (Control cont in groupBox23.Controls)
                     {
-                        cont.Enabled = false;
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = false;
+                        }
+                    }
+                    foreach (Control cont in groupBox22.Controls)
+                    {
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = false;
+                        }
+                    }
+                    foreach (Control cont in groupBox20.Controls)
+                    {
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = false;
+                        }
                     }
                 }
-                foreach (Control cont in groupBox22.Controls)
+                else
                 {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    foreach (Control cont in groupBox23.Controls)
                     {
-                        cont.Enabled = false;
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = true;
+                        }
+                    }
+                    foreach (Control cont in groupBox22.Controls)
+                    {
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = true;
+                        }
+                    }
+                    foreach (Control cont in groupBox20.Controls)
+                    {
+                        if (cont is TextBox || cont is ComboBox || cont is Button)
+                        {
+                            cont.Enabled = true;
+                        }
                     }
                 }
-                foreach (Control cont in groupBox20.Controls )
+                dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+                comboBox26.Items.Clear();
+                comboBox30.Items.Clear();
+                comboBox20.Items.Clear();
+                comboBox31.Items.Clear();
+                comboBox27.Items.Clear();
+                dataGridView11.DataSource = null;
+                foreach (DataGridViewRow row in dataGridView6.Rows)
                 {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
-                    {
-                        cont.Enabled = false;
-                    }
+                    comboBox30.Items.Add(row.Cells["CupboardId"].Value.ToString());
+                    comboBox26.Items.Add(row.Cells["CupboardId"].Value.ToString());
+                    comboBox20.Items.Add(row.Cells["CupboardId"].Value.ToString());
                 }
             }
             else
             {
-                foreach (Control cont in groupBox23.Controls)
-                {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
-                    {
-                        cont.Enabled = true;
-                    }
-                }
-                foreach (Control cont in groupBox22.Controls)
-                {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
-                    {
-                        cont.Enabled = true;
-                    }
-                }
-                foreach (Control cont in groupBox20.Controls)
-                {
-                    if (cont is TextBox || cont is ComboBox || cont is Button)
-                    {
-                        cont.Enabled = true;
-                    }
-                }
+                MessageBox.Show("Please select an OrderIdd","No OrderId",MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
-            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
-            comboBox26.Items.Clear();
-            comboBox30.Items.Clear();
-            comboBox20.Items.Clear();
-            comboBox31.Items.Clear();
-            comboBox27.Items.Clear();
-            dataGridView11.DataSource = null;
-            foreach (DataGridViewRow row in dataGridView6.Rows)
-            {
-                comboBox30.Items.Add(row.Cells["CupboardId"].Value.ToString());
-                comboBox26.Items.Add(row.Cells["CupboardId"].Value.ToString());
-                comboBox20.Items.Add(row.Cells["CupboardId"].Value.ToString());
-            }
+
         }
 
         private void button27_Click(object sender, EventArgs e)

@@ -71,6 +71,7 @@ namespace ShopInterface
             {
                 foreach (string j in DBUtils.RefList("Position", "crossbars where BoxeId= \"" + i + "\""))
                 {
+                    // LL = LOW LEFT, HL = HIGH LEFT, LR = LOW RIGHT, HR = HIGH RIGHT
                     if (j == "LL" || j == "HL" || j == "LR" || j == "HR")
                     {
                         string code = DBUtils.RefList("Code", "crossbars where BoxeId = \"" + i + "\" and Position = \"" + j + "\"")[0];
