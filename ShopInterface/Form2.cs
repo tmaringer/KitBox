@@ -882,11 +882,30 @@ namespace ShopInterface
         private void button30_Click(object sender, EventArgs e)
         {
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+            comboBox15.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
+            comboBox15.DisplayMember = "Code";
+            comboBox15.Text = "";
+            comboBox17.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
+            comboBox17.DisplayMember = "Code";
+            comboBox17.Text = "";
+            foreach (DataGridViewColumn col in dataGridView10.Columns) comboBox19.Items.Add(col.Name);
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
             DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
+            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
+            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(),"Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
         }
     }

@@ -2164,6 +2164,7 @@ namespace ShopInterface
             this.button23.TabIndex = 0;
             this.button23.Text = "Modify";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
             // 
             // groupBox17
             // 
@@ -2213,6 +2214,7 @@ namespace ShopInterface
             this.button22.TabIndex = 0;
             this.button22.Text = "Delete";
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // groupBox16
             // 
