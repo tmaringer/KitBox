@@ -200,7 +200,6 @@ namespace ShopInterface
             this.button30 = new System.Windows.Forms.Button();
             this.comboBox34 = new System.Windows.Forms.ComboBox();
             this.groupBox19 = new System.Windows.Forms.GroupBox();
-            this.progressBar3 = new System.Windows.Forms.ProgressBar();
             this.label47 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
@@ -2037,7 +2036,6 @@ namespace ShopInterface
             // groupBox19
             // 
             this.groupBox19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox19.Controls.Add(this.progressBar3);
             this.groupBox19.Controls.Add(this.label47);
             this.groupBox19.Controls.Add(this.button24);
             this.groupBox19.Location = new System.Drawing.Point(447, 221);
@@ -2046,20 +2044,6 @@ namespace ShopInterface
             this.groupBox19.TabIndex = 21;
             this.groupBox19.TabStop = false;
             this.groupBox19.Text = "Update prices";
-            // 
-            // progressBar3
-            // 
-            this.progressBar3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.progressBar3.ForeColor = System.Drawing.Color.Gold;
-            this.progressBar3.Location = new System.Drawing.Point(130, 69);
-            this.progressBar3.MarqueeAnimationSpeed = 160;
-            this.progressBar3.Maximum = 160;
-            this.progressBar3.Minimum = 10;
-            this.progressBar3.Name = "progressBar3";
-            this.progressBar3.Size = new System.Drawing.Size(95, 15);
-            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar3.TabIndex = 11;
-            this.progressBar3.Value = 10;
             // 
             // label47
             // 
@@ -2562,7 +2546,6 @@ namespace ShopInterface
         public System.Windows.Forms.DataGridView dataGridView10;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.ComboBox comboBox19;
-        private System.Windows.Forms.ProgressBar progressBar3;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.ComboBox comboBox18;
         private System.Windows.Forms.TabPage tabPage7;
