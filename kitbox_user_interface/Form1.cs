@@ -409,6 +409,7 @@ namespace kitbox_user_interface_V1
                 Pannel panneauB = new Pannel();
                 Pannel panneauG = new Pannel();
                 Pannel panneauD = new Pannel();
+                Cleat tasseau = new Cleat();
                 
                 
                 if(width<62)
