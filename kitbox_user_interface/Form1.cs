@@ -393,13 +393,16 @@ namespace kitbox_user_interface_V1
                 */
                 projectCS.Color default_color = projectCS.Color.black;
                 projectCS.Size default_size = new projectCS.Size(0, 0, 0);
-                projectCS.Size traverse_size = new projectCS.Size(0, 0, 0);
+                projectCS.Size traverseA_size = new projectCS.Size(0, width, 0);
+                projectCS.Size traverseGD_size = new projectCS.Size(0, 0, depth);
                 projectCS.Size panneau_size = new projectCS.Size(0, width, depth);
-                //Size (height, width, depth) 
+                //Size (height, width, depth)
 
 
-                CrossBar traverseAV = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
-                CrossBar traverseAR = new CrossBar(0, "null", "0000", traverse_size, false, width, default_color);
+                CrossBar traverseAV = new CrossBar(0, "null", "0000", traverseA_size, false, width, default_color);
+                CrossBar traverseAR = new CrossBar(0, "null", "0000", traverseA_size, false, width, default_color);
+                CrossBar traverseG = new CrossBar(0, "null", "0000", traverseGD_size, false, width, default_color);
+                CrossBar traverseD = new CrossBar(0, "null", "0000", traverseGD_size, false, width, default_color);
                 Pannel panneauH = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
                 Pannel panneauB = new Pannel(0, "null", "0000", panneau_size, false, 0, default_color);
                 Pannel panneauG = new Pannel(0, "null", "0000", default_size, false, 0, default_color);
