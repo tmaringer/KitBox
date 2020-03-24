@@ -2078,6 +2078,7 @@ namespace ShopInterface
             this.button24.TabIndex = 0;
             this.button24.Text = "Update";
             this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
             // 
             // groupBox18
             // 

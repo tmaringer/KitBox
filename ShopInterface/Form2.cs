@@ -896,6 +896,7 @@ namespace ShopInterface
             comboBox17.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
             comboBox17.DisplayMember = "Code";
             comboBox17.Text = "";
+            comboBox19.Items.Clear();
             foreach (DataGridViewColumn col in dataGridView10.Columns) comboBox19.Items.Add(col.Name);
         }
 
@@ -915,6 +916,102 @@ namespace ShopInterface
         {
             DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(),"Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
             dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            DataTable supplier1 = new DataTable();
+            foreach (string i in DBUtils.RefList("SupplierId","suppliers"))
+            {
+                if (i == "1")
+                {
+                    supplier1 = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId = \"" + i + "\"");
+                }
+                else
+                {
+                    foreach (string j in DBUtils.RefList("Code", "supplierslistprices where SupplierId = \"" + i + "\""))
+                    {
+                        double value1 = Convert.ToDouble(DBUtils.RefList("PrixFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                        List<string> listcode = new List<string>();
+                        foreach (DataRow row in supplier1.Rows)
+                        {
+                            listcode.Add(row["Code"].ToString());
+                        }
+                        if (listcode.Contains(j))
+                        {
+                            double value2 = 0;
+                            foreach (DataRow row in supplier1.Rows)
+                            {
+                                if (row["Code"].ToString() == j)
+                                {
+                                    value2 = Convert.ToDouble(row["PrixFourn"].ToString());
+                                }
+                            }
+                            if (value2 - value1 > 0)
+                            {
+                                for (int k = supplier1.Rows.Count - 1; k >= 0; k--)
+                                {
+                                    DataRow dr = supplier1.Rows[k];
+                                    if (dr["Code"].ToString() == j)
+                                        dr.Delete();
+                                }
+                                supplier1.AcceptChanges();
+                                DataRow ligne = supplier1.NewRow();
+                                ligne["SupplierId"] = i;
+                                ligne["Code"] = j;
+                                ligne["PrixFourn"] = value1;
+                                ligne["DelaiFourn"] = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                                supplier1.Rows.Add(ligne);
+                            }
+                            else if (value2 - value1 == 0)
+                            {
+                                int delay1 = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                                int delay2 = 0;
+                                foreach (DataRow row in supplier1.Rows)
+                                {
+                                    if (row["Code"].ToString() == j)
+                                    {
+                                        delay2 = Convert.ToInt32(row["DelaiFourn"].ToString());
+                                    }
+                                }
+                                if (delay2 - delay1 > 0)
+                                {
+                                    for (int k = supplier1.Rows.Count - 1; k >= 0; k--)
+                                    {
+                                        DataRow dr = supplier1.Rows[k];
+                                        if (dr["Code"].ToString() == j)
+                                            dr.Delete();
+                                    }
+                                    supplier1.AcceptChanges();
+                                    DataRow ligne = supplier1.NewRow();
+                                    ligne["SupplierId"] = i;
+                                    ligne["Code"] = j;
+                                    ligne["PrixFourn"] = value1;
+                                    ligne["DelaiFourn"] = delay1;
+                                    supplier1.Rows.Add(ligne);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int k = supplier1.Rows.Count - 1; k >= 0; k--)
+                            {
+                                DataRow dr = supplier1.Rows[k];
+                                if (dr["Code"].ToString() == j)
+                                    dr.Delete();
+                            }
+                            supplier1.AcceptChanges();
+                            DataRow ligne = supplier1.NewRow();
+                            ligne["SupplierId"] = i;
+                            ligne["Code"] = j;
+                            ligne["PrixFourn"] = value1;
+                            ligne["DelaiFourn"] = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                            supplier1.Rows.Add(ligne);
+                        }
+                    }
+                }
+            }
+            dataGridView9.DataSource = supplier1;
         }
     }
 }
