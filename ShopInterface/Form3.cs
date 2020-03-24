@@ -68,7 +68,11 @@ namespace ShopInterface
             {
                 pictureBox1.Image = Properties.Resources.Tasseau;
             }
-            else if (label5.Text == "Porte")
+            else if (label5.Text == "Coupelles")
+            {
+                pictureBox1.Image = Properties.Resources.coupelle;
+            }
+            else if (label5.Text == "Porte ")
             {
                 if (label7.Text == "Blanc")
                 {

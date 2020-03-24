@@ -8,36 +8,61 @@ namespace ShopInterface
 {
     class Sandbox
     {
-        public static void SandBox()
+        public static void SandBox(string OrderId)
         {
-            foreach (string i in DBUtils.RefList("CupboardId", "cupboards where OrderId = \"5\""))
+            DBUtils.DeleteRowVD("listsitems", "OrderId = \"" + OrderId + "\"");
+            foreach (string i in DBUtils.RefList("CupboardId", "cupboards where OrderId = \""+ OrderId +"\""))
             {
                 foreach (string j in DBUtils.RefList("BoxeId", "boxes where CupboardId = \"" + i + "\""))
                 {
                     foreach (string k in DBUtils.RefList("Code", "doors where BoxeId= \"" + j + "\""))
                     {
-                        Console.WriteLine("Cupboard " + i + ", Box " + j + ", Door code: " + k);
+                        Test(OrderId, k);
+                        if (DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"COUPEL\"").Count == 0)
+                        {
+                            DBUtils.InsertOrder("listsitems", "COUPEL", "1", OrderId);
+                        }
+                        else
+                        {
+                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"COUPEL\"")[0];
+                            int new_quantity = Convert.ToInt32(quantity) + 1;
+                            DBUtils.UpdateDBV("listsitems", "Quantity", "OrderId = \"" + OrderId + "\" and Code = \"COUPEL\"", new_quantity.ToString());
+                        }
                     }
                     foreach (string k in DBUtils.RefList("Code", "crossbars where BoxeId= \"" + j + "\""))
                     {
-                        Console.WriteLine("Cupboard " + i + ", Box " + j + ", Crossbar code: " + k);
+                        Test(OrderId, k);
                     }
                     foreach (string k in DBUtils.RefList("Code", "panels where BoxeId= \"" + j + "\""))
                     {
-                        Console.WriteLine("Cupboard " + i + ", Box " + j + ", Panel code: " + k);
+                        Test(OrderId, k);
                     }
                     foreach (string k in DBUtils.RefList("Code", "cleats where BoxeId= \"" + j + "\""))
                     {
-                        Console.WriteLine("Cupboard " + i + ", Box " + j + ", Cleat code: " + k);
+                        Test(OrderId, k);
                     }
-                    Console.WriteLine("Box Height:" + DBUtils.RefList("Hauteur", "boxes where CupboardId= \"" + i + "\"")[0]);
+                    
                 }
                 foreach (string j in DBUtils.RefList("Code", "angles where CupboardId= \"" + i + "\""))
                 {
-                    Console.WriteLine("Cupboard " + i + ", Angle bracket " + j);
+                    Test(OrderId, j);
                 }
             }
             Console.ReadLine();
+        }
+
+        public static void Test(string OrderId, string k)
+        {
+            if (DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"").Count == 0)
+            {
+                DBUtils.InsertOrder("listsitems", k, "1", OrderId);
+            }
+            else
+            {
+                string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"")[0];
+                int new_quantity = Convert.ToInt32(quantity) + 1;
+                DBUtils.UpdateDBV("listsitems", "Quantity", "OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"", new_quantity.ToString());
+            }
         }
 
         public static void Depth(string CupboardId, int depth)
@@ -88,7 +113,7 @@ namespace ShopInterface
                         else
                         {
                             string code = DBUtils.RefList("Code", "doors where DoorId = \"" + j + "\"")[0];
-                            int new_largeur = (Convert.ToInt32(code) / 2) + 2;
+                            int new_largeur = (Convert.ToInt32(width) / 2) + 2;
                             new_code = code.Substring(0, 5) + new_largeur.ToString() + code.Substring(7, 2);
                         }
                         DBUtils.UpdateDBV("doors", "Code", "DoorId = \"" + j + "\"", new_code);

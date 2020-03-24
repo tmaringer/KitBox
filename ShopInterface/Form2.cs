@@ -284,7 +284,6 @@ namespace ShopInterface
                 "CustomerName = \"" + comboBox5.SelectedItem + "\"");
             foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
 
-            dataGridView3.Columns["ListItemsId"].Visible = false;
             dataGridView3.Columns["CustomerId"].Visible = false;
             dataGridView3.Columns["CustomerName"].Visible = false;
             dataGridView3.Columns["CustomerPhone"].Visible = false;
@@ -306,6 +305,8 @@ namespace ShopInterface
                     row.Cells[column].Style.BackColor = Color.Gold;
                 else if (row.Cells[column].Value.Equals("awaiting for removal"))
                     row.Cells[column].Style.BackColor = Color.Fuchsia;
+                else if (row.Cells[column].Value.Equals("validate"))
+                    row.Cells[column].Style.BackColor = Color.Aquamarine;
         }
 
         private void ColoursDiff(DataGridView dataGridView, string column, string columnB)
@@ -327,8 +328,8 @@ namespace ShopInterface
                 DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
             foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
 
-            var x = 0;
-            var y = 0;
+            //var x = 0;
+            //var y = 0;
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
                 var enStock = DBUtils.RefList("Enstock",
@@ -341,32 +342,21 @@ namespace ShopInterface
                     DBUtils.UpdateDBV("listsitems", "Disponibility",
                         "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
                         row.Cells["OrderId"].Value + "\"", "true");
-                    y += 1;
+                    //y += 1;
                 }
                 else
                 {
-                    if (row.Cells["Disponibility"].Value.ToString() != "added")
-                    {
-                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                        AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
-                        row.Cells["Disponibility"].Value = "added";
-                        DBUtils.UpdateDBV("listsitems", "Disponibility",
-                            "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
-                            row.Cells["OrderId"].Value + "\"", "added");
-                    }
+                    row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                    //AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
+                    //row.Cells["Disponibility"].Value = "added";
+                    DBUtils.UpdateDBV("listsitems", "Disponibility",
+                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                        row.Cells["OrderId"].Value + "\"", "false");
                     row.Cells["Disponibility"].Style.BackColor = Color.Red;
                 }
 
-                x += 1;
+                //x += 1;
             }
-
-            if (x == y)
-                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem + "\"",
-                    "true");
-            else
-                DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox4.SelectedItem + "\"",
-                    "false");
-
             Start();
         }
 
@@ -383,7 +373,7 @@ namespace ShopInterface
 
         private void Start()
         {
-            comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"false\"");
+            comboBox4.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\" or Status = \"validate\"");
             comboBox4.DisplayMember = "OrderId";
             comboBox6.DataSource = DBUtils.RefList("OrderId", "orders where Status = \"pending\"");
             comboBox6.DisplayMember = "OrderId";
@@ -605,7 +595,8 @@ namespace ShopInterface
         private void button9_Click_1(object sender, EventArgs e)
         {
             label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status",
-                "OrderId = \"" + comboBox6.SelectedItem + "\"", "false");
+                "OrderId = \"" + comboBox6.SelectedItem + "\"", "validate");
+            Sandbox.SandBox(comboBox6.SelectedItem.ToString());
             Start();
         }
 
@@ -672,6 +663,54 @@ namespace ShopInterface
 
         private void button26_Click(object sender, EventArgs e)
         {
+            if (DBUtils.RefList("Status","orders where OrderId = \""+ comboBox22.SelectedItem.ToString() + "\"")[0] != "pending")
+            {
+                foreach (Control cont in groupBox23.Controls)
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = false;
+                    }
+                }
+                foreach (Control cont in groupBox22.Controls)
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = false;
+                    }
+                }
+                foreach (Control cont in groupBox20.Controls )
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = false;
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control cont in groupBox23.Controls)
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = true;
+                    }
+                }
+                foreach (Control cont in groupBox22.Controls)
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = true;
+                    }
+                }
+                foreach (Control cont in groupBox20.Controls)
+                {
+                    if (cont is TextBox || cont is ComboBox || cont is Button)
+                    {
+                        cont.Enabled = true;
+                    }
+                }
+            }
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
             comboBox26.Items.Clear();
             comboBox30.Items.Clear();
@@ -772,6 +811,15 @@ namespace ShopInterface
                         comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
                     }
                 }
+            }
+        }
+
+        private void dataGridView3_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView3.CurrentCell.ColumnIndex == 1)
+            {
+                Form frm = new Form3(dataGridView3.CurrentCell.Value.ToString());
+                frm.Show();
             }
         }
     }
