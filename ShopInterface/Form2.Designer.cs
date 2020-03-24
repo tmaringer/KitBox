@@ -2280,6 +2280,7 @@ namespace ShopInterface
             this.button29.TabIndex = 28;
             this.button29.Text = "Modify";
             this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // Form2
             // 

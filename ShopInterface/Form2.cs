@@ -846,5 +846,23 @@ namespace ShopInterface
                 frm.Show();
             }
         }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox23.SelectedItem.ToString()) != 0)
+            {
+                if (dataGridView12.Rows.Count > Convert.ToInt32(comboBox23.SelectedItem.ToString()))
+                {
+                    //TODO: faire ici hehe
+                    string height = DBUtils.RefList("Hauteur", "boxes where BoxeId = \"" + comboBox31.SelectedItem + "\"")[0];
+                    string width = DBUtils.RefList("Largeur", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
+                    string code = "POR" + height + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "BL";
+                    //DBUtils.
+                    dataGridView12.DataSource = null;
+                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                }
+            }
+
+        }
     }
 }
