@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,28 +16,27 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `supplierspending`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
+DROP TABLE IF EXISTS `supplierspending`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliers` (
-  `SupplierId` int NOT NULL,
-  `SupplierName` varchar(45) DEFAULT NULL,
-  `SupplierAddress` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SupplierId`)
+CREATE TABLE `supplierspending` (
+  `Code` varchar(45) NOT NULL,
+  `Quantity` int DEFAULT NULL,
+  PRIMARY KEY (`Code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `supplierspending`
 --
 
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'Trabelbo SA','Parc industriel 9 '),(2,'TraitBois SPRL','Chemin des 2 Maisons, 140');
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+LOCK TABLES `supplierspending` WRITE;
+/*!40000 ALTER TABLE `supplierspending` DISABLE KEYS */;
+INSERT INTO `supplierspending` VALUES ('COR100BLDEC',-1980),('POR5262BL',210),('POR5262VE',2000),('TAS37',160),('TRR100',30);
+/*!40000 ALTER TABLE `supplierspending` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 17:54:21
+-- Dump completed on 2020-03-24 19:42:26

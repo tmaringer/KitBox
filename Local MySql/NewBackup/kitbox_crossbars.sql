@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,30 +16,31 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `angles`
+-- Table structure for table `crossbars`
 --
 
-DROP TABLE IF EXISTS `angles`;
+DROP TABLE IF EXISTS `crossbars`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `angles` (
-  `AngleId` int NOT NULL AUTO_INCREMENT,
-  `CupboardId` int DEFAULT NULL,
+CREATE TABLE `crossbars` (
+  `CrossbarId` int NOT NULL AUTO_INCREMENT,
+  `BoxeId` int DEFAULT NULL,
   `Code` text,
-  PRIMARY KEY (`AngleId`),
-  KEY `blabla_idx` (`CupboardId`),
-  CONSTRAINT `blabla` FOREIGN KEY (`CupboardId`) REFERENCES `cupboards` (`CupboardId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Position` text,
+  PRIMARY KEY (`CrossbarId`),
+  KEY `it_idx` (`BoxeId`),
+  CONSTRAINT `it` FOREIGN KEY (`BoxeId`) REFERENCES `boxes` (`BoxeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `angles`
+-- Dumping data for table `crossbars`
 --
 
-LOCK TABLES `angles` WRITE;
-/*!40000 ALTER TABLE `angles` DISABLE KEYS */;
-INSERT INTO `angles` VALUES (1,1,'COR112GL'),(2,1,'COR112GL'),(3,1,'COR112GL'),(4,1,'COR112GL');
-/*!40000 ALTER TABLE `angles` ENABLE KEYS */;
+LOCK TABLES `crossbars` WRITE;
+/*!40000 ALTER TABLE `crossbars` DISABLE KEYS */;
+INSERT INTO `crossbars` VALUES (1,1,'TRF100','HF'),(2,1,'TRF100','LF'),(3,1,'TRG52','HL'),(4,1,'TRG52','HR'),(5,1,'TRG52','LL'),(6,1,'TRG52','LR'),(7,1,'TRR100','HB'),(8,1,'TRR100','LB'),(9,2,'TRF100','HF'),(10,2,'TRF100','LF'),(11,2,'TRG52','HL'),(12,2,'TRG52','HR'),(13,2,'TRG52','LL'),(14,2,'TRG52','LR'),(15,2,'TRR100','HB'),(16,2,'TRR100','LB');
+/*!40000 ALTER TABLE `crossbars` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 17:54:20
+-- Dump completed on 2020-03-24 19:42:26

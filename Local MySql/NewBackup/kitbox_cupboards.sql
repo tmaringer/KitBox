@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,30 +16,32 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `orders`
+-- Table structure for table `cupboards`
 --
 
-DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `cupboards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `orders` (
-  `OrderId` int NOT NULL AUTO_INCREMENT,
-  `CustomerId` int DEFAULT NULL,
-  `Status` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`OrderId`),
-  KEY `Ninja_idx` (`CustomerId`),
-  CONSTRAINT `Ninja` FOREIGN KEY (`CustomerId`) REFERENCES `customers` (`CustomerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `cupboards` (
+  `CupboardId` int NOT NULL AUTO_INCREMENT,
+  `OrderId` int DEFAULT NULL,
+  `Hauteur` int DEFAULT NULL,
+  `Profondeur` int DEFAULT NULL,
+  `Largeur` int DEFAULT NULL,
+  PRIMARY KEY (`CupboardId`),
+  KEY `OrderId_idx` (`OrderId`),
+  CONSTRAINT `cupboards_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `cupboards`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'pending');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+LOCK TABLES `cupboards` WRITE;
+/*!40000 ALTER TABLE `cupboards` DISABLE KEYS */;
+INSERT INTO `cupboards` VALUES (1,1,112,52,100);
+/*!40000 ALTER TABLE `cupboards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 13:39:31
+-- Dump completed on 2020-03-24 19:42:27

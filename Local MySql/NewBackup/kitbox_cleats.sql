@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,28 +16,30 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `cleats`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
+DROP TABLE IF EXISTS `cleats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliers` (
-  `SupplierId` int NOT NULL,
-  `SupplierName` varchar(45) DEFAULT NULL,
-  `SupplierAddress` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SupplierId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `cleats` (
+  `CleatId` int NOT NULL AUTO_INCREMENT,
+  `BoxeId` int DEFAULT NULL,
+  `Code` text,
+  PRIMARY KEY (`CleatId`),
+  KEY `MK_idx` (`BoxeId`),
+  CONSTRAINT `MK` FOREIGN KEY (`BoxeId`) REFERENCES `boxes` (`BoxeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `cleats`
 --
 
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'Trabelbo SA','Parc industriel 9 '),(2,'TraitBois SPRL','Chemin des 2 Maisons, 140');
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+LOCK TABLES `cleats` WRITE;
+/*!40000 ALTER TABLE `cleats` DISABLE KEYS */;
+INSERT INTO `cleats` VALUES (1,1,'TAS47'),(2,1,'TAS47'),(3,1,'TAS47'),(4,1,'TAS47'),(5,2,'TAS47'),(6,2,'TAS47'),(7,2,'TAS47'),(8,2,'TAS47');
+/*!40000 ALTER TABLE `cleats` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 13:39:35
+-- Dump completed on 2020-03-24 19:42:26

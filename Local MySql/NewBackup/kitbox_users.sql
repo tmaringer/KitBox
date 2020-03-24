@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,30 +16,29 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `angles`
+-- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `angles`;
+DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `angles` (
-  `AngleId` int NOT NULL AUTO_INCREMENT,
-  `CupboardId` int DEFAULT NULL,
-  `Code` text,
-  PRIMARY KEY (`AngleId`),
-  KEY `blabla_idx` (`CupboardId`),
-  CONSTRAINT `blabla` FOREIGN KEY (`CupboardId`) REFERENCES `cupboards` (`CupboardId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `users` (
+  `users` varchar(100) NOT NULL,
+  `password` varchar(64) NOT NULL,
+  `job` varchar(45) NOT NULL,
+  PRIMARY KEY (`users`),
+  UNIQUE KEY `users_UNIQUE` (`users`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `angles`
+-- Dumping data for table `users`
 --
 
-LOCK TABLES `angles` WRITE;
-/*!40000 ALTER TABLE `angles` DISABLE KEYS */;
-INSERT INTO `angles` VALUES (1,1,'COR112GL'),(2,1,'COR112GL'),(3,1,'COR112GL'),(4,1,'COR112GL');
-/*!40000 ALTER TABLE `angles` ENABLE KEYS */;
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('Thibaut','82a8a38c4381c8a29e9fa1b9c77a9fababa10391e794b64444f83a231809e1cd','admin');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 13:39:29
+-- Dump completed on 2020-03-24 19:42:26

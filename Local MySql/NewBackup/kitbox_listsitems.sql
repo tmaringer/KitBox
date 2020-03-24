@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,30 +16,33 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cleats`
+-- Table structure for table `listsitems`
 --
 
-DROP TABLE IF EXISTS `cleats`;
+DROP TABLE IF EXISTS `listsitems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cleats` (
-  `CleatId` int NOT NULL AUTO_INCREMENT,
-  `BoxeId` int DEFAULT NULL,
-  `Code` text,
-  PRIMARY KEY (`CleatId`),
-  KEY `MK_idx` (`BoxeId`),
-  CONSTRAINT `MK` FOREIGN KEY (`BoxeId`) REFERENCES `boxes` (`BoxeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `listsitems` (
+  `OrderId` int NOT NULL,
+  `Code` varchar(50) NOT NULL,
+  `Quantity` int DEFAULT NULL,
+  `Disponibility` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`OrderId`,`Code`),
+  KEY `listsitems_ibfk_1` (`OrderId`),
+  KEY `Code_idx` (`Code`),
+  CONSTRAINT `Code` FOREIGN KEY (`Code`) REFERENCES `kitbox` (`Code`),
+  CONSTRAINT `OrderId` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cleats`
+-- Dumping data for table `listsitems`
 --
 
-LOCK TABLES `cleats` WRITE;
-/*!40000 ALTER TABLE `cleats` DISABLE KEYS */;
-INSERT INTO `cleats` VALUES (1,1,'TAS47'),(2,1,'TAS47'),(3,1,'TAS47'),(4,1,'TAS47'),(5,2,'TAS47'),(6,2,'TAS47'),(7,2,'TAS47'),(8,2,'TAS47');
-/*!40000 ALTER TABLE `cleats` ENABLE KEYS */;
+LOCK TABLES `listsitems` WRITE;
+/*!40000 ALTER TABLE `listsitems` DISABLE KEYS */;
+INSERT INTO `listsitems` VALUES (1,'COR112GL',4,'true'),(1,'COUPEL',2,'true'),(1,'PAG5252BL',4,'true'),(1,'PAH52100BL',4,'true'),(1,'PAR52100BL',2,'true'),(1,'POR5252VE',2,'true'),(1,'TAS47',8,'true'),(1,'TRF100',4,'true'),(1,'TRG52',8,'true'),(1,'TRR100',4,'true');
+/*!40000 ALTER TABLE `listsitems` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-24 17:54:20
+-- Dump completed on 2020-03-24 19:42:26
