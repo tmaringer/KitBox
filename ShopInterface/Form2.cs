@@ -1118,7 +1118,8 @@ namespace ShopInterface
         {
             if (comboBox8.SelectedItem != null)
             {
-                label24.Text = "Done";
+                label24.Text = DBUtils.DeleteRowVD("orders", "OrderId = \"" + comboBox8.SelectedItem.ToString() +"\"");
+                Start();
             }
             else
             {
