@@ -313,6 +313,73 @@ namespace ShopInterface
             }
         }
 
+        public static void OtherElement(string BoxeId, string table, string id, DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+            DataTable elements = dataTable;
+            DataColumn dtColumn = new DataColumn
+            {
+                DataType = typeof(Int32),
+                ColumnName = "Id",
+                ReadOnly = true,
+                Unique = true
+            };
+            elements.Columns.Add(dtColumn);
+            DataColumn dtColumn1 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Code",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn1);
+            DataColumn dtColumn2 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Position",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn2);
+            DataColumn dtColumn3 = new DataColumn
+            {
+                DataType = typeof(String),
+                ColumnName = "Stock",
+                ReadOnly = true,
+                Unique = false
+            };
+            elements.Columns.Add(dtColumn3);
+            int index = 1;
+            foreach (string i in DBUtils.RefList(id, table + " where BoxeId= \"" + BoxeId + "\""))
+            {
+                DataRow myDataRow;
+                myDataRow = elements.NewRow();
+                myDataRow["Id"] = index;
+                string code = DBUtils.RefList("Code", table + " where "+ id + "= \"" + i + "\"")[0];
+                myDataRow["Code"] = code;
+                myDataRow["Position"] = DBUtils.RefList("Position", table + " where " + id + "= \"" + i + "\"")[0];
+                string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
+                if (Convert.ToInt32(enstock) < 10)
+                {
+                    myDataRow["Stock"] = "false";
+                }
+                else
+                {
+                    myDataRow["Stock"] = "true";
+                }
+                elements.Rows.Add(myDataRow);
+                index += 1;
+            }
+            dataGridView.DataSource = dataTable;
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                if (row.Cells["Stock"].Value.ToString() == "false")
+                    row.Cells["Stock"].Style.BackColor = Color.Red;
+                else
+                    row.Cells["Stock"].Style.BackColor = Color.LimeGreen;
+            }
+        }
+
         public static void Angles(string CupboardId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();

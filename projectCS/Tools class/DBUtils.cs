@@ -13,7 +13,7 @@ namespace projectCS
 {
     public class DBUtils
     {
-        private static String MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6;";
+        private static String MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6; Allow User Variables=True";
 
         static string ComputeSha256Hash(string rawData)
         {
@@ -390,8 +390,22 @@ namespace projectCS
             {
                 return "Error";
             }
-            
+
         }
+
+        public static void Arrange(string database, string id)
+        { 
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxeId`, `Code`) SELECT * FROM kitbox." + database + " ORDER BY BoxeId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
+            conn.Open();
+            MySqlDataReader MyReader2;
+            MyReader2 = cmd.ExecuteReader();
+            while (MyReader2.Read())
+            {
+            }
+            conn.Close();
+        }
+
         public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> Columns, List<string> Types, List<string> Elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
         {
             label7.RightToLeft = RightToLeft.Yes;

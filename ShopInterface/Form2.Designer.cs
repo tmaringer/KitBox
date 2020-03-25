@@ -1432,6 +1432,7 @@ namespace ShopInterface
             this.button28.TabIndex = 0;
             this.button28.Text = "Modify";
             this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
             // 
             // dataGridView11
             // 

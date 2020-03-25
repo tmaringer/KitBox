@@ -835,9 +835,14 @@ namespace ShopInterface
                     comboBox31.Enabled = false;
                     comboBox33.Enabled = false;
                     comboBox29.Items.Clear();
-                    foreach(DataGridViewRow row in dataGridView12.Rows)
+                    foreach (DataGridViewRow row in dataGridView12.Rows)
                     {
                         comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
+                    }
+                    comboBox28.Items.Clear();
+                    foreach (string i in DBUtils.RefListND("Couleur", "kitbox where Ref = \"Cornieres\""))
+                    {
+                        comboBox28.Items.Add(i);
                     }
                 }
                 else if (comboBox32.SelectedItem.ToString() == "Door")
@@ -860,6 +865,24 @@ namespace ShopInterface
                         {
                             comboBox28.Items.Add(i);
                         }
+                    }
+                }
+                else if (comboBox32.SelectedItem.ToString() == "Panel")
+                {
+                    groupBox24.Visible = false;
+                    comboBox33.Enabled = false;
+                    comboBox31.Enabled = true;
+                    dataGridView12.DataSource = null;
+                    Sandbox.OtherElement(comboBox31.SelectedItem.ToString(), "panels", "PanelId", dataGridView12);
+                    comboBox29.Items.Clear();
+                    foreach (DataGridViewRow row in dataGridView12.Rows)
+                    {
+                        comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
+                    }
+                    comboBox28.Items.Clear();
+                    foreach (string i in DBUtils.RefListND("Couleur", "kitbox where Ref = \"Panneau GD\""))
+                    {
+                        comboBox28.Items.Add(i);
                     }
                 }
             }
@@ -895,7 +918,9 @@ namespace ShopInterface
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                 }
             }
-
+            DBUtils.Arrange("doors", "DoorId");
+            dataGridView12.DataSource = null;
+            Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
         }
 
         private void button30_Click(object sender, EventArgs e)
@@ -1048,6 +1073,38 @@ namespace ShopInterface
         private void button12_Click(object sender, EventArgs e)
         {
             label24.Text = "Done";
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            if (comboBox29.SelectedItem.ToString() != null || comboBox28.SelectedItem.ToString() != null)
+            {
+                string elementId = comboBox29.SelectedItem.ToString();
+                string code = "";
+                foreach (DataGridViewRow row in dataGridView12.Rows)
+                {
+                    if (row.Cells["Id"].Value.ToString() == elementId)
+                    {
+                        code = row.Cells["Code"].Value.ToString();
+                    }
+                }
+                string couleur = comboBox28.SelectedItem.ToString();
+                if(comboBox32.Text == "Angle")
+                {
+                    string cupboardId = comboBox30.Text.ToString();
+                    List<string> AngleId = DBUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
+                    string height = DBUtils.RefList("Hauteur", "kitbox where Code =\"" + code + "\"")[0];
+                    string new_code = DBUtils.RefList("Code", "kitbox where Hauteur =\"" + height + "\" and Ref = \"Cornieres\" and Couleur = \"" + couleur + "\"")[0];
+                    label61.Text = DBUtils.UpdateDBV("angles", "Code", "AngleId = \"" + AngleId[Convert.ToInt32(elementId) - 1] + "\" and CupboardId = \"" + cupboardId + "\"",new_code);
+                    dataGridView12.DataSource = null;
+                    Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
     }
 }
