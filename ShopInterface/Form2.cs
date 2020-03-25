@@ -287,18 +287,23 @@ namespace ShopInterface
 
         private void button10_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems",
-                "CustomerName = \"" + comboBox5.SelectedItem + "\"");
-            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
+            if (comboBox5.SelectedItem != null)
+            {
+                dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems","CustomerName = \"" + comboBox5.SelectedItem + "\"");
+                foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
 
-            dataGridView3.Columns["CustomerId"].Visible = false;
-            dataGridView3.Columns["CustomerName"].Visible = false;
-            dataGridView3.Columns["CustomerPhone"].Visible = false;
-            dataGridView3.Columns["Status"].Visible = false;
-            Colours(dataGridView3, "Disponibility");
-            label19.Text = "Done";
+                dataGridView3.Columns["CustomerId"].Visible = false;
+                dataGridView3.Columns["CustomerName"].Visible = false;
+                dataGridView3.Columns["CustomerPhone"].Visible = false;
+                dataGridView3.Columns["Status"].Visible = false;
+                Colours(dataGridView3, "Disponibility");
+                label19.Text = "Done";
+            }
+            else
+            {
+                MessageBox.Show("Please select a Customer Name", "Customer Name missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
-
         private void Colours(DataGridView dataGridView, string column)
         {
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -332,43 +337,48 @@ namespace ShopInterface
 
         private void button11_Click(object sender, EventArgs e)
         {
-            dataGridView3.DataSource =
-                DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
-            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
-
-            //var x = 0;
-            //var y = 0;
-            foreach (DataGridViewRow row in dataGridView3.Rows)
+            if (comboBox4.SelectedItem != null)
             {
-                var enStock = DBUtils.RefList("Instock",
-                    "kitbox where Code = \"" + row.Cells["Code"].Value + "\"");
-                var enstock = Convert.ToInt32(enStock[0]);
-                if (enstock - Convert.ToInt32(row.Cells["Quantity"].Value) >= 0)
-                {
-                    row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
-                    row.Cells["Disponibility"].Value = "true";
-                    label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
-                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
-                        row.Cells["OrderId"].Value + "\"", "true");
-                    //y += 1;
-                }
-                else
-                {
-                    row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                    //AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
-                    //row.Cells["Disponibility"].Value = "added";
-                    label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
-                        "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
-                        row.Cells["OrderId"].Value + "\"", "false");
-                    row.Cells["Disponibility"].Style.BackColor = Color.Red;
-                }
+                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
+                foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
 
-                //x += 1;
+                //var x = 0;
+                //var y = 0;
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    var enStock = DBUtils.RefList("Instock",
+                        "kitbox where Code = \"" + row.Cells["Code"].Value + "\"");
+                    var enstock = Convert.ToInt32(enStock[0]);
+                    if (enstock - Convert.ToInt32(row.Cells["Quantity"].Value) >= 0)
+                    {
+                        row.Cells["Disponibility"].Style.BackColor = Color.LimeGreen;
+                        row.Cells["Disponibility"].Value = "true";
+                        label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
+                            "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                            row.Cells["OrderId"].Value + "\"", "true");
+                        //y += 1;
+                    }
+                    else
+                    {
+                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                        //AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), row.Cells["Quantity"].Value.ToString());
+                        //row.Cells["Disponibility"].Value = "added";
+                        label17.Text = DBUtils.UpdateDBV("listsitems", "Disponibility",
+                            "Code = \"" + row.Cells["Code"].Value + "\" and OrderID = \"" +
+                            row.Cells["OrderId"].Value + "\"", "false");
+                        row.Cells["Disponibility"].Style.BackColor = Color.Red;
+                    }
+
+                    //x += 1;
+                }
+                Start();
             }
-            Start();
+            else
+            {
+                MessageBox.Show("Please select an OrderId", "OrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+
         }
-
-
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             // Updating the Label which displays the current time 
@@ -602,17 +612,30 @@ namespace ShopInterface
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status",
-                "OrderId = \"" + comboBox6.SelectedItem + "\"", "validate");
-            Sandbox.SandBox(comboBox6.SelectedItem.ToString());
-            Start();
+            if (comboBox6.SelectedItem != null)
+            {
+                label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status","OrderId = \"" + comboBox6.SelectedItem + "\"", "validate");
+                Sandbox.SandBox(comboBox6.SelectedItem.ToString());
+                Start();
+            }
+            else
+            {
+                MessageBox.Show("Please select an OrderId", "OrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status",
-                "OrderId = \"" + comboBox7.SelectedItem + "\"", "closed");
-            Start();
+            if (comboBox7.SelectedItem != null)
+            {
+                label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status","OrderId = \"" + comboBox7.SelectedItem + "\"", "closed");
+                Start();
+            }
+            else
+            {
+                MessageBox.Show("Please select an OrderId", "OrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void FirstThings()
@@ -650,19 +673,25 @@ namespace ShopInterface
 
         private void button15_Click(object sender, EventArgs e)
         {
-            DataTable datata =
-                DBUtils.RefreshDB("listsitems where OrderId = \"" + comboBox9.SelectedItem + "\"");
-            foreach (DataRow row in datata.Rows)
+            if (comboBox9.SelectedItem != null)
             {
-                int valueStock = Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
-                int actual = valueStock - Convert.ToInt32(row["Quantity"]);
-                label30.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code = \"" + row["Code"] + "\"", actual.ToString());
-                label30.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
+                DataTable datata = DBUtils.RefreshDB("listsitems where OrderId = \"" + comboBox9.SelectedItem + "\"");
+                foreach (DataRow row in datata.Rows)
+                {
+                    int valueStock = Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
+                    int actual = valueStock - Convert.ToInt32(row["Quantity"]);
+                    label30.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code = \"" + row["Code"] + "\"", actual.ToString());
+                    label30.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
+                }
+                label30.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
+                Start();
             }
-            label30.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
-            Start();
-        }
+            else
+            {
+                MessageBox.Show("Please select an OrderId", "OrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
 
+        }
         private void button20_Click(object sender, EventArgs e)
         {
             AddToPendingSuppliers(comboBox16.SelectedItem.ToString(), textBox2.Text);
@@ -671,7 +700,7 @@ namespace ShopInterface
 
         private void button26_Click(object sender, EventArgs e)
         {
-            if (comboBox22.SelectedItem != null)
+            if (comboBox21.SelectedItem != null && comboBox22.SelectedItem != null)
             {
                 if (DBUtils.RefList("Status", "orders where OrderId = \"" + comboBox22.SelectedItem.ToString() + "\"")[0] != "pending")
                 {
@@ -738,7 +767,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show("Please select an OrderIdd","No OrderId",MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
 
         }
@@ -803,12 +832,20 @@ namespace ShopInterface
 
         private void button25_Click(object sender, EventArgs e)
         {
-            Sandbox.Height(comboBox27.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
-            dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + comboBox26.SelectedItem + "\"");
-            dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
-            dataGridView12.DataSource = null;
-            Sandbox.ElementList(comboBox27.Text, dataGridView12);
-            label57.Text = "Done";
+            if (comboBox25.SelectedItem != null && comboBox26.SelectedItem != null && comboBox27.SelectedItem != null)
+            {
+                Sandbox.Height(comboBox27.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
+                dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + comboBox26.SelectedItem + "\"");
+                dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
+                dataGridView12.DataSource = null;
+                Sandbox.ElementList(comboBox27.Text, dataGridView12);
+                label57.Text = "Done";
+            }
+            else
+            {
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+
         }
 
         private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -898,28 +935,36 @@ namespace ShopInterface
 
         private void button29_Click(object sender, EventArgs e)
         {
-            while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox33.SelectedItem.ToString()) != 0)
+            if (comboBox33.SelectedItem != null)
             {
-                if (dataGridView12.Rows.Count < Convert.ToInt32(comboBox33.SelectedItem.ToString()))
+                while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox33.SelectedItem.ToString()) != 0)
                 {
-                    string height = DBUtils.RefList("Height", "boxes where BoxId = \"" + comboBox31.SelectedItem + "\"")[0];
-                    string width = DBUtils.RefList("Width", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
-                    string code = "DOO" + (Convert.ToInt32(height) - 4).ToString() + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "WH";
-                    DBUtils.InsertDoor("doors", code, comboBox31.SelectedItem.ToString());
-                    dataGridView12.DataSource = null;
-                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                    if (dataGridView12.Rows.Count < Convert.ToInt32(comboBox33.SelectedItem.ToString()))
+                    {
+                        string height = DBUtils.RefList("Height", "boxes where BoxId = \"" + comboBox31.SelectedItem + "\"")[0];
+                        string width = DBUtils.RefList("Width", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
+                        string code = "DOO" + (Convert.ToInt32(height) - 4).ToString() + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "WH";
+                        DBUtils.InsertDoor("doors", code, comboBox31.SelectedItem.ToString());
+                        dataGridView12.DataSource = null;
+                        Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                    }
+                    else if (dataGridView12.Rows.Count > Convert.ToInt32(comboBox33.SelectedItem.ToString()))
+                    {
+                        List<string> id = DBUtils.RefList("DoorId", "doors where BoxId = \"" + comboBox31.SelectedItem.ToString() + "\"");
+                        DBUtils.DeleteRowVD("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
+                        dataGridView12.DataSource = null;
+                        Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                    }
                 }
-                else if (dataGridView12.Rows.Count > Convert.ToInt32(comboBox33.SelectedItem.ToString()))
-                {
-                    List<string> id = DBUtils.RefList("DoorId", "doors where BoxId = \"" + comboBox31.SelectedItem.ToString() + "\"");
-                    DBUtils.DeleteRowVD("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
-                    dataGridView12.DataSource = null;
-                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
-                }
+                DBUtils.Arrange("doors", "DoorId");
+                dataGridView12.DataSource = null;
+                Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
             }
-            DBUtils.Arrange("doors", "DoorId");
-            dataGridView12.DataSource = null;
-            Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+            else
+            {
+                MessageBox.Show("Please select a number of doors", "Number of doors missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+
         }
 
         private void button30_Click(object sender, EventArgs e)
@@ -1071,12 +1116,19 @@ namespace ShopInterface
 
         private void button12_Click(object sender, EventArgs e)
         {
-            label24.Text = "Done";
+            if (comboBox8.SelectedItem != null)
+            {
+                label24.Text = "Done";
+            }
+            else
+            {
+                MessageBox.Show("Please select an OrderId", "OrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button28_Click(object sender, EventArgs e)
         {
-            if (comboBox29.SelectedItem.ToString() != null || comboBox28.SelectedItem.ToString() != null)
+            if (comboBox28.SelectedItem != null && comboBox29.SelectedItem != null && comboBox30.SelectedItem != null && comboBox31.SelectedItem != null && comboBox32.SelectedItem != null)
             {
                 string elementId = comboBox29.SelectedItem.ToString();
                 string code = "";
