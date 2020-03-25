@@ -873,7 +873,7 @@ namespace ShopInterface
                     comboBox33.Enabled = false;
                     comboBox31.Enabled = true;
                     dataGridView12.DataSource = null;
-                    Sandbox.OtherElement(comboBox31.SelectedItem.ToString(), "panels", "PanelId", dataGridView12);
+                    Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
                     comboBox29.Items.Clear();
                     foreach (DataGridViewRow row in dataGridView12.Rows)
                     {
@@ -1099,7 +1099,43 @@ namespace ShopInterface
                     dataGridView12.DataSource = null;
                     Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
                 }
-                
+                else if (comboBox32.Text == "Door")
+                {
+                    string BoxeId = comboBox31.Text.ToString();
+                    List<string> DoorId = DBUtils.RefList("DoorId", "doors where BoxeId = \"" + BoxeId + "\"");
+                    string height = DBUtils.RefList("Hauteur", "kitbox where Code =\"" + code + "\"")[0];
+                    string width = DBUtils.RefList("Largeur", "kitbox where Code =\"" + code + "\"")[0];
+                    string new_code = DBUtils.RefList("Code", "kitbox where Hauteur =\"" + height + "\"and Largeur = \"" + width +  "\" and Ref = \"Porte \" and Couleur = \"" + couleur + "\"")[0];
+                    label61.Text = DBUtils.UpdateDBV("doors", "Code", "DoorId = \"" + DoorId[Convert.ToInt32(elementId) - 1] + "\" and BoxeId = \"" + BoxeId + "\"", new_code);
+                    dataGridView12.DataSource = null;
+                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                }
+                else if (comboBox32.Text == "Panel")
+                {
+                    string BoxeId = comboBox31.Text.ToString();
+                    string position = "";
+                    foreach (DataGridViewRow row in dataGridView12.Rows)
+                    {
+                        if (row.Cells["Id"].Value.ToString() == elementId)
+                        {
+                            position = row.Cells["Position"].Value.ToString();
+                        }
+                    }
+                    List<string> PanelId = DBUtils.RefList("PanelId", "panels where BoxeId = \"" + BoxeId + "\"");
+                    string suffixe = "";
+                    if (couleur == "Blanc")
+                    {
+                        suffixe = "BL";
+                    }
+                    else
+                    {
+                        suffixe = "BR";
+                    }
+                    string new_code = code.Substring(0, (code.Length-2)) + suffixe;
+                    label61.Text = DBUtils.UpdateDBV("panels", "Code", "PanelId = \"" + PanelId[Convert.ToInt32(elementId) - 1] + "\" and BoxeId = \"" + BoxeId + "\" and Position = \"" + position + "\"", new_code);
+                    dataGridView12.DataSource = null;
+                    Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
+                }
             }
             else
             {

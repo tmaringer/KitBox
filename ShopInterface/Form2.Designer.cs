@@ -45,6 +45,7 @@ namespace ShopInterface
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.button16 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label67 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
@@ -82,6 +83,7 @@ namespace ShopInterface
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.button10 = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
@@ -128,6 +130,7 @@ namespace ShopInterface
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.dataGridView12 = new System.Windows.Forms.DataGridView();
             this.groupBox23 = new System.Windows.Forms.GroupBox();
+            this.label61 = new System.Windows.Forms.Label();
             this.groupBox24 = new System.Windows.Forms.GroupBox();
             this.button29 = new System.Windows.Forms.Button();
             this.comboBox33 = new System.Windows.Forms.ComboBox();
@@ -145,6 +148,7 @@ namespace ShopInterface
             this.button28 = new System.Windows.Forms.Button();
             this.dataGridView11 = new System.Windows.Forms.DataGridView();
             this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.comboBox27 = new System.Windows.Forms.ComboBox();
             this.comboBox26 = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
@@ -153,6 +157,7 @@ namespace ShopInterface
             this.label58 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.label53 = new System.Windows.Forms.Label();
             this.comboBox20 = new System.Windows.Forms.ComboBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
@@ -161,6 +166,7 @@ namespace ShopInterface
             this.label54 = new System.Windows.Forms.Label();
             this.button27 = new System.Windows.Forms.Button();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
+            this.label52 = new System.Windows.Forms.Label();
             this.comboBox21 = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.comboBox22 = new System.Windows.Forms.ComboBox();
@@ -223,12 +229,6 @@ namespace ShopInterface
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.label67 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label61 = new System.Windows.Forms.Label();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -340,6 +340,15 @@ namespace ShopInterface
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Generate a graph";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(6, 330);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(39, 13);
+            this.label67.TabIndex = 15;
+            this.label67.Text = "Output";
             // 
             // label22
             // 
@@ -739,6 +748,15 @@ namespace ShopInterface
             this.label18.Size = new System.Drawing.Size(90, 13);
             this.label18.TabIndex = 8;
             this.label18.Text = "Customer\'s  name";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(21, 56);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(39, 13);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "Output";
             // 
             // button10
             // 
@@ -1286,6 +1304,15 @@ namespace ShopInterface
             this.groupBox23.TabStop = false;
             this.groupBox23.Text = "Modify an element";
             // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(287, 156);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(39, 13);
+            this.label61.TabIndex = 29;
+            this.label61.Text = "Output";
+            // 
             // groupBox24
             // 
             this.groupBox24.Controls.Add(this.button29);
@@ -1353,9 +1380,7 @@ namespace ShopInterface
             this.comboBox32.Items.AddRange(new object[] {
             "Angle",
             "Door",
-            "Panel",
-            "Crossbar",
-            "Cleat"});
+            "Panel"});
             this.comboBox32.Location = new System.Drawing.Point(121, 76);
             this.comboBox32.Name = "comboBox32";
             this.comboBox32.Size = new System.Drawing.Size(114, 21);
@@ -1472,6 +1497,15 @@ namespace ShopInterface
             this.groupBox20.Text = "Modify a box";
             this.groupBox20.Enter += new System.EventHandler(this.groupBox20_Enter);
             // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(22, 152);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(39, 13);
+            this.label57.TabIndex = 23;
+            this.label57.Text = "Output";
+            // 
             // comboBox27
             // 
             this.comboBox27.FormattingEnabled = true;
@@ -1550,6 +1584,15 @@ namespace ShopInterface
             this.groupBox22.TabIndex = 24;
             this.groupBox22.TabStop = false;
             this.groupBox22.Text = "Modify a cupboard";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(20, 149);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(39, 13);
+            this.label53.TabIndex = 21;
+            this.label53.Text = "Output";
             // 
             // comboBox20
             // 
@@ -1632,6 +1675,15 @@ namespace ShopInterface
             this.groupBox21.TabIndex = 21;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "Find order";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(20, 145);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(39, 13);
+            this.label52.TabIndex = 17;
+            this.label52.Text = "Output";
             // 
             // comboBox21
             // 
@@ -2302,60 +2354,6 @@ namespace ShopInterface
             this.dataGridView9.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(6, 330);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(39, 13);
-            this.label67.TabIndex = 15;
-            this.label67.Text = "Output";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(21, 56);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(39, 13);
-            this.label19.TabIndex = 8;
-            this.label19.Text = "Output";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(20, 145);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(39, 13);
-            this.label52.TabIndex = 17;
-            this.label52.Text = "Output";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(20, 149);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(39, 13);
-            this.label53.TabIndex = 21;
-            this.label53.Text = "Output";
-            // 
-            // label57
-            // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(22, 152);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(39, 13);
-            this.label57.TabIndex = 23;
-            this.label57.Text = "Output";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(287, 156);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(39, 13);
-            this.label61.TabIndex = 29;
-            this.label61.Text = "Output";
             // 
             // Form2
             // 

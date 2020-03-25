@@ -84,13 +84,15 @@ namespace ShopInterface
                     if (j == "H" || j == "L")
                     {
                         string code = DBUtils.RefList("Code", "panels where BoxeId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string new_code = code.Substring(0, 3) + depth.ToString() + code.Substring(code.Length - 4, 4);
+                        string width = DBUtils.RefList("Largeur", "kitbox where Code = \"" + code + "\"")[0];
+                        string new_code = code.Substring(0, 3) + depth.ToString() + width.ToString() + code.Substring(code.Length - 2, 2);
                         DBUtils.UpdateDBV("panels", "Code", "Position = \"" + j + "\" and BoxeId = \"" + i + "\"", new_code);
                     }
                     else if (j == "RS" || j == "LS")
                     {
                         string code = DBUtils.RefList("Code", "panels where BoxeId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string new_code = code.Substring(0, 5) + depth.ToString() + code.Substring(code.Length - 2, 2);
+                        string height = DBUtils.RefList("Hauteur", "kitbox where Code = \"" + code + "\"")[0];
+                        string new_code = code.Substring(0, 3) + height.ToString() + depth.ToString() + code.Substring(code.Length - 2, 2);
                         DBUtils.UpdateDBV("panels", "Code", "Position = \"" + j + "\" and BoxeId = \"" + i + "\"", new_code);
                     }
                 }
@@ -313,7 +315,7 @@ namespace ShopInterface
             }
         }
 
-        public static void OtherElement(string BoxeId, string table, string id, DataGridView dataGridView)
+        public static void Panels(string BoxeId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -350,14 +352,14 @@ namespace ShopInterface
             };
             elements.Columns.Add(dtColumn3);
             int index = 1;
-            foreach (string i in DBUtils.RefList(id, table + " where BoxeId= \"" + BoxeId + "\""))
+            foreach (string i in DBUtils.RefList("PanelId", "panels where BoxeId= \"" + BoxeId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", table + " where "+ id + "= \"" + i + "\"")[0];
+                string code = DBUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
-                myDataRow["Position"] = DBUtils.RefList("Position", table + " where " + id + "= \"" + i + "\"")[0];
+                myDataRow["Position"] = DBUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
                 string enstock = DBUtils.RefList("EnStock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {

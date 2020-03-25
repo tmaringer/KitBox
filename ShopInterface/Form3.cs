@@ -53,7 +53,7 @@ namespace ShopInterface
                 }
                 else if (label7.Text == "Brun")
                 {
-                    pictureBox1.Image = Properties.Resources.porte_brown;
+                    pictureBox1.Image = Properties.Resources.panel_brown;
                 }
             }
             else if (label5.Text == "Traverse GD" || label5.Text == "Traverse Ar")
