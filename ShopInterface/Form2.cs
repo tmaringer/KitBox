@@ -161,7 +161,7 @@ namespace ShopInterface
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (comboBox1.Text != "" && comboBox2.Text != "" && comboBox3.Text != "")
+            if (comboBox1.Text != "" && comboBox3.Text != "")
             {
                 chart1.Visible = true;
                 if (chart1.Titles.Count > 0) chart1.Titles.RemoveAt(0);
