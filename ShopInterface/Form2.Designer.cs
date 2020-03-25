@@ -310,9 +310,10 @@ namespace ShopInterface
             // button16
             // 
             this.button16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button16.Location = new System.Drawing.Point(489, 543);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(178, 23);
+            this.button16.Size = new System.Drawing.Size(178, 24);
             this.button16.TabIndex = 15;
             this.button16.Text = "Update minimum stock value";
             this.button16.UseVisualStyleBackColor = true;
@@ -372,6 +373,7 @@ namespace ShopInterface
             // 
             // comboBox3
             // 
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(131, 110);
             this.comboBox3.Name = "comboBox3";
@@ -433,6 +435,7 @@ namespace ShopInterface
             // 
             // comboBox2
             // 
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(131, 164);
             this.comboBox2.Name = "comboBox2";
@@ -441,6 +444,7 @@ namespace ShopInterface
             // 
             // comboBox1
             // 
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "day",
@@ -464,9 +468,10 @@ namespace ShopInterface
             // 
             // button8
             // 
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Location = new System.Drawing.Point(150, 201);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(95, 21);
+            this.button8.Size = new System.Drawing.Size(95, 24);
             this.button8.TabIndex = 0;
             this.button8.Text = "Generate";
             this.button8.UseVisualStyleBackColor = true;
@@ -523,6 +528,7 @@ namespace ShopInterface
             // 
             // comboBox9
             // 
+            this.comboBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox9.FormattingEnabled = true;
             this.comboBox9.Location = new System.Drawing.Point(65, 31);
             this.comboBox9.Name = "comboBox9";
@@ -549,9 +555,10 @@ namespace ShopInterface
             // 
             // button15
             // 
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button15.Location = new System.Drawing.Point(84, 64);
             this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(95, 21);
+            this.button15.Size = new System.Drawing.Size(95, 24);
             this.button15.TabIndex = 0;
             this.button15.Text = "Confirm";
             this.button15.UseVisualStyleBackColor = true;
@@ -585,7 +592,7 @@ namespace ShopInterface
             // comboBox7
             // 
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(66, 33);
+            this.comboBox7.Location = new System.Drawing.Point(66, 31);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(114, 21);
             this.comboBox7.TabIndex = 14;
@@ -593,7 +600,7 @@ namespace ShopInterface
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(20, 36);
+            this.label25.Location = new System.Drawing.Point(20, 34);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(42, 13);
             this.label25.TabIndex = 8;
@@ -610,12 +617,14 @@ namespace ShopInterface
             // 
             // button13
             // 
+            this.button13.BackColor = System.Drawing.Color.Transparent;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button13.Location = new System.Drawing.Point(85, 66);
             this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(95, 21);
+            this.button13.Size = new System.Drawing.Size(95, 24);
             this.button13.TabIndex = 0;
             this.button13.Text = "Confirm";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button13.UseVisualStyleBackColor = false;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // groupBox9
@@ -635,6 +644,7 @@ namespace ShopInterface
             // comboBox8
             // 
             this.comboBox8.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox8.FormattingEnabled = true;
             this.comboBox8.Location = new System.Drawing.Point(66, 31);
             this.comboBox8.Name = "comboBox8";
@@ -661,9 +671,10 @@ namespace ShopInterface
             // 
             // button12
             // 
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Location = new System.Drawing.Point(85, 64);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(95, 21);
+            this.button12.Size = new System.Drawing.Size(95, 24);
             this.button12.TabIndex = 0;
             this.button12.Text = "Delete";
             this.button12.UseVisualStyleBackColor = true;
@@ -685,6 +696,7 @@ namespace ShopInterface
             // 
             // comboBox6
             // 
+            this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox6.FormattingEnabled = true;
             this.comboBox6.Location = new System.Drawing.Point(66, 33);
             this.comboBox6.Name = "comboBox6";
@@ -711,9 +723,10 @@ namespace ShopInterface
             // 
             // button9
             // 
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Location = new System.Drawing.Point(85, 66);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(95, 21);
+            this.button9.Size = new System.Drawing.Size(95, 24);
             this.button9.TabIndex = 0;
             this.button9.Text = "Confirm";
             this.button9.UseVisualStyleBackColor = true;
@@ -734,6 +747,7 @@ namespace ShopInterface
             // 
             // comboBox5
             // 
+            this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(131, 18);
             this.comboBox5.Name = "comboBox5";
@@ -760,9 +774,10 @@ namespace ShopInterface
             // 
             // button10
             // 
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Location = new System.Drawing.Point(150, 48);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(95, 21);
+            this.button10.Size = new System.Drawing.Size(95, 24);
             this.button10.TabIndex = 0;
             this.button10.Text = "Find";
             this.button10.UseVisualStyleBackColor = true;
@@ -783,6 +798,7 @@ namespace ShopInterface
             // 
             // comboBox4
             // 
+            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(131, 18);
             this.comboBox4.Name = "comboBox4";
@@ -809,9 +825,10 @@ namespace ShopInterface
             // 
             // button11
             // 
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Location = new System.Drawing.Point(150, 48);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(95, 21);
+            this.button11.Size = new System.Drawing.Size(95, 24);
             this.button11.TabIndex = 0;
             this.button11.Text = "Test";
             this.button11.UseVisualStyleBackColor = true;
@@ -878,6 +895,7 @@ namespace ShopInterface
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.textBox4);
             this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox3.Location = new System.Drawing.Point(698, 308);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(267, 285);
@@ -888,9 +906,10 @@ namespace ShopInterface
             // button7
             // 
             this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(66, 55);
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Location = new System.Drawing.Point(66, 52);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(78, 21);
+            this.button7.Size = new System.Drawing.Size(78, 24);
             this.button7.TabIndex = 13;
             this.button7.Text = "Cancel";
             this.button7.UseVisualStyleBackColor = true;
@@ -908,9 +927,10 @@ namespace ShopInterface
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(150, 55);
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Location = new System.Drawing.Point(150, 52);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(95, 21);
+            this.button6.Size = new System.Drawing.Size(95, 24);
             this.button6.TabIndex = 9;
             this.button6.Text = "Add element";
             this.button6.UseVisualStyleBackColor = true;
@@ -959,9 +979,10 @@ namespace ShopInterface
             // button3
             // 
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(150, 258);
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(150, 255);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(95, 21);
+            this.button3.Size = new System.Drawing.Size(95, 24);
             this.button3.TabIndex = 0;
             this.button3.Text = "Add the row";
             this.button3.UseVisualStyleBackColor = true;
@@ -991,9 +1012,10 @@ namespace ShopInterface
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(49, 49);
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(49, 45);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 21);
+            this.button4.Size = new System.Drawing.Size(95, 24);
             this.button4.TabIndex = 9;
             this.button4.Text = "Stop search";
             this.button4.UseVisualStyleBackColor = true;
@@ -1001,9 +1023,10 @@ namespace ShopInterface
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(150, 49);
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(150, 45);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(95, 21);
+            this.button5.Size = new System.Drawing.Size(95, 24);
             this.button5.TabIndex = 8;
             this.button5.Text = "Search";
             this.button5.UseVisualStyleBackColor = true;
@@ -1060,9 +1083,10 @@ namespace ShopInterface
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(150, 52);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(150, 49);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(95, 21);
+            this.button2.Size = new System.Drawing.Size(95, 24);
             this.button2.TabIndex = 0;
             this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
@@ -1088,6 +1112,7 @@ namespace ShopInterface
             // 
             // comboBox12
             // 
+            this.comboBox12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox12.FormattingEnabled = true;
             this.comboBox12.Location = new System.Drawing.Point(131, 19);
             this.comboBox12.Name = "comboBox12";
@@ -1096,6 +1121,7 @@ namespace ShopInterface
             // 
             // comboBox11
             // 
+            this.comboBox11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox11.FormattingEnabled = true;
             this.comboBox11.Location = new System.Drawing.Point(131, 45);
             this.comboBox11.Name = "comboBox11";
@@ -1147,9 +1173,10 @@ namespace ShopInterface
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(150, 102);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(150, 99);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 21);
+            this.button1.Size = new System.Drawing.Size(95, 24);
             this.button1.TabIndex = 0;
             this.button1.Text = "Modify";
             this.button1.UseVisualStyleBackColor = true;
@@ -1328,9 +1355,10 @@ namespace ShopInterface
             // 
             // button29
             // 
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button29.Location = new System.Drawing.Point(134, 49);
             this.button29.Name = "button29";
-            this.button29.Size = new System.Drawing.Size(95, 21);
+            this.button29.Size = new System.Drawing.Size(95, 24);
             this.button29.TabIndex = 28;
             this.button29.Text = "Modify";
             this.button29.UseVisualStyleBackColor = true;
@@ -1339,6 +1367,7 @@ namespace ShopInterface
             // comboBox33
             // 
             this.comboBox33.Enabled = false;
+            this.comboBox33.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox33.FormattingEnabled = true;
             this.comboBox33.Items.AddRange(new object[] {
             "0",
@@ -1360,6 +1389,7 @@ namespace ShopInterface
             // 
             // comboBox31
             // 
+            this.comboBox31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox31.FormattingEnabled = true;
             this.comboBox31.Location = new System.Drawing.Point(324, 39);
             this.comboBox31.Name = "comboBox31";
@@ -1368,6 +1398,7 @@ namespace ShopInterface
             // 
             // comboBox30
             // 
+            this.comboBox30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox30.FormattingEnabled = true;
             this.comboBox30.Location = new System.Drawing.Point(121, 39);
             this.comboBox30.Name = "comboBox30";
@@ -1376,6 +1407,7 @@ namespace ShopInterface
             // 
             // comboBox32
             // 
+            this.comboBox32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox32.FormattingEnabled = true;
             this.comboBox32.Items.AddRange(new object[] {
             "Angle",
@@ -1425,6 +1457,7 @@ namespace ShopInterface
             // 
             // comboBox28
             // 
+            this.comboBox28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox28.FormattingEnabled = true;
             this.comboBox28.Location = new System.Drawing.Point(324, 110);
             this.comboBox28.Name = "comboBox28";
@@ -1433,6 +1466,7 @@ namespace ShopInterface
             // 
             // comboBox29
             // 
+            this.comboBox29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox29.FormattingEnabled = true;
             this.comboBox29.Location = new System.Drawing.Point(324, 76);
             this.comboBox29.Name = "comboBox29";
@@ -1451,9 +1485,10 @@ namespace ShopInterface
             // button28
             // 
             this.button28.Enabled = false;
+            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button28.Location = new System.Drawing.Point(343, 152);
             this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(95, 21);
+            this.button28.Size = new System.Drawing.Size(95, 24);
             this.button28.TabIndex = 0;
             this.button28.Text = "Modify";
             this.button28.UseVisualStyleBackColor = true;
@@ -1508,6 +1543,7 @@ namespace ShopInterface
             // 
             // comboBox27
             // 
+            this.comboBox27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox27.FormattingEnabled = true;
             this.comboBox27.Location = new System.Drawing.Point(77, 65);
             this.comboBox27.Name = "comboBox27";
@@ -1516,6 +1552,7 @@ namespace ShopInterface
             // 
             // comboBox26
             // 
+            this.comboBox26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox26.FormattingEnabled = true;
             this.comboBox26.Location = new System.Drawing.Point(77, 28);
             this.comboBox26.Name = "comboBox26";
@@ -1542,6 +1579,7 @@ namespace ShopInterface
             // 
             // comboBox25
             // 
+            this.comboBox25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox25.FormattingEnabled = true;
             this.comboBox25.Location = new System.Drawing.Point(77, 105);
             this.comboBox25.Name = "comboBox25";
@@ -1559,9 +1597,10 @@ namespace ShopInterface
             // 
             // button25
             // 
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button25.Location = new System.Drawing.Point(96, 148);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(95, 21);
+            this.button25.Size = new System.Drawing.Size(95, 24);
             this.button25.TabIndex = 0;
             this.button25.Text = "Modify";
             this.button25.UseVisualStyleBackColor = true;
@@ -1596,6 +1635,7 @@ namespace ShopInterface
             // 
             // comboBox20
             // 
+            this.comboBox20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox20.FormattingEnabled = true;
             this.comboBox20.Location = new System.Drawing.Point(131, 28);
             this.comboBox20.Name = "comboBox20";
@@ -1622,6 +1662,7 @@ namespace ShopInterface
             // 
             // comboBox24
             // 
+            this.comboBox24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox24.FormattingEnabled = true;
             this.comboBox24.Location = new System.Drawing.Point(131, 105);
             this.comboBox24.Name = "comboBox24";
@@ -1630,6 +1671,7 @@ namespace ShopInterface
             // 
             // comboBox23
             // 
+            this.comboBox23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox23.FormattingEnabled = true;
             this.comboBox23.Items.AddRange(new object[] {
             "Width",
@@ -1652,11 +1694,17 @@ namespace ShopInterface
             // 
             // button27
             // 
-            this.button27.Location = new System.Drawing.Point(150, 145);
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.button27.Location = new System.Drawing.Point(150, 144);
+            this.button27.Margin = new System.Windows.Forms.Padding(0);
             this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(95, 21);
+            this.button27.Size = new System.Drawing.Size(95, 24);
             this.button27.TabIndex = 0;
-            this.button27.Text = "Modify";
+            this.button27.Text = "Update";
+            this.button27.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.button27.UseVisualStyleBackColor = true;
             this.button27.Click += new System.EventHandler(this.button27_Click);
             // 
@@ -1687,6 +1735,7 @@ namespace ShopInterface
             // 
             // comboBox21
             // 
+            this.comboBox21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox21.FormattingEnabled = true;
             this.comboBox21.Location = new System.Drawing.Point(131, 28);
             this.comboBox21.Name = "comboBox21";
@@ -1705,6 +1754,7 @@ namespace ShopInterface
             // 
             // comboBox22
             // 
+            this.comboBox22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox22.FormattingEnabled = true;
             this.comboBox22.Location = new System.Drawing.Point(131, 64);
             this.comboBox22.Name = "comboBox22";
@@ -1722,9 +1772,10 @@ namespace ShopInterface
             // 
             // button26
             // 
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button26.Location = new System.Drawing.Point(150, 141);
             this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(95, 21);
+            this.button26.Size = new System.Drawing.Size(95, 24);
             this.button26.TabIndex = 0;
             this.button26.Text = "Find";
             this.button26.UseVisualStyleBackColor = true;
@@ -1802,9 +1853,11 @@ namespace ShopInterface
             this.groupBox15.TabIndex = 17;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Add an item";
+            this.groupBox15.Enter += new System.EventHandler(this.groupBox15_Enter);
             // 
             // comboBox16
             // 
+            this.comboBox16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox16.FormattingEnabled = true;
             this.comboBox16.Location = new System.Drawing.Point(108, 28);
             this.comboBox16.Name = "comboBox16";
@@ -1847,9 +1900,10 @@ namespace ShopInterface
             // 
             // button20
             // 
+            this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.Location = new System.Drawing.Point(127, 98);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(95, 21);
+            this.button20.Size = new System.Drawing.Size(95, 24);
             this.button20.TabIndex = 0;
             this.button20.Text = "Add";
             this.button20.UseVisualStyleBackColor = true;
@@ -1870,6 +1924,7 @@ namespace ShopInterface
             // 
             // comboBox14
             // 
+            this.comboBox14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox14.FormattingEnabled = true;
             this.comboBox14.Location = new System.Drawing.Point(113, 45);
             this.comboBox14.Name = "comboBox14";
@@ -1896,9 +1951,10 @@ namespace ShopInterface
             // 
             // button19
             // 
+            this.button19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button19.Location = new System.Drawing.Point(132, 82);
             this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(95, 21);
+            this.button19.Size = new System.Drawing.Size(95, 24);
             this.button19.TabIndex = 0;
             this.button19.Text = "Modify";
             this.button19.UseVisualStyleBackColor = true;
@@ -1931,9 +1987,10 @@ namespace ShopInterface
             // button18
             // 
             this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button18.Location = new System.Drawing.Point(298, 431);
+            this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button18.Location = new System.Drawing.Point(296, 434);
             this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(103, 22);
+            this.button18.Size = new System.Drawing.Size(103, 24);
             this.button18.TabIndex = 3;
             this.button18.Text = "Order";
             this.button18.UseVisualStyleBackColor = true;
@@ -1968,9 +2025,10 @@ namespace ShopInterface
             // button17
             // 
             this.button17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button17.Location = new System.Drawing.Point(185, 58);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.Size = new System.Drawing.Size(75, 24);
             this.button17.TabIndex = 1;
             this.button17.Text = "Confirm";
             this.button17.UseVisualStyleBackColor = true;
@@ -1978,6 +2036,7 @@ namespace ShopInterface
             // comboBox18
             // 
             this.comboBox18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBox18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox18.FormattingEnabled = true;
             this.comboBox18.Location = new System.Drawing.Point(161, 19);
             this.comboBox18.Name = "comboBox18";
@@ -2027,9 +2086,10 @@ namespace ShopInterface
             // button30
             // 
             this.button30.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button30.Location = new System.Drawing.Point(184, 76);
             this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(75, 23);
+            this.button30.Size = new System.Drawing.Size(75, 24);
             this.button30.TabIndex = 1;
             this.button30.Text = "Confirm";
             this.button30.UseVisualStyleBackColor = true;
@@ -2038,6 +2098,7 @@ namespace ShopInterface
             // comboBox34
             // 
             this.comboBox34.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.comboBox34.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox34.FormattingEnabled = true;
             this.comboBox34.Location = new System.Drawing.Point(161, 34);
             this.comboBox34.Name = "comboBox34";
@@ -2082,9 +2143,10 @@ namespace ShopInterface
             // 
             // button24
             // 
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.Location = new System.Drawing.Point(130, 27);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(95, 21);
+            this.button24.Size = new System.Drawing.Size(95, 24);
             this.button24.TabIndex = 0;
             this.button24.Text = "Update";
             this.button24.UseVisualStyleBackColor = true;
@@ -2119,6 +2181,7 @@ namespace ShopInterface
             // 
             // comboBox19
             // 
+            this.comboBox19.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox19.FormattingEnabled = true;
             this.comboBox19.Location = new System.Drawing.Point(108, 62);
             this.comboBox19.Name = "comboBox19";
@@ -2127,6 +2190,7 @@ namespace ShopInterface
             // 
             // comboBox17
             // 
+            this.comboBox17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox17.FormattingEnabled = true;
             this.comboBox17.Location = new System.Drawing.Point(108, 28);
             this.comboBox17.Name = "comboBox17";
@@ -2169,9 +2233,10 @@ namespace ShopInterface
             // 
             // button23
             // 
-            this.button23.Location = new System.Drawing.Point(127, 139);
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Location = new System.Drawing.Point(127, 136);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(95, 21);
+            this.button23.Size = new System.Drawing.Size(95, 24);
             this.button23.TabIndex = 0;
             this.button23.Text = "Modify";
             this.button23.UseVisualStyleBackColor = true;
@@ -2193,6 +2258,7 @@ namespace ShopInterface
             // 
             // comboBox15
             // 
+            this.comboBox15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox15.FormattingEnabled = true;
             this.comboBox15.Location = new System.Drawing.Point(108, 36);
             this.comboBox15.Name = "comboBox15";
@@ -2219,9 +2285,10 @@ namespace ShopInterface
             // 
             // button22
             // 
-            this.button22.Location = new System.Drawing.Point(127, 98);
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(127, 95);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(95, 21);
+            this.button22.Size = new System.Drawing.Size(95, 24);
             this.button22.TabIndex = 0;
             this.button22.Text = "Delete";
             this.button22.UseVisualStyleBackColor = true;
@@ -2304,9 +2371,10 @@ namespace ShopInterface
             // 
             // button21
             // 
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button21.Location = new System.Drawing.Point(127, 164);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(95, 21);
+            this.button21.Size = new System.Drawing.Size(95, 24);
             this.button21.TabIndex = 0;
             this.button21.Text = "Add";
             this.button21.UseVisualStyleBackColor = true;

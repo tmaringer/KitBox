@@ -1194,5 +1194,10 @@ namespace ShopInterface
                 MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
+
+        private void groupBox15_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
