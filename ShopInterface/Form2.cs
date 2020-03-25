@@ -92,7 +92,7 @@ namespace ShopInterface
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (comboBox11.SelectedItem != null && comboBox12.SelectedItem != null && textBox3.Text != "")
+            if (comboBox11.Text != "" && comboBox12.Text != "" && textBox3.Text != "")
             {
                 label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(), "Code = \"" + comboBox11.SelectedItem + "\"", textBox3.Text);
                 dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
@@ -123,7 +123,7 @@ namespace ShopInterface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBox10.SelectedItem != null)
+            if (comboBox10.Text !="")
             {
                 label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", comboBox10.SelectedItem.ToString());
                 dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
@@ -161,7 +161,7 @@ namespace ShopInterface
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox3.SelectedItem != null)
+            if (comboBox1.Text != "" && comboBox2.Text != "" && comboBox3.Text != "")
             {
                 chart1.Visible = true;
                 if (chart1.Titles.Count > 0) chart1.Titles.RemoveAt(0);
@@ -320,7 +320,7 @@ namespace ShopInterface
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if (comboBox5.SelectedItem != null)
+            if (comboBox5.Text != "")
             {
                 dataGridView3.DataSource = DBUtils.RefreshDBCond("customers natural join orders natural join listsitems","CustomerName = \"" + comboBox5.SelectedItem + "\"");
                 foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
@@ -370,7 +370,7 @@ namespace ShopInterface
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (comboBox4.SelectedItem != null)
+            if (comboBox4.Text != "")
             {
                 dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
                 foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
@@ -645,7 +645,7 @@ namespace ShopInterface
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            if (comboBox6.SelectedItem != null)
+            if (comboBox6.Text != "")
             {
                 label21.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status","OrderId = \"" + comboBox6.SelectedItem + "\"", "validate");
                 Sandbox.SandBox(comboBox6.SelectedItem.ToString());
@@ -660,7 +660,7 @@ namespace ShopInterface
 
         private void button13_Click(object sender, EventArgs e)
         {
-            if (comboBox7.SelectedItem != null)
+            if (comboBox7.Text != "")
             {
                 label26.Text = DBUtils.UpdateDB(dataGridView2, "customers natural join orders", "Status","OrderId = \"" + comboBox7.SelectedItem + "\"", "closed");
                 Start();
@@ -706,7 +706,7 @@ namespace ShopInterface
 
         private void button15_Click(object sender, EventArgs e)
         {
-            if (comboBox9.SelectedItem != null)
+            if (comboBox9.Text != "")
             {
                 DataTable datata = DBUtils.RefreshDB("listsitems where OrderId = \"" + comboBox9.SelectedItem + "\"");
                 foreach (DataRow row in datata.Rows)
@@ -733,7 +733,7 @@ namespace ShopInterface
 
         private void button26_Click(object sender, EventArgs e)
         {
-            if (comboBox21.SelectedItem != null && comboBox22.SelectedItem != null)
+            if (comboBox21.Text != "" && comboBox22.Text != "")
             {
                 if (DBUtils.RefList("Status", "orders where OrderId = \"" + comboBox22.SelectedItem.ToString() + "\"")[0] != "pending")
                 {
@@ -807,7 +807,7 @@ namespace ShopInterface
 
         private void button27_Click(object sender, EventArgs e)
         {
-            if (comboBox20.SelectedItem != null && comboBox23.SelectedItem != null && comboBox24.SelectedItem != null)
+            if (comboBox20.Text != "" && comboBox23.Text != "" && comboBox24.Text !="")
             {
                 if (comboBox23.SelectedItem.ToString() == "Width")
                 {
@@ -865,7 +865,7 @@ namespace ShopInterface
 
         private void button25_Click(object sender, EventArgs e)
         {
-            if (comboBox25.SelectedItem != null && comboBox26.SelectedItem != null && comboBox27.SelectedItem != null)
+            if (comboBox25.Text != "" && comboBox26.Text != "" && comboBox27.Text != "")
             {
                 Sandbox.Height(comboBox27.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
                 dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + comboBox26.SelectedItem + "\"");
@@ -967,7 +967,7 @@ namespace ShopInterface
 
         private void button29_Click(object sender, EventArgs e)
         {
-            if (comboBox33.SelectedItem != null)
+            if (comboBox33.Text != "")
             {
                 while (dataGridView12.Rows.Count - Convert.ToInt32(comboBox33.SelectedItem.ToString()) != 0)
                 {
@@ -1000,7 +1000,7 @@ namespace ShopInterface
 
         private void button30_Click(object sender, EventArgs e)
         {
-            if (comboBox34.SelectedItem != null)
+            if (comboBox34.Text != "")
             {
                 dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
                 comboBox15.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
@@ -1020,7 +1020,7 @@ namespace ShopInterface
 
         private void button21_Click(object sender, EventArgs e)
         {
-            if (comboBox34.SelectedItem != null)
+            if (comboBox34.Text != "")
             {
                 if (textBox1.Text != "" && textBox5.Text != "" && textBox7.Text != "")
                 {
@@ -1040,9 +1040,9 @@ namespace ShopInterface
 
         private void button22_Click(object sender, EventArgs e)
         {
-            if (comboBox34.SelectedItem != null)
+            if (comboBox34.Text != "")
             {
-                if (comboBox15.SelectedItem != null)
+                if (comboBox15.Text != "")
                 {
                     label38.Text = DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
                     dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
@@ -1060,9 +1060,9 @@ namespace ShopInterface
 
         private void button23_Click(object sender, EventArgs e)
         {
-            if (comboBox34.SelectedItem != null)
+            if (comboBox34.Text != "")
             {
-                if (comboBox17.SelectedItem != null && comboBox19.SelectedItem != null && textBox6.Text != "")
+                if (comboBox17.Text != "" && comboBox19.Text != "" && textBox6.Text != "")
                 {
                     label44.Text = DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(), "Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
                     dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
@@ -1196,7 +1196,7 @@ namespace ShopInterface
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (comboBox8.SelectedItem != null)
+            if (comboBox8.Text != "")
             {
                 label24.Text = DBUtils.DeleteRowVD("orders", "OrderId = \"" + comboBox8.SelectedItem.ToString() +"\"");
                 Start();
@@ -1209,7 +1209,7 @@ namespace ShopInterface
 
         private void button28_Click(object sender, EventArgs e)
         {
-            if (comboBox28.SelectedItem != null && comboBox29.SelectedItem != null && comboBox30.SelectedItem != null && comboBox31.SelectedItem != null && comboBox32.SelectedItem != null)
+            if (comboBox28.Text != "" && comboBox29.Text != "" && comboBox30.Text != "" && comboBox31.Text != "" && comboBox32.Text != "")
             {
                 string elementId = comboBox29.SelectedItem.ToString();
                 string code = "";
