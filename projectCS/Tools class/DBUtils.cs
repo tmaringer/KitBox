@@ -71,7 +71,7 @@ namespace projectCS
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "Insert into " + database + " (SupplierId, Code, PrixFourn, DelaiFourn) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay + "\");";
+                string sql = "Insert into " + database + " (SupplierId, Code, SuppPrice, SuppDelay) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay + "\");";
                 adapter.InsertCommand = new MySqlCommand(sql, conn);
                 conn.Open();
                 adapter.InsertCommand.ExecuteNonQuery();

@@ -544,7 +544,7 @@ namespace ShopInterface
             {
                 List<string> Suppliers = DBUtils.RefList("SupplierId",
                     "suppliersprices where Code = \"" + row["Code"] + "\"");
-                List<string> Prices = DBUtils.RefList("PrixFourn",
+                List<string> Prices = DBUtils.RefList("SuppPrice",
                     "suppliersprices where Code = \"" + row["Code"] + "\"");
 
                 if (Suppliers[0] == "1")
@@ -970,7 +970,7 @@ namespace ShopInterface
 
                     foreach (string j in DBUtils.RefList("Code", "supplierslistprices where SupplierId = \"" + i + "\""))
                     {
-                        double value1 = Convert.ToDouble(DBUtils.RefList("PrixFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                        double value1 = Convert.ToDouble(DBUtils.RefList("SuppPrice", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
                         List<string> listcode = new List<string>();
                         foreach (DataRow row in supplier1.Rows)
                         {
@@ -983,7 +983,7 @@ namespace ShopInterface
                             {
                                 if (row["Code"].ToString() == j)
                                 {
-                                    value2 = Convert.ToDouble(row["PrixFourn"].ToString());
+                                    value2 = Convert.ToDouble(row["SuppPrice"].ToString());
                                 }
                             }
                             if (value2 - value1 > 0)
@@ -998,19 +998,19 @@ namespace ShopInterface
                                 DataRow ligne = supplier1.NewRow();
                                 ligne["SupplierId"] = i;
                                 ligne["Code"] = j;
-                                ligne["PrixFourn"] = value1;
-                                ligne["DelaiFourn"] = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                                ligne["SuppPrice"] = value1;
+                                ligne["SuppDelay"] = Convert.ToInt32(DBUtils.RefList("SuppDelay", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
                                 supplier1.Rows.Add(ligne);
                             }
                             else if (value2 - value1 == 0)
                             {
-                                int delay1 = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                                int delay1 = Convert.ToInt32(DBUtils.RefList("SuppDelay", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
                                 int delay2 = 0;
                                 foreach (DataRow row in supplier1.Rows)
                                 {
                                     if (row["Code"].ToString() == j)
                                     {
-                                        delay2 = Convert.ToInt32(row["DelaiFourn"].ToString());
+                                        delay2 = Convert.ToInt32(row["SuppDelay"].ToString());
                                     }
                                 }
                                 if (delay2 - delay1 > 0)
@@ -1025,8 +1025,8 @@ namespace ShopInterface
                                     DataRow ligne = supplier1.NewRow();
                                     ligne["SupplierId"] = i;
                                     ligne["Code"] = j;
-                                    ligne["PrixFourn"] = value1;
-                                    ligne["DelaiFourn"] = delay1;
+                                    ligne["SuppPrice"] = value1;
+                                    ligne["SuppDelay"] = delay1;
                                     supplier1.Rows.Add(ligne);
                                 }
                             }
@@ -1043,8 +1043,8 @@ namespace ShopInterface
                             DataRow ligne = supplier1.NewRow();
                             ligne["SupplierId"] = i;
                             ligne["Code"] = j;
-                            ligne["PrixFourn"] = value1;
-                            ligne["DelaiFourn"] = Convert.ToInt32(DBUtils.RefList("DelaiFourn", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
+                            ligne["SuppPrice"] = value1;
+                            ligne["SuppDelay"] = Convert.ToInt32(DBUtils.RefList("SuppDelay", "supplierslistprices where SupplierId = \"" + i + "\" and Code = \"" + j + "\"")[0]);
                             supplier1.Rows.Add(ligne);
                         }
                     }
@@ -1061,9 +1061,9 @@ namespace ShopInterface
             connection.Close();
             foreach (DataRow row in supplier1.Rows)
             {
-                string price = row["PrixFourn"].ToString();
+                string price = row["SuppPrice"].ToString();
                 string price1 = price.Replace(',', '.');
-                DBUtils.InsertSupplier("suppliersprices", row["Code"].ToString(), price1, row["DelaiFourn"].ToString(), row["SupplierId"].ToString());
+                DBUtils.InsertSupplier("suppliersprices", row["Code"].ToString(), price1, row["SuppDelay"].ToString(), row["SupplierId"].ToString());
                 progressBar3.PerformStep();
             }
             label47.Text = "Done";
