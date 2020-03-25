@@ -91,15 +91,28 @@ namespace ShopInterface
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(),
-                "Code = \"" + comboBox11.SelectedItem + "\"", textBox3.Text);
-            dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
-        }
 
+            if (comboBox11.SelectedItem != null && comboBox12.SelectedItem != null && textBox3.Text != "")
+            {
+                label4.Text = DBUtils.UpdateDB(dataGridView1, "kitbox", comboBox12.SelectedItem.ToString(), "Code = \"" + comboBox11.SelectedItem + "\"", textBox3.Text);
+                dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
+            }
+            else
+            {
+                MessageBox.Show("Please select or enter every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            button4.Enabled = DBUtils.SearchDB(dataGridView1, textBox10);
+            if (textBox10.Text != "")
+            {
+                button4.Enabled = DBUtils.SearchDB(dataGridView1, textBox10);
+            }
+            else
+            {
+                MessageBox.Show("Please enter an element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -110,9 +123,16 @@ namespace ShopInterface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", comboBox10.SelectedItem.ToString());
-            dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
-            comboBox10.SelectedItem = "";
+            if (comboBox10.SelectedItem != null)
+            {
+                label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", comboBox10.SelectedItem.ToString());
+                dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
+                comboBox10.SelectedItem = "";
+            }
+            else
+            {
+                MessageBox.Show("Please select a Code", "Code missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -123,8 +143,14 @@ namespace ShopInterface
 
         private void button6_Click(object sender, EventArgs e)
         {
-            _x = DBUtils.AddItem(label7, _x, dataGridView1, _columns, _types, _elements, button7, textBox4, listView1,
-                button6, progressBar1, button3);
+            if (textBox4.Text != "")
+            {
+                _x = DBUtils.AddItem(label7, _x, dataGridView1, _columns, _types, _elements, button7, textBox4, listView1, button6, progressBar1, button3);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a " + label7.Text, label7.Text + " missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -135,82 +161,89 @@ namespace ShopInterface
 
         private void button8_Click(object sender, EventArgs e)
         {
-            chart1.Visible = true;
-            if (chart1.Titles.Count > 0) chart1.Titles.RemoveAt(0);
-            var values = DBUtils.SelectCondDB("sales", comboBox3.SelectedItem.ToString());
-            if (comboBox1.SelectedItem.ToString() == "day")
+            if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox3.SelectedItem != null)
             {
-                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+                chart1.Visible = true;
+                if (chart1.Titles.Count > 0) chart1.Titles.RemoveAt(0);
+                var values = DBUtils.SelectCondDB("sales", comboBox3.SelectedItem.ToString());
+                if (comboBox1.SelectedItem.ToString() == "day")
+                {
+                    while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
 
-                chart1.Series.Add(comboBox3.SelectedItem.ToString());
-                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
+                    chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
 
-                foreach (var entry in values)
-                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
+                    foreach (var entry in values)
+                        chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
 
-                chart1.Titles.Add(comboBox3.SelectedItem + " per day");
-                if (comboBox2.SelectedItem != null) label14.Text = values[comboBox2.SelectedItem.ToString()].ToString();
+                    chart1.Titles.Add(comboBox3.SelectedItem + " per day");
+                    if (comboBox2.SelectedItem != null) label14.Text = values[comboBox2.SelectedItem.ToString()].ToString();
+                }
+                else if (comboBox1.SelectedItem.ToString() == "month")
+                {
+                    while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+
+                    chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
+                    var graphMonth = new Dictionary<string, int>();
+                    foreach (var entry in values)
+                    {
+                        var key = entry.Key;
+                        var month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                        if (graphMonth.ContainsKey(month))
+                            graphMonth[month] = graphMonth[month] + entry.Value;
+                        else
+                            graphMonth.Add(month, entry.Value);
+                    }
+
+                    var months = new List<string>();
+                    foreach (var entry in graphMonth)
+                    {
+                        months.Add(entry.Key);
+                        chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
+                    }
+
+                    chart1.Titles.Add(comboBox3.SelectedItem + " per month");
+                    if (comboBox2.SelectedItem != null)
+                        label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+
+                    var all = graphMonth[months[months.Count - 2]] + graphMonth[months[months.Count - 3]] +
+                              graphMonth[months[months.Count - 4]] + graphMonth[months[months.Count - 5]] +
+                              graphMonth[months[months.Count - 6]] + graphMonth[months[months.Count - 7]];
+                    double average = all / 6;
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY("Average of last 6 months", average);
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).Color = Color.LimeGreen;
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).IsValueShownAsLabel = true;
+                    chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
+                }
+                else if (comboBox1.SelectedItem.ToString() == "year")
+                {
+                    while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
+
+                    chart1.Series.Add(comboBox3.SelectedItem.ToString());
+                    chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
+                    var graphMonth = new Dictionary<string, int>();
+                    foreach (var entry in values)
+                    {
+                        var key = entry.Key;
+                        var month = key.Split('/')[2];
+                        if (graphMonth.ContainsKey(month))
+                            graphMonth[month] = graphMonth[month] + entry.Value;
+                        else
+                            graphMonth.Add(month, entry.Value);
+                    }
+
+                    foreach (var entry in graphMonth)
+                        chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
+
+                    chart1.Titles.Add(comboBox3.SelectedItem + " per year");
+                    if (comboBox2.SelectedItem != null)
+                        label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+                }
             }
-            else if (comboBox1.SelectedItem.ToString() == "month")
+            else
             {
-                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
-
-                chart1.Series.Add(comboBox3.SelectedItem.ToString());
-                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
-                var graphMonth = new Dictionary<string, int>();
-                foreach (var entry in values)
-                {
-                    var key = entry.Key;
-                    var month = key.Split('/')[1] + "/" + key.Split('/')[2];
-                    if (graphMonth.ContainsKey(month))
-                        graphMonth[month] = graphMonth[month] + entry.Value;
-                    else
-                        graphMonth.Add(month, entry.Value);
-                }
-
-                var months = new List<string>();
-                foreach (var entry in graphMonth)
-                {
-                    months.Add(entry.Key);
-                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
-                }
-
-                chart1.Titles.Add(comboBox3.SelectedItem + " per month");
-                if (comboBox2.SelectedItem != null)
-                    label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
-
-                var all = graphMonth[months[months.Count - 2]] + graphMonth[months[months.Count - 3]] +
-                          graphMonth[months[months.Count - 4]] + graphMonth[months[months.Count - 5]] +
-                          graphMonth[months[months.Count - 6]] + graphMonth[months[months.Count - 7]];
-                double average = all / 6;
-                chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY("Average of last 6 months", average);
-                chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).Color = Color.LimeGreen;
-                chart1.Series[comboBox3.SelectedItem.ToString()].Points.FindByValue(average).IsValueShownAsLabel = true;
-                chart1.ChartAreas[0].AxisX.LabelStyle.Interval = 1;
-            }
-            else if (comboBox1.SelectedItem.ToString() == "year")
-            {
-                while (chart1.Series.Count > 0) chart1.Series.RemoveAt(0);
-
-                chart1.Series.Add(comboBox3.SelectedItem.ToString());
-                chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
-                var graphMonth = new Dictionary<string, int>();
-                foreach (var entry in values)
-                {
-                    var key = entry.Key;
-                    var month = key.Split('/')[2];
-                    if (graphMonth.ContainsKey(month))
-                        graphMonth[month] = graphMonth[month] + entry.Value;
-                    else
-                        graphMonth.Add(month, entry.Value);
-                }
-
-                foreach (var entry in graphMonth)
-                    chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
-
-                chart1.Titles.Add(comboBox3.SelectedItem + " per year");
-                if (comboBox2.SelectedItem != null)
-                    label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -845,7 +878,6 @@ namespace ShopInterface
             {
                 MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
-
         }
 
         private void dataGridView12_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -964,38 +996,86 @@ namespace ShopInterface
             {
                 MessageBox.Show("Please select a number of doors", "Number of doors missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
-
         }
 
         private void button30_Click(object sender, EventArgs e)
         {
-            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
-            comboBox15.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
-            comboBox15.DisplayMember = "Code";
-            comboBox15.Text = "";
-            comboBox17.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
-            comboBox17.DisplayMember = "Code";
-            comboBox17.Text = "";
-            comboBox19.Items.Clear();
-            foreach (DataGridViewColumn col in dataGridView10.Columns) comboBox19.Items.Add(col.Name);
+            if (comboBox34.SelectedItem != null)
+            {
+                dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+                comboBox15.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
+                comboBox15.DisplayMember = "Code";
+                comboBox15.Text = "";
+                comboBox17.DataSource = DBUtils.RefList("Code", "supplierslistprices where SupplierId =\"" + comboBox34.SelectedItem + "\"");
+                comboBox17.DisplayMember = "Code";
+                comboBox17.Text = "";
+                comboBox19.Items.Clear();
+                foreach (DataGridViewColumn col in dataGridView10.Columns) comboBox19.Items.Add(col.Name);
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierId", "SupplierId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-            label39.Text = DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
-            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+            if (comboBox34.SelectedItem != null)
+            {
+                if (textBox1.Text != "" && textBox5.Text != "" && textBox7.Text != "")
+                {
+                    label39.Text = DBUtils.InsertSupplier("supplierslistprices", textBox1.Text, textBox5.Text, textBox7.Text, comboBox34.SelectedItem.ToString());
+                    dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+                }
+                else
+                {
+                    MessageBox.Show("Please enter every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierId", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            label38.Text = DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
-            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+            if (comboBox34.SelectedItem != null)
+            {
+                if (comboBox15.SelectedItem != null)
+                {
+                    label38.Text = DBUtils.DeleteRowVD("supplierslistprices", "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"");
+                    dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Code", "Code missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierId", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button23_Click(object sender, EventArgs e)
         {
-            label44.Text = DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(),"Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
-            dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+            if (comboBox34.SelectedItem != null)
+            {
+                if (comboBox17.SelectedItem != null && comboBox19.SelectedItem != null && textBox6.Text != "")
+                {
+                    label44.Text = DBUtils.UpdateDBV("supplierslistprices", comboBox19.SelectedItem.ToString(), "Code=\"" + comboBox17.SelectedItem.ToString() + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"", textBox6.Text);
+                    dataGridView10.DataSource = DBUtils.RefreshDBCond("supplierslistprices", "SupplierId=\"" + comboBox34.SelectedItem + "\"");
+                }
+                else
+                {
+                    MessageBox.Show("Please select or enter every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierId", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button24_Click(object sender, EventArgs e)
