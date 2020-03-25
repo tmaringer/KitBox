@@ -59,7 +59,7 @@ namespace projectCS
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string sql = "Insert into " + database + " (BoxeId,Code) values (\""+ boxeid + "\", \"" + code + "\");";
+            string sql = "Insert into " + database + " (BoxId,Code) values (\""+ boxeid + "\", \"" + code + "\");";
             adapter.InsertCommand = new MySqlCommand(sql, conn);
             conn.Open();
             adapter.InsertCommand.ExecuteNonQuery();
@@ -396,7 +396,7 @@ namespace projectCS
         public static void Arrange(string database, string id)
         { 
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxeId`, `Code`) SELECT * FROM kitbox." + database + " ORDER BY BoxeId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
+            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxId`, `Code`) SELECT * FROM kitbox." + database + " ORDER BY BoxId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
             conn.Open();
             MySqlDataReader MyReader2;
             MyReader2 = cmd.ExecuteReader();
