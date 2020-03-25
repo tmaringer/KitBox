@@ -76,12 +76,12 @@ namespace ShopInterface
                 List<string> orderList2 = new List<string>();
                 if (comboBox23.SelectedItem.ToString() == "Width")
                 {
-                    orderList2 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
+                    orderList2 = DBUtils.RefListND("Width", "kitbox where Ref = \"Panel B\"");
 
                 }
                 else if (comboBox23.SelectedItem.ToString() == "Depth")
                 {
-                    orderList2 = DBUtils.RefListND("Profondeur", "kitbox where Ref = \"Panneau GD\"");
+                    orderList2 = DBUtils.RefListND("Depth", "kitbox where Ref = \"Panel LR\"");
 
                 }
                 foreach (var OrderId in orderList2)
@@ -235,7 +235,7 @@ namespace ShopInterface
                 List<string> orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
                 foreach (var OrderId in orderList1)
                     comboBox22.Items.Add(OrderId);
-                List<string> orderList3 = DBUtils.RefListND("Largeur", "kitbox where Ref = \"Panneau Ar\"");
+                List<string> orderList3 = DBUtils.RefListND("Width", "kitbox where Ref = \"Panel B\"");
                 foreach (var OrderId in orderList3)
                     comboBox24.Items.Add(OrderId);
 
@@ -340,7 +340,7 @@ namespace ShopInterface
             //var y = 0;
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
-                var enStock = DBUtils.RefList("Enstock",
+                var enStock = DBUtils.RefList("Instock",
                     "kitbox where Code = \"" + row.Cells["Code"].Value + "\"");
                 var enstock = Convert.ToInt32(enStock[0]);
                 if (enstock - Convert.ToInt32(row.Cells["Quantity"].Value) >= 0)
@@ -397,7 +397,7 @@ namespace ShopInterface
             comboBox5.DisplayMember = "CustomerName";
             comboBox21.DataSource = DBUtils.RefListND("CustomerName", "customers natural join orders");
             comboBox21.DisplayMember = "CustomerName";
-            List<string> heightValue = DBUtils.RefListND("Hauteur", "kitbox where Ref = \"Tasseau\"");
+            List<string> heightValue = DBUtils.RefListND("Height", "kitbox where Ref = \"Cleat\"");
             comboBox25.Items.Clear();
             //fix combobox25
             foreach (string i in heightValue)
@@ -414,10 +414,10 @@ namespace ShopInterface
 
         private void UpdateStock()
         {
-            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
+            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, Instock, MinimumStock");
             comboBox3.DataSource = DBUtils.RefList("Code", "kitbox.sales");
             comboBox3.DisplayMember = "Code";
-            ColoursDiff(dataGridView4, "EnStock", "StockMinimum");
+            ColoursDiff(dataGridView4, "Instock", "MinimumStock");
             dataGridView4.CurrentCell.Selected = false;
             label15.Visible = false;
             dataGridView4.Visible = true;
@@ -454,7 +454,7 @@ namespace ShopInterface
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
                 var average = all / 12;
-                label67.Text = DBUtils.UpdateDBV("kitbox", "StockMinimum", "Code = \"" + i + "\"", average.ToString());
+                label67.Text = DBUtils.UpdateDBV("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();
             }
 
@@ -542,7 +542,7 @@ namespace ShopInterface
             dataGridView5.Refresh();
             foreach (DataRow row in dataTable.Rows)
             {
-                List<string> Suppliers = DBUtils.RefList("SupplierNumber",
+                List<string> Suppliers = DBUtils.RefList("SupplierId",
                     "suppliersprices where Code = \"" + row["Code"] + "\"");
                 List<string> Prices = DBUtils.RefList("PrixFourn",
                     "suppliersprices where Code = \"" + row["Code"] + "\"");
@@ -624,7 +624,7 @@ namespace ShopInterface
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
             var ninja = new DataTable();
-            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, EnStock, StockMinimum");
+            dataGridView4.DataSource = DBUtils.RefreshDBPartial("kitbox", "Ref, Code, Instock, MinimumStock");
             dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
             ninja = DBUtils.RefreshDB("sales");
             foreach (DataColumn col in ninja.Columns)
@@ -654,9 +654,9 @@ namespace ShopInterface
                 DBUtils.RefreshDB("listsitems where OrderId = \"" + comboBox9.SelectedItem + "\"");
             foreach (DataRow row in datata.Rows)
             {
-                int valueStock = Convert.ToInt32(DBUtils.RefList("EnStock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
+                int valueStock = Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + row["Code"] + "\"")[0]);
                 int actual = valueStock - Convert.ToInt32(row["Quantity"]);
-                label30.Text = DBUtils.UpdateDBV("kitbox", "EnStock", "Code = \"" + row["Code"] + "\"", actual.ToString());
+                label30.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code = \"" + row["Code"] + "\"", actual.ToString());
                 label30.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + comboBox9.SelectedItem + "\" and Code = \"" + row["Code"] + "\"", "awaiting for removal");
             }
             label30.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + comboBox9.SelectedItem + "\"", "awaiting for removal");
@@ -803,7 +803,6 @@ namespace ShopInterface
 
         private void button25_Click(object sender, EventArgs e)
         {
-            //DBUtils.UpdateDB(dataGridView11, "boxes", "Hauteur", "CupboardId=\"" + label67.Text + "\"and BoxeId=\"" + label69.Text + "\"", comboBox25.SelectedItem.ToString());
             Sandbox.Height(comboBox27.Text, Convert.ToInt32(comboBox25.SelectedItem.ToString()));
             dataGridView11.DataSource = DBUtils.RefreshDBCond("boxes", "CupboardId=\"" + comboBox26.SelectedItem + "\"");
             dataGridView6.DataSource = DBUtils.RefreshDBCond("cupboards", "OrderId=\"" + comboBox22.SelectedItem + "\"");
@@ -840,7 +839,7 @@ namespace ShopInterface
                         comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
                     }
                     comboBox28.Items.Clear();
-                    foreach (string i in DBUtils.RefListND("Couleur", "kitbox where Ref = \"Cornieres\""))
+                    foreach (string i in DBUtils.RefListND("Colour", "kitbox where Ref = \"AngleBracket\""))
                     {
                         comboBox28.Items.Add(i);
                     }
@@ -851,7 +850,7 @@ namespace ShopInterface
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                     string cupboardid = DBUtils.RefList("CupboardId", "boxes where BoxeId = \"" + comboBox31.SelectedItem.ToString() + "\"")[0];
-                    if (Convert.ToInt32(DBUtils.RefList("Largeur", "cupboards where CupboardId = \"" + cupboardid + "\"")[0]) >= 62)
+                    if (Convert.ToInt32(DBUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardid + "\"")[0]) >= 62)
                     {
                         groupBox24.Visible = true;
                         comboBox33.Enabled = true;
@@ -861,7 +860,7 @@ namespace ShopInterface
                             comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
                         }
                         comboBox28.Items.Clear();
-                        foreach (string i in DBUtils.RefListND("Couleur","kitbox where Ref = \"Porte \""))
+                        foreach (string i in DBUtils.RefListND("Colour","kitbox where Ref = \"Door\""))
                         {
                             comboBox28.Items.Add(i);
                         }
@@ -880,7 +879,7 @@ namespace ShopInterface
                         comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
                     }
                     comboBox28.Items.Clear();
-                    foreach (string i in DBUtils.RefListND("Couleur", "kitbox where Ref = \"Panneau GD\""))
+                    foreach (string i in DBUtils.RefListND("Colour", "kitbox where Ref = \"Panel LR\""))
                     {
                         comboBox28.Items.Add(i);
                     }
@@ -903,9 +902,9 @@ namespace ShopInterface
             {
                 if (dataGridView12.Rows.Count < Convert.ToInt32(comboBox33.SelectedItem.ToString()))
                 {
-                    string height = DBUtils.RefList("Hauteur", "boxes where BoxeId = \"" + comboBox31.SelectedItem + "\"")[0];
-                    string width = DBUtils.RefList("Largeur", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
-                    string code = "POR" + (Convert.ToInt32(height) - 4).ToString() + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "BL";
+                    string height = DBUtils.RefList("Height", "boxes where BoxeId = \"" + comboBox31.SelectedItem + "\"")[0];
+                    string width = DBUtils.RefList("Width", "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
+                    string code = "DOO" + (Convert.ToInt32(height) - 4).ToString() + ((Convert.ToInt32(width) / 10) * 5 + 2).ToString() + "WH";
                     DBUtils.InsertDoor("doors", code, comboBox31.SelectedItem.ToString());
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
@@ -1093,8 +1092,8 @@ namespace ShopInterface
                 {
                     string cupboardId = comboBox30.Text.ToString();
                     List<string> AngleId = DBUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
-                    string height = DBUtils.RefList("Hauteur", "kitbox where Code =\"" + code + "\"")[0];
-                    string new_code = DBUtils.RefList("Code", "kitbox where Hauteur =\"" + height + "\" and Ref = \"Cornieres\" and Couleur = \"" + couleur + "\"")[0];
+                    string height = DBUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
+                    string new_code = DBUtils.RefList("Code", "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + couleur + "\"")[0];
                     label61.Text = DBUtils.UpdateDBV("angles", "Code", "AngleId = \"" + AngleId[Convert.ToInt32(elementId) - 1] + "\" and CupboardId = \"" + cupboardId + "\"",new_code);
                     dataGridView12.DataSource = null;
                     Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
@@ -1103,9 +1102,9 @@ namespace ShopInterface
                 {
                     string BoxeId = comboBox31.Text.ToString();
                     List<string> DoorId = DBUtils.RefList("DoorId", "doors where BoxeId = \"" + BoxeId + "\"");
-                    string height = DBUtils.RefList("Hauteur", "kitbox where Code =\"" + code + "\"")[0];
-                    string width = DBUtils.RefList("Largeur", "kitbox where Code =\"" + code + "\"")[0];
-                    string new_code = DBUtils.RefList("Code", "kitbox where Hauteur =\"" + height + "\"and Largeur = \"" + width +  "\" and Ref = \"Porte \" and Couleur = \"" + couleur + "\"")[0];
+                    string height = DBUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
+                    string width = DBUtils.RefList("Width", "kitbox where Code =\"" + code + "\"")[0];
+                    string new_code = DBUtils.RefList("Code", "kitbox where Height =\"" + height + "\"and Width = \"" + width +  "\" and Ref = \"Door\" and Colour = \"" + couleur + "\"")[0];
                     label61.Text = DBUtils.UpdateDBV("doors", "Code", "DoorId = \"" + DoorId[Convert.ToInt32(elementId) - 1] + "\" and BoxeId = \"" + BoxeId + "\"", new_code);
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
@@ -1123,9 +1122,9 @@ namespace ShopInterface
                     }
                     List<string> PanelId = DBUtils.RefList("PanelId", "panels where BoxeId = \"" + BoxeId + "\"");
                     string suffixe = "";
-                    if (couleur == "Blanc")
+                    if (couleur == "White")
                     {
-                        suffixe = "BL";
+                        suffixe = "WH";
                     }
                     else
                     {
