@@ -381,7 +381,7 @@ namespace kitbox_user_interface_V1
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
                 ComponentColor color2 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
-                /*
+                
                 foreach (string colors in ColorParse.colorsList)
                 {
                     if(colors == comboBox7.SelectedItem.ToString())
