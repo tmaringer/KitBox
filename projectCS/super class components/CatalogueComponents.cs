@@ -97,7 +97,7 @@
     public enum ComponentColor
     {
         white,
-        brawn,
+        brown,
         galvanized,
         black,
         transparent

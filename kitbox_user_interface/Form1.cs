@@ -306,7 +306,7 @@ namespace kitbox_user_interface_V1
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
             comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
 
-            ShoppingCart basket = new ShoppingCart();
+            //ShoppingCart basket = new ShoppingCart();
 
         }
 
@@ -364,13 +364,12 @@ namespace kitbox_user_interface_V1
         {
             button1.Enabled = false;
 
-            ShoppingCart shop = new ShoppingCart();
 
             ComponentColor c = ComponentColor.black;
             ComponentSize s = new ComponentSize(0,0,0);
             int box = 5;
 
-            shop.buildCupboard(s.width, s.depth, box, c);
+            ShoppingCart.buildCupboard(s.width, s.depth, box, c);
 
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
@@ -381,6 +380,7 @@ namespace kitbox_user_interface_V1
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
+                ComponentColor color2 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
                 /*
                 foreach (string colors in ColorParse.colorsList)
                 {
