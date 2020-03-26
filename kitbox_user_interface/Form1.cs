@@ -21,19 +21,19 @@ namespace kitbox_user_interface_V1
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
-            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panneau Ar\"");
             conn.Close();
             conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "hauteur", "Ref = \"Panneau GD\"");
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panneau GD\"");
             conn.Close();
             conn.Open();
-            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Porte\"");
+            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Porte\"");
             conn.Close();
             conn.Open();
-            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "profondeur", "Ref = \"Panneau GD\"");
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panneau GD\"");
             conn.Close();
             conn.Open();
-            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
+            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Cornieres\"");
             conn.Close();
            
 
@@ -42,23 +42,23 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightBracketsList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Cornieres\"");
+            List<string> HightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthBracketsList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Cornieres\"");
+            List<string> DepthBracketsList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthBracketsList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Cornieres\"");
+            List<string> WidthBracketsList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorBracketsList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Cornieres\"");
+            List<string> ColorBracketsList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
-            List<string> PriceBracketsList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Cornieres\"");
+            List<string> PriceBracketsList = QueryKitbox.SpecsBoxList(conn, "Cost", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
@@ -70,19 +70,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightPannelLRList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Panneau GD\"");
+            List<string> HightPannelLRList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panneau GD\"");
             conn.Close();
                         
             conn.Open();
-            List<string> DepthPannelLRList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Panneau GD\"");
+            List<string> DepthPannelLRList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panneau GD\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthPannelLRList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau GD\"");
+            List<string> WidthPannelLRList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panneau GD\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorPannelLRList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Panneau GD\"");
+            List<string> ColorPannelLRList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panneau GD\"");
             conn.Close();
 
             conn.Open();
@@ -98,19 +98,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightPannelTBList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Panneau HB\"");
+            List<string> HightPannelTBList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panneau HB\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthPannelTBList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Panneau HB\"");
+            List<string> DepthPannelTBList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panneau HB\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthPannelTBList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau HB\"");
+            List<string> WidthPannelTBList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panneau HB\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorPannelTBList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Panneau HB\"");
+            List<string> ColorPannelTBList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panneau HB\"");
             conn.Close();
 
             conn.Open();
@@ -126,19 +126,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightPannelBaList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Panneau Ar\"");
+            List<string> HightPannelBaList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panneau Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthPannelBaList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Panneau Ar\"");
+            List<string> DepthPannelBaList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panneau Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthPannelBaList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Panneau Ar\"");
+            List<string> WidthPannelBaList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panneau Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Panneau Ar\"");
+            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panneau Ar\"");
             conn.Close();
 
             conn.Open();
@@ -154,19 +154,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Porte\"");
+            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Porte\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Porte\"");
+            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Porte\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Porte\"");
+            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Porte\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Porte\"");
+            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Porte\"");
             conn.Close();
 
             conn.Open();
@@ -182,19 +182,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightCleatsList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Tasseau\"");
+            List<string> HightCleatsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Tasseau\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthCleatsList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Tasseau\"");
+            List<string> DepthCleatsList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Tasseau\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthCleatsList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Tasseau\"");
+            List<string> WidthCleatsList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Tasseau\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorCleatsList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Tasseau\"");
+            List<string> ColorCleatsList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Tasseau\"");
             conn.Close();
 
             conn.Open();
@@ -210,19 +210,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Traverse Av\"");
+            List<string> HightCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Traverse Av\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Traverse Av\"");
+            List<string> DepthCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Traverse Av\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Traverse Av\"");
+            List<string> WidthCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Traverse Av\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse Av\"");
+            List<string> ColorCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Traverse Av\"");
             conn.Close();
 
             conn.Open();
@@ -239,19 +239,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Traverse GD\"");
+            List<string> HightCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Traverse GD\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Traverse GD\"");
+            List<string> DepthCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Traverse GD\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Traverse GD\"");
+            List<string> WidthCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Traverse GD\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse GD\"");
+            List<string> ColorCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Traverse GD\"");
             conn.Close();
 
             conn.Open();
@@ -267,19 +267,19 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Hauteur", "Ref = \"Traverse Ar\"");
+            List<string> HightCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Traverse Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Profondeur", "Ref = \"Traverse Ar\"");
+            List<string> DepthCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Traverse Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Largeur", "Ref = \"Traverse Ar\"");
+            List<string> WidthCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Traverse Ar\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Couleur", "Ref = \"Traverse Ar\"");
+            List<string> ColorCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Traverse Ar\"");
             conn.Close();
 
             conn.Open();
