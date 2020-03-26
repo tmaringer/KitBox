@@ -380,9 +380,11 @@ namespace ShopInterface
         {
             if (comboBox4.Text != "")
             {
+                Coll(DBUtils.RefList("Status", "orders where OrderId =\"" + comboBox4.SelectedItem.ToString() + "\"")[0]);
                 dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + comboBox4.SelectedItem + "\"");
                 foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
                 Colours(dataGridView3, "Disponibility");
+                comboBox4.Text = "";
                 Start();
             }
             else
@@ -1192,9 +1194,6 @@ namespace ShopInterface
 
         private void button12_Click(object sender, EventArgs e)
         {
-            //orderid combobox6
-            //action combobox7
-            //advanced settings groupbox9 button9
             string OrderId = comboBox6.SelectedItem.ToString();
             string action = comboBox7.SelectedItem.ToString();
             if (action == "validate")
@@ -1236,7 +1235,10 @@ namespace ShopInterface
                     {
                         if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
                         {
-                            //TODO: add delete in the stock
+                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
+                            string stock = DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
+                            int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
+                            label25.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
                             label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
                         }
                     }
@@ -1262,7 +1264,10 @@ namespace ShopInterface
                         string number = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
                         if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
                         {
-                            //TODO: add delete in the stock
+                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
+                            string stock = DBUtils.RefList("Instock", "listsitems where Code = \"" + i + "\"")[0];
+                            int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
+                            label25.Text = DBUtils.UpdateDBV("kibox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
                             label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
                             isalltrue += 1;
                         }
@@ -1296,9 +1301,97 @@ namespace ShopInterface
             {
                 label25.Text = DBUtils.DeleteRowVD("orders", "OrderId = \"" + OrderId + "\"");
             }
+            Coll(DBUtils.RefList("Status", "orders where OrderId =\"" + OrderId + "\"")[0]);
+            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + OrderId + "\"");
+            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
+            Colours(dataGridView3, "Disponibility");
             Start();
             comboBox6.Text = "";
             comboBox7.Text = "";
+        }
+        private void Coll(string status)
+        {
+            if (status == "pending")
+            {
+                label23.ForeColor = Color.Gold;
+                label24.ForeColor = Color.White;
+                label26.ForeColor = Color.White;
+                label69.ForeColor = Color.White;
+                label29.ForeColor = Color.White;
+                label68.ForeColor = Color.White;
+                progressBar4.Value = 0;
+                progressBar5.Value = 0;
+                progressBar6.Value = 0;
+                progressBar7.Value = 0;
+            }
+            else if (status == "validate")
+            {
+                label23.ForeColor = Color.White;
+                label24.ForeColor = Color.Aquamarine;
+                label26.ForeColor = Color.White;
+                label69.ForeColor = Color.White;
+                label29.ForeColor = Color.White;
+                label68.ForeColor = Color.White;
+                progressBar4.Value = 100;
+                progressBar5.Value = 0;
+                progressBar6.Value = 0;
+                progressBar7.Value = 0;
+            }
+            else if (status.Length > 11)
+            {
+                if (status.Substring(0, 11) == "uncompleted")
+                {
+                    label23.ForeColor = Color.White;
+                    label24.ForeColor = Color.White;
+                    label26.ForeColor = Color.White;
+                    label69.ForeColor = Color.White;
+                    label29.ForeColor = Color.Red;
+                    label68.ForeColor = Color.White;
+                    progressBar4.Value = 100;
+                    progressBar5.Value = 100;
+                    progressBar6.Value = 100;
+                    progressBar7.Value = 0;
+                }
+                else if (status == "awaiting for removal")
+                {
+                    label23.ForeColor = Color.White;
+                    label24.ForeColor = Color.White;
+                    label26.ForeColor = Color.Fuchsia;
+                    label69.ForeColor = Color.White;
+                    label29.ForeColor = Color.White;
+                    label68.ForeColor = Color.White;
+                    progressBar4.Value = 100;
+                    progressBar5.Value = 100;
+                    progressBar6.Value = 0;
+                    progressBar7.Value = 0;
+                }
+            }
+            else if (status == "not ready")
+            {
+                label23.ForeColor = Color.White;
+                label24.ForeColor = Color.White;
+                label26.ForeColor = Color.White;
+                label69.ForeColor = Color.Orange;
+                label29.ForeColor = Color.White;
+                label68.ForeColor = Color.White;
+                progressBar4.Value = 100;
+                progressBar5.Value = 100;
+                progressBar6.Value = 0;
+                progressBar7.Value = 0;
+            }
+            else if (status == "completed")
+            {
+                label23.ForeColor = Color.White;
+                label24.ForeColor = Color.White;
+                label26.ForeColor = Color.White;
+                label69.ForeColor = Color.White;
+                label29.ForeColor = Color.White;
+                label68.ForeColor = Color.DeepSkyBlue;
+                progressBar4.Value = 100;
+                progressBar5.Value = 100;
+                progressBar6.Value = 100;
+                progressBar7.Value = 100;
+            }
         }
         private void comboBox6_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -1311,6 +1404,7 @@ namespace ShopInterface
             {
                 string OrderId = comboBox6.SelectedItem.ToString();
                 string status = DBUtils.RefList("Status", "orders where OrderId = \"" + OrderId + "\"")[0];
+                Coll(status);
                 if (status == "pending")
                 {
                     comboBox7.Items.Add("validate");
