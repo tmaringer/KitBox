@@ -123,7 +123,7 @@ namespace ShopInterface
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBox10.Text !="")
+            if (comboBox10.Text != "")
             {
                 label5.Text = DBUtils.DeleteRow(dataGridView1, "kitbox", comboBox10.SelectedItem.ToString());
                 dataGridView1.DataSource = DBUtils.RefreshDB("kitbox");
@@ -255,6 +255,7 @@ namespace ShopInterface
                 comboBox11.DataSource = DBUtils.RefList("Code", "kitbox");
                 comboBox11.DisplayMember = "Code";
                 comboBox11.Text = "";
+                comboBox10.Text = "";
                 foreach (DataGridViewColumn col in dataGridView1.Columns) comboBox12.Items.Add(col.Name);
             }
             else if (tabControl1.SelectedTab.Text == @"Orders management")
@@ -275,7 +276,8 @@ namespace ShopInterface
                 UpdateStock();
                 foreach (var day in _columnDay)
                     comboBox2.Items.Add(day);
-
+                comboBox1.Text = "";
+                comboBox3.Text = "";
             }
             else if (tabControl1.SelectedTab.Text == @"Suppliers orders")
             {
