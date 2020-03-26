@@ -368,18 +368,6 @@ namespace kitbox_user_interface_V1
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
 
-            //CrossBar traverses = new CrossBar();
-            //TODO créer objet armoire intermédiaire 
-            /*
-            if (comboBox3.SelectedIndex == 6)
-            {
-                comboBox6.Items.RemoveAt(2);
-                //si d'autres hauteurs peuvent être créées faire une recherche parmi
-                //les éléments de combobox6 et supprimer ceux plus grand que 52
-                //sinon l'extension n'est pas privilégiée
-            }
-            //gérer dynamiquement la hauteur des box et la hauteur max
-            */
             if(comboBox4.SelectedItem != null && comboBox5.SelectedItem != null)
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
