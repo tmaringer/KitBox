@@ -109,15 +109,13 @@ namespace projectCS
                 _cupboardComponentsList.Remove(component);
             }
         }
-        /*
-        public static override string ToString()
+        
+        public static string ToString()
         {
-            return base.ToString()
-                   + ", catalogue components list : "
+            return "catalogue components list : "
                    + _catalogueComponentsList
                    + ", cupboard componentsList list : "
                    + _cupboardComponentsList;
         }
-        */
     }
 }
