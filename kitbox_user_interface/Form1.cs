@@ -379,16 +379,9 @@ namespace kitbox_user_interface_V1
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
-                string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
-                ComponentColor color2 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
+                //anglebrackets color
+                ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
                 
-                foreach (string colors in ColorParse.colorsList)
-                {
-                    if(colors == comboBox7.SelectedItem.ToString())
-                    {
-                        ComponentColor color_1 = ComponentColor.black;
-                    }
-                }
                 
 
                 ComponentColor default_color = ComponentColor.black;
@@ -422,7 +415,7 @@ namespace kitbox_user_interface_V1
                 locker.addComponent(tasseau);
 
                 MessageBox.Show(locker.ToString());
-
+                bool choice_fill = true;
                 if (width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
@@ -437,6 +430,10 @@ namespace kitbox_user_interface_V1
 
 
             //MessageBox.Show(comboBox4.SelectedItem.ToString());
+            if(choice_fill)
+            {
+
+            }
             this.Hide();
             Form_locker form_locker_1 = new Form_locker();
             form_locker_1.Show();
