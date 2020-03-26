@@ -19,7 +19,7 @@ namespace UnitTest
             Assert.AreEqual(4, (int)pannel1.color);
             Assert.AreEqual(3, (int)pannel2.color);
 
-            Assert.AreEqual("brawn", "" + (ComponentColor)1);
+            Assert.AreEqual("brown", "" + (ComponentColor)1);
             Assert.AreEqual("black", "" + (ComponentColor)3);
         }
     }

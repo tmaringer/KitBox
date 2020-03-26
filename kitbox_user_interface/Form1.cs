@@ -306,7 +306,7 @@ namespace kitbox_user_interface_V1
             comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
             comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
 
-            ShoppingCart basket = new ShoppingCart();
+            //ShoppingCart basket = new ShoppingCart();
 
         }
 
@@ -363,37 +363,26 @@ namespace kitbox_user_interface_V1
         public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
+            bool choice_fill = false;
 
-            //TODO taille standadisée validée
+            ComponentColor c = ComponentColor.black;
+            ComponentSize s = new ComponentSize(0,0,0);
+            int box = 5;
 
+            ShoppingCart.buildCupboard(s.width, s.depth, box, c);
 
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
 
-            //CrossBar traverses = new CrossBar();
-            //TODO créer objet armoire intermédiaire 
-            /*
-            if (comboBox3.SelectedIndex == 6)
-            {
-                comboBox6.Items.RemoveAt(2);
-                //si d'autres hauteurs peuvent être créées faire une recherche parmi
-                //les éléments de combobox6 et supprimer ceux plus grand que 52
-                //sinon l'extension n'est pas privilégiée
-            }
-            //gérer dynamiquement la hauteur des box et la hauteur max
-            */
-            if(comboBox4.SelectedItem != null && comboBox5.SelectedItem != null)
+            if(comboBox3.SelectedItem != null && comboBox4.SelectedItem != null && comboBox5.SelectedItem != null && comboBox7.SelectedItem != null)
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
-                string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
-                /*
-                foreach (string colors in ColorParse.colorsList)
-                {
-
-                }
-                */
+                //anglebrackets color
+                ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
+                
+                
 
                 ComponentColor default_color = ComponentColor.black;
                 ComponentSize default_size = new ComponentSize(0, 0, 0);
@@ -404,37 +393,50 @@ namespace kitbox_user_interface_V1
 
 
                 CrossBar traverseAV = new CrossBar();
-                locker.addComponent(traverseAV);
                 CrossBar traverseAR = new CrossBar();
-                locker.addComponent(traverseAR);
                 CrossBar traverseG = new CrossBar();
-                locker.addComponent(traverseG);
                 CrossBar traverseD = new CrossBar();
-                locker.addComponent(traverseD);
                 Pannel panneauH = new Pannel();//panneau_size
-                locker.addComponent(panneauH);
                 Pannel panneauB = new Pannel();//panneau_size
-                locker.addComponent(panneauB);
                 Pannel panneauG = new Pannel();
-                locker.addComponent(panneauG);
                 Pannel panneauD = new Pannel();
-                locker.addComponent(panneauD);
                 Pannel panneauAR = new Pannel();
-                locker.addComponent(panneauAR);
                 Cleat tasseau = new Cleat();
+
+                locker.addComponent(traverseAV);
+                locker.addComponent(traverseAR);
+                locker.addComponent(traverseG);
+                locker.addComponent(traverseD);
+                locker.addComponent(panneauH);
+                locker.addComponent(panneauB);
+                locker.addComponent(panneauG);
+                locker.addComponent(panneauD);
+                locker.addComponent(panneauAR);
                 locker.addComponent(tasseau);
-                
-                
-                if(width<62)
+
+                MessageBox.Show(locker.ToString());
+                choice_fill = true;
+                if (width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
                     //TODO retirer le bon item
                 }
                 
             }
+            else
+            {
+                MessageBox.Show("Fill every choices");
+            }
 
 
             //MessageBox.Show(comboBox4.SelectedItem.ToString());
+            if(choice_fill)
+            {
+                this.Hide();
+                Form_locker form_locker_1 = new Form_locker();
+                form_locker_1.Show();
+            }
+            
 
         }
 
@@ -458,7 +460,10 @@ namespace kitbox_user_interface_V1
             //int height = comboBox6.SelectedIndex;
             //combobox1 : type doors
             //combobox2 : panel colors
-            
+            int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
+            int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
+            string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
+            MessageBox.Show(width.ToString());
         }
 
         private void button3_Click(object sender, EventArgs e)

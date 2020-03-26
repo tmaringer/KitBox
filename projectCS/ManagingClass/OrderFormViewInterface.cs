@@ -9,6 +9,7 @@ namespace projectCS
     // TODO : terminer
     public static class OrderFormViewInterface
     {
+        /*
         private static OrderForm _orderForm = new OrderForm();
         private static ShoppingCart _shoppingCart = new ShoppingCart();
         
@@ -28,6 +29,6 @@ namespace projectCS
             _shoppingCart.buildCupboard(width, depth, boxNumber, colorAngleBracket);
         }
 
-        
+        */
     }
 }

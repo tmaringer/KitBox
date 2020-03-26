@@ -7,8 +7,6 @@ namespace UnitTest
     [TestClass]
     public class ShoppingCartTest
     {
-        private ShoppingCart shopcart1;
-        private ShoppingCart shopcart2;
 
         private Cupboard cupboard1;
 
@@ -26,9 +24,6 @@ namespace UnitTest
         [TestInitialize()]
         public void testsInitialize()
         {
-            shopcart1 = new ShoppingCart();
-            shopcart2 = new ShoppingCart();
-
             cupboard1 = new Cupboard();
 
             crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
@@ -43,13 +38,13 @@ namespace UnitTest
         [TestMethod]
         public void buildLockerTest()
         {
-            shopcart1.addCatalogueComponent(crossBarWithParam1);
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(doorWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam1);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(doorWithParam1);
 
-            locker1 = shopcart1.buildLocker();
+            locker1 = ShoppingCart.buildLocker();
 
             Assert.AreEqual(160, locker1.price);
             Assert.AreEqual(5, locker1.componentsList.Count);
@@ -64,54 +59,54 @@ namespace UnitTest
         [TestMethod]
         public void buildLockerWithExcessComponentTest()
         {
-            shopcart1.addCatalogueComponent(crossBarWithParam1);
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(doorWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam1);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(doorWithParam1);
 
-            locker1 = shopcart1.buildLocker();
+            locker1 = ShoppingCart.buildLocker();
 
             Assert.AreEqual(160, locker1.price);
             Assert.AreEqual(5, locker1.componentsList.Count);
-            Assert.AreEqual(0, shopcart1.catalogueComponentsList.Count);
+            Assert.AreEqual(0, ShoppingCart.catalogueComponentsList.Count);
 
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
 
-            locker1 = shopcart1.buildLocker();
+            locker1 = ShoppingCart.buildLocker();
 
-            Assert.AreEqual(2, shopcart1.catalogueComponentsList.Count);
+            Assert.AreEqual(2, ShoppingCart.catalogueComponentsList.Count);
         }
 
         [TestMethod]
         public void buildCupboardTest()
         {
-            shopcart1.addCatalogueComponent(crossBarWithParam1);
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
-            shopcart1.addCatalogueComponent(doorWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam1);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam1);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(doorWithParam1);
 
             // price of locker1 is 160
-            locker1 = shopcart1.buildLocker();
+            locker1 = ShoppingCart.buildLocker();
 
-            shopcart1.addCatalogueComponent(crossBarWithParam2);
-            shopcart1.addCatalogueComponent(cleatWithParam1);
-            shopcart1.addCatalogueComponent(cleatWithParam2);
+            ShoppingCart.addCatalogueComponent(crossBarWithParam2);
+            ShoppingCart.addCatalogueComponent(cleatWithParam1);
+            ShoppingCart.addCatalogueComponent(cleatWithParam2);
 
             // price of locker2 110
-            locker2 = shopcart1.buildLocker();
+            locker2 = ShoppingCart.buildLocker();
 
-            shopcart1.addCupboardComponent(locker1);
-            shopcart1.addCupboardComponent(locker2);
+            ShoppingCart.addCupboardComponent(locker1);
+            ShoppingCart.addCupboardComponent(locker2);
 
-            shopcart1.buildCupboard();
-            cupboard1 = shopcart1.cupboard;
+            ShoppingCart.buildCupboard();
+            cupboard1 = ShoppingCart.cupboard;
 
             Assert.AreEqual(270, cupboard1.getPrice());
         }

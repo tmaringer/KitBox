@@ -11,40 +11,34 @@ namespace projectCS
     ///     This class takes several components from catalogue and build locker with objects stored in list.
     ///     It build also cupboard with lockers and angle bracket stored in a other list.
     /// </summary>
-    public class ShoppingCart
+    public static class ShoppingCart
     {
-        private List<CatalogueComponents> _catalogueComponentsList;
-        public List<CatalogueComponents> catalogueComponentsList
+        private static List<CatalogueComponents> _catalogueComponentsList = new List<CatalogueComponents>();
+        public static List<CatalogueComponents> catalogueComponentsList
         {
             get => _catalogueComponentsList;
         }
 
-        private List<ICupboardComponents> _cupboardComponentsList;
-        public List<ICupboardComponents> cupboardComponentsList
+        private static List<ICupboardComponents> _cupboardComponentsList = new List<ICupboardComponents>();
+        public static List<ICupboardComponents> cupboardComponentsList
         {
             get => _cupboardComponentsList;
         }
 
-        private Cupboard _cupboard;
-        public Cupboard cupboard
+        private static Cupboard _cupboard;
+        public static Cupboard cupboard
         {
             get => _cupboard;
         }
 
-        public ShoppingCart()
-        {
-            this._catalogueComponentsList = new List<CatalogueComponents>();
-            this._cupboardComponentsList = new List<ICupboardComponents>();
-        }
-
         // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
-        public void addCatalogueComponent(CatalogueComponents component)
+        public static void addCatalogueComponent(CatalogueComponents component)
         {
             _catalogueComponentsList.Add(component);
         }
 
         // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
-        public void removeCatalogueComponent(CatalogueComponents component)
+        public static void removeCatalogueComponent(CatalogueComponents component)
         {
             _catalogueComponentsList.Remove(component);
         }
@@ -55,7 +49,7 @@ namespace projectCS
         /// <returns>
         ///     Returns the locker built.
         /// </returns>
-        public Locker buildLocker()
+        public static Locker buildLocker()
         {
             Locker locker = new Locker();
             // temporary list which store components added to the locker and is used thereafter to remove components in the main list
@@ -77,12 +71,12 @@ namespace projectCS
             return locker;
         }
 
-        public void addCupboardComponent(ICupboardComponents cupboardComponent)
+        public static void addCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Add(cupboardComponent);
         }
 
-        public void removeCupboardComponent(ICupboardComponents cupboardComponent)
+        public static void removeCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Remove(cupboardComponent);
         }
@@ -93,12 +87,12 @@ namespace projectCS
         /// <returns>
         ///     Returns the cupboard built.
         /// </returns>
-        public void buildCupboard()
+        public static void buildCupboard()
         {
-            buildCupboard(0, 0, 5, ComponentColor.brawn);
+            buildCupboard(0, 0, 5, ComponentColor.brown);
         }
 
-        public void buildCupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
+        public static void buildCupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _cupboard = new Cupboard(width, depth, boxNumber, colorAngleBracket);
             // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
@@ -115,11 +109,10 @@ namespace projectCS
                 _cupboardComponentsList.Remove(component);
             }
         }
-
-        public override string ToString()
+        
+        public static string ToString()
         {
-            return base.ToString()
-                   + ", catalogue components list : "
+            return "catalogue components list : "
                    + _catalogueComponentsList
                    + ", cupboard componentsList list : "
                    + _cupboardComponentsList;
