@@ -363,7 +363,15 @@ namespace kitbox_user_interface_V1
         public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
-            
+
+            ShoppingCart shop = new ShoppingCart();
+
+            ComponentColor c = ComponentColor.black;
+            ComponentSize s = new ComponentSize(0,0,0);
+            int box = 5;
+
+            shop.buildCupboard(s.width, s.depth, box, c);
+
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
