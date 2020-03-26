@@ -360,7 +360,7 @@ namespace kitbox_user_interface_V1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
 
@@ -368,6 +368,8 @@ namespace kitbox_user_interface_V1
 
 
             Cupboard cupboard = new Cupboard();
+            Locker locker = new Locker();
+            cupboard.addCupboardComponent(locker);
 
             //CrossBar traverses = new CrossBar();
             //TODO créer objet armoire intermédiaire 
@@ -409,7 +411,9 @@ namespace kitbox_user_interface_V1
                 Pannel panneauB = new Pannel();
                 Pannel panneauG = new Pannel();
                 Pannel panneauD = new Pannel();
+                Pannel panneauAR = new Pannel();
                 Cleat tasseau = new Cleat();
+                locker.addComponent(tasseau);
                 
                 
                 if(width<62)
@@ -439,11 +443,12 @@ namespace kitbox_user_interface_V1
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        public void button2_Click(object sender, EventArgs e)
         {
             //int height = comboBox6.SelectedIndex;
             //combobox1 : type doors
             //combobox2 : panel colors
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
