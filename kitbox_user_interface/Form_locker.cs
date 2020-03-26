@@ -16,5 +16,15 @@ namespace kitbox_user_interface_V1
         {
             InitializeComponent();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

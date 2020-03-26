@@ -49,6 +49,7 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "KITBOX";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // comboBox6
             // 
@@ -84,6 +85,7 @@
             this.button2.TabIndex = 26;
             this.button2.Text = "add locker";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textBox15
             // 
