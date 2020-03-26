@@ -375,7 +375,7 @@ namespace kitbox_user_interface_V1
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
 
-            if(comboBox4.SelectedItem != null && comboBox5.SelectedItem != null)
+            if(comboBox3.SelectedItem != null && comboBox4.SelectedItem != null && comboBox5.SelectedItem != null && comboBox7.SelectedItem != null)
             {
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
@@ -384,9 +384,12 @@ namespace kitbox_user_interface_V1
                 /*
                 foreach (string colors in ColorParse.colorsList)
                 {
-
+                    if(colors == comboBox7.SelectedItem.ToString())
+                    {
+                        ComponentColor color_1 = ComponentColor.black;
+                    }
                 }
-                */
+                
 
                 ComponentColor default_color = ComponentColor.black;
                 ComponentSize default_size = new ComponentSize(0, 0, 0);
@@ -426,6 +429,10 @@ namespace kitbox_user_interface_V1
                     //TODO retirer le bon item
                 }
                 
+            }
+            else
+            {
+                MessageBox.Show("Fill every choices");
             }
 
 
