@@ -407,8 +407,8 @@ namespace kitbox_user_interface_V1
                 CrossBar traverseAR = new CrossBar();
                 CrossBar traverseG = new CrossBar();
                 CrossBar traverseD = new CrossBar();
-                Pannel panneauH = new Pannel();
-                Pannel panneauB = new Pannel();
+                Pannel panneauH = new Pannel();//panneau_size
+                Pannel panneauB = new Pannel();//panneau_size
                 Pannel panneauG = new Pannel();
                 Pannel panneauD = new Pannel();
                 Pannel panneauAR = new Pannel();
@@ -421,6 +421,7 @@ namespace kitbox_user_interface_V1
                     //comboBox1.Items.RemoveAt(2);
                     //TODO retirer le bon item
                 }
+                
             }
 
 
