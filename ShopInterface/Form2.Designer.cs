@@ -59,6 +59,17 @@ namespace ShopInterface
             this.button8 = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.progressBar7 = new System.Windows.Forms.ProgressBar();
+            this.progressBar6 = new System.Windows.Forms.ProgressBar();
+            this.progressBar5 = new System.Windows.Forms.ProgressBar();
+            this.progressBar4 = new System.Windows.Forms.ProgressBar();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label25 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
@@ -216,22 +227,17 @@ namespace ShopInterface
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.progressBar4 = new System.Windows.Forms.ProgressBar();
-            this.progressBar5 = new System.Windows.Forms.ProgressBar();
-            this.progressBar6 = new System.Windows.Forms.ProgressBar();
-            this.progressBar7 = new System.Windows.Forms.ProgressBar();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label69 = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.button9 = new System.Windows.Forms.Button();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -270,7 +276,7 @@ namespace ShopInterface
             this.groupBox16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).BeginInit();
-            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage4
@@ -505,6 +511,128 @@ namespace ShopInterface
             this.tabPage3.Size = new System.Drawing.Size(972, 599);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Orders management";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox9.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox9.Controls.Add(this.label69);
+            this.groupBox9.Controls.Add(this.label68);
+            this.groupBox9.Controls.Add(this.label29);
+            this.groupBox9.Controls.Add(this.label26);
+            this.groupBox9.Controls.Add(this.label24);
+            this.groupBox9.Controls.Add(this.label23);
+            this.groupBox9.Controls.Add(this.progressBar7);
+            this.groupBox9.Controls.Add(this.progressBar6);
+            this.groupBox9.Controls.Add(this.progressBar5);
+            this.groupBox9.Controls.Add(this.progressBar4);
+            this.groupBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox9.Location = new System.Drawing.Point(525, 463);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(440, 79);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Order progress";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.BackColor = System.Drawing.Color.Black;
+            this.label69.ForeColor = System.Drawing.Color.White;
+            this.label69.Location = new System.Drawing.Point(199, 26);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(53, 13);
+            this.label69.TabIndex = 15;
+            this.label69.Text = "Not ready";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.BackColor = System.Drawing.Color.Black;
+            this.label68.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label68.ForeColor = System.Drawing.Color.White;
+            this.label68.Location = new System.Drawing.Point(358, 26);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(39, 13);
+            this.label68.TabIndex = 14;
+            this.label68.Text = "Closed";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Black;
+            this.label29.ForeColor = System.Drawing.Color.White;
+            this.label29.Location = new System.Drawing.Point(269, 26);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(70, 13);
+            this.label29.TabIndex = 12;
+            this.label29.Text = "Uncompleted";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Black;
+            this.label26.ForeColor = System.Drawing.Color.White;
+            this.label26.Location = new System.Drawing.Point(182, 61);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(101, 13);
+            this.label26.TabIndex = 11;
+            this.label26.Text = "awaiting for removal";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.Black;
+            this.label24.ForeColor = System.Drawing.Color.White;
+            this.label24.Location = new System.Drawing.Point(129, 26);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(45, 13);
+            this.label24.TabIndex = 10;
+            this.label24.Text = "Validate";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.Black;
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(54, 26);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(46, 13);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "Pending";
+            // 
+            // progressBar7
+            // 
+            this.progressBar7.Location = new System.Drawing.Point(307, 48);
+            this.progressBar7.Name = "progressBar7";
+            this.progressBar7.Size = new System.Drawing.Size(71, 10);
+            this.progressBar7.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar7.TabIndex = 3;
+            // 
+            // progressBar6
+            // 
+            this.progressBar6.Location = new System.Drawing.Point(230, 48);
+            this.progressBar6.Name = "progressBar6";
+            this.progressBar6.Size = new System.Drawing.Size(71, 10);
+            this.progressBar6.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar6.TabIndex = 2;
+            // 
+            // progressBar5
+            // 
+            this.progressBar5.Location = new System.Drawing.Point(153, 48);
+            this.progressBar5.Name = "progressBar5";
+            this.progressBar5.Size = new System.Drawing.Size(71, 10);
+            this.progressBar5.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar5.TabIndex = 1;
+            // 
+            // progressBar4
+            // 
+            this.progressBar4.ForeColor = System.Drawing.Color.Azure;
+            this.progressBar4.Location = new System.Drawing.Point(76, 48);
+            this.progressBar4.Name = "progressBar4";
+            this.progressBar4.Size = new System.Drawing.Size(71, 10);
+            this.progressBar4.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar4.TabIndex = 0;
             // 
             // groupBox8
             // 
@@ -1663,6 +1791,7 @@ namespace ShopInterface
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(196)))), ((int)(((byte)(15)))));
+            this.tabPage5.Controls.Add(this.groupBox10);
             this.tabPage5.Controls.Add(this.dataGridView8);
             this.tabPage5.Controls.Add(this.dataGridView7);
             this.tabPage5.Controls.Add(this.groupBox15);
@@ -1708,9 +1837,9 @@ namespace ShopInterface
             this.groupBox15.Controls.Add(this.label37);
             this.groupBox15.Controls.Add(this.textBox2);
             this.groupBox15.Controls.Add(this.button20);
-            this.groupBox15.Location = new System.Drawing.Point(268, 240);
+            this.groupBox15.Location = new System.Drawing.Point(538, 8);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(258, 129);
+            this.groupBox15.Size = new System.Drawing.Size(225, 129);
             this.groupBox15.TabIndex = 17;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Add an item";
@@ -1719,7 +1848,7 @@ namespace ShopInterface
             // 
             this.comboBox16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Location = new System.Drawing.Point(108, 28);
+            this.comboBox16.Location = new System.Drawing.Point(94, 28);
             this.comboBox16.Name = "comboBox16";
             this.comboBox16.Size = new System.Drawing.Size(114, 21);
             this.comboBox16.TabIndex = 15;
@@ -1727,7 +1856,7 @@ namespace ShopInterface
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(21, 106);
+            this.label35.Location = new System.Drawing.Point(33, 95);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(39, 13);
             this.label35.TabIndex = 7;
@@ -1736,7 +1865,7 @@ namespace ShopInterface
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(56, 66);
+            this.label36.Location = new System.Drawing.Point(42, 66);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(46, 13);
             this.label36.TabIndex = 6;
@@ -1745,7 +1874,7 @@ namespace ShopInterface
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(70, 31);
+            this.label37.Location = new System.Drawing.Point(56, 31);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(32, 13);
             this.label37.TabIndex = 5;
@@ -1753,7 +1882,7 @@ namespace ShopInterface
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(108, 63);
+            this.textBox2.Location = new System.Drawing.Point(94, 63);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(114, 20);
             this.textBox2.TabIndex = 3;
@@ -1761,7 +1890,7 @@ namespace ShopInterface
             // button20
             // 
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button20.Location = new System.Drawing.Point(127, 98);
+            this.button20.Location = new System.Drawing.Point(113, 89);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(95, 24);
             this.button20.TabIndex = 0;
@@ -1803,11 +1932,11 @@ namespace ShopInterface
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(75, 48);
+            this.label33.Location = new System.Drawing.Point(27, 48);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(32, 13);
+            this.label33.Size = new System.Drawing.Size(80, 13);
             this.label33.TabIndex = 5;
-            this.label33.Text = "Code";
+            this.label33.Text = "SupplierOrderId";
             // 
             // button19
             // 
@@ -1816,8 +1945,9 @@ namespace ShopInterface
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(95, 24);
             this.button19.TabIndex = 0;
-            this.button19.Text = "Modify";
+            this.button19.Text = "Show";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // groupBox13
             // 
@@ -1827,9 +1957,9 @@ namespace ShopInterface
             this.groupBox13.Controls.Add(this.label34);
             this.groupBox13.Controls.Add(this.button18);
             this.groupBox13.Controls.Add(this.dataGridView5);
-            this.groupBox13.Location = new System.Drawing.Point(532, 118);
+            this.groupBox13.Location = new System.Drawing.Point(532, 143);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(433, 475);
+            this.groupBox13.Size = new System.Drawing.Size(433, 450);
             this.groupBox13.TabIndex = 3;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Supplier order";
@@ -1838,7 +1968,7 @@ namespace ShopInterface
             // 
             this.label34.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(6, 440);
+            this.label34.Location = new System.Drawing.Point(6, 415);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(61, 13);
             this.label34.TabIndex = 9;
@@ -1848,12 +1978,13 @@ namespace ShopInterface
             // 
             this.button18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button18.Location = new System.Drawing.Point(296, 434);
+            this.button18.Location = new System.Drawing.Point(296, 409);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(103, 24);
             this.button18.TabIndex = 3;
             this.button18.Text = "Order";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // dataGridView5
             // 
@@ -1866,7 +1997,7 @@ namespace ShopInterface
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.Location = new System.Drawing.Point(6, 19);
             this.dataGridView5.Name = "dataGridView5";
-            this.dataGridView5.Size = new System.Drawing.Size(421, 406);
+            this.dataGridView5.Size = new System.Drawing.Size(421, 381);
             this.dataGridView5.TabIndex = 0;
             // 
             // groupBox12
@@ -1875,9 +2006,9 @@ namespace ShopInterface
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox12.Controls.Add(this.button17);
             this.groupBox12.Controls.Add(this.comboBox18);
-            this.groupBox12.Location = new System.Drawing.Point(532, 8);
+            this.groupBox12.Location = new System.Drawing.Point(769, 8);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(433, 104);
+            this.groupBox12.Size = new System.Drawing.Size(196, 129);
             this.groupBox12.TabIndex = 2;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Supplier choice";
@@ -1886,19 +2017,20 @@ namespace ShopInterface
             // 
             this.button17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button17.Location = new System.Drawing.Point(185, 58);
+            this.button17.Location = new System.Drawing.Point(67, 83);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(75, 24);
             this.button17.TabIndex = 1;
             this.button17.Text = "Confirm";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // comboBox18
             // 
             this.comboBox18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.comboBox18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox18.FormattingEnabled = true;
-            this.comboBox18.Location = new System.Drawing.Point(161, 19);
+            this.comboBox18.Location = new System.Drawing.Point(43, 44);
             this.comboBox18.Name = "comboBox18";
             this.comboBox18.Size = new System.Drawing.Size(121, 21);
             this.comboBox18.TabIndex = 0;
@@ -2283,127 +2415,56 @@ namespace ShopInterface
             this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
             // 
-            // groupBox9
+            // groupBox10
             // 
-            this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox9.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox9.Controls.Add(this.label69);
-            this.groupBox9.Controls.Add(this.label68);
-            this.groupBox9.Controls.Add(this.label29);
-            this.groupBox9.Controls.Add(this.label26);
-            this.groupBox9.Controls.Add(this.label24);
-            this.groupBox9.Controls.Add(this.label23);
-            this.groupBox9.Controls.Add(this.progressBar7);
-            this.groupBox9.Controls.Add(this.progressBar6);
-            this.groupBox9.Controls.Add(this.progressBar5);
-            this.groupBox9.Controls.Add(this.progressBar4);
-            this.groupBox9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox9.Location = new System.Drawing.Point(525, 463);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(440, 79);
-            this.groupBox9.TabIndex = 15;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Order progress";
+            this.groupBox10.Controls.Add(this.comboBox8);
+            this.groupBox10.Controls.Add(this.label30);
+            this.groupBox10.Controls.Add(this.label70);
+            this.groupBox10.Controls.Add(this.button9);
+            this.groupBox10.Location = new System.Drawing.Point(268, 240);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(256, 129);
+            this.groupBox10.TabIndex = 19;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Supplier order receipt";
             // 
-            // progressBar4
+            // comboBox8
             // 
-            this.progressBar4.ForeColor = System.Drawing.Color.Azure;
-            this.progressBar4.Location = new System.Drawing.Point(76, 48);
-            this.progressBar4.Name = "progressBar4";
-            this.progressBar4.Size = new System.Drawing.Size(71, 10);
-            this.progressBar4.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar4.TabIndex = 0;
+            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox8.FormattingEnabled = true;
+            this.comboBox8.Location = new System.Drawing.Point(113, 45);
+            this.comboBox8.Name = "comboBox8";
+            this.comboBox8.Size = new System.Drawing.Size(114, 21);
+            this.comboBox8.TabIndex = 15;
             // 
-            // progressBar5
+            // label30
             // 
-            this.progressBar5.Location = new System.Drawing.Point(153, 48);
-            this.progressBar5.Name = "progressBar5";
-            this.progressBar5.Size = new System.Drawing.Size(71, 10);
-            this.progressBar5.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar5.TabIndex = 1;
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(17, 106);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(39, 13);
+            this.label30.TabIndex = 7;
+            this.label30.Text = "Output";
             // 
-            // progressBar6
+            // label70
             // 
-            this.progressBar6.Location = new System.Drawing.Point(230, 48);
-            this.progressBar6.Name = "progressBar6";
-            this.progressBar6.Size = new System.Drawing.Size(71, 10);
-            this.progressBar6.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar6.TabIndex = 2;
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(27, 48);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(80, 13);
+            this.label70.TabIndex = 5;
+            this.label70.Text = "SupplierOrderId";
             // 
-            // progressBar7
+            // button9
             // 
-            this.progressBar7.Location = new System.Drawing.Point(307, 48);
-            this.progressBar7.Name = "progressBar7";
-            this.progressBar7.Size = new System.Drawing.Size(71, 10);
-            this.progressBar7.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressBar7.TabIndex = 3;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.Black;
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(54, 26);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(46, 13);
-            this.label23.TabIndex = 9;
-            this.label23.Text = "Pending";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.Black;
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(129, 26);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 13);
-            this.label24.TabIndex = 10;
-            this.label24.Text = "Validate";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Black;
-            this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(182, 61);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(101, 13);
-            this.label26.TabIndex = 11;
-            this.label26.Text = "awaiting for removal";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Black;
-            this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(269, 26);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(70, 13);
-            this.label29.TabIndex = 12;
-            this.label29.Text = "Uncompleted";
-            // 
-            // label68
-            // 
-            this.label68.AutoSize = true;
-            this.label68.BackColor = System.Drawing.Color.Black;
-            this.label68.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label68.ForeColor = System.Drawing.Color.White;
-            this.label68.Location = new System.Drawing.Point(358, 26);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(39, 13);
-            this.label68.TabIndex = 14;
-            this.label68.Text = "Closed";
-            // 
-            // label69
-            // 
-            this.label69.AutoSize = true;
-            this.label69.BackColor = System.Drawing.Color.Black;
-            this.label69.ForeColor = System.Drawing.Color.White;
-            this.label69.Location = new System.Drawing.Point(199, 26);
-            this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(53, 13);
-            this.label69.TabIndex = 15;
-            this.label69.Text = "Not ready";
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Location = new System.Drawing.Point(132, 82);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(95, 24);
+            this.button9.TabIndex = 0;
+            this.button9.Text = "Confirm";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click_1);
             // 
             // Form2
             // 
@@ -2422,6 +2483,8 @@ namespace ShopInterface
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -2480,8 +2543,8 @@ namespace ShopInterface
             this.groupBox16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView9)).EndInit();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2674,5 +2737,10 @@ namespace ShopInterface
         private System.Windows.Forms.ProgressBar progressBar6;
         private System.Windows.Forms.ProgressBar progressBar5;
         private System.Windows.Forms.ProgressBar progressBar4;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.Button button9;
     }
 }

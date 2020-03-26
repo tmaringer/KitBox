@@ -281,10 +281,20 @@ namespace ShopInterface
             }
             else if (tabControl1.SelectedTab.Text == @"Suppliers orders")
             {
-                UpdateSuppliers();
                 comboBox16.DataSource = DBUtils.RefList("Code", "kitbox");
                 comboBox16.DisplayMember = "Code";
                 comboBox16.Text = "";
+                comboBox18.DataSource = DBUtils.RefList("SupplierId", "suppliers");
+                comboBox18.DisplayMember = "SupplierId";
+                comboBox18.Text = "";
+                button18.Enabled = false;
+                comboBox14.DataSource = DBUtils.RefList("SupplierOrderId", "suppliersorders");
+                comboBox14.DisplayMember = "SupplierOrderId";
+                comboBox14.Text = "";
+                dataGridView7.DataSource = DBUtils.RefreshDB("suppliersorders");
+                comboBox8.DataSource = DBUtils.RefList("SupplierOrderId", "suppliersorders where status = \"send\"");
+                comboBox8.DisplayMember = "SupplierOrderId";
+                comboBox8.Text = "";
             }
             else if (tabControl1.SelectedTab.Text == @"Suppliers update")
             {
@@ -486,118 +496,6 @@ namespace ShopInterface
             progressBar2.Value = 10;
         }
 
-        private void UpdateSuppliers()
-        {
-            DataTable dataTable1 = new DataTable();
-            DataTable supplier1 = dataTable1;
-            DataColumn dtColumn = new DataColumn
-            {
-                DataType = typeof(Int32),
-                ColumnName = "Id",
-                ReadOnly = true,
-                Unique = true
-            };
-            DataColumn dtColumn1 = new DataColumn
-            {
-                DataType = typeof(string),
-                ColumnName = "Code",
-                ReadOnly = true,
-                Unique = true
-            };
-            DataColumn dtColumn2 = new DataColumn
-            {
-                DataType = typeof(Int32),
-                ColumnName = "Quantity",
-                ReadOnly = false,
-                Unique = false
-            };
-            DataColumn dtColumn3 = new DataColumn
-            {
-                DataType = typeof(double),
-                ColumnName = "Price",
-                ReadOnly = true,
-                Unique = false
-            };
-            supplier1.Columns.Add(dtColumn);
-            supplier1.Columns.Add(dtColumn1);
-            supplier1.Columns.Add(dtColumn2);
-            supplier1.Columns.Add(dtColumn3);
-            DataTable supplier2 = new DataTable();
-            DataColumn dtColumn4 = new DataColumn
-            {
-                DataType = typeof(Int32),
-                ColumnName = "Id",
-                ReadOnly = true,
-                Unique = true
-            };
-            DataColumn dtColumn5 = new DataColumn
-            {
-                DataType = typeof(string),
-                ColumnName = "Code",
-                ReadOnly = true,
-                Unique = true
-            };
-            DataColumn dtColumn6 = new DataColumn
-            {
-                DataType = typeof(Int32),
-                ColumnName = "Quantity",
-                ReadOnly = false,
-                Unique = false
-            };
-            DataColumn dtColumn7 = new DataColumn
-            {
-                DataType = typeof(double),
-                ColumnName = "Price",
-                ReadOnly = true,
-                Unique = false
-            };
-            supplier2.Columns.Add(dtColumn4);
-            supplier2.Columns.Add(dtColumn5);
-            supplier2.Columns.Add(dtColumn6);
-            supplier2.Columns.Add(dtColumn7);
-            DataTable dataTable = DBUtils.RefreshDB("supplierspending");
-            int index1 = 1;
-            double amount1 = 0;
-            double amount2 = 0;
-            int index2 = 1;
-            dataGridView5.DataSource = null;
-            dataGridView5.Refresh();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                List<string> Suppliers = DBUtils.RefList("SupplierId",
-                    "suppliersprices where Code = \"" + row["Code"] + "\"");
-                List<string> Prices = DBUtils.RefList("SuppPrice",
-                    "suppliersprices where Code = \"" + row["Code"] + "\"");
-
-                if (Suppliers[0] == "1")
-                {
-                    DataRow myDataRow;
-                    myDataRow = supplier1.NewRow();
-                    myDataRow["Id"] = index1;
-                    myDataRow["Code"] = row["Code"].ToString();
-                    myDataRow["Quantity"] = row["Quantity"];
-                    myDataRow["Price"] = Prices[0];
-                    amount1 += (Convert.ToInt32(row["Quantity"]) * Convert.ToDouble(Prices[0]));
-                    supplier1.Rows.Add(myDataRow);
-                    index1 += 1;
-                }
-                else
-                {
-                    DataRow myDataRow1;
-                    myDataRow1 = supplier2.NewRow();
-                    myDataRow1["Id"] = index2;
-                    myDataRow1["Code"] = row["Code"].ToString();
-                    myDataRow1["Quantity"] = row["Quantity"];
-                    myDataRow1["Price"] = Prices[0];
-                    supplier2.Rows.Add(myDataRow1);
-                    amount2 += (Convert.ToInt32(row["Quantity"]) * Convert.ToDouble(Prices[0]));
-                    index2 += 1;
-                }
-            }
-            label34.Text = "Amount: " + amount2 + "€";
-            dataGridView5.DataSource = supplier2;
-        }
-
         private void AddToPendingSuppliers(string code, string quantity)
         {
             if (DBUtils.RefList("Code", "supplierspending").Contains(code))
@@ -656,8 +554,15 @@ namespace ShopInterface
         }
         private void button20_Click(object sender, EventArgs e)
         {
-            AddToPendingSuppliers(comboBox16.SelectedItem.ToString(), textBox2.Text);
-            UpdateSuppliers();
+            if (comboBox16.Text != "" && textBox2.Text != "")
+            {
+                AddToPendingSuppliers(comboBox16.SelectedItem.ToString(), textBox2.Text);
+                textBox2.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Please select or enter every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
         }
 
         private void button26_Click(object sender, EventArgs e)
@@ -1193,7 +1098,7 @@ namespace ShopInterface
 
         private void button12_Click(object sender, EventArgs e)
         {
-            if (comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
+            if (comboBox6.Text != "" && comboBox7.Text != "")
             {
                 string OrderId = comboBox6.SelectedItem.ToString();
                 string action = comboBox7.SelectedItem.ToString();
@@ -1439,5 +1344,136 @@ namespace ShopInterface
                 }
             }
         }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            if (comboBox18.Text != "")
+            {
+                DataTable elements = new DataTable();
+                DataColumn dtColumn = new DataColumn
+                {
+                    DataType = typeof(Int32),
+                    ColumnName = "Id",
+                    ReadOnly = true,
+                    Unique = true
+                };
+                elements.Columns.Add(dtColumn);
+                DataColumn dtColumn1 = new DataColumn
+                {
+                    DataType = typeof(String),
+                    ColumnName = "Code",
+                    ReadOnly = true,
+                    Unique = false
+                };
+                elements.Columns.Add(dtColumn1);
+                DataColumn dtColumn2 = new DataColumn
+                {
+                    DataType = typeof(Int32),
+                    ColumnName = "Quantity",
+                    ReadOnly = true,
+                    Unique = false
+                };
+                elements.Columns.Add(dtColumn2);
+                int index = 1;
+                double amount = 0;
+                foreach (string i in DBUtils.RefList("Code", "supplierspending"))
+                {
+                    if (DBUtils.RefList("SupplierId","suppliersprices where Code = \"" + i + "\"")[0] == comboBox18.SelectedItem.ToString())
+                    {
+                        string quantity = DBUtils.RefList("Quantity", "supplierspending where Code = \"" + i + "\"")[0];
+                        string price = DBUtils.RefList("SuppPrice", "suppliersprices where Code = \"" + i + "\"")[0];
+                        double priceDouble = Convert.ToDouble(price);
+                        int quantityInt = Convert.ToInt32(quantity);
+                        amount += priceDouble * quantityInt;
+                        DataRow myDataRow;
+                        myDataRow = elements.NewRow();
+                        myDataRow["Id"] = index;
+                        myDataRow["Code"] = i;
+                        myDataRow["Quantity"] = quantity;
+                        index += 1;
+                        elements.Rows.Add(myDataRow);
+                    }
+                }
+                dataGridView5.DataSource = elements;
+                label34.Text = "Amount: " + amount.ToString() + "€";
+                if (amount != 0)
+                {
+                    button18.Enabled = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierId", "SupplierId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            string columns = "SupplierId,Amount,Date,Status";
+            string amount = label34.Text.Split(' ')[1];
+            string amount1 = amount.Split('€')[0];
+            string realamount = amount1.Replace(',', '.');
+            DateTime myDateTime = DateTime.Now;
+            string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd");
+            string values = "\"" + comboBox18.Text + "\", \"" + realamount + "\", \"" +  sqlFormattedDate + "\", \"" + "send" + "\"";
+            DBUtils.InsertSupplierOrder("suppliersorders", columns, values);
+            List<string> IdList = DBUtils.RefList("SupplierOrderId", "suppliersorders");
+            string SupplierOrderId = IdList[IdList.Count - 1];
+            foreach(DataGridViewRow row in dataGridView5.Rows)
+            {
+                string code = row.Cells["Code"].Value.ToString();
+                string quantity = row.Cells["Quantity"].Value.ToString();
+                string col = "SupplierOrderId,Code,Quantity";
+                string val = "\"" + SupplierOrderId + "\", \"" + code + "\", \"" + quantity + "\"";
+                DBUtils.InsertSupplierOrder("supplierslistsitems", col, val);
+                label34.Text = DBUtils.DeleteRowVD("supplierspending", "Code = \"" + code + "\"and Quantity = \"" + quantity + "\"");
+            }
+            dataGridView5.DataSource = null;
+            label34.Text = "Amount: 0€";
+            button18.Enabled = false;
+            comboBox18.Text = "";
+            dataGridView8.DataSource = null;
+            dataGridView7.DataSource = DBUtils.RefreshDB("suppliersorders");
+            comboBox14.DataSource = DBUtils.RefList("SupplierOrderId", "suppliersorders");
+            comboBox14.DisplayMember = "SupplierOrderId";
+            comboBox14.Text = "";
+            comboBox8.DataSource = DBUtils.RefList("SupplierOrderId", "suppliersorders where status = \"send\"");
+            comboBox8.DisplayMember = "SupplierOrderId";
+            comboBox8.Text = "";
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            if (comboBox14.Text != "")
+            {
+                dataGridView8.DataSource = DBUtils.RefreshDBCond("supplierslistsitems", "SupplierOrderId = \"" + comboBox14.Text + "\"");
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierOrderId", "SupplierOrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            if (comboBox8.Text != "")
+            {
+                foreach (string i in DBUtils.RefList("Code", "supplierslistsitems where SupplierOrderId = \"" + comboBox8.Text + "\""))
+                {
+                    string quantity = DBUtils.RefList("Quantity", "supplierslistsitems where SupplierOrderId = \"" + comboBox8.Text + "\"and Code = \"" + i + "\"")[0];
+                    string instock = DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
+                    int newquantity = Convert.ToInt32(quantity) + Convert.ToInt32(instock);
+                    label30.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code = \"" + i + "\"", newquantity.ToString());
+                    label30.Text = DBUtils.UpdateDBV("suppliersorders", "Status", "SupplierOrderId = \"" + comboBox8.Text + "\"", "received");
+                    comboBox8.Text = "";
+                    dataGridView7.DataSource = DBUtils.RefreshDB("suppliersorders");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a SupplierOrderId", "SupplierOrderId missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+            }
+        }
+
     }
 }

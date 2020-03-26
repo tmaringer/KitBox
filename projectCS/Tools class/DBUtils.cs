@@ -558,5 +558,19 @@ namespace projectCS
             }
             return value;
         }
+
+        public static void InsertSupplierOrder(string database, string columns, string values)
+        {
+            string Query = "insert into kitbox." + database + " (" + columns + ") values (" + values + ")";   
+            MySqlConnection MyConn2 = new MySqlConnection(MyConString);
+            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+            MySqlDataReader MyReader2;
+            MyConn2.Open();
+            MyReader2 = MyCommand2.ExecuteReader();
+            while (MyReader2.Read())
+            {
+            }
+            MyConn2.Close();
+        }
     }
 }
