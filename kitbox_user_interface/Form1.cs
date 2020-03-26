@@ -363,10 +363,7 @@ namespace kitbox_user_interface_V1
         public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
-
-            //TODO taille standadisée validée
-
-
+            
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
@@ -435,8 +432,11 @@ namespace kitbox_user_interface_V1
                 
             }
 
-            
+
             //MessageBox.Show(comboBox4.SelectedItem.ToString());
+            this.Hide();
+            Form_locker form_locker_1 = new Form_locker();
+            form_locker_1.Show();
 
         }
 
@@ -460,7 +460,10 @@ namespace kitbox_user_interface_V1
             //int height = comboBox6.SelectedIndex;
             //combobox1 : type doors
             //combobox2 : panel colors
-            
+            int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
+            int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
+            string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
+            MessageBox.Show(width.ToString());
         }
 
         private void button3_Click(object sender, EventArgs e)
