@@ -404,28 +404,30 @@ namespace kitbox_user_interface_V1
 
 
                 CrossBar traverseAV = new CrossBar();
-                locker.addComponent(traverseAV);
                 CrossBar traverseAR = new CrossBar();
-                locker.addComponent(traverseAR);
                 CrossBar traverseG = new CrossBar();
-                locker.addComponent(traverseG);
                 CrossBar traverseD = new CrossBar();
-                locker.addComponent(traverseD);
                 Pannel panneauH = new Pannel();//panneau_size
-                locker.addComponent(panneauH);
                 Pannel panneauB = new Pannel();//panneau_size
-                locker.addComponent(panneauB);
                 Pannel panneauG = new Pannel();
-                locker.addComponent(panneauG);
                 Pannel panneauD = new Pannel();
-                locker.addComponent(panneauD);
                 Pannel panneauAR = new Pannel();
-                locker.addComponent(panneauAR);
                 Cleat tasseau = new Cleat();
+
+                locker.addComponent(traverseAV);
+                locker.addComponent(traverseAR);
+                locker.addComponent(traverseG);
+                locker.addComponent(traverseD);
+                locker.addComponent(panneauH);
+                locker.addComponent(panneauB);
+                locker.addComponent(panneauG);
+                locker.addComponent(panneauD);
+                locker.addComponent(panneauAR);
                 locker.addComponent(tasseau);
-                
-                
-                if(width<62)
+
+                MessageBox.Show(locker.ToString());
+
+                if (width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
                     //TODO retirer le bon item
@@ -433,7 +435,7 @@ namespace kitbox_user_interface_V1
                 
             }
 
-
+            
             //MessageBox.Show(comboBox4.SelectedItem.ToString());
 
         }
