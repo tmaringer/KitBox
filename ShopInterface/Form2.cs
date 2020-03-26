@@ -1194,121 +1194,129 @@ namespace ShopInterface
 
         private void button12_Click(object sender, EventArgs e)
         {
-            string OrderId = comboBox6.SelectedItem.ToString();
-            string action = comboBox7.SelectedItem.ToString();
-            if (action == "validate")
+            if (comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
             {
-                Sandbox.SandBox(OrderId);
-                List<string> CodeList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\"");
-                foreach (string i in CodeList)
+                string OrderId = comboBox6.SelectedItem.ToString();
+                string action = comboBox7.SelectedItem.ToString();
+                if (action == "validate")
                 {
-                    label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "never tested");
-                }
-                label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "validate");
-            }
-            else if (action == "test availability")
-            {
-                int isalltrue = 0;
-                int all = 0;
-                List<string> CodeList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Disponibility <> \"completed\"");
-                foreach (string i in CodeList)
-                {
-                    string number = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                    if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
-                    {
-                        if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
-                        {
-                            isalltrue += 1;
-                            label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "true");
-                        }
-                        else
-                        {
-                            label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "false");
-                        }
-                        all += 1;
-                    }
-                }
-                if (isalltrue == all)
-                {
-                    label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "awaiting for removal");
+                    Sandbox.SandBox(OrderId);
+                    List<string> CodeList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\"");
                     foreach (string i in CodeList)
                     {
-                        if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
-                        {
-                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                            string stock = DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
-                            int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                            label25.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
-                            label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
-                        }
+                        label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "never tested");
                     }
+                    label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "validate");
                 }
-                else
+                else if (action == "test availability")
                 {
-                    label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "not ready");
-                }
-            }
-            else if (action == "remove now")
-            {
-               label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "completed");
-            }
-            else if (action == "partial removal")
-            {
-                int isalltrue = 0;
-                int all = 0;
-                List<string> CodeAllList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\"");
-                foreach (string i in CodeAllList)
-                {
-                    if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
+                    int isalltrue = 0;
+                    int all = 0;
+                    List<string> CodeList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Disponibility <> \"completed\"");
+                    foreach (string i in CodeList)
                     {
                         string number = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                        if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
+                        if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
                         {
-                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                            string stock = DBUtils.RefList("Instock", "listsitems where Code = \"" + i + "\"")[0];
-                            int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                            label25.Text = DBUtils.UpdateDBV("kibox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
-                            label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
-                            isalltrue += 1;
+                            if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
+                            {
+                                isalltrue += 1;
+                                label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "true");
+                            }
+                            else
+                            {
+                                label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "false");
+                            }
+                            all += 1;
                         }
-                        else
+                    }
+                    if (isalltrue == all)
+                    {
+                        label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "awaiting for removal");
+                        foreach (string i in CodeList)
                         {
-                            if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "added")
+                            if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
                             {
                                 string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                                AddToPendingSuppliers(i, quantity);
-                                label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "added");
+                                string stock = DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
+                                int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
+                                label25.Text = DBUtils.UpdateDBV("kitbox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
+                                label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
                             }
                         }
                     }
-                    else if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] == "completed")
+                    else
                     {
-                        isalltrue += 1;
+                        label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "not ready");
                     }
                 }
-                foreach (string i in CodeAllList)
+                else if (action == "remove now")
                 {
-                    all += 1;
+                    label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "completed");
                 }
-                float alll = (float)isalltrue;
-                float kn = (float)all;
-                float procent = (alll / kn) * 100;
-                int procentint = (int)procent;
-                label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "uncompleted, " + procentint.ToString() + "%");
+                else if (action == "partial removal")
+                {
+                    int isalltrue = 0;
+                    int all = 0;
+                    List<string> CodeAllList = DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\"");
+                    foreach (string i in CodeAllList)
+                    {
+                        if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "completed")
+                        {
+                            string number = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
+                            if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
+                            {
+                                string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
+                                string stock = DBUtils.RefList("Instock", "listsitems where Code = \"" + i + "\"")[0];
+                                int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
+                                label25.Text = DBUtils.UpdateDBV("kibox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
+                                label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
+                                isalltrue += 1;
+                            }
+                            else
+                            {
+                                if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] != "added")
+                                {
+                                    string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
+                                    AddToPendingSuppliers(i, quantity);
+                                    label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "added");
+                                }
+                            }
+                        }
+                        else if (DBUtils.RefList("Disponibility", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0] == "completed")
+                        {
+                            isalltrue += 1;
+                        }
+                    }
+                    foreach (string i in CodeAllList)
+                    {
+                        all += 1;
+                    }
+                    float alll = (float)isalltrue;
+                    float kn = (float)all;
+                    float procent = (alll / kn) * 100;
+                    int procentint = (int)procent;
+                    label25.Text = DBUtils.UpdateDBV("orders", "Status", "OrderId = \"" + OrderId + "\"", "uncompleted, " + procentint.ToString() + "%");
 
+                }
+                else if (action == "delete this order")
+                {
+                    label25.Text = DBUtils.DeleteRowVD("orders", "OrderId = \"" + OrderId + "\"");
+                }
+                Coll(DBUtils.RefList("Status", "orders where OrderId =\"" + OrderId + "\"")[0]);
+                dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + OrderId + "\"");
+                foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
+                Colours(dataGridView3, "Disponibility");
+                Start();
+                comboBox6.Text = "";
+                comboBox7.Text = "";
             }
-            else if (action == "delete this order")
+            else
             {
-                label25.Text = DBUtils.DeleteRowVD("orders", "OrderId = \"" + OrderId + "\"");
+                MessageBox.Show("Please select every element", "Element missing", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
-            Coll(DBUtils.RefList("Status", "orders where OrderId =\"" + OrderId + "\"")[0]);
-            dataGridView3.DataSource = DBUtils.RefreshDBCond("listsitems", "OrderId = \"" + OrderId + "\"");
-            foreach (DataGridViewColumn col in dataGridView3.Columns) col.Visible = true;
-            Colours(dataGridView3, "Disponibility");
-            Start();
-            comboBox6.Text = "";
-            comboBox7.Text = "";
         }
+
         private void Coll(string status)
         {
             if (status == "pending")
