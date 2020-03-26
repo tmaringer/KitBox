@@ -363,7 +363,7 @@ namespace kitbox_user_interface_V1
         public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
-
+            bool choice_fill = false;
 
             ComponentColor c = ComponentColor.black;
             ComponentSize s = new ComponentSize(0,0,0);
@@ -415,7 +415,7 @@ namespace kitbox_user_interface_V1
                 locker.addComponent(tasseau);
 
                 MessageBox.Show(locker.ToString());
-                bool choice_fill = true;
+                choice_fill = true;
                 if (width<62)
                 {
                     //comboBox1.Items.RemoveAt(2);
@@ -432,11 +432,11 @@ namespace kitbox_user_interface_V1
             //MessageBox.Show(comboBox4.SelectedItem.ToString());
             if(choice_fill)
             {
-
+                this.Hide();
+                Form_locker form_locker_1 = new Form_locker();
+                form_locker_1.Show();
             }
-            this.Hide();
-            Form_locker form_locker_1 = new Form_locker();
-            form_locker_1.Show();
+            
 
         }
 
