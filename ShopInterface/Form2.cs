@@ -58,7 +58,7 @@ namespace ShopInterface
             comboBox22.Items.Clear();
             comboBox22.Text = "";
             var senderComboBox = (ComboBox)sender;
-            if (senderComboBox.SelectionLength > 0)
+            if (senderComboBox.SelectionLength >= 0)
             {
                 List<string> orderList = new List<string>();
                 orderList = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.SelectedItem.ToString() + "\"");
@@ -266,13 +266,9 @@ namespace ShopInterface
                 Start();
                 comboBox22.Items.Clear();
                 comboBox23.Text = "";
-                List<string> orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
-                foreach (var OrderId in orderList1)
-                    comboBox22.Items.Add(OrderId);
                 List<string> orderList3 = DBUtils.RefListND("Width", "kitbox where Ref = \"Panel B\"");
                 foreach (var OrderId in orderList3)
                     comboBox24.Items.Add(OrderId);
-
             }
             else if (tabControl1.SelectedTab.Text == @"Stock management")
             {
