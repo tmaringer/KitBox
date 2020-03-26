@@ -381,12 +381,17 @@ namespace kitbox_user_interface_V1
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
-                /*
+                
+                //List<String> colors = ColorParse.colorsList;
+                
                 foreach (string colors in ColorParse.colorsList)
                 {
-
+                    if(colors == comboBox7.SelectedItem.ToString())
+                    {
+                        ComponentColor color_1 = ComponentColor.black;
+                    }
                 }
-                */
+                
 
                 ComponentColor default_color = ComponentColor.black;
                 ComponentSize default_size = new ComponentSize(0, 0, 0);
