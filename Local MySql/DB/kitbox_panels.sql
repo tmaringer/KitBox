@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,32 +16,31 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `suppliersorders`
+-- Table structure for table `panels`
 --
 
-DROP TABLE IF EXISTS `suppliersorders`;
+DROP TABLE IF EXISTS `panels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliersorders` (
-  `SupplierOrderId` int NOT NULL,
-  `SupplierId` int DEFAULT NULL,
-  `amount` double DEFAULT NULL,
-  `date` varchar(10) DEFAULT NULL,
-  `status` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SupplierOrderId`),
-  KEY `SupplierId_idx` (`SupplierId`),
-  CONSTRAINT `SupplierId` FOREIGN KEY (`SupplierId`) REFERENCES `suppliers` (`SupplierId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `panels` (
+  `PanelId` int NOT NULL AUTO_INCREMENT,
+  `BoxId` int DEFAULT NULL,
+  `Code` text,
+  `Position` text,
+  PRIMARY KEY (`PanelId`),
+  KEY `euuuh_idx` (`BoxId`),
+  CONSTRAINT `euuuh` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliersorders`
+-- Dumping data for table `panels`
 --
 
-LOCK TABLES `suppliersorders` WRITE;
-/*!40000 ALTER TABLE `suppliersorders` DISABLE KEYS */;
-INSERT INTO `suppliersorders` VALUES (1,1,0,'11/03/2020','pending'),(2,2,0,'11/03/2020','pending');
-/*!40000 ALTER TABLE `suppliersorders` ENABLE KEYS */;
+LOCK TABLES `panels` WRITE;
+/*!40000 ALTER TABLE `panels` DISABLE KEYS */;
+INSERT INTO `panels` VALUES (1,1,'PHL62100WH','H'),(2,1,'PHL62100WH','L'),(3,1,'PAB52100WH','B'),(4,1,'PLR5262WH','RS'),(5,1,'PLR5262WH','LS'),(6,2,'PHL62100WH','H'),(7,2,'PHL62100WH','L'),(8,2,'PAB42100WH','B'),(9,2,'PLR4262WH','RS'),(10,2,'PLR4262WH','LS');
+/*!40000 ALTER TABLE `panels` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 15:38:45
+-- Dump completed on 2020-03-26 19:31:21

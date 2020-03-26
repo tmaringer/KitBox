@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,27 +16,30 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `supplierspending`
+-- Table structure for table `doors`
 --
 
-DROP TABLE IF EXISTS `supplierspending`;
+DROP TABLE IF EXISTS `doors`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `supplierspending` (
-  `Code` varchar(45) NOT NULL,
-  `Quantity` int DEFAULT NULL,
-  PRIMARY KEY (`Code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `doors` (
+  `DoorId` int NOT NULL AUTO_INCREMENT,
+  `BoxId` int DEFAULT NULL,
+  `Code` text,
+  PRIMARY KEY (`DoorId`),
+  KEY `baba_idx` (`BoxId`),
+  CONSTRAINT `ol` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `supplierspending`
+-- Dumping data for table `doors`
 --
 
-LOCK TABLES `supplierspending` WRITE;
-/*!40000 ALTER TABLE `supplierspending` DISABLE KEYS */;
-INSERT INTO `supplierspending` VALUES ('ANB125BLCUT',32),('COR100BLDEC',-1980),('POR5262BL',210),('POR5262VE',2000),('TAS37',160),('TRR100',30);
-/*!40000 ALTER TABLE `supplierspending` ENABLE KEYS */;
+LOCK TABLES `doors` WRITE;
+/*!40000 ALTER TABLE `doors` DISABLE KEYS */;
+INSERT INTO `doors` VALUES (1,1,'DOO5252GS'),(2,2,'DOO4252GS'),(3,2,'DOO4252GS'),(4,1,'DOO5252BR');
+/*!40000 ALTER TABLE `doors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 15:38:40
+-- Dump completed on 2020-03-26 19:31:20

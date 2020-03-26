@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,33 +16,12 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cupboards`
+-- Dumping events for database 'kitbox'
 --
 
-DROP TABLE IF EXISTS `cupboards`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cupboards` (
-  `CupboardId` int NOT NULL AUTO_INCREMENT,
-  `OrderId` int DEFAULT NULL,
-  `Height` int DEFAULT NULL,
-  `Depth` int DEFAULT NULL,
-  `Width` int DEFAULT NULL,
-  PRIMARY KEY (`CupboardId`),
-  KEY `OrderId_idx` (`OrderId`),
-  CONSTRAINT `cupboards_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
--- Dumping data for table `cupboards`
+-- Dumping routines for database 'kitbox'
 --
-
-LOCK TABLES `cupboards` WRITE;
-/*!40000 ALTER TABLE `cupboards` DISABLE KEYS */;
-INSERT INTO `cupboards` VALUES (1,1,102,62,100);
-/*!40000 ALTER TABLE `cupboards` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -55,4 +32,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 15:38:44
+-- Dump completed on 2020-03-26 19:31:21

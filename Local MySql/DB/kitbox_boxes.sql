@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: kitbox
@@ -18,30 +16,30 @@ USE `kitbox`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `orders`
+-- Table structure for table `boxes`
 --
 
-DROP TABLE IF EXISTS `orders`;
+DROP TABLE IF EXISTS `boxes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `orders` (
-  `OrderId` int NOT NULL AUTO_INCREMENT,
-  `CustomerId` int DEFAULT NULL,
-  `Status` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`OrderId`),
-  KEY `Ninja_idx` (`CustomerId`),
-  CONSTRAINT `Ninja` FOREIGN KEY (`CustomerId`) REFERENCES `customers` (`CustomerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `boxes` (
+  `BoxId` int NOT NULL,
+  `CupboardId` int DEFAULT NULL,
+  `Height` int DEFAULT NULL,
+  PRIMARY KEY (`BoxId`),
+  KEY `ok_idx` (`CupboardId`),
+  CONSTRAINT `ok` FOREIGN KEY (`CupboardId`) REFERENCES `cupboards` (`CupboardId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `boxes`
 --
 
-LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'pending');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+LOCK TABLES `boxes` WRITE;
+/*!40000 ALTER TABLE `boxes` DISABLE KEYS */;
+INSERT INTO `boxes` VALUES (1,1,56),(2,1,46);
+/*!40000 ALTER TABLE `boxes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-26 15:38:43
+-- Dump completed on 2020-03-26 19:31:19
