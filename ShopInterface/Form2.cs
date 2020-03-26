@@ -265,6 +265,7 @@ namespace ShopInterface
             {
                 Start();
                 comboBox22.Items.Clear();
+                comboBox23.Text = "";
                 List<string> orderList1 = DBUtils.RefList("OrderId", "customers natural join orders where CustomerName = \"" + comboBox21.Items[0] + "\"");
                 foreach (var OrderId in orderList1)
                     comboBox22.Items.Add(OrderId);
@@ -1267,7 +1268,7 @@ namespace ShopInterface
                             if (Convert.ToInt32(DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0]) - Convert.ToInt32(number) > 4)
                             {
                                 string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"")[0];
-                                string stock = DBUtils.RefList("Instock", "listsitems where Code = \"" + i + "\"")[0];
+                                string stock = DBUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                                 int stock_now = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
                                 label25.Text = DBUtils.UpdateDBV("kibox", "Instock", "Code =\"" + i + "\"", stock_now.ToString());
                                 label25.Text = DBUtils.UpdateDBV("listsitems", "Disponibility", "OrderId = \"" + OrderId + "\" and Code = \"" + i + "\"", "completed");
