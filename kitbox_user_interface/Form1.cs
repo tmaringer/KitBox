@@ -21,19 +21,19 @@ namespace kitbox_user_interface_V1
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
-            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panneau Ar\"");
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panel B\"");
             conn.Close();
             conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panneau GD\"");
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panel B\"");
             conn.Close();
             conn.Open();
-            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Porte\"");
+            List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
             conn.Open();
-            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panneau GD\"");
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panel LR\"");
             conn.Close();
             conn.Open();
-            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Cornieres\"");
+            List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"AngleBracket\"");
             conn.Close();
            
 
@@ -58,7 +58,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceBracketsList = QueryKitbox.SpecsBoxList(conn, "Cost", "Ref = \"Cornieres\"");
+            List<string> PriceBracketsList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Cornieres\"");
             conn.Close();
 
             conn.Open();
@@ -86,7 +86,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PricePannelLRList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Panneau GD\"");
+            List<string> PricePannelLRList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Panneau GD\"");
             conn.Close();
 
             conn.Open();
@@ -114,7 +114,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PricePannelTBList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Panneau HB\"");
+            List<string> PricePannelTBList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Panneau HB\"");
             conn.Close();
 
             conn.Open();
@@ -142,7 +142,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PricePannelBaList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Panneau Ar\"");
+            List<string> PricePannelBaList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Panneau Ar\"");
             conn.Close();
 
             conn.Open();
@@ -170,7 +170,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Porte\"");
+            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Porte\"");
             conn.Close();
 
             conn.Open();
@@ -198,7 +198,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceCleatsList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Tasseau\"");
+            List<string> PriceCleatsList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Tasseau\"");
             conn.Close();
 
             conn.Open();
@@ -226,7 +226,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Traverse Av\"");
+            List<string> PriceCrossbarFrList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Traverse Av\"");
             conn.Close();
 
             conn.Open();
@@ -255,7 +255,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Traverse GD\"");
+            List<string> PriceCrossbarLRList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Traverse GD\"");
             conn.Close();
 
             conn.Open();
@@ -283,7 +283,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             conn.Open();
-            List<string> PriceCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "PrixClient", "Ref = \"Traverse Ar\"");
+            List<string> PriceCrossbarBaList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Traverse Ar\"");
             conn.Close();
 
             conn.Open();
