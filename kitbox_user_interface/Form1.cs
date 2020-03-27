@@ -377,6 +377,7 @@ namespace kitbox_user_interface_V1
 
             if(comboBox3.SelectedItem != null && comboBox4.SelectedItem != null && comboBox5.SelectedItem != null && comboBox7.SelectedItem != null)
             {
+                int numberOfLockers = Int32.Parse(comboBox3.SelectedItem.ToString());
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 //anglebrackets color
@@ -426,6 +427,7 @@ namespace kitbox_user_interface_V1
             else
             {
                 MessageBox.Show("Fill every choices");
+                button1.Enabled = true;
             }
 
 
