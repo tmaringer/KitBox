@@ -26,7 +26,7 @@ namespace kitbox_user_interface_V1
         public void button2_Click(object sender, EventArgs e)
         {
             
-            ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
+            ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;//doesn't work
             ErrorWindow test = new ErrorWindow(ColorParse.parseToStr(c));
             test.displayWindow();
         }
