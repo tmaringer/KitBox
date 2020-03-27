@@ -10,8 +10,8 @@ namespace UnitTest
         [TestMethod]
         public void colorTest()
         {
-            Pannel pannel1 = new Pannel(0, "reftrest", "testcode", new ComponentSize(0, 0, 0), false, 0, ComponentColor.transparent);
-            Pannel pannel2 = new Pannel();
+            Panel pannel1 = new Panel(0, "reftrest", "testcode", new ComponentSize(0, 0, 0), false, 0, ComponentColor.transparent);
+            Panel pannel2 = new Panel();
 
             Assert.AreEqual(ComponentColor.transparent, pannel1.color);
             Assert.AreEqual(ComponentColor.black, pannel2.color);

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projectCS
 {
-    // todo : mettre les différentes phrases qu'on utilisera, regroupera les différents champs/mots
     public static class ErrorMessages
     {
         // --------------------------------------------------------------------- DB string

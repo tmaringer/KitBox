@@ -24,11 +24,11 @@ namespace UnitTest
         private CrossBar crossBarWithParam1;
         private CrossBar crossBarWithParam2;
 
-        private Pannel pannel1;
-        private Pannel pannel2;
-        private Pannel pannel3;
-        private Pannel pannel4;
-        private Pannel pannel5;
+        private Panel pannel1;
+        private Panel pannel2;
+        private Panel pannel3;
+        private Panel pannel4;
+        private Panel pannel5;
 
         private Cleat cleat1;
         private Cleat cleat2;
@@ -69,11 +69,11 @@ namespace UnitTest
             crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0, ComponentColor.white);
             crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0, ComponentColor.white);
 
-            pannel1 = new Pannel();
-            pannel2 = new Pannel();
-            pannel3 = new Pannel();
-            pannel4 = new Pannel();
-            pannel5 = new Pannel();
+            pannel1 = new Panel();
+            pannel2 = new Panel();
+            pannel3 = new Panel();
+            pannel4 = new Panel();
+            pannel5 = new Panel();
 
             cleat1 = new Cleat();
             cleat2 = new Cleat();

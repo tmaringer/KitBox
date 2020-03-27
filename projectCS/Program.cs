@@ -21,10 +21,8 @@ namespace projectCS
             ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
             //window.displayWindow();
 
-            //printPerso.autreTest();
+            printPerso.autreTest();
 
-            Console.WriteLine(ColorParse.parseToStr(ComponentColor.black));
-            Console.WriteLine(ColorParse.parseToStr(ComponentColor.black).GetType());
 
 
 
@@ -104,11 +102,11 @@ namespace projectCS
                 CrossBar c6 = new CrossBar();
                 CrossBar c7 = new CrossBar();
                 CrossBar c8 = new CrossBar();
-                Pannel p1 = new Pannel();
-                Pannel p2 = new Pannel();
-                Pannel p3 = new Pannel();
-                Pannel p4 = new Pannel();
-                Pannel p5 = new Pannel();
+                Panel p1 = new Panel();
+                Panel p2 = new Panel();
+                Panel p3 = new Panel();
+                Panel p4 = new Panel();
+                Panel p5 = new Panel();
                 Cleat cl1 = new Cleat();
                 Cleat cl2 = new Cleat();
                 Cleat cl3 = new Cleat();
@@ -131,10 +129,14 @@ namespace projectCS
             public static void autreTest()
             {
                 AngleBracket a = new AngleBracket();
-                Console.WriteLine(a.height);
-                a.color = ComponentColor.transparent;
+                a.price = 5455554;
 
-                Console.WriteLine(a.color);
+                ComponentsDataSav sa = new ComponentsDataSav();
+
+                sa.savData(a);
+                sa.savData(a);
+                sa.savData(a);
+                //sa.resetFile();
             }
         }
         

@@ -19,7 +19,7 @@ namespace projectCS
 
     }
 
-    public class Pannel : CatalogueComponents
+    public class Panel : CatalogueComponents
     {
         public override ComponentColor color 
         { 
@@ -35,10 +35,10 @@ namespace projectCS
             }
         }
 
-        public Pannel() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
+        public Panel() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
         {
         }
-        public Pannel(double price,
+        public Panel(double price,
                         string reference,
                         string code,
                         ComponentSize size,

@@ -99,7 +99,7 @@ namespace projectCS
                     else
                         isOk = false;
                     break;
-                case Pannel p:
+                case Panel p:
                     if (numberOfComponentInList(_componentsList, component) < _maximumPannels)
                         isOk = true;
                     else
@@ -172,7 +172,7 @@ namespace projectCS
         {
             bool isOk = false;
             int numberOfCrossBar = numberOfComponentInList(componentList, new CrossBar());
-            int numberOfPannel = numberOfComponentInList(componentList, new Pannel());
+            int numberOfPannel = numberOfComponentInList(componentList, new Panel());
             int numberOfCleat = numberOfComponentInList(componentList, new Cleat());
 
             // check if the locker has 8xcrossbar + 5xPannel + 4xCleat

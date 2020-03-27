@@ -396,11 +396,11 @@ namespace kitbox_user_interface_V1
                 CrossBar traverseAR = new CrossBar();
                 CrossBar traverseG = new CrossBar();
                 CrossBar traverseD = new CrossBar();
-                Pannel panneauH = new Pannel();//panneau_size
-                Pannel panneauB = new Pannel();//panneau_size
-                Pannel panneauG = new Pannel();
-                Pannel panneauD = new Pannel();
-                Pannel panneauAR = new Pannel();
+                projectCS.Panel panneauH = new projectCS.Panel();//panneau_size
+                projectCS.Panel panneauB = new projectCS.Panel();//panneau_size
+                projectCS.Panel panneauG = new projectCS.Panel();
+                projectCS.Panel panneauD = new projectCS.Panel();
+                projectCS.Panel panneauAR = new projectCS.Panel();
                 Cleat tasseau = new Cleat();
 
                 locker.addComponent(traverseAV);
