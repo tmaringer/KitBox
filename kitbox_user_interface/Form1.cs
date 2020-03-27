@@ -334,13 +334,7 @@ namespace kitbox_user_interface_V1
         {
             button1.Enabled = false;
             bool choice_fill = false;
-
-            ComponentColor c = ComponentColor.black;
-            ComponentSize s = new ComponentSize(0,0,0);
-            int box = 5;
-
-            ShoppingCart.buildCupboard(s.width, s.depth, box, c);
-
+            
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
@@ -352,8 +346,10 @@ namespace kitbox_user_interface_V1
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 //anglebrackets color
                 ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
-                
-                
+
+                ComponentSize cupboardSize = new ComponentSize(width, depth, 0);
+                ShoppingCart.buildCupboard(cupboardSize.width, cupboardSize.depth, numberOfLockers, color1);
+
 
                 ComponentColor default_color = ComponentColor.black;
                 ComponentSize default_size = new ComponentSize(0, 0, 0);
