@@ -154,27 +154,27 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Porte\"");
+            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Porte\"");
+            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Porte\"");
+            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Porte\"");
+            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Porte\"");
+            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> CodeDoorList = QueryKitbox.SpecsBoxList(conn, "Code", "Ref = \"Porte\"");
+            List<string> CodeDoorList = QueryKitbox.SpecsBoxList(conn, "Code", "Ref = \"Door\"");
             conn.Close();
 
             /*
@@ -311,36 +311,6 @@ namespace kitbox_user_interface_V1
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox14_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
         {
 
         }
