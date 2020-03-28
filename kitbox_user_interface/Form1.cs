@@ -154,27 +154,27 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Porte\"");
+            List<string> HightDoorList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Porte\"");
+            List<string> DepthDoorList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Porte\"");
+            List<string> WidthDoorList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Porte\"");
+            List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Porte\"");
+            List<string> PriceDoorList = QueryKitbox.SpecsBoxList(conn, "CustPrice", "Ref = \"Door\"");
             conn.Close();
 
             conn.Open();
-            List<string> CodeDoorList = QueryKitbox.SpecsBoxList(conn, "Code", "Ref = \"Porte\"");
+            List<string> CodeDoorList = QueryKitbox.SpecsBoxList(conn, "Code", "Ref = \"Door\"");
             conn.Close();
 
             /*
@@ -315,36 +315,6 @@ namespace kitbox_user_interface_V1
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox14_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox10_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -364,25 +334,22 @@ namespace kitbox_user_interface_V1
         {
             button1.Enabled = false;
             bool choice_fill = false;
-
-            ComponentColor c = ComponentColor.black;
-            ComponentSize s = new ComponentSize(0,0,0);
-            int box = 5;
-
-            ShoppingCart.buildCupboard(s.width, s.depth, box, c);
-
+            
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
             cupboard.addCupboardComponent(locker);
 
             if(comboBox3.SelectedItem != null && comboBox4.SelectedItem != null && comboBox5.SelectedItem != null && comboBox7.SelectedItem != null)
             {
+                int numberOfLockers = Int32.Parse(comboBox3.SelectedItem.ToString());
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
                 //anglebrackets color
                 ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
-                
-                
+
+                ComponentSize cupboardSize = new ComponentSize(width, depth, 0);
+                ShoppingCart.buildCupboard(cupboardSize.width, cupboardSize.depth, numberOfLockers, color1);
+
 
                 ComponentColor default_color = ComponentColor.black;
                 ComponentSize default_size = new ComponentSize(0, 0, 0);
@@ -426,6 +393,7 @@ namespace kitbox_user_interface_V1
             else
             {
                 MessageBox.Show("Fill every choices");
+                button1.Enabled = true;
             }
 
 
