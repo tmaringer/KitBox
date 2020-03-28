@@ -11,19 +11,14 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            /*
-            printPerso.newCompoTest();
-            printPerso.test2();
-            printPerso.test3();
-            printPerso.isActive();
-            */
+            
+            //printPerso.test2();
 
             ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
             //window.displayWindow();
 
+            //printPerso.test1();
             printPerso.autreTest();
-
-
 
 
             Console.WriteLine("\n");
@@ -34,22 +29,15 @@ namespace projectCS
 
         internal static class printPerso
         {
-            /*
-            public static void newCompoTest()
-            {
-                CrossBar t = new CrossBar(1000, "referenceTest", "codeTest", new Size(0, 0, 0), false, 0, Color.white);
-                Console.WriteLine(t.price);
-            }
-
             public static void test2()
             {
                 Locker t = new Locker();
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-                CrossBar t2 = new CrossBar(100, "referenceTest", "2", new Size(0, 0, 0), false, 0, Color.white);
-                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", new Size(0, 0, 0), false, 0, Color.white);
-                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", new Size(0, 0, 0), false, 0, Color.white);
-                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", new Size(0, 0, 0), false, 0, Color.white);
+                CrossBar t1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+                CrossBar t2 = new CrossBar(100, "referenceTest", "2", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+                CrossBar t3 = new CrossBar(1000, "referenceTest", "3", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+                CrossBar t4 = new CrossBar(1000, "referenceTest", "4", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+                CrossBar t5 = new CrossBar(1000, "referenceTest", "5", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
 
                 t.addComponent(t1);
                 t.addComponent(t2);
@@ -72,71 +60,44 @@ namespace projectCS
                 }
             }
 
-            public static void test3()
+            public static void test1()
             {
-                Locker l2 = new Locker();
+                AngleBracket a = new AngleBracket();
+                Console.WriteLine(a);
 
-                CrossBar t1 = new CrossBar(10, "referenceTest", "1", new Size(0, 0, 0), false, 0, Color.white);
-                Cleat nul = new Cleat();
-
-
-                l2.addComponent(t1);
-                l2.addComponent(nul);
-
-                foreach (CatalogueComponents c in l2.componentsList)
-                {
-                    Console.WriteLine(c.code);
-                }
+                a.price = 5455554;
+                a.inStock = true;
+                a.reference = "deserialize";
+                a.size = new ComponentSize(16, 15, 14);
+                a.code = "trrddrtd";
+                a.color = ComponentColor.brown;
+                a.dimension = 47777777;
+                Console.WriteLine(a);
 
             }
 
-            public static void isActive()
-            {
-                Locker locker = new Locker();
-
-                CrossBar c1 = new CrossBar();
-                CrossBar c2 = new CrossBar();
-                CrossBar c3 = new CrossBar();
-                CrossBar c4 = new CrossBar();
-                CrossBar c5 = new CrossBar();
-                CrossBar c6 = new CrossBar();
-                CrossBar c7 = new CrossBar();
-                CrossBar c8 = new CrossBar();
-                Panel p1 = new Panel();
-                Panel p2 = new Panel();
-                Panel p3 = new Panel();
-                Panel p4 = new Panel();
-                Panel p5 = new Panel();
-                Cleat cl1 = new Cleat();
-                Cleat cl2 = new Cleat();
-                Cleat cl3 = new Cleat();
-                Cleat cl4 = new Cleat();
-
-
-
-
-                locker.addComponent(new List<CatalogueComponents>() { c1, c2, c3, c3, c4, c5, c6 ,c7, c8,
-                                                                cl1, cl2, cl3, cl4,
-                                                                p1, p2, p3, p4, p5});
-
-                foreach (CatalogueComponents lc in locker.componentsList)
-                {
-                    Console.WriteLine(lc);
-                }
-                locker.isComplete();
-            }
-            */
             public static void autreTest()
             {
                 AngleBracket a = new AngleBracket();
-                a.price = 5455554;
+
+                a.size = new ComponentSize(16,15,14);
+                a.color = ComponentColor.brown;
 
                 ComponentsDataSav sa = new ComponentsDataSav();
+                
+                sa.resetFile();
+                sa.savData(a);
 
-                sa.savData(a);
-                sa.savData(a);
-                sa.savData(a);
-                //sa.resetFile();
+                AngleBracket b = sa.getCupboard();
+                
+                sa.test();
+                
+                Console.WriteLine(b);
+                /*
+                Console.WriteLine(b.size.depth);
+                Console.WriteLine(b.size.height);
+                Console.WriteLine(b.size.width);
+                */
             }
         }
         

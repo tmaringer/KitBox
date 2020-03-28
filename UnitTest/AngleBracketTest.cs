@@ -31,5 +31,14 @@ namespace UnitTest
 
             Assert.AreEqual(6, angleBracketParam1.height);
         }
+
+        [TestMethod]
+        public void getPriceTest()
+        {
+            Assert.AreEqual(5, angleBracketParam1.price);
+
+            angleBracketParam1.price = 86.2;
+            Assert.AreEqual(86.2, angleBracketParam1.price);
+        }
     }
 }

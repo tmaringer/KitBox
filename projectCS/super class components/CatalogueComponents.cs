@@ -1,4 +1,6 @@
-﻿namespace projectCS
+﻿using System;
+
+namespace projectCS
 {
     /// <summary>
     ///     Super class which group all locker component characteristics as well as angle brackets
@@ -27,10 +29,17 @@
         }
 
         protected ComponentSize _size;
-        public virtual ComponentSize size
+        public ComponentSize size
         {
-            get => _size;
-            set => _size = value;
+            get
+            {
+                Console.WriteLine("supo size get");
+                return this._size;
+            }
+
+            set { 
+            Console.WriteLine("sup size set");
+                this._size = value; }
         }
 
         protected bool _inStock;
@@ -50,8 +59,17 @@
         protected ComponentColor _color;
         public virtual ComponentColor color
         {
-            get => _color;
-            set => _color = value;
+            get
+            {
+                Console.WriteLine("supo _color get");
+                return _color;
+            }
+
+            set
+            {
+                Console.WriteLine("sup _color set");
+                _color = value;
+            }
         }
 
         protected CatalogueComponents(double price, string reference, string code, ComponentSize size, bool inStock, int dimension, ComponentColor color)
@@ -63,6 +81,7 @@
             this._inStock = inStock;
             this._dimension = dimension;
             this._color = color;
+                Console.WriteLine("sup const");
         }
 
         /// <summary>
@@ -75,13 +94,16 @@
         {
             return base.ToString()
                    + " price : "
-                   + price
+                   + _price
                    + ", reference : "
                    + _reference
                    + ", code : "
                    + _code
-                   + ", size : "
-                   + _size
+                   + ", size : {"
+                   + " height : " + _size.height
+                   + ", width : " + _size.width
+                   + ", depth : " + _size.depth
+                   + "}"
                    + ", in stock : "
                    + _inStock
                    + ", dimension : "
@@ -103,7 +125,7 @@
         transparent
     }
 
-    public struct ComponentSize
+    public class ComponentSize
     {
         private int _height, _width, _depth;
         public int height
@@ -115,11 +137,13 @@
         public int width
         {
             get => _width;
+            set => _width = value;
         }
 
         public int depth
         {
             get => _depth;
+            set => _depth = value;
         }
 
         public ComponentSize(int height, int width, int depth)

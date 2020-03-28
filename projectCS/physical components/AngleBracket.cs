@@ -1,4 +1,5 @@
 ﻿using projectCS.Tools_class;
+using System;
 
 namespace projectCS
 {
@@ -8,6 +9,7 @@ namespace projectCS
         {
             set
             {
+                Console.WriteLine("else couleur");
                 if (value == ComponentColor.transparent)
                 {
                     ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
@@ -18,25 +20,9 @@ namespace projectCS
             }
         }
 
-        public override ComponentSize size 
-        { 
-            get => base._size;
-            set            
-            { 
-                base._size = value;
-            }
-        }
-
         public int height
         {
             get => _size.height;
-        }
-
-        private double _price;
-        public double price
-        {
-            get => _price;
-            set => _price = value;
         }
 
         public AngleBracket() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white)
@@ -50,7 +36,7 @@ namespace projectCS
                         int dimension,
                         ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
         {
-            this._price = price;
+            Console.WriteLine("angle construct");
         }
 
         /// <summary>

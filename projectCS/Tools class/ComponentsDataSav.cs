@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using projectCS.physical_components;
 using System;
 using System.IO;
 
@@ -31,6 +32,51 @@ namespace projectCS.Tools_class
             {
                 file.WriteLine(json);
             }
+        }
+        
+        public AngleBracket getCupboard()
+        {
+            AngleBracket obj = new AngleBracket();
+
+            foreach (string line in File.ReadLines(_completePath))
+            {
+                obj = JsonConvert.DeserializeObject<AngleBracket>(line);
+               // Console.WriteLine(obj);
+                /*
+                if (line.Contains("episode") & line.Contains("2006"))
+                {
+                    Console.WriteLine(line);
+                }
+                */
+            }
+
+            return obj;
+        }
+
+        public void test()
+        {
+            AngleBracket an = new AngleBracket();
+            an.size = new ComponentSize(16, 15, 14);
+            an.color = ComponentColor.brown;
+            an.dimension = 3;
+            //Console.WriteLine(an);
+
+            string json = JsonConvert.SerializeObject(an);
+            AngleBracket obj = JsonConvert.DeserializeObject<AngleBracket>(json);
+            Console.WriteLine("après");
+            Console.WriteLine(obj);
+
+            te t = new te();
+            t.s = new ComponentSize(5, 9, 7);
+
+            string json2 = JsonConvert.SerializeObject(t);
+            t = JsonConvert.DeserializeObject<te>(json2);
+            //Console.WriteLine(t);
+            /*
+            Console.WriteLine(obj2.width);
+            Console.WriteLine(obj2.height);
+            Console.WriteLine(obj2.depth);
+            */
         }
 
         public void resetFile()
