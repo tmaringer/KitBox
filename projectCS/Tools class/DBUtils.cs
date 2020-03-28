@@ -33,45 +33,13 @@ namespace projectCS
             }
         }
 
-        public static void Insert(string database, string code, string quantity)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string sql = "Insert into " + database + " (Code, Quantity) values (\"" + code + "\", \"" + quantity +
-                         "\");";
-            adapter.InsertCommand = new MySqlCommand(sql, conn);
-            conn.Open();
-            adapter.InsertCommand.ExecuteNonQuery();
-            conn.Close();
-        }
-        public static void InsertOrder(string database, string code, string quantity, string orderid)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string sql = "Insert into " + database + " (OrderId, Code, Quantity) values (\""+ orderid + "\", \"" + code + "\", \"" + quantity +
-                         "\");";
-            adapter.InsertCommand = new MySqlCommand(sql, conn);
-            conn.Open();
-            adapter.InsertCommand.ExecuteNonQuery();
-            conn.Close();
-        }
-        public static void InsertDoor(string database, string code, string boxeid)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-            string sql = "Insert into " + database + " (BoxId,Code) values (\""+ boxeid + "\", \"" + code + "\");";
-            adapter.InsertCommand = new MySqlCommand(sql, conn);
-            conn.Open();
-            adapter.InsertCommand.ExecuteNonQuery();
-            conn.Close();
-        }
-        public static string InsertSupplier(string database, string code, string price, string delay, string supplierid)
+        public static string InsertDB(string database, string columns, string values)
         {
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "Insert into " + database + " (SupplierId, Code, SuppPrice, SuppDelay) values (\"" + supplierid + "\", \"" + code + "\", \"" + price + "\", \"" + delay + "\");";
+                string sql = "Insert into " + database + " (" + columns + ") values (" + values + ");";
                 adapter.InsertCommand = new MySqlCommand(sql, conn);
                 conn.Open();
                 adapter.InsertCommand.ExecuteNonQuery();
@@ -82,7 +50,6 @@ namespace projectCS
             {
                 return "Error";
             }
-
         }
 
         public static int CheckAccess(TextBox login, TextBox password)
@@ -131,20 +98,7 @@ namespace projectCS
             conn.Close();
             return dataTable;
         }
-
-        public static DataTable RefreshDBCond(string database, string cond)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where " + cond + ";", conn);
-            DataTable dataTable = new DataTable();
-            MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-            conn.Open();
-            dataTable.Clear();
-            da.Fill(dataTable);
-            conn.Close();
-            return dataTable;
-        }
-
+        
         public static DataTable RefreshDBPartial(string database, string col)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
@@ -180,7 +134,7 @@ namespace projectCS
             };
             return values;
         }
-        public static Dictionary<string, string> SelectCondDBBis(string database, string Code)
+        public static Dictionary<string, string> SelectCondDBDict(string database, string Code)
         {
             Dictionary<string, string> values = new Dictionary<string, string>();
             MySqlConnection conn = new MySqlConnection(MyConString);
@@ -285,30 +239,7 @@ namespace projectCS
             }
             return result;
         }
-
-        public static string UpdateDB(DataGridView grid, string database, string Column, string Cond, string Value)
-        {
-            try
-            {
-                MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
-                conn.Open();
-                MySqlDataReader MyReader2;
-                MyReader2 = cmd.ExecuteReader();
-                while (MyReader2.Read())
-                {
-                }
-                grid.DataSource = RefreshDB(database);
-                conn.Close();
-                return "Done";
-            }
-            catch
-            {
-                return "Error";
-            }
-        }
-
-        public static string UpdateDBV(string database, string Column, string Cond, string Value)
+        public static string UpdateDB(string database, string Column, string Cond, string Value)
         {
             try
             {
@@ -356,26 +287,7 @@ namespace projectCS
             }
             return false;
         }
-        public static string DeleteRow(DataGridView dataGridView,String database, string Code)
-        {
-            string value;
-            try
-            {
-                MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("DELETE from " + database+ " where Code=\"" + Code + "\"", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                value = "Done";
-            }
-            catch
-            {
-                value = "Error";
-
-            }
-            return value;
-        }
-        public static string DeleteRowVD(string database, string Cond)
+        public static string DeleteRow(string database, string Cond)
         {
             try
             {
@@ -427,18 +339,6 @@ namespace projectCS
 
                 }
             }
-            //TODO: check type
-            /*
-            int number;
-            try
-            {
-                number = Convert.ToInt32(textBox4.Text);
-            }
-            catch
-            {
-
-            }
-            */
             if (x >= 1 && x <= dataGridView1.ColumnCount)
             {
                 button7.Enabled = true;
@@ -488,37 +388,23 @@ namespace projectCS
             progressBar1.Increment(-10);
             return x;
         }
-        public static string ConvertSQL(List<string> Elements, List<string> Types)
+        public static string ConvertStringQuotes(List<string> Elements)
         {
             string ElementString = "";
             for(int i=0; i < Elements.Count; i++)
             {
                 if (i == (Elements.Count - 1))
                 {
-                    if (Types[i] == "String")
-                    {
-                        ElementString = ElementString + "\"" + Elements[i] + "\"";
-                    }
-                    else
-                    {
-                        ElementString = ElementString + Elements[i] + "";
-                    }
+                    ElementString = ElementString + "\"" + Elements[i] + "\"";
                 }
                 else
                 {
-                    if (Types[i] == "String")
-                    {
-                        ElementString = ElementString + "\"" + Elements[i] + "\",";
-                    }
-                    else
-                    {
-                        ElementString = ElementString + Elements[i] + ",";
-                    }
+                    ElementString = ElementString + "\"" + Elements[i] + "\",";
                 }
             }
             return ElementString;
         }
-        public static string ConvertSQLBis(List<string> Columns)
+        public static string ConvertStringNoQuotes(List<string> Columns)
         {
             string ColumnString = "";
             for (int i = 0; i < Columns.Count; i++)
@@ -533,44 +419,6 @@ namespace projectCS
                 }
             }
             return ColumnString;
-        }
-        public static string AddRow(List<string> Elements, List<string> Types, List<string> Columns, String database)
-        {
-            string value = "";
-            string ElementString = ConvertSQL(Elements, Types);
-            string ColumnString = ConvertSQLBis(Columns);
-            try
-            {
-                MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                string sql = "Insert into "+ database + " (" + ColumnString + ") values (" + ElementString + ");";
-                //MySqlCommand cmd = new MySqlCommand(sql, conn);
-                adapter.InsertCommand = new MySqlCommand(sql, conn);
-                conn.Open();
-                adapter.InsertCommand.ExecuteNonQuery();
-                conn.Close();
-                value = "Done";
-            }
-            catch (MySqlException e)
-            {
-                value = e.ToString();
-
-            }
-            return value;
-        }
-
-        public static void InsertSupplierOrder(string database, string columns, string values)
-        {
-            string Query = "insert into kitbox." + database + " (" + columns + ") values (" + values + ")";   
-            MySqlConnection MyConn2 = new MySqlConnection(MyConString);
-            MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-            MySqlDataReader MyReader2;
-            MyConn2.Open();
-            MyReader2 = MyCommand2.ExecuteReader();
-            while (MyReader2.Read())
-            {
-            }
-            MyConn2.Close();
         }
     }
 }
