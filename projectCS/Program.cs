@@ -80,24 +80,16 @@ namespace projectCS
             {
                 AngleBracket a = new AngleBracket();
 
-                a.size = new ComponentSize(16,15,14);
-                a.color = ComponentColor.brown;
+                a.size = new ComponentSize(16,150,104);
+                a.color = ComponentColor.galvanized;
 
                 ComponentsDataSav sa = new ComponentsDataSav();
                 
                 sa.resetFile();
                 sa.savData(a);
 
-                AngleBracket b = sa.getCupboard();
-                
-                sa.test();
-                
-                Console.WriteLine(b);
-                /*
-                Console.WriteLine(b.size.depth);
-                Console.WriteLine(b.size.height);
-                Console.WriteLine(b.size.width);
-                */
+                Console.WriteLine(sa.getAngleBracket());
+               
             }
         }
         

@@ -95,7 +95,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="physical components\te.cs" />
     <Compile Include="Tools class\ColorParse.cs" />
     <Compile Include="Tools class\ComponentsDataSav.cs" />
     <Compile Include="Tools class\DBUtils.cs" />

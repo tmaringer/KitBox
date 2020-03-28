@@ -7,16 +7,17 @@ namespace projectCS
     {
         public override ComponentColor color
         {
+            //toto : demander prof pq si je le rajoute pas, il n'appelle pas dynamiquement
+            get => _color;
             set
             {
-                Console.WriteLine("else couleur");
                 if (value == ComponentColor.transparent)
                 {
                     ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
                     window.displayWindow();
                 }
                 else
-                    base.color = value;
+                    _color = value;
             }
         }
 
@@ -36,7 +37,6 @@ namespace projectCS
                         int dimension,
                         ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
         {
-            Console.WriteLine("angle construct");
         }
 
         /// <summary>

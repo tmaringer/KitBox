@@ -31,15 +31,8 @@ namespace projectCS
         protected ComponentSize _size;
         public ComponentSize size
         {
-            get
-            {
-                Console.WriteLine("supo size get");
-                return this._size;
-            }
-
-            set { 
-            Console.WriteLine("sup size set");
-                this._size = value; }
+            get => _size;
+            set => _size = value;
         }
 
         protected bool _inStock;
@@ -59,20 +52,17 @@ namespace projectCS
         protected ComponentColor _color;
         public virtual ComponentColor color
         {
-            get
-            {
-                Console.WriteLine("supo _color get");
-                return _color;
-            }
-
-            set
-            {
-                Console.WriteLine("sup _color set");
-                _color = value;
-            }
+            get => _color;
+            set => _color = value;
         }
 
-        protected CatalogueComponents(double price, string reference, string code, ComponentSize size, bool inStock, int dimension, ComponentColor color)
+        protected CatalogueComponents(double price,
+                                      string reference,
+                                      string code,
+                                      ComponentSize size,
+                                      bool inStock,
+                                      int dimension,
+                                      ComponentColor color)
         {
             this._price = price;
             this._reference = reference;
@@ -81,7 +71,6 @@ namespace projectCS
             this._inStock = inStock;
             this._dimension = dimension;
             this._color = color;
-                Console.WriteLine("sup const");
         }
 
         /// <summary>
