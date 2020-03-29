@@ -7,7 +7,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Data.Common;
 
-namespace projectCS.Tools_class
+namespace projectCS
 {
     public static class DbUtils
     {
