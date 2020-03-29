@@ -1,5 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using projectCS.Tools_class;
+using projectCS;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -578,13 +578,20 @@ namespace ShopInterface
                 {
                     monthsIncStock.Add(entry.Key);
                 }
-
-                int all = graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] +
+                int all = 0;
+                try
+                {
+                    all = graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 3]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 4]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 5]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
                           graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
+                }
+                catch
+                {
+
+                }
                 int average = all / 12;
                 label67.Text = DbUtils.UpdateDb("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
                 progressBar2.PerformStep();

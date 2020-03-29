@@ -119,9 +119,17 @@ namespace projectCS
             dataAdapter.Fill(dt);
             foreach (DataColumn dc in dt.Columns)
             {
-                string col = dc.ColumnName;
-                int value = Convert.ToInt32(dt.Rows[0][col]);
-                values.Add(col, value);
+                try
+                {
+                    string col = dc.ColumnName;
+                    int value = Convert.ToInt32(dt.Rows[0][col]);
+                    values.Add(col, value);
+                }
+                catch
+                {
+
+                }
+                
             }
 
             return values;
