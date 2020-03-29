@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using projectCS;
+using projectCS.Tools_class;
 
 namespace ShopInterface
 {
