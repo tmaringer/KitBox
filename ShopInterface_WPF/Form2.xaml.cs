@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using projectCS;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,22 @@ using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
-namespace ShopInterface
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace ShopInterface2Beta
 {
+    /*
     [SuppressMessage("ReSharper", "PossibleLossOfFraction")]
     [SuppressMessage("ReSharper", "PossibleNullReferenceException")]
-    public partial class Form2 : Form
+    public partial class Form2 : Window
     {
         private readonly List<string> _columnDay = new List<string>();
         private readonly List<string> _columnMonth = new List<string>();
@@ -27,7 +38,7 @@ namespace ShopInterface
         public Form2(string user)
         {
             InitializeComponent();
-            label28.Text = user;
+            label28.Content = user;
             Start();
             FirstThings();
         }
@@ -111,13 +122,13 @@ namespace ShopInterface
         {
             if (comboBox11.Text != "" && comboBox12.Text != "" && textBox3.Text != "")
             {
-                label4.Text = DbUtils.UpdateDb("kitbox", comboBox12.SelectedItem.ToString(),
+                label4.Content = DbUtils.UpdateDb("kitbox", comboBox12.SelectedItem.ToString(),
                     "Code = \"" + comboBox11.SelectedItem + "\"", textBox3.Text);
                 dataGridView1.DataSource = DbUtils.RefreshDb("kitbox");
             }
             else
             {
-                MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -130,7 +141,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please enter an element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please enter an element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -145,13 +156,13 @@ namespace ShopInterface
         {
             if (comboBox10.Text != "")
             {
-                label5.Text = DbUtils.DeleteRow("kitbox", comboBox10.SelectedItem.ToString());
+                label5.Content = DbUtils.DeleteRow("kitbox", comboBox10.SelectedItem.ToString());
                 dataGridView1.DataSource = DbUtils.RefreshDb("kitbox");
                 comboBox10.SelectedItem = "";
             }
             else
             {
-                MessageBox.Show(@"Please select a Code", @"Code missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a Code", @"Code missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -173,7 +184,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please enter a " + label7.Text, label7.Text + @" missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please enter a " + label7.Text, label7.Text + @" missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -213,7 +224,7 @@ namespace ShopInterface
                     chart1.Titles.Add(comboBox3.SelectedItem + " per day");
                     if (comboBox2.SelectedItem != null)
                     {
-                        label14.Text = values[comboBox2.SelectedItem.ToString()].ToString();
+                        label14.Content = values[comboBox2.SelectedItem.ToString()].ToString();
                     }
                 }
                 else if (comboBox1.SelectedItem.ToString() == "month")
@@ -250,7 +261,7 @@ namespace ShopInterface
                     chart1.Titles.Add(comboBox3.SelectedItem + " per month");
                     if (comboBox2.SelectedItem != null)
                     {
-                        label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+                        label14.Content = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
                     }
 
                     int all = graphMonth[months[months.Count - 2]] + graphMonth[months[months.Count - 3]] +
@@ -296,13 +307,13 @@ namespace ShopInterface
                     chart1.Titles.Add(comboBox3.SelectedItem + " per year");
                     if (comboBox2.SelectedItem != null)
                     {
-                        label14.Text = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
+                        label14.Content = graphMonth[comboBox2.SelectedItem.ToString()].ToString();
                     }
                 }
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -396,11 +407,11 @@ namespace ShopInterface
                     dataGridView3.Columns["Status"].Visible = false;
                 }
                 Colours(dataGridView3, "Disponibility");
-                label19.Text = @"Done";
+                label19.Content = @"Done";
             }
             else
             {
-                MessageBox.Show(@"Please select a Customer Name", @"Customer Name missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a Customer Name", @"Customer Name missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -489,7 +500,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select an OrderId", @"OrderId missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select an OrderId", @"OrderId missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -498,7 +509,7 @@ namespace ShopInterface
         {
             // Updating the Label which displays the current time 
             DateTime dateToDisplay = DateTime.Now;
-            label13.Text = dateToDisplay.ToString("D", CultureInfo.CreateSpecificCulture("en-US")) + Environment.NewLine +
+            label13.Content = dateToDisplay.ToString("D", CultureInfo.CreateSpecificCulture("en-US")) + Environment.NewLine +
                            dateToDisplay.ToString("t", CultureInfo.CreateSpecificCulture("en-US"));
             //time.Split(',');
             label13.Visible = true;
@@ -554,7 +565,8 @@ namespace ShopInterface
             progressBar2.Value = 10;
             button16.Enabled = false;
             Cursor.Current = Cursors.WaitCursor;
-            foreach (string i in DbUtils.RefList("Code", "kitbox"))
+            List<string> code = DbUtils.RefList("Code", "kitbox");
+            foreach (string i in code)
             {
                 Dictionary<string, int> valuesIncStock = DbUtils.SelectCondDb("sales", i);
                 Dictionary<string, int> graphMonthIncStock = new Dictionary<string, int>();
@@ -577,22 +589,16 @@ namespace ShopInterface
                 {
                     monthsIncStock.Add(entry.Key);
                 }
-                try
-                {
-                    int all = graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] +
-                         graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 3]] +
-                         graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 4]] +
-                         graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 5]] +
-                         graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
-                         graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
-                    int average = all / 12;
-                    label67.Text = DbUtils.UpdateDb("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
-                    progressBar2.PerformStep();
-                }
-                catch
-                {
 
-                }
+                int all = graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 2]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 3]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 4]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 5]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 6]] +
+                          graphMonthIncStock[monthsIncStock[monthsIncStock.Count - 7]];
+                int average = all / 12;
+                label67.Content = DbUtils.UpdateDb("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
+                progressBar2.PerformStep();
             }
 
             Cursor.Current = Cursors.Default;
@@ -607,7 +613,7 @@ namespace ShopInterface
             {
                 string valueadd = (Convert.ToInt32(quantity) + Convert.ToInt32(DbUtils.RefList("Quantity",
                     "supplierspending where Code = \"" + code + "\"")[0])).ToString();
-                label35.Text = DbUtils.UpdateDb("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
+                label35.Content = DbUtils.UpdateDb("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
             }
             else
             {
@@ -675,7 +681,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -753,11 +759,11 @@ namespace ShopInterface
                     comboBox20.Items.Add(row.Cells["CupboardId"].Value.ToString());
                 }
 
-                label52.Text = @"Done";
+                label52.Content = @"Done";
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -777,11 +783,11 @@ namespace ShopInterface
 
                 dataGridView6.DataSource =
                     DbUtils.RefreshDb("cupboards where OrderId=\"" + comboBox22.SelectedItem + "\"");
-                label53.Text = @"Done";
+                label53.Content = @"Done";
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -833,11 +839,11 @@ namespace ShopInterface
                     DbUtils.RefreshDb("cupboards where OrderId=\"" + comboBox22.SelectedItem + "\"");
                 dataGridView12.DataSource = null;
                 Sandbox.ElementList(comboBox27.Text, dataGridView12);
-                label57.Text = @"Done";
+                label57.Content = @"Done";
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -967,7 +973,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select a number of doors", @"Number of doors missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a number of doors", @"Number of doors missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -994,7 +1000,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierId", @"SupplierId missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierId", @"SupplierId missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1014,13 +1020,13 @@ namespace ShopInterface
                 }
                 else
                 {
-                    MessageBox.Show(@"Please enter every element", @"Element missing", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show(@"Please enter every element", @"Element missing", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 }
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1031,7 +1037,7 @@ namespace ShopInterface
             {
                 if (comboBox15.Text != "")
                 {
-                    label38.Text = DbUtils.DeleteRow("supplierslistprices",
+                    label38.Content = DbUtils.DeleteRow("supplierslistprices",
                         "Code = \"" + comboBox15.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem +
                         "\"");
                     dataGridView10.DataSource =
@@ -1039,13 +1045,13 @@ namespace ShopInterface
                 }
                 else
                 {
-                    MessageBox.Show(@"Please select a Code", @"Code missing", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show(@"Please select a Code", @"Code missing", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 }
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1056,7 +1062,7 @@ namespace ShopInterface
             {
                 if (comboBox17.Text != "" && comboBox19.Text != "" && textBox6.Text != "")
                 {
-                    label44.Text = DbUtils.UpdateDb("supplierslistprices", comboBox19.SelectedItem.ToString(),
+                    label44.Content = DbUtils.UpdateDb("supplierslistprices", comboBox19.SelectedItem.ToString(),
                         "Code=\"" + comboBox17.SelectedItem + "\" and SupplierId = \"" + comboBox34.SelectedItem + "\"",
                         textBox6.Text);
                     dataGridView10.DataSource =
@@ -1064,13 +1070,13 @@ namespace ShopInterface
                 }
                 else
                 {
-                    MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
+                    System.Windows.Forms.MessageBox.Show(@"Please select or enter every element", @"Element missing", MessageBoxButtons.OK,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                 }
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierId", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1213,7 +1219,7 @@ namespace ShopInterface
                 progressBar3.PerformStep();
             }
 
-            label47.Text = @"Done";
+            label47.Content = @"Done";
         }
 
         private void button28_Click(object sender, EventArgs e)
@@ -1241,7 +1247,7 @@ namespace ShopInterface
                     string newCode = DbUtils.RefList("Code",
                         "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + couleur +
                         "\"")[0];
-                    label61.Text = DbUtils.UpdateDb("angles", "Code",
+                    label61.Content = DbUtils.UpdateDb("angles", "Code",
                         "AngleId = \"" + angleId[Convert.ToInt32(elementId) - 1] + "\" and CupboardId = \"" +
                         cupboardId + "\"", newCode);
                     dataGridView12.DataSource = null;
@@ -1256,7 +1262,7 @@ namespace ShopInterface
                     string newCode = DbUtils.RefList("Code",
                         "kitbox where Height =\"" + height + "\"and Width = \"" + width +
                         "\" and Ref = \"Door\" and Colour = \"" + couleur + "\"")[0];
-                    label61.Text = DbUtils.UpdateDb("doors", "Code",
+                    label61.Content = DbUtils.UpdateDb("doors", "Code",
                         "DoorId = \"" + doorId[Convert.ToInt32(elementId) - 1] + "\" and BoxId = \"" + boxId + "\"",
                         newCode);
                     dataGridView12.DataSource = null;
@@ -1286,7 +1292,7 @@ namespace ShopInterface
                     }
 
                     string newCode = code.Substring(0, code.Length - 2) + suffix;
-                    label61.Text = DbUtils.UpdateDb("panels", "Code",
+                    label61.Content = DbUtils.UpdateDb("panels", "Code",
                         "PanelId = \"" + panelId[Convert.ToInt32(elementId) - 1] + "\" and BoxId = \"" + boxId +
                         "\" and Position = \"" + position + "\"", newCode);
                     dataGridView12.DataSource = null;
@@ -1295,7 +1301,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1312,11 +1318,11 @@ namespace ShopInterface
                     List<string> codeList = DbUtils.RefList("Code", "listsitems where OrderId = \"" + orderId + "\"");
                     foreach (string i in codeList)
                     {
-                        label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                        label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                             "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "never tested");
                     }
 
-                    label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
+                    label25.Content = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
                 }
                 else if (action == "test availability")
                 {
@@ -1336,12 +1342,12 @@ namespace ShopInterface
                                 Convert.ToInt32(number) > 4)
                             {
                                 isalltrue += 1;
-                                label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                                     "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "true");
                             }
                             else
                             {
-                                label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                                     "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "false");
                             }
 
@@ -1351,7 +1357,7 @@ namespace ShopInterface
 
                     if (isalltrue == all)
                     {
-                        label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                        label25.Content = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                             "awaiting for removal");
                         foreach (string i in codeList)
                         {
@@ -1363,22 +1369,22 @@ namespace ShopInterface
                                     "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                                 string stock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                                 int stockNow = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                                label25.Text = DbUtils.UpdateDb("kitbox", "Instock", "Code =\"" + i + "\"",
+                                label25.Content = DbUtils.UpdateDb("kitbox", "Instock", "Code =\"" + i + "\"",
                                     stockNow.ToString());
-                                label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                                     "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "completed");
                             }
                         }
                     }
                     else
                     {
-                        label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                        label25.Content = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                             "not ready");
                     }
                 }
                 else if (action == "remove now")
                 {
-                    label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "completed");
+                    label25.Content = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "completed");
                 }
                 else if (action == "partial removal")
                 {
@@ -1401,9 +1407,9 @@ namespace ShopInterface
                                     "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                                 string stock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                                 int stockNow = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                                label25.Text = DbUtils.UpdateDb("kibox", "Instock", "Code =\"" + i + "\"",
+                                label25.Content = DbUtils.UpdateDb("kibox", "Instock", "Code =\"" + i + "\"",
                                     stockNow.ToString());
-                                label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                                     "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "completed");
                                 isalltrue += 1;
                             }
@@ -1416,7 +1422,7 @@ namespace ShopInterface
                                     string quantity = DbUtils.RefList("Quantity",
                                         "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                                     AddToPendingSuppliers(i, quantity);
-                                    label25.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                    label25.Content = DbUtils.UpdateDb("listsitems", "Disponibility",
                                         "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "added");
                                 }
                             }
@@ -1438,12 +1444,12 @@ namespace ShopInterface
                     float kn = all;
                     float procent = alll / kn * 100;
                     int procentint = (int) procent;
-                    label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                    label25.Content = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                         "uncompleted, " + procentint + "%");
                 }
                 else if (action == "delete this order")
                 {
-                    label25.Text = DbUtils.DeleteRow("orders", "OrderId = \"" + orderId + "\"");
+                    label25.Content = DbUtils.DeleteRow("orders", "OrderId = \"" + orderId + "\"");
                 }
 
                 Coll(DbUtils.RefList("Status", "orders where OrderId =\"" + orderId + "\"")[0]);
@@ -1460,7 +1466,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select every element", @"Element missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1642,7 +1648,7 @@ namespace ShopInterface
                 }
 
                 dataGridView5.DataSource = elements;
-                label34.Text = @"Amount: " + amount + @"€";
+                label34.Content = @"Amount: " + amount + @"€";
                 if (Math.Abs(amount) > 0.00)
                 {
                     button18.Enabled = true;
@@ -1650,7 +1656,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierId", @"SupplierId missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierId", @"SupplierId missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1658,7 +1664,7 @@ namespace ShopInterface
         private void button18_Click(object sender, EventArgs e)
         {
             string columns = "SupplierId,Amount,Date,Status";
-            string amount = label34.Text.Split(' ')[1];
+            string amount = label34.Content.Split(' ')[1];
             string amount1 = amount.Split('€')[0];
             string realamount = amount1.Replace(',', '.');
             DateTime myDateTime = DateTime.Now;
@@ -1684,12 +1690,12 @@ namespace ShopInterface
                 string col = "SupplierOrderId,Code,Quantity";
                 string val = "\"" + supplierOrderId + "\", \"" + code + "\", \"" + quantity + "\"";
                 DbUtils.InsertDb("supplierslistsitems", col, val);
-                label34.Text = DbUtils.DeleteRow("supplierspending",
+                label34.Content = DbUtils.DeleteRow("supplierspending",
                     "Code = \"" + code + "\"and Quantity = \"" + quantity + "\"");
             }
 
             dataGridView5.DataSource = null;
-            label34.Text = @"Amount: 0€";
+            label34.Content = @"Amount: 0€";
             button18.Enabled = false;
             comboBox18.Text = "";
             dataGridView8.DataSource = null;
@@ -1711,7 +1717,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierOrderId", @"SupplierOrderId missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierOrderId", @"SupplierOrderId missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1728,9 +1734,9 @@ namespace ShopInterface
                         i + "\"")[0];
                     string instock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                     int newquantity = Convert.ToInt32(quantity) + Convert.ToInt32(instock);
-                    label30.Text = DbUtils.UpdateDb("kitbox", "Instock", "Code = \"" + i + "\"",
+                    label30.Content = DbUtils.UpdateDb("kitbox", "Instock", "Code = \"" + i + "\"",
                         newquantity.ToString());
-                    label30.Text = DbUtils.UpdateDb("suppliersorders", "Status",
+                    label30.Content = DbUtils.UpdateDb("suppliersorders", "Status",
                         "SupplierOrderId = \"" + comboBox8.SelectedItem + "\"", "received");
                     comboBox8.Text = "";
                     dataGridView7.DataSource = DbUtils.RefreshDb("suppliersorders");
@@ -1738,7 +1744,7 @@ namespace ShopInterface
             }
             else
             {
-                MessageBox.Show(@"Please select a SupplierOrderId", @"SupplierOrderId missing", MessageBoxButtons.OK,
+                System.Windows.Forms.MessageBox.Show(@"Please select a SupplierOrderId", @"SupplierOrderId missing", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
             }
         }
@@ -1755,4 +1761,5 @@ namespace ShopInterface
             }
         }
     }
+    */
 }

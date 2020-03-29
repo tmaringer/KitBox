@@ -50,13 +50,13 @@ namespace projectCS
             }
         }
 
-        public static int CheckAccess(TextBox login, TextBox password)
+        public static int CheckAccess(string login, string password)
         {
             int value; 
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("SELECT password FROM users WHERE users = \"" + login.Text + "\";", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT password FROM users WHERE users = \"" + login + "\";", conn);
                 conn.Open();
                 string passwordDb = "";
                 using (MySqlDataReader reader = cmd.ExecuteReader())
@@ -67,7 +67,7 @@ namespace projectCS
                     }
                 }
                 conn.Close();
-                if (ComputeSha256Hash(password.Text) == passwordDb)
+                if (ComputeSha256Hash(password) == passwordDb)
                 {
                     value = 0;
                 }
@@ -119,9 +119,16 @@ namespace projectCS
             dataAdapter.Fill(dt);
             foreach (DataColumn dc in dt.Columns)
             {
-                string col = dc.ColumnName;
-                int value = Convert.ToInt32(dt.Rows[0][col]);
-                values.Add(col, value);
+                try
+                {
+                    string col = dc.ColumnName;
+                    int value = Convert.ToInt32(dt.Rows[0][col]);
+                    values.Add(col, value);
+                }
+                catch
+                {
+
+                }
             }
 
             return values;
