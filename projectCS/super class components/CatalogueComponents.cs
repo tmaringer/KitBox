@@ -114,7 +114,7 @@ namespace projectCS
         transparent
     }
 
-    public class ComponentSize
+    public struct ComponentSize
     {
         private int _height, _width, _depth;
         public int height
@@ -142,5 +142,4 @@ namespace projectCS
             _depth = depth;
         }
     }
-
 }

@@ -4,36 +4,31 @@ using System.IO;
 
 namespace projectCS.Tools_class
 {
-    public class ComponentsDataSav
+    public static class ComponentsDataSav
     {
-        private string _extension;
-        private string _completePath;
-        private string _folderPath;
-        
-        public ComponentsDataSav() : this(".json")
-        {
-        }
+        private static string _extension = ".json";
+        private static string _folderPath = (Directory.GetParent(Environment.CurrentDirectory).Parent.FullName).Replace("\\projectCS", "") + "\\data";
+        private static string _completePath = _folderPath + "\\object" + _extension;
 
-        public ComponentsDataSav(string extension)
+        /// <summary>
+        ///     Sav state of an object in .json file.
+        /// </summary>
+        /// <param name="obj">
+        ///     Object whose sav data.
+        /// </param>
+        public static void savData(object obj)
         {
-            this._extension = extension;
-            this._folderPath = (Directory.GetParent(Environment.CurrentDirectory).Parent.FullName).Replace("\\projectCS", "");
-            this._folderPath += "\\data";
-            this._completePath += _folderPath + "\\object" + _extension;
             createFolder();
-        }
 
-        public void savData(object obj)
-        {
             string json = JsonConvert.SerializeObject(obj);
 
-            using (StreamWriter file = File.AppendText(_completePath))
+            using (StreamWriter file = new StreamWriter(_completePath, true))
             {
                 file.WriteLine(json);
             }
         }
-        
-        public AngleBracket getAngleBracket()
+
+        public static AngleBracket getAngleBracket()
         {
             AngleBracket obj = new AngleBracket();
 
@@ -51,19 +46,24 @@ namespace projectCS.Tools_class
             return obj;
         }
 
-        public void resetFile()
+        /// <summary>
+        ///     Reset the json file where the object data have been saved.
+        /// </summary>
+        public static void resetFile()
         {
+            createFolder();
+
             if (Directory.Exists(_folderPath))
             {
                 File.WriteAllText(_completePath, string.Empty);
             }
         }
 
-        private void createFolder()
+        private static void createFolder()
         {
             if (!(Directory.Exists(_folderPath)))
             {
-                DirectoryInfo di = Directory.CreateDirectory(_folderPath);
+                Directory.CreateDirectory(_folderPath);
             }
         }
     }

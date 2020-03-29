@@ -78,18 +78,23 @@ namespace projectCS
 
             public static void autreTest()
             {
-                AngleBracket a = new AngleBracket();
+                AngleBracket angleBracketWithParam1 = new AngleBracket(1681480, "referenceTest", "1", new ComponentSize(40, 10, 10), false, 0, ComponentColor.brown);
+                ComponentsDataSav.resetFile();
 
-                a.size = new ComponentSize(16,150,104);
-                a.color = ComponentColor.galvanized;
+                ComponentsDataSav.savData(angleBracketWithParam1);
+                Console.WriteLine(ComponentsDataSav.getAngleBracket());
 
-                ComponentsDataSav sa = new ComponentsDataSav();
-                
-                sa.resetFile();
-                sa.savData(a);
+                /*
+                AngleBracket angleBracketEmpty1;
+                AngleBracket angleBracketWithParam1 = new AngleBracket(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0, ComponentColor.black); ;
 
-                Console.WriteLine(sa.getAngleBracket());
-               
+                ComponentsDataSav com = new ComponentsDataSav();
+
+                com.savData(angleBracketWithParam1);
+                angleBracketEmpty1 = com.getAngleBracket();
+                Console.WriteLine(angleBracketWithParam1);
+                Console.WriteLine(angleBracketEmpty1);
+                */
             }
         }
         
