@@ -2,253 +2,253 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using projectCS;
+using projectCS.Tools_class;
 using Color = System.Drawing.Color;
 namespace ShopInterface
 {
     class Sandbox
     {
-        public static void SandBox(string OrderId)
+        public static void SandBox(string orderId)
         {
-            DBUtils.DeleteRow("listsitems", "OrderId = \"" + OrderId + "\"");
-            foreach (string i in DBUtils.RefList("CupboardId", "cupboards where OrderId = \""+ OrderId +"\""))
+            DbUtils.DeleteRow("listsitems", "OrderId = \"" + orderId + "\"");
+            foreach (string i in DbUtils.RefList("CupboardId", "cupboards where OrderId = \""+ orderId +"\""))
             {
-                foreach (string j in DBUtils.RefList("BoxId", "boxes where CupboardId = \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + i + "\""))
                 {
-                    foreach (string k in DBUtils.RefList("Code", "doors where BoxId= \"" + j + "\""))
+                    foreach (string k in DbUtils.RefList("Code", "doors where BoxId= \"" + j + "\""))
                     {
-                        Test(OrderId, k);
-                        if (DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"Cup\"").Count == 0)
+                        Test(orderId, k);
+                        if (DbUtils.RefList("Code", "listsitems where OrderId = \"" + orderId + "\" and Code = \"Cup\"").Count == 0)
                         {
-                            DBUtils.InsertDB("listsitems","OrderId,Code,Quantity", "\"" + OrderId + "\", \"" + "Cup" + "\", \"" + "1" + "\"");
+                            DbUtils.InsertDb("listsitems","OrderId,Code,Quantity", "\"" + orderId + "\", \"" + "Cup" + "\", \"" + "1" + "\"");
                         }
                         else
                         {
-                            string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"Cup\"")[0];
-                            int new_quantity = Convert.ToInt32(quantity) + 1;
-                            DBUtils.UpdateDB("listsitems", "Quantity", "OrderId = \"" + OrderId + "\" and Code = \"Cup\"", new_quantity.ToString());
+                            string quantity = DbUtils.RefList("Quantity", "listsitems where OrderId = \"" + orderId + "\" and Code = \"Cup\"")[0];
+                            int newQuantity = Convert.ToInt32(quantity) + 1;
+                            DbUtils.UpdateDb("listsitems", "Quantity", "OrderId = \"" + orderId + "\" and Code = \"Cup\"", newQuantity.ToString());
                         }
                     }
-                    foreach (string k in DBUtils.RefList("Code", "crossbars where BoxId= \"" + j + "\""))
+                    foreach (string k in DbUtils.RefList("Code", "crossbars where BoxId= \"" + j + "\""))
                     {
-                        Test(OrderId, k);
+                        Test(orderId, k);
                     }
-                    foreach (string k in DBUtils.RefList("Code", "panels where BoxId= \"" + j + "\""))
+                    foreach (string k in DbUtils.RefList("Code", "panels where BoxId= \"" + j + "\""))
                     {
-                        Test(OrderId, k);
+                        Test(orderId, k);
                     }
-                    foreach (string k in DBUtils.RefList("Code", "cleats where BoxId= \"" + j + "\""))
+                    foreach (string k in DbUtils.RefList("Code", "cleats where BoxId= \"" + j + "\""))
                     {
-                        Test(OrderId, k);
+                        Test(orderId, k);
                     }
                     
                 }
-                foreach (string j in DBUtils.RefList("Code", "angles where CupboardId= \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("Code", "angles where CupboardId= \"" + i + "\""))
                 {
-                    Test(OrderId, j);
+                    Test(orderId, j);
                 }
             }
             Console.ReadLine();
         }
 
-        public static void Test(string OrderId, string k)
+        public static void Test(string orderId, string k)
         {
-            if (DBUtils.RefList("Code", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"").Count == 0)
+            if (DbUtils.RefList("Code", "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + k + "\"").Count == 0)
             {
-                DBUtils.InsertDB("listsitems", "OrderId,Code,Quantity", "\"" + OrderId + "\", \"" + k + "\", \"" + "1" + "\"");
+                DbUtils.InsertDb("listsitems", "OrderId,Code,Quantity", "\"" + orderId + "\", \"" + k + "\", \"" + "1" + "\"");
             }
             else
             {
-                string quantity = DBUtils.RefList("Quantity", "listsitems where OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"")[0];
-                int new_quantity = Convert.ToInt32(quantity) + 1;
-                DBUtils.UpdateDB("listsitems", "Quantity", "OrderId = \"" + OrderId + "\" and Code = \"" + k + "\"", new_quantity.ToString());
+                string quantity = DbUtils.RefList("Quantity", "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + k + "\"")[0];
+                int newQuantity = Convert.ToInt32(quantity) + 1;
+                DbUtils.UpdateDb("listsitems", "Quantity", "OrderId = \"" + orderId + "\" and Code = \"" + k + "\"", newQuantity.ToString());
             }
         }
 
-        public static void Depth(string CupboardId, int depth)
+        public static void Depth(string cupboardId, int depth)
         {
-            foreach (string i in DBUtils.RefList("BoxId", "boxes where CupboardId = \"" + CupboardId + "\""))
+            foreach (string i in DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + cupboardId + "\""))
             {
-                foreach (string j in DBUtils.RefList("Position", "crossbars where BoxId= \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("Position", "crossbars where BoxId= \"" + i + "\""))
                 {
                     // LL = LOW LEFT, HL = HIGH LEFT, LR = LOW RIGHT, HR = HIGH RIGHT
                     if (j == "LL" || j == "HL" || j == "LR" || j == "HR")
                     {
-                        string code = DBUtils.RefList("Code", "crossbars where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string new_code = code.Substring(0, 3) + depth.ToString();
-                        DBUtils.UpdateDB("crossbars", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "crossbars where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
+                        string newCode = code.Substring(0, 3) + depth.ToString();
+                        DbUtils.UpdateDb("crossbars", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", newCode);
                     }
                 }
-                foreach (string j in DBUtils.RefList("Position", "panels where BoxId= \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("Position", "panels where BoxId= \"" + i + "\""))
                 {
                     if (j == "H" || j == "L")
                     {
-                        string code = DBUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string width = DBUtils.RefList("Width", "kitbox where Code = \"" + code + "\"")[0];
-                        string new_code = code.Substring(0, 3) + depth.ToString() + width.ToString() + code.Substring(code.Length - 2, 2);
-                        DBUtils.UpdateDB("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
+                        string width = DbUtils.RefList("Width", "kitbox where Code = \"" + code + "\"")[0];
+                        string newCode = code.Substring(0, 3) + depth.ToString() + width + code.Substring(code.Length - 2, 2);
+                        DbUtils.UpdateDb("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", newCode);
                     }
                     else if (j == "RS" || j == "LS")
                     {
-                        string code = DBUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string height = DBUtils.RefList("Height", "kitbox where Code = \"" + code + "\"")[0];
-                        string new_code = code.Substring(0, 3) + height.ToString() + depth.ToString() + code.Substring(code.Length - 2, 2);
-                        DBUtils.UpdateDB("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
+                        string height = DbUtils.RefList("Height", "kitbox where Code = \"" + code + "\"")[0];
+                        string newCode = code.Substring(0, 3) + height + depth.ToString() + code.Substring(code.Length - 2, 2);
+                        DbUtils.UpdateDb("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", newCode);
                     }
                 }
             }
-            DBUtils.UpdateDB("cupboards", "Depth", "CupboardId= \"" + CupboardId + "\"", depth.ToString());
+            DbUtils.UpdateDb("cupboards", "Depth", "CupboardId= \"" + cupboardId + "\"", depth.ToString());
         }
 
-        public static void Width(string CupboardId, int width)
+        public static void Width(string cupboardId, int width)
         {
-            foreach (string i in DBUtils.RefList("BoxId", "boxes where CupboardId = \"" + CupboardId + "\""))
+            foreach (string i in DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + cupboardId + "\""))
             {
-                if (Convert.ToInt32(DBUtils.RefList("Width", "cupboards where CupboardId = \"" + CupboardId + "\"")[0]) > 60)
+                if (Convert.ToInt32(DbUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardId + "\"")[0]) > 60)
                 {
-                    foreach (string j in DBUtils.RefList("DoorId", "doors where BoxId= \"" + i + "\""))
+                    foreach (string j in DbUtils.RefList("DoorId", "doors where BoxId= \"" + i + "\""))
                     {
-                        string new_code;
+                        string newCode;
                         if (width == 62)
                         {
-                            string code = DBUtils.RefList("Code", "doors where DoorId = \"" + j + "\"")[0];
-                            new_code = code.Substring(0, 5) + "62" + code.Substring(7, 2);
+                            string code = DbUtils.RefList("Code", "doors where DoorId = \"" + j + "\"")[0];
+                            newCode = code.Substring(0, 5) + "62" + code.Substring(7, 2);
                         }
                         else
                         {
-                            string code = DBUtils.RefList("Code", "doors where DoorId = \"" + j + "\"")[0];
-                            int new_largeur = (Convert.ToInt32(width) / 2) + 2;
-                            new_code = code.Substring(0, 5) + new_largeur.ToString() + code.Substring(7, 2);
+                            string code = DbUtils.RefList("Code", "doors where DoorId = \"" + j + "\"")[0];
+                            int newWidth = (Convert.ToInt32(width) / 2) + 2;
+                            newCode = code.Substring(0, 5) + newWidth.ToString() + code.Substring(7, 2);
                         }
-                        DBUtils.UpdateDB("doors", "Code", "DoorId = \"" + j + "\"", new_code);
+                        DbUtils.UpdateDb("doors", "Code", "DoorId = \"" + j + "\"", newCode);
                     }
                 }
-                foreach (string j in DBUtils.RefList("Position", "crossbars where BoxId= \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("Position", "crossbars where BoxId= \"" + i + "\""))
                 {
                     if (j == "HB" || j == "HF" || j == "LF" || j == "LB")
                     {
-                        string code = DBUtils.RefList("Code", "crossbars where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string new_code = code.Substring(0, 3) + width.ToString();
-                        DBUtils.UpdateDB("crossbars", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "crossbars where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
+                        string newCode = code.Substring(0, 3) + width.ToString();
+                        DbUtils.UpdateDb("crossbars", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", newCode);
                     }
                 }
-                foreach (string j in DBUtils.RefList("Position", "panels where BoxId= \"" + i + "\""))
+                foreach (string j in DbUtils.RefList("Position", "panels where BoxId= \"" + i + "\""))
                 {
                     if (j == "H" || j == "L" || j == "B")
                     {
-                        string code = DBUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
-                        string new_code = code.Substring(0, 5) + width.ToString() + code.Substring(code.Length - 2, 2);
-                        DBUtils.UpdateDB("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "panels where BoxId = \"" + i + "\" and Position = \"" + j + "\"")[0];
+                        string newCode = code.Substring(0, 5) + width.ToString() + code.Substring(code.Length - 2, 2);
+                        DbUtils.UpdateDb("panels", "Code", "Position = \"" + j + "\" and BoxId = \"" + i + "\"", newCode);
                     }
                 }
                 
             }
-            DBUtils.UpdateDB("cupboards", "Width", "CupboardId= \"" + CupboardId + "\"", width.ToString());
+            DbUtils.UpdateDb("cupboards", "Width", "CupboardId= \"" + cupboardId + "\"", width.ToString());
         }
 
-        public static void Height(string BoxId, int height)
+        public static void Height(string boxId, int height)
         {
             int specialheight = height - 4;
-            string cupboardid = DBUtils.RefList("CupboardId", "boxes where BoxId= \"" + BoxId + "\"")[0];
-            string backupheight = DBUtils.RefList("Height", "boxes where BoxId= \"" + BoxId + "\"")[0];
+            string cupboardid = DbUtils.RefList("CupboardId", "boxes where BoxId= \"" + boxId + "\"")[0];
+            string backupheight = DbUtils.RefList("Height", "boxes where BoxId= \"" + boxId + "\"")[0];
             int heightCupboard = 0;
-            DBUtils.UpdateDB("boxes", "Height", "BoxId= \"" + BoxId + "\"", height.ToString());
-            foreach (string i in DBUtils.RefList("Height", "boxes where CupboardId = \"" + cupboardid + "\""))
+            DbUtils.UpdateDb("boxes", "Height", "BoxId= \"" + boxId + "\"", height.ToString());
+            foreach (string i in DbUtils.RefList("Height", "boxes where CupboardId = \"" + cupboardid + "\""))
             {
                 heightCupboard += Convert.ToInt32(i);
             }
             if (heightCupboard > 375)
             {
-                DBUtils.UpdateDB("boxes", "Height", "BoxId= \"" + BoxId + "\"", backupheight);
+                DbUtils.UpdateDb("boxes", "Height", "BoxId= \"" + boxId + "\"", backupheight);
             }
             else
             {
-                foreach (string i in DBUtils.RefList("Code", "cleats where BoxId= \"" + BoxId + "\""))
+                foreach (string i in DbUtils.RefList("Code", "cleats where BoxId= \"" + boxId + "\""))
                 {
-                    string new_code = i.Substring(0, 3) + (specialheight - 5).ToString();
-                    DBUtils.UpdateDB("cleats", "Code", "BoxId = \"" + BoxId + "\"", new_code);
+                    string newCode = i.Substring(0, 3) + (specialheight - 5).ToString();
+                    DbUtils.UpdateDb("cleats", "Code", "BoxId = \"" + boxId + "\"", newCode);
                 }
-                foreach (string i in DBUtils.RefList("Position", "panels where BoxId= \"" + BoxId + "\""))
+                foreach (string i in DbUtils.RefList("Position", "panels where BoxId= \"" + boxId + "\""))
                 {
                     if (i == "B")
                     {
-                        string code = DBUtils.RefList("Code", "panels where BoxId = \"" + BoxId + "\" and Position = \"" + i + "\"")[0];
-                        string width = DBUtils.RefList("Width", "kitbox where Code = \"" + code + "\"")[0];
-                        string new_code = code.Substring(0, 3) + specialheight.ToString() + width + code.Substring(code.Length - 2, 2);
-                        DBUtils.UpdateDB("panels", "Code", "Position = \"" + i + "\" and BoxId = \"" + BoxId + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "panels where BoxId = \"" + boxId + "\" and Position = \"" + i + "\"")[0];
+                        string width = DbUtils.RefList("Width", "kitbox where Code = \"" + code + "\"")[0];
+                        string newCode = code.Substring(0, 3) + specialheight.ToString() + width + code.Substring(code.Length - 2, 2);
+                        DbUtils.UpdateDb("panels", "Code", "Position = \"" + i + "\" and BoxId = \"" + boxId + "\"", newCode);
                     }
                     else if (i == "RS" || i == "LS")
                     {
-                        string code = DBUtils.RefList("Code", "panels where BoxId = \"" + BoxId + "\" and Position = \"" + i + "\"")[0];
-                        string width = DBUtils.RefList("Depth", "kitbox where Code = \"" + code + "\"")[0];
-                        string new_code = code.Substring(0, 3) + specialheight.ToString() + width + code.Substring(code.Length - 2, 2);
-                        DBUtils.UpdateDB("panels", "Code", "Position = \"" + i + "\" and BoxId = \"" + BoxId + "\"", new_code);
+                        string code = DbUtils.RefList("Code", "panels where BoxId = \"" + boxId + "\" and Position = \"" + i + "\"")[0];
+                        string width = DbUtils.RefList("Depth", "kitbox where Code = \"" + code + "\"")[0];
+                        string newCode = code.Substring(0, 3) + specialheight.ToString() + width + code.Substring(code.Length - 2, 2);
+                        DbUtils.UpdateDb("panels", "Code", "Position = \"" + i + "\" and BoxId = \"" + boxId + "\"", newCode);
                     }
                 }
-                foreach (string i in DBUtils.RefList("DoorId", "doors where BoxId= \"" + BoxId + "\""))
+                foreach (string i in DbUtils.RefList("DoorId", "doors where BoxId= \"" + boxId + "\""))
                 {
-                    string code = DBUtils.RefList("Code", "doors where BoxId = \"" + BoxId + "\" and DoorId = \"" + i + "\"")[0];
-                    string new_code = code.Substring(0, 3) + specialheight.ToString() + code.Substring(code.Length - 4, 4);
-                    DBUtils.UpdateDB("doors", "Code", "DoorId = \"" + i + "\"", new_code);
+                    string code = DbUtils.RefList("Code", "doors where BoxId = \"" + boxId + "\" and DoorId = \"" + i + "\"")[0];
+                    string newCode = code.Substring(0, 3) + specialheight.ToString() + code.Substring(code.Length - 4, 4);
+                    DbUtils.UpdateDb("doors", "Code", "DoorId = \"" + i + "\"", newCode);
                 }
                 if (heightCupboard % 36 == 0 || heightCupboard % 46 == 0 || heightCupboard % 56 == 0)
                 {
-                    foreach (string i in DBUtils.RefList("AngleId", "angles where CupboardId= \"" + cupboardid + "\""))
+                    foreach (string i in DbUtils.RefList("AngleId", "angles where CupboardId= \"" + cupboardid + "\""))
                     {
-                        string code = DBUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
-                        string new_code;
+                        string code = DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
+                        string newCode;
                         if (code.Length <= 8)
                         {
-                            new_code = code.Substring(0, 3) + heightCupboard.ToString() + code.Substring(code.Length - 2, 2);
+                            newCode = code.Substring(0, 3) + heightCupboard.ToString() + code.Substring(code.Length - 2, 2);
                         }
                         else
                         {
-                            new_code = code.Substring(0, 3) + heightCupboard.ToString() + code.Substring(code.Length - 5, 2);
+                            newCode = code.Substring(0, 3) + heightCupboard.ToString() + code.Substring(code.Length - 5, 2);
                         }
-                        DBUtils.UpdateDB("angles", "Code", "AngleId = \"" + i + "\"", new_code);
+                        DbUtils.UpdateDb("angles", "Code", "AngleId = \"" + i + "\"", newCode);
                     }
                 }
                 else
                 {
-                    List<string> All = DBUtils.RefListND("Height", "kitbox where Ref = \"AngleBracket\"");
-                    List<int> Unstandarded = new List<int>();
-                    foreach(string i in All)
+                    List<string> all = DbUtils.RefListNd("Height", "kitbox where Ref = \"AngleBracket\"");
+                    List<int> unstandarded = new List<int>();
+                    foreach(string i in all)
                     {
                         int ii = Convert.ToInt32(i);
                         if (ii % 36 != 0 && ii % 46 != 0 && ii % 56 != 0)
                         {
-                            Unstandarded.Add(ii);
+                            unstandarded.Add(ii);
                         }
                     }
                     int x = 10000;
-                    foreach (int value in Unstandarded)
+                    foreach (int value in unstandarded)
                     {
                         if(value > heightCupboard && value < x)
                         {
                             x = value;
                         }
                     }
-                    foreach (string i in DBUtils.RefList("AngleId", "angles where CupboardId= \"" + cupboardid + "\""))
+                    foreach (string i in DbUtils.RefList("AngleId", "angles where CupboardId= \"" + cupboardid + "\""))
                     {
-                        string code = DBUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
-                        string new_code = "";
+                        string code = DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
+                        string newCode;
                         if (code.Length <= 8)
                         {
-                            new_code = code.Substring(0, 3) + x.ToString() + code.Substring(code.Length - 2, 2) + "CUT";
+                            newCode = code.Substring(0, 3) + x.ToString() + code.Substring(code.Length - 2, 2) + "CUT";
                         }
                         else
                         {
-                            new_code = code.Substring(0, 3) + x.ToString() + code.Substring(code.Length - 5, 5);
+                            newCode = code.Substring(0, 3) + x.ToString() + code.Substring(code.Length - 5, 5);
                         }
-                        DBUtils.UpdateDB("angles", "Code", "AngleId = \"" + i + "\"", new_code);
+                        DbUtils.UpdateDb("angles", "Code", "AngleId = \"" + i + "\"", newCode);
                     }
                 }
-                DBUtils.UpdateDB("cupboards", "Height", "CupboardId = \"" + cupboardid + "\"", heightCupboard.ToString());
-                DBUtils.UpdateDB("boxes", "Height", "BoxId= \"" + BoxId + "\"", height.ToString());
+                DbUtils.UpdateDb("cupboards", "Height", "CupboardId = \"" + cupboardid + "\"", heightCupboard.ToString());
+                DbUtils.UpdateDb("boxes", "Height", "BoxId= \"" + boxId + "\"", height.ToString());
             }
         }
 
-        public static void Doors(string BoxId, DataGridView dataGridView)
+        public static void Doors(string boxId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -285,15 +285,15 @@ namespace ShopInterface
             };
             elements.Columns.Add(dtColumn3);
             int index = 1;
-            foreach (string i in DBUtils.RefList("DoorId", "doors where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("DoorId", "doors where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
                 myDataRow["Position"] = null;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 { 
                     myDataRow["Stock"] = "false";
@@ -315,7 +315,7 @@ namespace ShopInterface
             }
         }
 
-        public static void Panels(string BoxId, DataGridView dataGridView)
+        public static void Panels(string boxId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -352,15 +352,15 @@ namespace ShopInterface
             };
             elements.Columns.Add(dtColumn3);
             int index = 1;
-            foreach (string i in DBUtils.RefList("PanelId", "panels where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("PanelId", "panels where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
-                myDataRow["Position"] = DBUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                myDataRow["Position"] = DbUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";
@@ -382,7 +382,7 @@ namespace ShopInterface
             }
         }
 
-        public static void Angles(string CupboardId, DataGridView dataGridView)
+        public static void Angles(string cupboardId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -419,15 +419,15 @@ namespace ShopInterface
             };
             elements.Columns.Add(dtColumn3);
             int index = 1;
-            foreach (string i in DBUtils.RefList("AngleId", "angles where CupboardId= \"" + CupboardId + "\""))
+            foreach (string i in DbUtils.RefList("AngleId", "angles where CupboardId= \"" + cupboardId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
                 myDataRow["Position"] = null;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";
@@ -449,7 +449,7 @@ namespace ShopInterface
             }
         }
 
-        public static void ElementList(string BoxId, DataGridView dataGridView)
+        public static void ElementList(string boxId, DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -486,15 +486,15 @@ namespace ShopInterface
             };
             elements.Columns.Add(dtColumn3);
             int index = 1;
-            foreach (string i in DBUtils.RefList("DoorId", "doors where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("DoorId", "doors where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
                 myDataRow["Position"] = null;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";
@@ -506,16 +506,16 @@ namespace ShopInterface
                 elements.Rows.Add(myDataRow);
                 index += 1;
             }
-            foreach (string i in DBUtils.RefList("CrossbarId", "crossbars where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("CrossbarId", "crossbars where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "crossbars where CrossbarId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "crossbars where CrossbarId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
-                string position = DBUtils.RefList("Position", "crossbars where CrossbarId = \"" + i + "\"")[0];
+                string position = DbUtils.RefList("Position", "crossbars where CrossbarId = \"" + i + "\"")[0];
                 myDataRow["Position"] = position;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";
@@ -527,16 +527,16 @@ namespace ShopInterface
                 elements.Rows.Add(myDataRow);
                 index += 1;
             }
-            foreach (string i in DBUtils.RefList("PanelId", "panels where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("PanelId", "panels where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
-                string position = DBUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
+                string position = DbUtils.RefList("Position", "panels where PanelId = \"" + i + "\"")[0];
                 myDataRow["Position"] = position;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";
@@ -548,15 +548,15 @@ namespace ShopInterface
                 elements.Rows.Add(myDataRow);
                 index += 1;
             }
-            foreach (string i in DBUtils.RefList("CleatId", "cleats where BoxId= \"" + BoxId + "\""))
+            foreach (string i in DbUtils.RefList("CleatId", "cleats where BoxId= \"" + boxId + "\""))
             {
                 DataRow myDataRow;
                 myDataRow = elements.NewRow();
                 myDataRow["Id"] = index;
-                string code = DBUtils.RefList("Code", "cleats where CleatId = \"" + i + "\"")[0];
+                string code = DbUtils.RefList("Code", "cleats where CleatId = \"" + i + "\"")[0];
                 myDataRow["Code"] = code;
                 myDataRow["Position"] = null;
-                string enstock = DBUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
                 if (Convert.ToInt32(enstock) < 10)
                 {
                     myDataRow["Stock"] = "false";

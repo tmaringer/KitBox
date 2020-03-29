@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.Common;
 
-namespace projectCS
+namespace projectCS.Tools_class
 {
-    public class DBUtils
+    public static class DbUtils
     {
         private static string MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6; Allow User Variables=True";
 
@@ -33,7 +31,7 @@ namespace projectCS
             }
         }
 
-        public static string InsertDB(string database, string columns, string values)
+        public static string InsertDb(string database, string columns, string values)
         {
             try
             {
@@ -54,39 +52,39 @@ namespace projectCS
 
         public static int CheckAccess(TextBox login, TextBox password)
         {
-            int Value; 
+            int value; 
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
                 MySqlCommand cmd = new MySqlCommand("SELECT password FROM users WHERE users = \"" + login.Text + "\";", conn);
                 conn.Open();
-                string passwordDB = "";
+                string passwordDb = "";
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        passwordDB = reader["password"].ToString();
+                        passwordDb = reader["password"].ToString();
                     }
                 }
                 conn.Close();
-                if (ComputeSha256Hash(password.Text) == passwordDB)
+                if (ComputeSha256Hash(password.Text) == passwordDb)
                 {
-                    Value = 0;
+                    value = 0;
                 }
                 else
                 {
-                    Value = 1;
+                    value = 1;
                 }
 
             }
             catch
             {
-                Value = 2;
+                value = 2;
             }
-            return Value;
+            return value;
         }
 
-        public static DataTable RefreshDB(string database)
+        public static DataTable RefreshDb(string database)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlCommand cmd = new MySqlCommand("SELECT * from " + database  + ";", conn);
@@ -99,7 +97,7 @@ namespace projectCS
             return dataTable;
         }
         
-        public static DataTable RefreshDBPartial(string database, string col)
+        public static DataTable RefreshDbPartial(string database, string col)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             MySqlCommand cmd = new MySqlCommand("SELECT " + col + " from " + database + ";", conn);
@@ -111,82 +109,30 @@ namespace projectCS
             conn.Close();
             return dataTable;
         }
-        public static Dictionary<string,int> SelectCondDB(string database, string Code)
+        public static Dictionary<string,int> SelectCondDb(string database, string code)
         {
             Dictionary<string, int> values = new Dictionary<string, int>();
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where Code = \"" + Code + "\";", conn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where code = \"" + code + "\";", conn);
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             dataAdapter.Fill(dt);
             foreach (DataColumn dc in dt.Columns)
             {
-                try
-                {
-                    string col = dc.ColumnName.ToString();
-                    int value = Convert.ToInt32(dt.Rows[0][col]);
-                    values.Add(col, value);
-                }
-                catch
-                {
-
-                }
-            };
-            return values;
-        }
-        public static Dictionary<string, string> SelectCondDBDict(string database, string Code)
-        {
-            Dictionary<string, string> values = new Dictionary<string, string>();
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + " where Code = \"" + Code + "\";", conn);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            foreach (DataColumn dc in dt.Columns)
-            {
-                try
-                {
-                    string col = dc.ColumnName.ToString();
-                    string value = dt.Rows[0][col].ToString();
-                    values.Add(col, value);
-                }
-                catch
-                {
-
-                }
-            };
-            return values;
-        }
-        public static List<string> RowValueList(string Column, string table, string Ref)
-        {
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            List<string> result = new List<string>();
-            string sql = "Select " + Column + " from " + table + " where Ref =\"" + Ref + "\";";
-            MySqlCommand cmd = new MySqlCommand
-            {
-                Connection = conn,
-                CommandText = sql
-            };
-            {
-                DbDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        result.Add(WhereSQLAnswer);
-                    }
-                }
+                string col = dc.ColumnName;
+                int value = Convert.ToInt32(dt.Rows[0][col]);
+                values.Add(col, value);
             }
-            return result;
+
+            return values;
         }
 
-        public static List<string> RefList(string Column, string table)
+
+        public static List<string> RefList(string column, string table)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             List<string> result = new List<string>();
-            string sql = "Select " + Column + " from " + table + ";";
+            string sql = "Select " + column + " from " + table + ";";
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,
@@ -200,8 +146,8 @@ namespace projectCS
 
                     while (reader.Read())
                     {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        result.Add(WhereSQLAnswer);
+                        string whereSqlAnswer = reader.GetString(reader.GetOrdinal(column));
+                        result.Add(whereSqlAnswer);
                     }
                 }
                 conn.Close();
@@ -209,11 +155,11 @@ namespace projectCS
             return result;
         }
 
-        public static List<string> RefListND(string Column, string table)
+        public static List<string> RefListNd(string column, string table)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             List<string> result = new List<string>();
-            string sql = "Select " + Column + " from " + table + ";";
+            string sql = "Select " + column + " from " + table + ";";
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,
@@ -227,10 +173,10 @@ namespace projectCS
 
                     while (reader.Read())
                     {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(Column));
-                        if ((result.Contains(WhereSQLAnswer)) == false)
+                        string whereSqlAnswer = reader.GetString(reader.GetOrdinal(column));
+                        if ((result.Contains(whereSqlAnswer)) == false)
                         {
-                            result.Add(WhereSQLAnswer);
+                            result.Add(whereSqlAnswer);
                         }
 
                     }
@@ -239,12 +185,12 @@ namespace projectCS
             }
             return result;
         }
-        public static string UpdateDB(string database, string Column, string Cond, string Value)
+        public static string UpdateDb(string database, string column, string cond, string value)
         {
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + Column + " =\"" + Value + "\"" + " WHERE " + Cond + ";", conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE kitbox." + database + " SET " + column + " =\"" + value + "\"" + " WHERE " + cond + ";", conn);
                 conn.Open();
                 MySqlDataReader MyReader2;
                 MyReader2 = cmd.ExecuteReader();
@@ -261,14 +207,14 @@ namespace projectCS
             
         }
 
-        public static bool SearchDB(DataGridView dataGridView1,TextBox value)
+        public static bool SearchDb(DataGridView dataGridView1,TextBox value)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 for (int i = 0; i < dataGridView1.Columns.Count; i++)
                 {
                     row.Cells[i].Style.BackColor = System.Drawing.Color.White;
-                    if (row.Cells[i].Value.ToString() == value.Text.ToString())
+                    if (row.Cells[i].Value.ToString() == value.Text)
                     {
                         row.Cells[i].Style.BackColor = System.Drawing.Color.LimeGreen;
                     }
@@ -276,7 +222,7 @@ namespace projectCS
             }
             return true;
         }
-        public static bool StopSearchDB(DataGridView dataGridView1, TextBox value)
+        public static bool StopSearchDb(DataGridView dataGridView1, TextBox value)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -287,12 +233,12 @@ namespace projectCS
             }
             return false;
         }
-        public static string DeleteRow(string database, string Cond)
+        public static string DeleteRow(string database, string cond)
         {
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
-                MySqlCommand cmd = new MySqlCommand("DELETE from " + database + " where " + Cond, conn);
+                MySqlCommand cmd = new MySqlCommand("DELETE from " + database + " where " + cond, conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
@@ -308,7 +254,7 @@ namespace projectCS
         public static void Arrange(string database, string id)
         { 
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxId`, `Code`) SELECT * FROM kitbox." + database + " ORDER BY BoxId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
+            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxId`, `code`) SELECT * FROM kitbox." + database + " ORDER BY BoxId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
             conn.Open();
             MySqlDataReader MyReader2;
             MyReader2 = cmd.ExecuteReader();
@@ -318,7 +264,7 @@ namespace projectCS
             conn.Close();
         }
 
-        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> Columns, List<string> Types, List<string> Elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
+        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> columns, List<string> types, List<string> elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
         {
             label7.RightToLeft = RightToLeft.Yes;
             if (x == 1)
@@ -327,14 +273,14 @@ namespace projectCS
                 progressBar1.Maximum = (size * 10)+10;
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
-                    Columns.Add(col.Name.ToString());
+                    columns.Add(col.Name);
                     if (col.ValueType.ToString() == "System.String")
                     {
-                        Types.Add("String");
+                        types.Add("String");
                     }
                     if (col.ValueType.ToString() == "System.Int32")
                     {
-                        Types.Add("Int");
+                        types.Add("Int");
                     }
 
                 }
@@ -343,9 +289,9 @@ namespace projectCS
             {
                 button7.Enabled = true;
                 button3.Enabled = false;
-                Elements.Add(textBox4.Text.ToString());
-                string ElementItems = Columns[x-1] + ": " + textBox4.Text;
-                listView1.Items.Add(ElementItems);
+                elements.Add(textBox4.Text);
+                string elementItems = columns[x-1] + ": " + textBox4.Text;
+                listView1.Items.Add(elementItems);
                 textBox4.Text = "";
                 if (x == dataGridView1.ColumnCount)
                 {
@@ -355,7 +301,7 @@ namespace projectCS
                 }
                 else
                 {
-                    label7.Text = Columns[x] + " (" + Types[x] + ")";
+                    label7.Text = columns[x] + " (" + types[x] + ")";
 
                 }
                 x += 1;
@@ -367,7 +313,7 @@ namespace projectCS
             progressBar1.PerformStep();
             return x;
         }
-        public static int DeleteItem(Label label7, int x, DataGridView dataGridView1, TextBox textBox4, Button button6, Button button7, List<string> Columns, List<string> Types, List<string> Elements, ListView listView1, ProgressBar progressBar1, Button button3)
+        public static int DeleteItem(Label label7, int x, DataGridView dataGridView1, TextBox textBox4, Button button6, Button button7, List<string> columns, List<string> types, List<string> elements, ListView listView1, ProgressBar progressBar1, Button button3)
         {
             label7.RightToLeft = RightToLeft.Yes;
             if (x > 1 && x <= (dataGridView1.ColumnCount + 1))
@@ -375,10 +321,10 @@ namespace projectCS
                 textBox4.Enabled = true;
                 button6.Enabled = true;
                 button3.Enabled = false;
-                Elements.Remove(Elements[x - 2]);
+                elements.Remove(elements[x - 2]);
                 listView1.Items.RemoveAt(x - 2);
                 textBox4.Text = "";
-                label7.Text = Columns[x - 2] + " (" + Types[x-2] + ")";
+                label7.Text = columns[x - 2] + " (" + types[x-2] + ")";
                 if (x == 2)
                 {
                     button7.Enabled = false;
@@ -388,37 +334,37 @@ namespace projectCS
             progressBar1.Increment(-10);
             return x;
         }
-        public static string ConvertStringQuotes(List<string> Elements)
+        public static string ConvertStringQuotes(List<string> elements)
         {
-            string ElementString = "";
-            for(int i=0; i < Elements.Count; i++)
+            string elementString = "";
+            for(int i=0; i < elements.Count; i++)
             {
-                if (i == (Elements.Count - 1))
+                if (i == (elements.Count - 1))
                 {
-                    ElementString = ElementString + "\"" + Elements[i] + "\"";
+                    elementString = elementString + "\"" + elements[i] + "\"";
                 }
                 else
                 {
-                    ElementString = ElementString + "\"" + Elements[i] + "\",";
+                    elementString = elementString + "\"" + elements[i] + "\",";
                 }
             }
-            return ElementString;
+            return elementString;
         }
-        public static string ConvertStringNoQuotes(List<string> Columns)
+        public static string ConvertStringNoQuotes(List<string> columns)
         {
-            string ColumnString = "";
-            for (int i = 0; i < Columns.Count; i++)
+            string columnString = "";
+            for (int i = 0; i < columns.Count; i++)
             {
-                if (i == (Columns.Count - 1))
+                if (i == (columns.Count - 1))
                 {
-                    ColumnString = ColumnString + Columns[i] + "";
+                    columnString = columnString + columns[i] + "";
                 }
                 else
                 {
-                    ColumnString = ColumnString + Columns[i] + ",";
+                    columnString = columnString + columns[i] + ",";
                 }
             }
-            return ColumnString;
+            return columnString;
         }
     }
 }

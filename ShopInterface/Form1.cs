@@ -26,7 +26,7 @@ namespace ShopInterface
         private void button1_Click(object sender, EventArgs e)
         {
             label3.Visible = false;
-            var value = DBUtils.CheckAccess(textBox1, textBox2);
+            var value = DbUtils.CheckAccess(textBox1, textBox2);
             if (value == 0)
             {
                 var frm = new Form2(textBox1.Text);
