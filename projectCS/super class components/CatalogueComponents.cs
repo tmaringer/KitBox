@@ -109,7 +109,7 @@ namespace projectCS
     {
         white,
         brown,
-        galvanized,
+        galvanised,
         black,
         transparent
     }

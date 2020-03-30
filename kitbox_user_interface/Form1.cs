@@ -346,7 +346,7 @@ namespace kitbox_user_interface_V1
 
                 string dataString;
                 dataString = comboBox3.SelectedItem.ToString() + "\n" + comboBox4.SelectedItem.ToString() + "\n" + comboBox5.SelectedItem.ToString() + "\n" + comboBox7.SelectedItem.ToString() + "\n";
-                
+                //System.IO.File.WriteAllText("C:\\Users\\natha\\KitBox\\kitboxData.txt", dataString);
 
 
                 ComponentSize cupboardSize = new ComponentSize(width, depth, 0);
