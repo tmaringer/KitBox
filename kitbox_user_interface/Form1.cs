@@ -344,6 +344,11 @@ namespace kitbox_user_interface_V1
                 //anglebrackets color
                 ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
 
+                string dataString;
+                dataString = comboBox3.SelectedItem.ToString() + "\n" + comboBox4.SelectedItem.ToString() + "\n" + comboBox5.SelectedItem.ToString() + "\n" + comboBox7.SelectedItem.ToString() + "\n";
+                
+
+
                 ComponentSize cupboardSize = new ComponentSize(width, depth, 0);
                 ShoppingCart.buildCupboard(cupboardSize.width, cupboardSize.depth, numberOfLockers, color1);
 
