@@ -24,7 +24,7 @@ namespace projectCS
             Console.WriteLine("\n");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
         }
 
         internal static class printPerso

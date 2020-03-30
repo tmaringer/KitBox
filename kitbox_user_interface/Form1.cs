@@ -367,6 +367,8 @@ namespace kitbox_user_interface_V1
                 projectCS.Panel panneauAR = new projectCS.Panel();
                 Cleat tasseau = new Cleat();
 
+                //projecCS. pas nécessaire
+
                 locker.addComponent(traverseAV);
                 locker.addComponent(traverseAR);
                 locker.addComponent(traverseG);
