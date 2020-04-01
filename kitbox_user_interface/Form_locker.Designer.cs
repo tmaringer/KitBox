@@ -54,7 +54,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(752, 68);
+            this.textBox1.Size = new System.Drawing.Size(946, 68);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "KITBOX";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -112,7 +112,7 @@
             this.textBox2.Location = new System.Drawing.Point(344, 134);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(420, 26);
+            this.textBox2.Size = new System.Drawing.Size(614, 26);
             this.textBox2.TabIndex = 30;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -155,6 +155,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -164,9 +166,10 @@
             this.Column4});
             this.dataGridView1.Location = new System.Drawing.Point(344, 168);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(420, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(614, 150);
             this.dataGridView1.TabIndex = 41;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -200,7 +203,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(776, 462);
+            this.ClientSize = new System.Drawing.Size(970, 462);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);

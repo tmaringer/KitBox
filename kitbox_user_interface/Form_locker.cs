@@ -81,7 +81,10 @@ namespace kitbox_user_interface_V1
             //test.displayWindow();
             //test2.displayWindow();
 
-            dataGridView1.Rows.Add(comboBox1.SelectedItem.ToString());
+            string doorsColor = comboBox1.SelectedItem.ToString();
+            string panelColor = comboBox2.SelectedItem.ToString();
+            int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+            dataGridView1.Rows.Add(currentLocker, height, doorsColor,panelColor);
 
             /*
             List<TextBox> preview = new List<TextBox>();
