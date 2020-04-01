@@ -56,7 +56,15 @@ namespace projectCS
             get => _cupboard;
         }
 
-        public static void addUserChoices(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
+        public static void addCupboardUserChoices(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
+        {
+            _widthChosen = width;
+            _depthChosen = depth;
+            _boxNumberChosen = boxNumber;
+            _colorAngleBracketChosen = colorAngleBracket;
+        }
+        
+        public static void addLockerUserChoices(int heigt, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _widthChosen = width;
             _depthChosen = depth;

@@ -345,14 +345,20 @@ namespace kitbox_user_interface_V1
                 int width = Int32.Parse(comboBox4.SelectedItem.ToString());
                 int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
 
-                ShoppingCart.addUserChoices(width, depth, numberOfLockers, color1);
+                ShoppingCart.addCupboardUserChoices(width, depth, numberOfLockers, color1);
+                choice_fill = true;
             }
             else
             {
                 MessageBox.Show("Fill every choices");
                 button1.Enabled = true;
             }
-
+            if (choice_fill)
+            {
+                this.Hide();
+                Form_locker form_locker_1 = new Form_locker();
+                form_locker_1.Show();
+            }
             //------------------------------------------------------------ fin
             /*
             button1.Enabled = false;
