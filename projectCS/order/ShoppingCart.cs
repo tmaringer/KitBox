@@ -56,6 +56,20 @@ namespace projectCS
             get => _depthChosen;
         }
 
+        private static int _heigtLockerChosen;
+        public static int HeigtLockerChosen 
+        { 
+            get => _heigtLockerChosen; 
+            set => _heigtLockerChosen = value; 
+        }
+
+        private static ComponentColor _colorDoodChosen;
+        public static ComponentColor ColorDoodChosen 
+        { 
+            get => _colorDoodChosen;
+            set => _colorDoodChosen = value; 
+        }
+
 
         private static Cupboard _cupboard;
         public static Cupboard cupboard
@@ -71,12 +85,11 @@ namespace projectCS
             _colorAngleBracketChosen = colorAngleBracket;
         }
         
-        public static void addLockerUserChoices(int heigt, int depth, int boxNumber, ComponentColor colorAngleBracket)
+        public static void addLockerUserChoices(int heigt, ComponentColor panelColor, ComponentColor doodColor)
         {
-            _heigtChosen = heigt;
-            _depthChosen = depth;
-            _boxNumberChosen = boxNumber;
-            _colorAngleBracketChosen = colorAngleBracket;
+            _heigtLockerChosen = heigt;
+            _colorAngleBracketChosen = panelColor;
+            _colorDoodChosen = doodColor;
         }
 
         // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
