@@ -44,13 +44,21 @@ namespace kitbox_user_interface_V1
             
             textBox2.Text = "Cupboard : widht = " + width.ToString() + " depth = " + depth.ToString();
 
-            textBox4.Hide();
-            textBox5.Hide();
-            textBox6.Hide();
-            textBox7.Hide();
-            textBox8.Hide();
-            textBox9.Hide();
-            textBox10.Hide();
+            /*
+            List<TextBox> preview= new List<TextBox>();
+            preview.Add(textBox4);
+            preview.Add(textBox5);
+            preview.Add(textBox6);
+            preview.Add(textBox7);
+            preview.Add(textBox8);
+            preview.Add(textBox9);
+            preview.Add(textBox10);
+            foreach (TextBox t in preview)
+            {
+                t.Hide();
+            }
+            */
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -73,6 +81,22 @@ namespace kitbox_user_interface_V1
             //test.displayWindow();
             //test2.displayWindow();
 
+            dataGridView1.Rows.Add(comboBox1.SelectedItem.ToString());
+
+            /*
+            List<TextBox> preview = new List<TextBox>();
+            preview.Add(textBox4);
+            preview.Add(textBox5);
+            preview.Add(textBox6);
+            preview.Add(textBox7);
+            preview.Add(textBox8);
+            preview.Add(textBox9);
+            preview.Add(textBox10);
+
+            preview[currentLocker - 1].Text = currentLocker.ToString();
+            preview[currentLocker - 1].Show();
+            */
+
 
             currentLocker++;
             textBox12.Text =currentLocker.ToString();
@@ -90,6 +114,16 @@ namespace kitbox_user_interface_V1
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form_locker_Load(object sender, EventArgs e)
         {
 
         }
