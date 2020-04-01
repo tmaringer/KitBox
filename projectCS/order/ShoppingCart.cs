@@ -43,6 +43,13 @@ namespace projectCS
             get => _widthChosen;
         }
 
+        private static int _heigtChosen;
+        public static int HeigtChosen 
+        { 
+            get => _heigtChosen; 
+            set => _heigtChosen = value; 
+        }
+
         private static int _depthChosen;
         public static int depthChosen
         {
@@ -66,7 +73,7 @@ namespace projectCS
         
         public static void addLockerUserChoices(int heigt, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
-            _widthChosen = width;
+            _heigtChosen = heigt;
             _depthChosen = depth;
             _boxNumberChosen = boxNumber;
             _colorAngleBracketChosen = colorAngleBracket;
