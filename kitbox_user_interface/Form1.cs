@@ -303,7 +303,7 @@ namespace kitbox_user_interface_V1
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
             comboBox7.Items.AddRange(BracketsColorList.Cast<object>().ToArray());
-            comboBox2.Items.AddRange(ColorBoxList.Cast<object>().ToArray());
+            comboBox2.Items.AddRange(ColorPannelBaList.Cast<object>().ToArray());
             comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
 
             //ShoppingCart basket = new ShoppingCart();
