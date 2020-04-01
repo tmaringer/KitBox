@@ -28,10 +28,14 @@ namespace kitbox_user_interface_V1
             
             ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
             AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
+            //int width = ShoppingCart.buildCupboard.width;
             ErrorWindow test = new ErrorWindow(ColorParse.parseToStr(c));
             //ErrorWindow test2 = new ErrorWindow(a.ToString());
             test.displayWindow();
             //test2.displayWindow();
+            this.Hide();
+            Form1 form = new Form1();
+            form.Show();
         }
     }
 }
