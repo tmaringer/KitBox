@@ -25,7 +25,6 @@ namespace kitbox_user_interface_V1
 
         public void button2_Click(object sender, EventArgs e)
         {
-
             //ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
             int width = ShoppingCart.widthChosen;
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();

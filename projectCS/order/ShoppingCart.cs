@@ -148,14 +148,9 @@ namespace projectCS
         /// <returns>
         ///     Returns the cupboard built.
         /// </returns>
-        public static void buildCupboard()
+        public static Cupboard buildCupboard()
         {
-            buildCupboard(0, 0, 5, ComponentColor.brown);
-        }
-
-        public static void buildCupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
-        {
-            _cupboard = new Cupboard(width, depth, boxNumber, colorAngleBracket);
+            _cupboard = new Cupboard();
             // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
             List<ICupboardComponents> tempList = new List<ICupboardComponents>();
 
@@ -169,6 +164,7 @@ namespace projectCS
             {
                 _cupboardComponentsList.Remove(component);
             }
+            return _cupboard;
         }
         
         public static string ToString()
