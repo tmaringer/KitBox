@@ -25,10 +25,43 @@ namespace projectCS
             get => _cupboardComponentsList;
         }
 
+        private static ComponentColor _colorAngleBracketChosen;
+        public static ComponentColor colorAngleBracketChosen
+        {
+            get => _colorAngleBracketChosen;
+        }
+
+        private static int _boxNumberChosen;
+        public static int boxNumberChosen
+        {
+            get => _boxNumberChosen;
+        }
+
+        private static int _widthChosen;
+        public static int widthChosen
+        {
+            get => _widthChosen;
+        }
+
+        private static int _depthChosen;
+        public static int depthChosen
+        {
+            get => _depthChosen;
+        }
+
+
         private static Cupboard _cupboard;
         public static Cupboard cupboard
         {
             get => _cupboard;
+        }
+
+        public static void addUserChoices(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
+        {
+            _widthChosen = width;
+            _depthChosen = depth;
+            _boxNumberChosen = boxNumber;
+            _colorAngleBracketChosen = colorAngleBracket;
         }
 
         // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite

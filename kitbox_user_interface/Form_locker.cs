@@ -26,12 +26,12 @@ namespace kitbox_user_interface_V1
         public void button2_Click(object sender, EventArgs e)
         {
             
-            ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
+            //ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
             int width = ShoppingCart.cupboard.width;
             AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
-            ErrorWindow test = new ErrorWindow(ColorParse.parseToStr(c)+width.ToString());
+            //ErrorWindow test = new ErrorWindow(ColorParse.parseToStr(c)+width.ToString());
             //ErrorWindow test2 = new ErrorWindow(a.ToString());
-            test.displayWindow();
+            //test.displayWindow();
             //test2.displayWindow();
             this.Hide();
             Form1 form = new Form1();

@@ -331,6 +331,32 @@ namespace kitbox_user_interface_V1
         {
             button1.Enabled = false;
             bool choice_fill = false;
+            //------------------------------------------------------------ exemple 
+            // enregsitre les choix dans les variables
+
+            ComponentColor c = ComponentColor.brown; // choix de la boc
+            ComponentSize s = new ComponentSize(0, 0, 0); // choix
+            int numboflocker = 5;
+
+            if (comboBox3.SelectedItem != null && comboBox4.SelectedItem != null && comboBox5.SelectedItem != null && comboBox7.SelectedItem != null)
+            {
+                ComponentColor color1 = ColorParse.parseToEnum(comboBox7.SelectedItem.ToString());
+                int numberOfLockers = Int32.Parse(comboBox3.SelectedItem.ToString());
+                int width = Int32.Parse(comboBox4.SelectedItem.ToString());
+                int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
+
+                ShoppingCart.addUserChoices(width, depth, numberOfLockers, color1);
+            }
+            else
+            {
+                MessageBox.Show("Fill every choices");
+                button1.Enabled = true;
+            }
+
+            //------------------------------------------------------------ fin
+            /*
+            button1.Enabled = false;
+            bool choice_fill = false;
             
             Cupboard cupboard = new Cupboard();
             Locker locker = new Locker();
@@ -408,7 +434,7 @@ namespace kitbox_user_interface_V1
                 Form_locker form_locker_1 = new Form_locker();
                 form_locker_1.Show();
             }
-            
+            */
 
         }
 
