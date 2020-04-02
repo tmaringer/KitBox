@@ -42,7 +42,7 @@ namespace kitbox_user_interface_V1
              */
 
             conn.Open();
-            List<string> HightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Cornieres\"");
+            List<string> HightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
             conn.Close();
 
             conn.Open();

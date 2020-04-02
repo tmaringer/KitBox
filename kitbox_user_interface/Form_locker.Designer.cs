@@ -43,6 +43,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,6 +180,7 @@
             this.Column1.HeaderText = "Locker";
             this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             this.Column1.Width = 70;
             // 
             // Column2
@@ -185,18 +188,42 @@
             this.Column2.HeaderText = "Height";
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 150;
             // 
             // Column3
             // 
             this.Column3.HeaderText = "doors";
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "panel";
             this.Column4.MinimumWidth = 8;
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 150;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.White;
+            this.textBox4.Location = new System.Drawing.Point(12, 323);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(157, 26);
+            this.textBox4.TabIndex = 42;
+            this.textBox4.Text = "max height :";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(12, 355);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(157, 26);
+            this.textBox5.TabIndex = 43;
+            this.textBox5.Text = "height :";
             // 
             // Form_locker
             // 
@@ -204,6 +231,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(970, 462);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
@@ -241,5 +270,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBox5;
     }
 }

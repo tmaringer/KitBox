@@ -29,6 +29,9 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panel B\"");
             conn.Close();
+            conn.Open();
+            List<string> HeightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
+            conn.Close();
 
             comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
             comboBox2.Items.AddRange(ColorPannelBaList.Cast<object>().ToArray());
@@ -41,7 +44,18 @@ namespace kitbox_user_interface_V1
             {
                 comboBox1.Enabled = false;
             }
-            
+
+            int maxHeight = 0;
+            foreach (string heightB in HeightBracketsList)
+            {
+                int heightBP = Int32.Parse(heightB);
+                if (heightBP>maxHeight)
+                {
+                    maxHeight = heightBP;
+                }
+            }
+            textBox4.Text = "max height : " + maxHeight.ToString() + " cm";
+            textBox5.Text = "height : 0 cm";
             textBox2.Text = "Cupboard : widht = " + width.ToString() + " depth = " + depth.ToString();
 
             /*
@@ -85,19 +99,7 @@ namespace kitbox_user_interface_V1
             int height = Int32.Parse(comboBox6.SelectedItem.ToString());
             dataGridView1.Rows.Add(currentLocker, height, doorsColor,panelColor);
 
-            /*
-            List<TextBox> preview = new List<TextBox>();
-            preview.Add(textBox4);
-            preview.Add(textBox5);
-            preview.Add(textBox6);
-            preview.Add(textBox7);
-            preview.Add(textBox8);
-            preview.Add(textBox9);
-            preview.Add(textBox10);
-
-            preview[currentLocker - 1].Text = currentLocker.ToString();
-            preview[currentLocker - 1].Show();
-            */
+            
 
 
             currentLocker++;
