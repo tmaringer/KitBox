@@ -57,7 +57,8 @@ namespace kitbox_user_interface_V1
             textBox4.Text = "max : " + maxHeight.ToString() + " cm";
             textBox2.Text = "width = " + width.ToString() + " cm";
             textBox5.Text = "depth = " + depth.ToString() + " cm";
-            textBox6.Text = "height = " + 0 + " cm";
+            textBox6.Text = "height = ";
+            textBox8.Text = "0";
             /*
             List<TextBox> preview= new List<TextBox>();
             preview.Add(textBox4);
@@ -99,8 +100,9 @@ namespace kitbox_user_interface_V1
             int height = Int32.Parse(comboBox6.SelectedItem.ToString());
             dataGridView1.Rows.Add(currentLocker, height, doorsColor,panelColor);
 
-            
-
+            int totalHeight = Int32.Parse(textBox8.Text);
+            totalHeight += height;
+            textBox8.Text = totalHeight.ToString();
 
             currentLocker++;
             textBox12.Text =currentLocker.ToString();

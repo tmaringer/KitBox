@@ -47,6 +47,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,12 +113,14 @@
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.LightGray;
+            this.textBox2.BackColor = System.Drawing.Color.White;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Location = new System.Drawing.Point(12, 346);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(164, 26);
+            this.textBox2.Size = new System.Drawing.Size(164, 19);
             this.textBox2.TabIndex = 30;
+            this.textBox2.Text = "width";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
@@ -189,21 +192,25 @@
             // 
             // textBox5
             // 
-            this.textBox5.BackColor = System.Drawing.Color.LightGray;
+            this.textBox5.BackColor = System.Drawing.Color.White;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.Location = new System.Drawing.Point(12, 378);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(164, 26);
+            this.textBox5.Size = new System.Drawing.Size(164, 19);
             this.textBox5.TabIndex = 43;
+            this.textBox5.Text = "depth";
             // 
             // textBox6
             // 
-            this.textBox6.BackColor = System.Drawing.Color.LightGray;
+            this.textBox6.BackColor = System.Drawing.Color.White;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Location = new System.Drawing.Point(12, 410);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(164, 26);
+            this.textBox6.Size = new System.Drawing.Size(61, 19);
             this.textBox6.TabIndex = 44;
+            this.textBox6.Text = "height";
             // 
             // textBox7
             // 
@@ -250,12 +257,23 @@
             this.Column4.ReadOnly = true;
             this.Column4.Width = 80;
             // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.Color.PaleGreen;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Location = new System.Drawing.Point(79, 410);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(97, 19);
+            this.textBox8.TabIndex = 46;
+            // 
             // Form_locker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(920, 457);
+            this.ClientSize = new System.Drawing.Size(920, 466);
+            this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
@@ -301,5 +319,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.TextBox textBox8;
     }
 }
