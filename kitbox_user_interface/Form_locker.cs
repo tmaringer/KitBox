@@ -54,10 +54,10 @@ namespace kitbox_user_interface_V1
                     maxHeight = heightBP;
                 }
             }
-            textBox4.Text = "max height : " + maxHeight.ToString() + " cm";
-            textBox5.Text = "height : 0 cm";
-            textBox2.Text = "Cupboard : widht = " + width.ToString() + " depth = " + depth.ToString();
-
+            textBox4.Text = "max : " + maxHeight.ToString() + " cm";
+            textBox2.Text = "width = " + width.ToString() + " cm";
+            textBox5.Text = "depth = " + depth.ToString() + " cm";
+            textBox6.Text = "height = " + 0 + " cm";
             /*
             List<TextBox> preview= new List<TextBox>();
             preview.Add(textBox4);
@@ -72,7 +72,7 @@ namespace kitbox_user_interface_V1
                 t.Hide();
             }
             */
-            
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -128,6 +128,11 @@ namespace kitbox_user_interface_V1
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
         {
 
         }
