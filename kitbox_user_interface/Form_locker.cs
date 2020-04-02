@@ -89,6 +89,8 @@ namespace kitbox_user_interface_V1
 
             int currentLocker = Int32.Parse(textBox12.Text);
 
+            
+
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
             //ErrorWindow test = new ErrorWindow(width.ToString()+" "+depth.ToString());
             //ErrorWindow test2 = new ErrorWindow(a.ToString());
@@ -103,9 +105,13 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             totalHeight += height;
             textBox8.Text = totalHeight.ToString();
-
+            if (currentLocker == numberOfLocker)
+            {
+                button2.Enabled = false;
+            }
             currentLocker++;
             textBox12.Text =currentLocker.ToString();
+            
             //pas encore utile, ne pas supprimer
             /*
             this.Hide();
