@@ -56,7 +56,7 @@ namespace kitbox_user_interface_V1
                     maxHeight = heightBP;
                 }
             }
-            textBox4.Text = "max : " + maxHeight.ToString() + " cm";
+            textBox9.Text = maxHeight.ToString();
             textBox2.Text = "width = " + width.ToString() + " cm";
             textBox5.Text = "depth = " + depth.ToString() + " cm";
             textBox6.Text = "height = ";
@@ -98,7 +98,7 @@ namespace kitbox_user_interface_V1
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
                 dataGridView1.Rows.Add(currentLocker, height, doorsColor, panelColor);
-
+                
                 int totalHeight = Int32.Parse(textBox8.Text);
                 totalHeight += height +4;
                 textBox8.Text = totalHeight.ToString();
@@ -109,6 +109,22 @@ namespace kitbox_user_interface_V1
                 currentLocker++;
                 textBox12.Text = currentLocker.ToString();
 
+
+                int maxHeight = Int32.Parse(textBox9.Text);
+                List<string> choiceRemove = new List<string>();
+                foreach(string heightChoice in comboBox6.Items)
+                {
+                    int boxHeight = Int32.Parse(heightChoice);
+                    if (maxHeight - boxHeight -4 < totalHeight)
+                    {
+                        choiceRemove.Add(heightChoice);
+                    }
+                    
+                }
+                foreach(string heightChoice in choiceRemove)
+                {
+                    comboBox6.Items.Remove(heightChoice);
+                }
             }
             else
             {
