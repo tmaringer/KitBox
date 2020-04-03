@@ -1,0 +1,13 @@
+<Window x:Class="ShopInterface2Beta.Form1"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Kitbox" Height="307" Width="515">
+    <Grid>
+        <Button Name="button1" Height="24" Width="100" TabIndex="0"  Margin="208,0,0,62" HorizontalAlignment="Left" VerticalAlignment="Bottom" >Login</Button>
+        <TextBox Name="textBox1" Height="20" Width="200" TabIndex="1" Margin="163,103,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" TextWrapping="Wrap" ></TextBox>
+        <Label Name="label1" Height="20" Width="57" FontSize="7.8" FontFamily="Microsoft Sans Serif" TabIndex="2" Margin="106,0,0,112" HorizontalAlignment="Left" VerticalAlignment="Bottom" >Password</Label>
+        <Label Name="label2" Height="20" Width="43" FontSize="7.8" FontFamily="Microsoft Sans Serif" TabIndex="4" Margin="120,103,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >Login</Label>
+        <TextBox Name="textBox2" Height="20" Width="200" TabIndex="3" Margin="163,0,0,112" HorizontalAlignment="Left" VerticalAlignment="Bottom" TextWrapping="Wrap" ></TextBox>
+        <Label Name="label3" Height="13" Width="121" FontSize="7.8" FontFamily="Microsoft Sans Serif" TabIndex="5" Visibility="Hidden" Foreground="Red" Margin="200,0,0,96" HorizontalAlignment="Left" VerticalAlignment="Bottom" >wrong login or password</Label>
+    </Grid>
+</Window>

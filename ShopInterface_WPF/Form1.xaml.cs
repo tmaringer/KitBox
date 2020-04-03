@@ -1,10 +1,22 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using projectCS.Tools_class;
+using System.Windows;
+using System.Xaml;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using projectCS;
 
-namespace ShopInterface
+namespace ShopInterface2Beta
 {
-    public partial class Form1 : Form
+    /*
+    public partial class Form1 : Window
     {
         public Form1()
         {
@@ -25,7 +37,7 @@ namespace ShopInterface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label3.Visible = false;
+            label3.Visibility = Visibility.Hidden;
             var value = DbUtils.CheckAccess(textBox1.Text, textBox2.Text);
             if (value == 0)
             {
@@ -35,7 +47,7 @@ namespace ShopInterface
             }
             else
             {
-                label3.Visible = true;
+                label3.Visibility = Visibility.Visible;
             }
         }
 
@@ -43,4 +55,5 @@ namespace ShopInterface
         {
         }
     }
+    */
 }
