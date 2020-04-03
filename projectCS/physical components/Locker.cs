@@ -9,11 +9,10 @@ namespace projectCS
         /// <summary>
         ///     group all maximum value for each components which the locker can have
         /// </summary>
-        private static readonly int _maximumCrossBars = 8;
-        private static readonly int _maximumPannels = 5;
-        private static readonly int _maximumDoors = 2;
-        private static readonly int _maximumCleats = 4;
-        private static readonly int _maximumComponents = _maximumCrossBars + _maximumPannels + _maximumDoors + _maximumCleats;
+        private readonly int _maximumCrossBars = 8;
+        private readonly int _maximumPannels = 5;
+        private readonly int _maximumDoors = 2;
+        private readonly int _maximumCleats = 4;
 
         public int height
         {
