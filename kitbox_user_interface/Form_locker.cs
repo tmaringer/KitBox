@@ -34,6 +34,7 @@ namespace kitbox_user_interface_V1
             conn.Close();
 
             comboBox1.Items.AddRange(ColorDoorList.Cast<object>().ToArray());
+            comboBox1.Items.Add("none");
             comboBox2.Items.AddRange(ColorPannelBaList.Cast<object>().ToArray());
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
 
@@ -42,7 +43,8 @@ namespace kitbox_user_interface_V1
             int numberOfLocker = ShoppingCart.boxNumberChosen;
             if (width < 62)
             {
-                comboBox1.Enabled = false;
+                comboBox1.Items.Clear();
+                comboBox1.Items.Add("none");
             }
 
             int maxHeight = 0;
@@ -59,20 +61,6 @@ namespace kitbox_user_interface_V1
             textBox5.Text = "depth = " + depth.ToString() + " cm";
             textBox6.Text = "height = ";
             textBox8.Text = "0";
-            /*
-            List<TextBox> preview= new List<TextBox>();
-            preview.Add(textBox4);
-            preview.Add(textBox5);
-            preview.Add(textBox6);
-            preview.Add(textBox7);
-            preview.Add(textBox8);
-            preview.Add(textBox9);
-            preview.Add(textBox10);
-            foreach (TextBox t in preview)
-            {
-                t.Hide();
-            }
-            */
 
         }
 
@@ -88,7 +76,6 @@ namespace kitbox_user_interface_V1
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
             int currentLocker = Int32.Parse(textBox12.Text);
-            //bool choice_fill = false;
 
 
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
@@ -115,7 +102,7 @@ namespace kitbox_user_interface_V1
                 dataGridView1.Rows.Add(currentLocker, height, doorsColor, panelColor);
 
                 int totalHeight = Int32.Parse(textBox8.Text);
-                totalHeight += height;
+                totalHeight += height +4;
                 textBox8.Text = totalHeight.ToString();
                 if (currentLocker == numberOfLocker)
                 {
