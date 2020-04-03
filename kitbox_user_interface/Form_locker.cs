@@ -21,13 +21,13 @@ namespace kitbox_user_interface_V1
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panel B\"");
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panels B\"");
             conn.Close();
             conn.Open();
             List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
             conn.Open();
-            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panel B\"");
+            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panels B\"");
             conn.Close();
             conn.Open();
             List<string> HeightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
@@ -89,13 +89,21 @@ namespace kitbox_user_interface_V1
 
             int currentLocker = Int32.Parse(textBox12.Text);
 
-            
+
 
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
             //ErrorWindow test = new ErrorWindow(width.ToString()+" "+depth.ToString());
             //ErrorWindow test2 = new ErrorWindow(a.ToString());
             //test.displayWindow();
             //test2.displayWindow();
+
+            // -------------------------------------------------------------   exemple de comment faire
+            Door dorxxxx = new Door();
+            Panels panelxxxx = new Panels();
+
+            dorxxxx.color = ColorParse.parseToEnum(comboBox1.SelectedItem.ToString());
+            panelxxxx.color = ColorParse.parseToEnum(comboBox2.SelectedItem.ToString());
+            // -------------------------------------------------------------   exemple de comment faire
 
             string doorsColor = comboBox1.SelectedItem.ToString();
             string panelColor = comboBox2.SelectedItem.ToString();

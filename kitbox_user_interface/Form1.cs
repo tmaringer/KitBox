@@ -21,16 +21,16 @@ namespace kitbox_user_interface_V1
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
-            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panel B\"");
+            List<string> WidthBoxList = QueryKitbox.SpecsBoxList(conn, "Width", "Ref = \"Panels B\"");
             conn.Close();
             conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panel B\"");
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panels B\"");
             conn.Close();
             conn.Open();
             List<string> ColorBoxList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
             conn.Open();
-            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panel LR\"");
+            List<string> DepthBoxList = QueryKitbox.SpecsBoxList(conn, "Depth", "Ref = \"Panels LR\"");
             conn.Close();
             conn.Open();
             List<string> BracketsColorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"AngleBracket\"");
@@ -397,11 +397,11 @@ namespace kitbox_user_interface_V1
                 CrossBar traverseAR = new CrossBar();
                 CrossBar traverseG = new CrossBar();
                 CrossBar traverseD = new CrossBar();
-                projectCS.Panel panneauH = new projectCS.Panel();//panneau_size
-                projectCS.Panel panneauB = new projectCS.Panel();//panneau_size
-                projectCS.Panel panneauG = new projectCS.Panel();
-                projectCS.Panel panneauD = new projectCS.Panel();
-                projectCS.Panel panneauAR = new projectCS.Panel();
+                projectCS.Panels panneauH = new projectCS.Panels();//panneau_size
+                projectCS.Panels panneauB = new projectCS.Panels();//panneau_size
+                projectCS.Panels panneauG = new projectCS.Panels();
+                projectCS.Panels panneauD = new projectCS.Panels();
+                projectCS.Panels panneauAR = new projectCS.Panels();
                 Cleat tasseau = new Cleat();
 
                 //projecCS. pas nécessaire

@@ -93,11 +93,11 @@ namespace ShopInterface
                 List<string> orderList2 = new List<string>();
                 if (comboBox23.SelectedItem.ToString() == "Width")
                 {
-                    orderList2 = DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\"");
+                    orderList2 = DbUtils.RefListNd("Width", "kitbox where Ref = \"Panels B\"");
                 }
                 else if (comboBox23.SelectedItem.ToString() == "Depth")
                 {
-                    orderList2 = DbUtils.RefListNd("Depth", "kitbox where Ref = \"Panel LR\"");
+                    orderList2 = DbUtils.RefListNd("Depth", "kitbox where Ref = \"Panels LR\"");
                 }
 
                 foreach (string orderId in orderList2)
@@ -330,7 +330,7 @@ namespace ShopInterface
                 Start();
                 comboBox22.Items.Clear();
                 comboBox23.Text = "";
-                List<string> orderList3 = DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\"");
+                List<string> orderList3 = DbUtils.RefListNd("Width", "kitbox where Ref = \"Panels B\"");
                 foreach (string orderId in orderList3)
                 {
                     comboBox24.Items.Add(orderId);
@@ -903,7 +903,7 @@ namespace ShopInterface
                         }
                     }
                 }
-                else if (comboBox32.SelectedItem.ToString() == "Panel")
+                else if (comboBox32.SelectedItem.ToString() == "Panels")
                 {
                     groupBox24.Visible = false;
                     comboBox33.Enabled = false;
@@ -917,7 +917,7 @@ namespace ShopInterface
                     }
 
                     comboBox28.Items.Clear();
-                    foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panel LR\""))
+                    foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panels LR\""))
                     {
                         comboBox28.Items.Add(i);
                     }
@@ -1264,7 +1264,7 @@ namespace ShopInterface
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                 }
-                else if (comboBox32.Text == @"Panel")
+                else if (comboBox32.Text == @"Panels")
                 {
                     var boxId = comboBox31.Text;
                     string position = "";

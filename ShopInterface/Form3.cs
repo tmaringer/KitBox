@@ -36,7 +36,7 @@ namespace ShopInterface
                     pictureBox1.Image = Properties.Resources.Corniere_black;
                 }
             }
-            else if (label5.Text == @"Panel LR" || label5.Text == @"Panel HL" || label5.Text == @"Panel B")
+            else if (label5.Text == @"Panels LR" || label5.Text == @"Panels HL" || label5.Text == @"Panels B")
             {
                 if (label7.Text == @"White")
                 {

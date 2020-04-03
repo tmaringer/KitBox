@@ -1403,7 +1403,7 @@ namespace ShopInterface
             this.comboBox32.Items.AddRange(new object[] {
             "Angle",
             "Door",
-            "Panel"});
+            "Panels"});
             this.comboBox32.Location = new System.Drawing.Point(121, 76);
             this.comboBox32.Name = "comboBox32";
             this.comboBox32.Size = new System.Drawing.Size(114, 21);
