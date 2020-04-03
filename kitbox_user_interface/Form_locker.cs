@@ -21,13 +21,13 @@ namespace kitbox_user_interface_V1
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panels B\"");
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panel B\"");
             conn.Close();
             conn.Open();
             List<string> ColorDoorList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Door\"");
             conn.Close();
             conn.Open();
-            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panels B\"");
+            List<string> ColorPannelBaList = QueryKitbox.SpecsBoxList(conn, "Colour", "Ref = \"Panel B\"");
             conn.Close();
             conn.Open();
             List<string> HeightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
@@ -97,13 +97,14 @@ namespace kitbox_user_interface_V1
             //test.displayWindow();
             //test2.displayWindow();
 
-            // -------------------------------------------------------------   exemple de comment faire
+            /* -------------------------------------------------------------   exemple de comment faire
             Door dorxxxx = new Door();
             Panels panelxxxx = new Panels();
 
             dorxxxx.color = ColorParse.parseToEnum(comboBox1.SelectedItem.ToString());
             panelxxxx.color = ColorParse.parseToEnum(comboBox2.SelectedItem.ToString());
             // -------------------------------------------------------------   exemple de comment faire
+            */
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
                 string doorsColor = comboBox1.SelectedItem.ToString();
