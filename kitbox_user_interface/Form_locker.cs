@@ -88,7 +88,7 @@ namespace kitbox_user_interface_V1
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
             int currentLocker = Int32.Parse(textBox12.Text);
-
+            //bool choice_fill = false;
 
 
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
@@ -104,29 +104,37 @@ namespace kitbox_user_interface_V1
             dorxxxx.color = ColorParse.parseToEnum(comboBox1.SelectedItem.ToString());
             panelxxxx.color = ColorParse.parseToEnum(comboBox2.SelectedItem.ToString());
             // -------------------------------------------------------------   exemple de comment faire
-
-            string doorsColor = comboBox1.SelectedItem.ToString();
-            string panelColor = comboBox2.SelectedItem.ToString();
-            int height = Int32.Parse(comboBox6.SelectedItem.ToString());
-            dataGridView1.Rows.Add(currentLocker, height, doorsColor,panelColor);
-
-            int totalHeight = Int32.Parse(textBox8.Text);
-            totalHeight += height;
-            textBox8.Text = totalHeight.ToString();
-            if (currentLocker == numberOfLocker)
+            if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
-                button2.Enabled = false;
+                string doorsColor = comboBox1.SelectedItem.ToString();
+                string panelColor = comboBox2.SelectedItem.ToString();
+                int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+                dataGridView1.Rows.Add(currentLocker, height, doorsColor, panelColor);
+
+                int totalHeight = Int32.Parse(textBox8.Text);
+                totalHeight += height;
+                textBox8.Text = totalHeight.ToString();
+                if (currentLocker == numberOfLocker)
+                {
+                    button2.Enabled = false;
+                }
+                currentLocker++;
+                textBox12.Text = currentLocker.ToString();
+
             }
-            currentLocker++;
-            textBox12.Text =currentLocker.ToString();
-            
-            //pas encore utile, ne pas supprimer
-            /*
-            this.Hide();
-            Form1 form = new Form1();
-            form.Show();
-            */
-        }
+            else
+            {
+                MessageBox.Show("Fill every choices");
+            }
+
+
+                //pas encore utile, ne pas supprimer
+                /*
+                this.Hide();
+                Form1 form = new Form1();
+                form.Show();
+                */
+            }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
