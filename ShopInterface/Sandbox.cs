@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using projectCS;
 using projectCS.Tools_class;
 using Color = System.Drawing.Color;
 namespace ShopInterface
