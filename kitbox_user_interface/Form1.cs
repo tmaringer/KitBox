@@ -179,22 +179,7 @@ namespace kitbox_user_interface_V1
             */
 
         }
-
-        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         public void button2_Click(object sender, EventArgs e)
         {
             //int height = comboBox6.SelectedIndex;
@@ -206,20 +191,7 @@ namespace kitbox_user_interface_V1
             MessageBox.Show(width.ToString());
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //refresh combobox height
-            string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
-            MySqlConnection conn = new MySqlConnection(MyConString);
-            conn.Open();
-            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "hauteur", "Ref = \"Panneau GD\"");
-            conn.Close();
-            comboBox6.Items.Clear();
-            comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
-            //allow to create new cupboard
-            button1.Enabled = true;
-        }
-
+        
         private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
 
