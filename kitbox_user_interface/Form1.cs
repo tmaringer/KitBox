@@ -38,6 +38,7 @@ namespace kitbox_user_interface_V1
            
 
             comboBox3.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
+            //TODO : get variable globale max_lockers puis boucle pour remplir combobox3
             comboBox4.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
             comboBox5.Items.AddRange(DepthBoxList.Cast<object>().ToArray());
             comboBox7.Items.AddRange(BracketsColorList.Cast<object>().ToArray());

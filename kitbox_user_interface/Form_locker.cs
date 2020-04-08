@@ -155,7 +155,7 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            MessageBox.Show(dataGridView1.CurrentCell.RowIndex.ToString());
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
