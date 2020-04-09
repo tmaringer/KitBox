@@ -133,7 +133,11 @@ namespace kitbox_user_interface_V1
             {
                 MessageBox.Show("Fill every choices");
             }
-
+            if(currentLocker==numberOfLocker+1)
+            {
+                button1.Visible = true;
+                button1.Enabled = true;
+            }
 
                 //pas encore utile, ne pas supprimer
                 /*
@@ -166,6 +170,11 @@ namespace kitbox_user_interface_V1
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Faire un truc :)");
         }
     }
 }
