@@ -25,7 +25,9 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition  Width="Auto" />
                         </Grid.ColumnDefinitions>
-
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="250"/>
+                        </Grid.RowDefinitions>
                         <datavis:Legend x:Name="Legend" Style="{TemplateBinding LegendStyle}" Grid.Column="1" />
                         <chartingprimitives:EdgePanel x:Name="ChartArea" Style="{TemplateBinding ChartAreaStyle}">
                             <Grid Canvas.ZIndex="-1" Style="{TemplateBinding PlotAreaStyle}" />
@@ -36,78 +38,68 @@
             </Border>
         </ControlTemplate>
     </Page.Resources>
-    <ScrollViewer  HorizontalScrollBarVisibility="Auto">
-        <Grid Margin="7">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="267.5"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="350"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="250"/>
-                <ColumnDefinition Width="400"/>
-                <ColumnDefinition Width="600"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Sales evolution of a part" Margin="7,0,0,0" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource SubtitleTextBlockStyle}"/>
-            <TextBlock x:Name="Average" Grid.Row="2" Grid.Column="3" HorizontalTextAlignment="Center"/>
-            <StackPanel  HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Margin="7">
-                <TextBlock Margin="7,0,0,0" Text="Display sales of a part" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <ComboBox x:Name="ComboBox1" Header="Code" Margin="7" HorizontalAlignment="Stretch"/>
-                <ComboBox x:Name="ComboBox2" Header="Interval" Margin="7" HorizontalAlignment="Stretch" SelectionChanged="ComboBox2_SelectionChanged"/>
-                <ComboBox x:Name="ComboBox3" Header="Value (Optional)" Margin="7" HorizontalAlignment="Stretch"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button1" Content="Display" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button1_Click"/>
-                <TextBlock x:Name="TextBlock1" Height="1"/>
-            </StackPanel>
-            <Charting:Chart x:Name="ColumnChart" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" Template="{StaticResource ColumnChartControlTemplate}">
-                <Charting:ColumnSeries Margin="0" IndependentValuePath="Interval" DependentValuePath="Number" IsSelectionEnabled="True">
-                    <Charting:ColumnSeries.DataPointStyle>
-                        <Style TargetType="Charting:ColumnDataPoint">
-                            <Setter Property="Background" Value="{ThemeResource SystemAccentColor}" />
-                            <Setter Property="BorderBrush" Value="{x:Null}" />
-                            <Setter Property="BorderThickness" Value="1" />
-                            <Setter Property="IsTabStop" Value="False" />
-                        </Style>
-                    </Charting:ColumnSeries.DataPointStyle>
-                    <Charting:ColumnSeries.LegendItemStyle>
-                        <Style TargetType="Charting:LegendItem">
-                            <Setter Property="Height" Value="0"/>
-                            <Setter Property="Width" Value="0"/>
-                            <Setter Property="IsTabStop" Value="False" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Charting:LegendItem">
-                                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Rectangle Width="8" Height="8" Fill="{Binding Background}" Stroke="{Binding BorderBrush}" StrokeThickness="1" Margin="0,0,3,0" />
-                                                <datavis:Title Content="{TemplateBinding Content}" />
-                                            </StackPanel>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Charting:ColumnSeries.LegendItemStyle>
-                </Charting:ColumnSeries>
-            </Charting:Chart>
-            <TextBlock Text="Stock of the shop" Margin="7,0,0,0" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SubtitleTextBlockStyle}"/>
-            <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" Height="336" Margin="7" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2">
-                <Controls:DataGrid.Resources>
-                    <Style TargetType="Controls:DataGridCell" x:Key="Test">
-                        <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>
-                    </Style>
-                </Controls:DataGrid.Resources>
-            </Controls:DataGrid>
-            <RelativePanel Grid.Row="3" Grid.Column="3">
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="ButtonUpdate" Content="Update the stock" VerticalAlignment="Top" Margin="7" Click="ButtonUpdate_Click"/>
-                <ProgressRing x:Name="progress" Margin="7,12" IsActive="false" RelativePanel.RightOf="ButtonUpdate"/>
-                <TextBlock x:Name="output" Height="0"/>
-            </RelativePanel>
-
-            
-        </Grid>
-    </ScrollViewer>
+    <Grid Margin="7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Controls:DataGrid x:Name="DataGrid1" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" MinColumnWidth="150"  Margin="7" Grid.Column="0" Grid.Row="1">
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />
+                <Controls:DataGridTextColumn Header="Instock" Binding="{Binding Instock}" />
+                <Controls:DataGridTextColumn Header="MinimumStock" Binding="{Binding MinimumStock}" />
+                <Controls:DataGridTextColumn Header="Avaibility" Binding="{Binding Avaibility}" FontFamily="Segoe MDL2 Assets"/>
+            </Controls:DataGrid.Columns>
+            <Controls:DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <StackPanel MinHeight="250">
+                        <Charting:Chart x:Name="ColumnChart" Template="{StaticResource ColumnChartControlTemplate}">
+                            <Charting:ColumnSeries ItemsSource="{Binding Records}" Margin="0" IndependentValuePath="Interval" DependentValuePath="Number" IsSelectionEnabled="True">
+                                <Charting:ColumnSeries.DataPointStyle>
+                                    <Style TargetType="Charting:ColumnDataPoint">
+                                        <Setter Property="Background" Value="{ThemeResource SystemAccentColor}" />
+                                        <Setter Property="BorderBrush" Value="{x:Null}" />
+                                        <Setter Property="BorderThickness" Value="1" />
+                                        <Setter Property="IsTabStop" Value="False" />
+                                    </Style>
+                                </Charting:ColumnSeries.DataPointStyle>
+                                <Charting:ColumnSeries.LegendItemStyle>
+                                    <Style TargetType="Charting:LegendItem">
+                                        <Setter Property="Height" Value="0"/>
+                                        <Setter Property="Width" Value="0"/>
+                                        <Setter Property="IsTabStop" Value="False" />
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="Charting:LegendItem">
+                                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Rectangle Width="8" Height="8" Fill="{Binding Background}" Stroke="{Binding BorderBrush}" StrokeThickness="1" Margin="0,0,3,0" />
+                                                            <datavis:Title Content="{TemplateBinding Content}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Charting:ColumnSeries.LegendItemStyle>
+                            </Charting:ColumnSeries>
+                        </Charting:Chart>
+                    </StackPanel>
+                </DataTemplate>
+            </Controls:DataGrid.RowDetailsTemplate>
+            <Controls:DataGrid.Resources>
+                <Style TargetType="Controls:DataGridCell" x:Key="Test">
+                    <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                </Style>
+            </Controls:DataGrid.Resources>
+        </Controls:DataGrid>
+        <RelativePanel Grid.Row="0" Grid.Column="0">
+            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="ButtonUpdate" Content="Update the stock" VerticalAlignment="Top" Margin="7" Click="ButtonUpdate_Click"/>
+            <ProgressRing x:Name="progress" Margin="7,12" IsActive="false" RelativePanel.RightOf="ButtonUpdate"/>
+            <TextBlock x:Name="output" Height="0"/>
+        </RelativePanel>
+    </Grid>
 </Page>

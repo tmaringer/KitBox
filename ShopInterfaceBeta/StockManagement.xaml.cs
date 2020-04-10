@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+using static ShopInterfaceBeta.StockManagement;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,14 +35,12 @@ namespace ShopInterfaceBeta
         {
             this.InitializeComponent();
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Wait, 1);
-            FirstThings();
             FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGrid1);
-            DataGrid1.Columns[DataGrid1.Columns.Count - 1].CellStyle = (Style)DataGrid1.Resources["Test"];
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
         }
 
-        public class Records  
-        {  
+        public class Records
+        {
             public string Interval
             {
                 get;
@@ -54,7 +53,7 @@ namespace ShopInterfaceBeta
             }
         }
 
-        public static void FillDataGrid(DataTable table, DataGrid grid)
+        public static void FillDataGrid(DataTable table, DataGrid DataGrid1)
         {
             table.Columns.Remove("Ref");
             table.Columns.Remove("Dimensions");
@@ -65,17 +64,7 @@ namespace ShopInterfaceBeta
             table.Columns.Remove("NbPartsBox");
             table.Columns.Remove("CustPrice");
             table.Columns.Add("Avaibility", typeof(String));
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-
-            var collection = new ObservableCollection<object>();
+            List<StockPart> stockParts = new List<StockPart>();
             foreach (DataRow row in table.Rows)
             {
                 if (Convert.ToInt32(row["Instock"]) > Convert.ToInt32(row["MinimumStock"]))
@@ -91,11 +80,46 @@ namespace ShopInterfaceBeta
                 {
                     row["Avaibility"] = "\xE7BA";
                 }
-                collection.Add(row.ItemArray);
+                Dictionary<string, int> graphMonth = new Dictionary<string, int>();
+                Dictionary<string, int> values = DbUtils.SelectCondDb("sales", row["Code"].ToString());
+                foreach (KeyValuePair<string, int> entry in values)
+                {
+                    string key = entry.Key;
+                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    if (graphMonth.ContainsKey(month))
+                    {
+                        graphMonth[month] = graphMonth[month] + entry.Value;
+                    }
+                    else
+                    {
+                        graphMonth.Add(month, entry.Value);
+                    }
+                }
+                List<string> months = new List<string>();
+                List<Records> records = new List<Records>();
+                foreach (KeyValuePair<string, int> entry in graphMonth)
+                {
+                    months.Add(entry.Key);
+                    records.Add(new Records()
+                    {
+                        Interval = entry.Key,
+                        Number = entry.Value
+                    });
+                }
+                stockParts.Add(new StockPart()
+                {
+                    Code = row["Code"].ToString(),
+                    MinimumStock = row["MinimumStock"].ToString(),
+                    Instock = row["Instock"].ToString(),
+                    Avaibility = row["Avaibility"].ToString(),
+                    Records = records
+                }) ;
             }
-            grid.AutoGenerateColumns = false;
-            grid.ItemsSource = collection;
+            DataGrid1.ItemsSource = stockParts;
+            DataGrid1.AutoGenerateColumns = false;
         }
+
+        /*
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
@@ -234,6 +258,17 @@ namespace ShopInterfaceBeta
                     }
                 }
             }
+        }
+        */
+
+        public class StockPart
+        {
+            public string Code { get; set; }
+            public string MinimumStock { get; set; }
+            public string Instock { get; set; }
+            public string Avaibility { get; set; }
+
+            public List<Records> Records { get; set; }
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
