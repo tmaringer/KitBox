@@ -42,29 +42,25 @@ namespace ShopInterfaceBeta
             {
                 ComboBox1.Items.Add(i);
             }
-            FillDataGridHeader(DbUtils.RefreshDb("supplierslistprices"), DataGrid1);
-            FillDataGridHeader(DbUtils.RefreshDb("supplierslistprices"), DataGrid2);
+            //FillDataGridHeader(DbUtils.RefreshDb("supplierslistprices"), DataGrid1);
+            //FillDataGridHeader(DbUtils.RefreshDb("supplierslistprices"), DataGrid2);
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
         }
         public static void FillDataGrid(DataTable table, DataGrid grid)
         {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-
-            var collection = new ObservableCollection<object>();
+            List<SuppliersItem> suppliersItems = new List<SuppliersItem>();
             foreach (DataRow row in table.Rows)
             {
-                collection.Add(row.ItemArray);
+                suppliersItems.Add(new SuppliersItem()
+                {
+                    SupplierId = row["SupplierId"].ToString(),
+                    Code = row["Code"].ToString(),
+                    SuppDelay = row["SuppDelay"].ToString(),
+                    SuppPrice = row["SuppPrice"].ToString()
+                });
             }
             grid.AutoGenerateColumns = false;
-            grid.ItemsSource = collection;
+            grid.ItemsSource = suppliersItems;
         }
 
         public static void FillDataGridHeader(DataTable table, DataGrid grid)
@@ -78,6 +74,14 @@ namespace ShopInterfaceBeta
                     Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
                 });
             }
+        }
+
+        public class SuppliersItem
+        {
+            public string SupplierId { get; set; }
+            public string Code { get; set; }
+            public string SuppPrice { get; set; }
+            public string SuppDelay { get; set; }
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)

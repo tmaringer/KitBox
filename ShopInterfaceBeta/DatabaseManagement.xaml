@@ -16,16 +16,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <CommandBar Background="Transparent">
-            <AppBarButton Icon="Add" ToolTipService.ToolTip="Add a row" Click="AppBarButton_Click_1">
+        <CommandBar Margin="265,0,0,0" Background="Transparent" DefaultLabelPosition="Right">
+            <AppBarButton Icon="Add" ToolTipService.ToolTip="Add a row" Label="Add a row" Click="AppBarButton_Click_1">
 
             </AppBarButton>
-            <AppBarButton x:Name="Edit" Icon="Edit" ToolTipService.ToolTip="Enable editing mode" Click="EditButton_Click">
+            <AppBarButton x:Name="Edit" Icon="Edit" Label="Enable edit mode" ToolTipService.ToolTip="Enable editing mode" Click="EditButton_Click">
             </AppBarButton>
-            <AppBarButton Icon="Delete" ToolTipService.ToolTip="Delete a row">
+            <AppBarButton Icon="Delete" Label="Delete a row" ToolTipService.ToolTip="Delete a row">
 
             </AppBarButton>
-            <AppBarButton Icon="List" Click="Button_Click" ToolTipService.ToolTip="Sort">
+            <AppBarButton Icon="List" Label="Sort" Click="Button_Click" ToolTipService.ToolTip="Sort">
             </AppBarButton>
         </CommandBar>
         <controls:DataGrid ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" Margin="7,0,0,0" LoadingRowGroup="DataGridView1_LoadingRowGroup" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" RowDetailsVisibilityMode="VisibleWhenSelected"  x:Name="DataGridView1" Grid.Column="0" Grid.Row="1">
@@ -62,6 +62,6 @@
             <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Delete" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="StackPanelDatabaseManagement1Button1_Click"/>
             <TextBlock x:Name="TextBlock3" Height="1"/>
         </StackPanel>
-        <AutoSuggestBox x:Name="AutoSuggestBox" Margin="4,4,280,4" PlaceholderText="Make a search" HorizontalAlignment="Right" Width="250" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+        <AutoSuggestBox x:Name="AutoSuggestBox" Margin="7,4,4,4" PlaceholderText="Make a search" HorizontalAlignment="Left" Width="250" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
     </Grid>
 </Page>

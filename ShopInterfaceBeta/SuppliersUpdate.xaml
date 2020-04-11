@@ -8,70 +8,79 @@
     xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
-    <ScrollViewer HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="600"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="600"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="600"/>
-            </Grid.RowDefinitions>
-            <TextBlock Width="200" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Supplier catalogue" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="1" Grid.Row="0" />
-            <CommandBar Grid.Row="0" Grid.Column="1" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="0,0,7,0">
-                <AppBarButton x:Name="Initialise" ToolTipService.ToolTip="Show"  AllowFocusOnInteraction="True">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
-                    </AppBarButton.Icon>
-                    <AppBarButton.Flyout>
-                        <Flyout x:Name="FlyoutCreate">
-                            <StackPanel>
-                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Select a supplierId"/>
-                                <ComboBox x:Name="ComboBox1" Header="SupplierId" HorizontalAlignment="Stretch" />
-                                <Button Click="Button1_Click"  Content="Select" Margin="0,7,0,0"/>
-                            </StackPanel>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-
-                <AppBarButton x:Name="Add" Icon="Add" IsEnabled="False" ToolTipService.ToolTip="Add" AllowFocusOnInteraction="True">
-                    <AppBarButton.Flyout>
-                        <Flyout>
-                            <StackPanel x:Name="addPanel">
-                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Add a part to the catalogue"/>
-                                <TextBox x:Name="addCode" Header="Code"/>
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppPrice"/>
-                                <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppPrice" Header="SuppPrice" Minimum="0.001" SmallChange="0.001" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppDelay"/>
-                                <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppDelay" Header="SuppDelay"  Minimum="1" SmallChange="1" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
-                                <Button Click="Add_Click" Content="Add" Margin="0,7,0,0"/>
-                            </StackPanel>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-                <AppBarButton x:Name="Modify" Icon="Edit" IsEnabled="False" ToolTipService.ToolTip="Modify"  AllowFocusOnInteraction="True">
-                    <AppBarButton.Flyout>
-                        <Flyout x:Name="FlyoutModify">
-                            <StackPanel>
-                                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Modify a part of the catalogue"/>
-                                <ComboBox x:Name="modifyCode" Header="Code" HorizontalAlignment="Stretch"/>
-                                <ComboBox x:Name="modifyRow" Header="Row" HorizontalAlignment="Stretch" SelectionChanged="modifyRow_SelectionChanged"/>
-                                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="Value"/>
-                                <controls:NumberBox Margin="0,4,0,0" Minimum="0.01" x:Name="modifyValue" SpinButtonPlacementMode="Compact"/>
-                                <Button Click="Modify_Click" Content="Modify" Margin="0,7,0,0"/>
-                            </StackPanel>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-                <AppBarButton x:Name="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete"/>
-                <AppBarButton x:Name="Update" Icon="Refresh" ToolTipService.ToolTip="Update" Click="Refresh_Click"/>
-            </CommandBar>
-            <controls1:DataGrid x:Name="DataGrid1" ColumnWidth="*" Margin="7,0,7,7" Grid.Column="1" Grid.Row="1"/>
-            <controls1:DataGrid x:Name="DataGrid2" ColumnWidth="*" Margin="7,0,7,7" Grid.Column="3" Grid.Row="1"/>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Width="170" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Supplier catalogue" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0" />
+        <TextBlock Width="200" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Best suppliers' prices" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="1" Grid.Row="0" />
+        <CommandBar MinWidth="50"  Grid.Row="0" Grid.Column="0" DefaultLabelPosition="Right" Background="Transparent" Margin="180,0,7,0">
+            <AppBarButton x:Name="Initialise" Label="Show" ToolTipService.ToolTip="Show"  AllowFocusOnInteraction="True">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
+                </AppBarButton.Icon>
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="FlyoutCreate">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Select a supplierId"/>
+                            <ComboBox x:Name="ComboBox1" Header="SupplierId" HorizontalAlignment="Stretch" />
+                            <Button Click="Button1_Click"  Content="Select" Margin="0,7,0,0"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Name="Add" Icon="Add" Label="Add" IsEnabled="False" ToolTipService.ToolTip="Add" AllowFocusOnInteraction="True">
+                <AppBarButton.Flyout>
+                    <Flyout>
+                        <StackPanel x:Name="addPanel">
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Add a part to the catalogue"/>
+                            <TextBox x:Name="addCode" Header="Code"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppPrice"/>
+                            <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppPrice" Header="SuppPrice" Minimum="0.001" SmallChange="0.001" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppDelay"/>
+                            <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppDelay" Header="SuppDelay"  Minimum="1" SmallChange="1" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
+                            <Button Click="Add_Click" Content="Add" Margin="0,7,0,0"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Name="Modify" Icon="Edit" Label="Edit" IsEnabled="False" ToolTipService.ToolTip="Edit"  AllowFocusOnInteraction="True">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="FlyoutModify">
+                        <StackPanel>
+                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Modify a part of the catalogue"/>
+                            <ComboBox x:Name="modifyCode" Header="Code" HorizontalAlignment="Stretch"/>
+                            <ComboBox x:Name="modifyRow" Header="Row" HorizontalAlignment="Stretch" SelectionChanged="modifyRow_SelectionChanged"/>
+                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="Value"/>
+                            <controls:NumberBox Margin="0,4,0,0" Minimum="0.01" x:Name="modifyValue" SpinButtonPlacementMode="Compact"/>
+                            <Button Click="Modify_Click" Content="Modify" Margin="0,7,0,0"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete"/>
+            <AppBarButton x:Name="Update" Label="Update" Icon="Refresh" ToolTipService.ToolTip="Update" Click="Refresh_Click"/>
+        </CommandBar>
+        <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1">
+            <controls1:DataGrid.Columns>
+                <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
+                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
+                <controls1:DataGridTextColumn Header="SuppPrice" Binding="{Binding SuppPrice}"/>
+                <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
+            </controls1:DataGrid.Columns>
+        </controls1:DataGrid>
+        <controls1:DataGrid x:Name="DataGrid2" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="1" Grid.Row="1">
+            <controls1:DataGrid.Columns>
+                <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
+                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
+                <controls1:DataGridTextColumn Header="SuppPrice" Binding="{Binding SuppPrice}"/>
+                <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
+            </controls1:DataGrid.Columns>
+        </controls1:DataGrid>
+    </Grid>
 </Page>

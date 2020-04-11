@@ -230,12 +230,14 @@ namespace ShopInterfaceBeta
             {
                 DataGridView1.IsReadOnly = true;
                 Edit.Foreground = fore;
+                Edit.Label = "Enable edit mode";
             }
             else
             {
                 DataGridView1.IsReadOnly = false;
                 fore = (SolidColorBrush)Edit.Foreground;
                 Edit.Foreground = new SolidColorBrush(Colors.Red);
+                Edit.Label = "Disable edit mode";
             }
         }
 

@@ -46,8 +46,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <CommandBar Margin="7,0,7,0" Background="Transparent">
-            <AppBarButton Icon="Refresh" Click="ButtonUpdate_Click"/>
+        <CommandBar Margin="7,0,7,0" Background="Transparent" DefaultLabelPosition="Right">
+            <AppBarButton Icon="Refresh" Click="ButtonUpdate_Click" Label="Update the MinimumStock value"/>
         </CommandBar>
         <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"  Margin="7,0,7,0" Grid.Column="0" Grid.Row="1">
             <Controls:DataGrid.Columns>
