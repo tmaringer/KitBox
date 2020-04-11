@@ -39,6 +39,7 @@ namespace ShopInterfaceBeta
         private string OriginalCode;
         private string OriginalValue;
         private SolidColorBrush fore;
+        private List<string> _nameList;
         public DatabaseManagement()
         {
             this.InitializeComponent();
@@ -52,6 +53,7 @@ namespace ShopInterfaceBeta
 
         public void FillDataGrid(DataTable dataTable, DataGrid dataGrid)
         {
+            _nameList = new List<string>();
             _items = new ObservableCollection<Part>();
             List<Part> parts = new List<Part>();
             foreach (DataRow row in dataTable.Rows)
@@ -65,12 +67,19 @@ namespace ShopInterfaceBeta
                     Depth = row["Depth"].ToString(),
                     Colour = row["Colour"].ToString(),
                     Instock = row["Instock"].ToString(),
-                    MinimumStock = row["Instock"].ToString(),
+                    MinimumStock = row["MinimumStock"].ToString(),
                     CustPrice = row["CustPrice"].ToString(),
                     NbPartsBox = Convert.ToInt32(row["NbPartsBox"].ToString())
                 };
                 parts.Add(part);
                 _items.Add(part);
+                foreach (DataColumn column in dataTable.Columns)
+                {
+                    if (_nameList.Contains(row[column].ToString()) == false && column.ColumnName != "Dimensions")
+                    {
+                        _nameList.Add(row[column].ToString());
+                    }
+                }
             }
             dataGrid.ItemsSource = parts;
             dataGrid.AutoGenerateColumns = false;
@@ -157,7 +166,7 @@ namespace ShopInterfaceBeta
 
         private void DataGridView1_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
         {
-            
+
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
             Part item = group.GroupItems[0] as Part;
             e.RowGroupHeader.PropertyValue = item.Ref;
@@ -228,6 +237,67 @@ namespace ShopInterfaceBeta
                 fore = (SolidColorBrush)Edit.Foreground;
                 Edit.Foreground = new SolidColorBrush(Colors.Red);
             }
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                List<string> _listSuggestion = _nameList.Where(x => x.ToLower().StartsWith(sender.Text.ToLower())).ToList();
+                sender.ItemsSource = _listSuggestion;
+            }
+        }
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                AutoSuggestBox.Text = args.ChosenSuggestion.ToString();
+                string value = AutoSuggestBox.Text.ToString();
+                List<Part> parts = new List<Part>();
+                DataTable result = new DataTable();
+                result = DbUtils.RefreshDb("kitbox");
+                result.Columns.Remove("Dimensions");
+                result.Rows.Clear();
+                foreach (DataRow dataRow in DbUtils.RefreshDb("kitbox").Rows)
+                {
+                    List<string> row = dataRow.ItemArray.Select(i => i.ToString()).ToList();
+                    if (row.Contains(value))
+                    {
+                        result.Rows.Add(row);
+                        parts.Add(new Part()
+                        {
+                            Ref = dataRow["Ref"].ToString(),
+                            Code = dataRow["Code"].ToString(),
+                            Height = dataRow["Height"].ToString(),
+                            Width = dataRow["Width"].ToString(),
+                            Depth = dataRow["Depth"].ToString(),
+                            Colour = dataRow["Colour"].ToString(),
+                            Instock = dataRow["Instock"].ToString(),
+                            MinimumStock = dataRow["MinimumStock"].ToString(),
+                            CustPrice = dataRow["CustPrice"].ToString(),
+                            NbPartsBox = Convert.ToInt32(dataRow["NbPartsBox"].ToString())
+                        });
+                    }
+                    DataGridView1.ItemsSource = parts;
+                    DataGridView1.AutoGenerateColumns = false;
+                }
+            }
+            else
+            {
+                FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
+            }
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            var selectedItem = args.SelectedItem.ToString();
+            sender.Text = selectedItem;
         }
     }
 }

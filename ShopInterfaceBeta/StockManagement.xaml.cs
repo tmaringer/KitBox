@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using ShopInterface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -274,7 +275,7 @@ namespace ShopInterfaceBeta
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)
         {
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Wait, 1);
-            progress.IsActive = true;
+            NotificationToast.SimpleNotification("Updating the stock minimum value...");
             List<string> code = DbUtils.RefList("Code", "kitbox");
             foreach (string i in code)
             {
@@ -314,11 +315,12 @@ namespace ShopInterfaceBeta
 
                 }
                 int average = all / 12;
-                output.Text = DbUtils.UpdateDb("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
+                string x = "";
+                x = DbUtils.UpdateDb("kitbox", "MinimumStock", "Code = \"" + i + "\"", average.ToString());
             }
             FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGrid1);
             DataGrid1.Columns[DataGrid1.Columns.Count - 1].CellStyle = (Style)DataGrid1.Resources["Test"];
-            progress.IsActive = false;
+            NotificationToast.SimpleNotification("Update completed");
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
         }
     }

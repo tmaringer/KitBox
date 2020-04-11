@@ -46,7 +46,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"  Margin="7" Grid.Column="0" Grid.Row="1">
+        <CommandBar Margin="7,0,7,0" Background="Transparent">
+            <AppBarButton Icon="Refresh" Click="ButtonUpdate_Click"/>
+        </CommandBar>
+        <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"  Margin="7,0,7,0" Grid.Column="0" Grid.Row="1">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />
                 <Controls:DataGridTextColumn Header="Instock" Binding="{Binding Instock}" />
@@ -96,10 +99,5 @@
                 </Style>
             </Controls:DataGrid.Resources>
         </Controls:DataGrid>
-        <RelativePanel Grid.Row="0" Grid.Column="0">
-            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="ButtonUpdate" Content="Update the stock" VerticalAlignment="Top" Margin="7" Click="ButtonUpdate_Click"/>
-            <ProgressRing x:Name="progress" Margin="7,12" IsActive="false" RelativePanel.RightOf="ButtonUpdate"/>
-            <TextBlock x:Name="output" Height="0"/>
-        </RelativePanel>
     </Grid>
 </Page>

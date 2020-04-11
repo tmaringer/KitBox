@@ -17,7 +17,7 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <CommandBar Background="Transparent">
-            <AppBarButton Icon="Add" ToolTipService.ToolTip="Add a row">
+            <AppBarButton Icon="Add" ToolTipService.ToolTip="Add a row" Click="AppBarButton_Click_1">
 
             </AppBarButton>
             <AppBarButton x:Name="Edit" Icon="Edit" ToolTipService.ToolTip="Enable editing mode" Click="EditButton_Click">
@@ -62,5 +62,6 @@
             <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Delete" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="StackPanelDatabaseManagement1Button1_Click"/>
             <TextBlock x:Name="TextBlock3" Height="1"/>
         </StackPanel>
+        <AutoSuggestBox x:Name="AutoSuggestBox" Margin="4,4,280,4" PlaceholderText="Make a search" HorizontalAlignment="Right" Width="250" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
     </Grid>
 </Page>
