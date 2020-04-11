@@ -46,7 +46,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Controls:DataGrid x:Name="DataGrid1" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" MinColumnWidth="150"  Margin="7" Grid.Column="0" Grid.Row="1">
+        <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"  Margin="7" Grid.Column="0" Grid.Row="1">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />
                 <Controls:DataGridTextColumn Header="Instock" Binding="{Binding Instock}" />
