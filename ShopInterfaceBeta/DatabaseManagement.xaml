@@ -28,7 +28,7 @@
             <AppBarButton Icon="List" Label="Sort" Click="Button_Click" ToolTipService.ToolTip="Sort">
             </AppBarButton>
         </CommandBar>
-        <controls:DataGrid ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" Margin="7,0,0,0" LoadingRowGroup="DataGridView1_LoadingRowGroup" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" RowDetailsVisibilityMode="VisibleWhenSelected"  x:Name="DataGridView1" Grid.Column="0" Grid.Row="1">
+        <controls:DataGrid ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" Margin="7,0,0,0" LoadingRowGroup="DataGridView1_LoadingRowGroup" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" RowDetailsVisibilityMode="VisibleWhenSelected"  x:Name="DataGridView1" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Ref" Binding="{Binding Ref}" />
                 <controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />

@@ -66,7 +66,7 @@
             <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete"/>
             <AppBarButton x:Name="Update" Label="Update" Icon="Refresh" ToolTipService.ToolTip="Update" Click="Refresh_Click"/>
         </CommandBar>
-        <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1">
+        <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls1:DataGrid.Columns>
                 <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
                 <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
@@ -74,7 +74,7 @@
                 <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
             </controls1:DataGrid.Columns>
         </controls1:DataGrid>
-        <controls1:DataGrid x:Name="DataGrid2" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="1" Grid.Row="1">
+        <controls1:DataGrid x:Name="DataGrid2" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls1:DataGrid.Columns>
                 <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
                 <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
