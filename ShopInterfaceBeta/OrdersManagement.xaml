@@ -48,8 +48,8 @@
                 <RowDefinition Height="167.5"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Controls:DataGrid x:Name="DataGrid1" Margin="7" ColumnWidth="*" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" DoubleTapped="DataGrid1_DoubleTapped"/>
-            <Controls:DataGrid x:Name="DataGrid2" Margin="7" ColumnWidth="*" Grid.Column="5" Grid.Row="3" Grid.RowSpan="2"/>
+            <Controls:DataGrid x:Name="DataGrid1" Margin="7" ColumnWidth="*" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="3" DoubleTapped="DataGrid1_DoubleTapped" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
+            <Controls:DataGrid x:Name="DataGrid2" Margin="7" ColumnWidth="*" Grid.Column="5" Grid.Row="3" Grid.RowSpan="2" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
             <StackPanel x:Name="Commands" Grid.Column="5" Grid.Row="1" Width="0" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Background="Gold" Margin="7">
                 <TextBlock x:Name="output" Height="0" Width="0"/>
             </StackPanel>

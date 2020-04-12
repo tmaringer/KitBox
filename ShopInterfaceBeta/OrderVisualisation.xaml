@@ -117,9 +117,9 @@
             </CommandBar>
             <TextBlock Margin="7,0,0,0" Text="Boxes" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="1" Grid.Row="2" Width="200" HorizontalAlignment="Left"/>
             <TextBlock Margin="7,0,0,0" Text="Parts" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0" Width="200" HorizontalAlignment="Left"/>
-            <controls:DataGrid x:Name="DataGrid1" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid1_DoubleTapped" Grid.Column="1" Grid.Row="1"/>
-            <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="1" Grid.Row="3"/>
-            <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3">
+            <controls:DataGrid x:Name="DataGrid1" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid1_DoubleTapped" Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
+            <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="1" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
+            <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
                 <controls:DataGrid.Resources>
                     <Style TargetType="controls:DataGridCell" x:Key="Test">
                         <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>

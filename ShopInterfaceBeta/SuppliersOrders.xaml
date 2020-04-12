@@ -38,7 +38,7 @@
                 </Style>
             </Controls:DataGrid.Resources>
         </Controls:DataGrid>
-        <Controls:DataGrid x:Name="DataGrid2" Grid.Column="0" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="3" IsReadOnly="True">
+        <Controls:DataGrid x:Name="DataGrid2" Grid.Column="0" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="3" IsReadOnly="True" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="ItemId" Binding="{Binding ItemId}"/>
                 <Controls:DataGridTextColumn Header="SupplierOderId" Binding="{Binding SupplierOrderId}"/>
@@ -46,7 +46,7 @@
                 <Controls:DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
             </Controls:DataGrid.Columns>
         </Controls:DataGrid>
-        <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True">
+        <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
