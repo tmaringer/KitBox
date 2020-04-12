@@ -36,7 +36,6 @@ namespace ShopInterfaceBeta
         public void FirstThings()
         {
             FillDataGrid(DbUtils.RefreshDb("suppliersorders"), DataGrid1);
-            FillDataGridHeader(DbUtils.RefreshDb("supplierslistsitems"), DataGrid2);
             ComboBox4.Items.Clear();
             foreach (string i in DbUtils.RefList("Code", "kitbox"))
             {
@@ -46,16 +45,15 @@ namespace ShopInterfaceBeta
             dataTable.Columns.Add("Id", typeof(string));
             dataTable.Columns.Add("Code", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(Int32));
-            FillDataGridHeader(dataTable, DataGrid3);
             DataGrid1.Columns[DataGrid1.Columns.Count - 1].CellStyle = (Style)DataGrid1.Resources["Test"];
             ComboBox1.Items.Clear();
             ComboBox2.Items.Clear();
             ComboBox3.Items.Clear();
-            foreach(string i in DbUtils.RefList("SupplierId","suppliers"))
+            foreach (string i in DbUtils.RefList("SupplierId", "suppliers"))
             {
                 ComboBox3.Items.Add(i);
             }
-            foreach(string i in DbUtils.RefList("SupplierOrderId","suppliersorders where Status = \"sent\""))
+            foreach (string i in DbUtils.RefList("SupplierOrderId", "suppliersorders where Status = \"sent\""))
             {
                 ComboBox2.Items.Add(i);
             }
@@ -94,24 +92,11 @@ namespace ShopInterfaceBeta
                 {
 
                 }
-                
+
                 collection.Add(row.ItemArray);
             }
             grid.AutoGenerateColumns = false;
             grid.ItemsSource = collection;
-        }
-
-        public static void FillDataGridHeader(DataTable table, DataGrid grid)
-        {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
@@ -275,6 +260,30 @@ namespace ShopInterfaceBeta
                 ComboBox2.Text = "";
                 FirstThings();
             }
+        }
+
+        public class SupplierOrder
+        {
+            public string SupplierOrderId { get; set; }
+            public string SupplierId { get; set; }
+            public string Amount { get; set; }
+            public string Date { get; set; }
+            public string Status { get; set; }
+        }
+
+        public class SupplierOrderPart
+        {
+            public string ItemId { get; set; }
+            public string SupplierOrderId { get; set; }
+            public string Code { get; set; }
+            public string Quantity { get; set; }
+        }
+
+        public class SupplierPendingPart
+        {
+            public string Id { get; set; }
+            public string Code { get; set; }
+            public string Quantity { get; set; }
         }
     }
 }
