@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ShopInterfaceBeta"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:system="using:System" xmlns:wellknowntypes="using:Google.Protobuf.WellKnownTypes"
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
     <Grid x:Name="Grid" Margin="7" >
@@ -19,9 +19,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Margin="7,0,0,0" Width="150" HorizontalAlignment="Left" Text="Cupboards" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
-        <CommandBar Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="0,0,7,0">
-            <AppBarButton x:Name="Initialise" ToolTipService.ToolTip="Select a customer and an order" AllowFocusOnInteraction="True">
+        <TextBlock Margin="7,0,0,0" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Cupboards" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
+        <CommandBar Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Right" Margin="120,0,7,0">
+            <AppBarButton x:Name="Initialise" Label="Select an order" ToolTipService.ToolTip="Select a customer and an order" AllowFocusOnInteraction="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
@@ -51,7 +51,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
-        <CommandBar Grid.Row="2" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="0,0,7,0">
+        <CommandBar Grid.Row="2" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="70,0,7,0">
             <AppBarButton x:Name="Edit1" IsEnabled="False" ToolTipService.ToolTip="Edit a box" Icon="Edit" AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="FlyoutEdit1">
@@ -65,7 +65,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
-        <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="0,0,7,0">
+        <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="57,0,7,0">
             <AppBarButton IsEnabled="False" AllowFocusOnInteraction="True" ToolTipService.ToolTip="Door management" x:Name="Door">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
@@ -113,10 +113,24 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
-        <TextBlock Margin="7,0,0,0" Text="Boxes" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="2" Width="200" HorizontalAlignment="Left"/>
-        <TextBlock Margin="7,0,0,0" Text="Parts" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0" Width="200" HorizontalAlignment="Left"/>
-        <controls:DataGrid x:Name="DataGrid1" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid1_DoubleTapped" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
-        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}"/>
+        <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Boxes" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="2" Width="200" HorizontalAlignment="Left"/>
+        <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Parts" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0" Width="200" HorizontalAlignment="Left"/>
+        <controls:DataGrid x:Name="DataGrid1" CellEditEnding="DataGrid1_CellEditEnding" Margin="7,0,7,7" MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid1_DoubleTapped" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="CupboardId" Binding="{Binding CupboardId}"/>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="OrderId" Binding="{Binding OrderId}"/>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="Height" Binding="{Binding Height}"/>
+                <controls:DataGridComboBoxColumn Header="Width" Binding="{Binding Width}" ItemsSource="{x:Bind widthList}"/>
+                <controls:DataGridComboBoxColumn Header="Depth" Binding="{Binding Depth}" ItemsSource="{x:Bind depthList}"/>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7"  MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="BoxId" Binding="{Binding BoxId}" />
+                <controls:DataGridTextColumn IsReadOnly="True" Header="CupboardId" Binding="{Binding CupboardId}" />
+                <controls:DataGridComboBoxColumn Header="Height" Binding="{Binding Height}" ItemsSource="{x:Bind heightList}"/>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
         <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls:DataGrid.Resources>
                 <Style TargetType="controls:DataGridCell" x:Key="Test">

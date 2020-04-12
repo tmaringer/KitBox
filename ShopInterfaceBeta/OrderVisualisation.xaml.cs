@@ -36,6 +36,9 @@ namespace ShopInterfaceBeta
         private ObservableCollection<string> orderIdCustomer;
         private ObservableCollection<string> cupboardIds;
         private ObservableCollection<string> boxIds;
+        private List<string> heightList;
+        private List<string> widthList;
+        private List<string> depthList;
         private string boxId;
         private string cupId;
         private List<string> part;
@@ -56,50 +59,59 @@ namespace ShopInterfaceBeta
             ComboDoor.Items.Add("0");
             ComboDoor.Items.Add("1");
             ComboDoor.Items.Add("2");
+            heightList = new List<string>();
+            widthList = new List<string>();
+            depthList = new List<string>();
             foreach (string i in DbUtils.RefListNd("Height", "kitbox where Ref = \"Cleat\""))
             {
                 int height = Convert.ToInt32(i) + 4;
                 ComboBox7.Items.Add(height.ToString());
+                heightList.Add(height.ToString());
+            }
+            foreach (string i in DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\""))
+            {
+                widthList.Add(i);
+            }
+            foreach (string i in DbUtils.RefListNd("Depth", "kitbox where Ref = \"Panel LR\""))
+            {
+                depthList.Add(i);
             }
             FillComboBox(DbUtils.RefListNd("CustomerName", "customers natural join orders"), customers);
-            FillDataGridHeader(DbUtils.RefreshDb("cupboards"), DataGrid1);
-            FillDataGridHeader(DbUtils.RefreshDb("boxes"), DataGrid2);
-            FillDataGridHeader(DbUtils.RefreshDb("panels"), DataGrid3);
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
         }
 
-        public static void FillDataGrid(DataTable table, DataGrid grid)
+        public static void FillDataGridCup(DataTable table, DataGrid grid)
         {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-
-            var collection = new ObservableCollection<object>();
+            List<Cupboard> cupboards = new List<Cupboard>();
             foreach (DataRow row in table.Rows)
             {
-                collection.Add(row.ItemArray);
-            }
-            grid.AutoGenerateColumns = false;
-            grid.ItemsSource = collection;
-        }
-
-        public static void FillDataGridHeader(DataTable table, DataGrid grid)
-        {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
+                cupboards.Add(new Cupboard()
                 {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
+                    CupboardId = row["CupboardId"].ToString(),
+                    OrderId = row["OrderId"].ToString(),
+                    Height = row["Height"].ToString(),
+                    Width = row["Width"].ToString(),
+                    Depth = row["Depth"].ToString()
                 });
             }
+            grid.AutoGenerateColumns = false;
+            grid.ItemsSource = cupboards;
+        }
+
+        public static void FillDataGridBox(DataTable table, DataGrid grid)
+        {
+            List<Box> boxes = new List<Box>();
+            foreach (DataRow row in table.Rows)
+            {
+                boxes.Add(new Box()
+                {
+                    CupboardId = row["CupboardId"].ToString(),
+                    Height = row["Height"].ToString(),
+                    BoxId = row["BoxId"].ToString()
+                });
+            }
+            grid.AutoGenerateColumns = false;
+            grid.ItemsSource = boxes;
         }
         private static void FillComboBox(List<string> list, ObservableCollection<string> code)
         {
@@ -124,7 +136,7 @@ namespace ShopInterfaceBeta
         {
             if (ComboBox1.SelectedItem.ToString() != "")
             {
-                FillDataGrid(DbUtils.RefreshDb("cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), DataGrid1);
+                FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), DataGrid1);
                 FillComboBox(DbUtils.RefList("CupboardId", "cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), cupboardIds);
                 FlyoutInitialise.Hide();
             }
@@ -141,8 +153,8 @@ namespace ShopInterfaceBeta
             if (columnValue == "CupboardId")
             {
                 Modify.IsEnabled = true;
-                cupId = ((object)(((object[])DataGrid1.SelectedItem)[0].ToString())).ToString();
-                FillDataGrid(DbUtils.RefreshDb("boxes where CupboardId = \"" + cupId + "\""), DataGrid2);
+                cupId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
+                FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + cupId + "\""), DataGrid2);
                 Sandbox.Angles(cupId, DataGrid3);
                 DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
                 FillComboBox(DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + cupId + "\""), boxIds);
@@ -159,7 +171,7 @@ namespace ShopInterfaceBeta
             string columnValue = DataGrid2.CurrentColumn.Header.ToString();
             if (columnValue == "BoxId")
             {
-                boxId = ((object)(((object[])DataGrid2.SelectedItem)[0].ToString())).ToString();
+                boxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
                 string cupboardId = DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + boxId + "\"")[0];
                 if (Convert.ToInt32(DbUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardId + "\"")[0]) > 60)
                 {
@@ -205,7 +217,7 @@ namespace ShopInterfaceBeta
                 Sandbox.Depth(cupboardId, Convert.ToInt32(value));
             }
             string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + cupboardId + "\"")[0];
-            FillDataGrid(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
+            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
             Modify.IsEnabled = false;
             FlyoutModify.Hide();
         }
@@ -217,9 +229,9 @@ namespace ShopInterfaceBeta
             Sandbox.Height(BoxId, Convert.ToInt32(ComboBox7.SelectedItem.ToString()));
             Sandbox.Angles(CupboardId, DataGrid3);
             string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
-            FillDataGrid(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
+            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
             DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
-            FillDataGrid(DbUtils.RefreshDb("boxes where CupboardId = \"" + CupboardId + "\""), DataGrid2);
+            FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + CupboardId + "\""), DataGrid2);
             Edit1.IsEnabled = false;
             FlyoutEdit1.Hide();
         }
@@ -405,6 +417,69 @@ namespace ShopInterfaceBeta
         private void Edit1_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public class Cupboard
+        {
+            public string CupboardId { get; set; }
+            public string OrderId { get; set; }
+            public string Height { get; set; }
+            public string Width { get; set; }
+            public string Depth { get; set; }
+        }
+
+        public class Box
+        {
+            public string BoxId { get; set; }
+            public string CupboardId { get; set; }
+            public string Height { get; set; }
+        }
+        public class Item
+        {
+
+        }
+
+        private async void DataGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            string CupboardId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
+            string original = "";
+            string value = "";
+            string setting = "";
+            if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Width")
+            {
+                original = DbUtils.RefList("Width", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
+                value = ((Cupboard)((sender as DataGrid).SelectedItem)).Width;
+                setting = "Width";
+            }
+            else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Depth")
+            {
+                original = DbUtils.RefList("Depth", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
+                value = ((Cupboard)((sender as DataGrid).SelectedItem)).Depth;
+                setting = "Depth";
+            }
+            ContentDialog ModifyCupboard = new ContentDialog()
+            {
+                Title = "Cupboard modification",
+                Content = "Do you want to change the " + setting.ToLower() + " of cupboard n°" + CupboardId + " from \"" + original + "\" to \"" + value + "\" ?",
+                PrimaryButtonText = "Yes",
+                SecondaryButtonText = "I'm not sure",
+                DefaultButton = ContentDialogButton.Secondary
+            };
+            ContentDialogResult result = await ModifyCupboard.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string i = "";
+                i = DbUtils.UpdateDb("cupboards", setting, "CupboardId = \"" + CupboardId + "\"", value);
+                if (setting == "Width")
+                {
+                    Sandbox.Width(CupboardId, Convert.ToInt32(value));
+                }
+                else if (setting == "Depth")
+                {
+                    Sandbox.Depth(CupboardId, Convert.ToInt32(value));
+                }
+            }
+            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + CupboardId + "\"")[0] + "\""), DataGrid1);
         }
     }
 }

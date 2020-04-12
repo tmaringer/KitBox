@@ -9,7 +9,7 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
-    <Grid>
+    <Grid  Margin="7">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>
@@ -46,7 +46,7 @@
                 <Controls:DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
             </Controls:DataGrid.Columns>
         </Controls:DataGrid>
-        <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,7,7" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
@@ -60,7 +60,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </CommandBar>
-        <CommandBar Margin="170,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" VerticalAlignment="Stretch">
+        <CommandBar Margin="170,0,7,0" Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" VerticalAlignment="Stretch">
             <AppBarButton ToolTipService.ToolTip="Show a supplier order" Label="Show a supplier order" AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
                     <Flyout x:Name="ShowFlyout">
