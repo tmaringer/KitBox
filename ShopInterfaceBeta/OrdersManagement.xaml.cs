@@ -34,8 +34,7 @@ namespace ShopInterfaceBeta
             {
                 ComboBox1.Items.Add(i);
             }
-            FillDataGrid(SetColumnsOrder(DbUtils.RefreshDb("orders natural join customers")), DataGrid1);
-            FillDataGridHeader(DbUtils.RefreshDb("listsitems"), DataGrid2);
+            FillDataGrid1(SetColumnsOrder(DbUtils.RefreshDb("orders natural join customers")), DataGrid1);
         }
 
         public static DataTable SetColumnsOrder(DataTable table)
@@ -48,44 +47,37 @@ namespace ShopInterfaceBeta
             return table;
         }
 
-        public static void FillDataGrid(DataTable table, DataGrid grid)
+        public static void FillDataGrid1(DataTable table, DataGrid grid)
         {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-             var collection = new ObservableCollection<object>();
+            List<Order> orders = new List<Order>();
             foreach (DataRow row in table.Rows)
             {
-                collection.Add(row.ItemArray);
-            }
-            grid.AutoGenerateColumns = false;
-            grid.ItemsSource = collection;
-        }
-
-        public static void FillDataGridHeader(DataTable table, DataGrid grid)
-        {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
+                orders.Add(new Order()
                 {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
+                    CustomerName = row["CustomerName"].ToString(),
+                    OrderId = row["OrderId"].ToString(),
+                    Status = row["Status"].ToString()
                 });
             }
+            grid.AutoGenerateColumns = false;
+            grid.ItemsSource = orders;
         }
-            
-        private void ShowMenu(bool isTransient)
+
+        public static void FillDataGrid2(DataTable table, DataGrid grid)
         {
-            FlyoutShowOptions myOption = new FlyoutShowOptions();
-            myOption.ShowMode = isTransient ? FlyoutShowMode.Transient : FlyoutShowMode.Standard;
-            CommandBarFlyout1.ShowAt(Commands, myOption);
+            List<Item> items = new List<Item>();
+            foreach (DataRow row in table.Rows)
+            {
+                items.Add(new Item()
+                {
+                    OrderId = row["OrderId"].ToString(),
+                    Code = row["Code"].ToString(),
+                    Quantity = row["Quantity"].ToString(),
+                    Disponibility = row["Disponibility"].ToString()
+                });
+            }
+            grid.AutoGenerateColumns = false;
+            grid.ItemsSource = items;
         }
 
         private void AddToPendingSuppliers(string code, string quantity)
@@ -94,7 +86,8 @@ namespace ShopInterfaceBeta
             {
                 string valueadd = (Convert.ToInt32(quantity) + Convert.ToInt32(DbUtils.RefList("Quantity",
                     "supplierspending where Code = \"" + code + "\"")[0])).ToString();
-                output.Text = DbUtils.UpdateDb("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
+                string i = "";
+                i = DbUtils.UpdateDb("supplierspending", "Quantity", "Code = \"" + code + "\"", valueadd);
             }
             else
             {
@@ -107,18 +100,16 @@ namespace ShopInterfaceBeta
             }
         }
 
-
         private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            object[] row = (object[])DataGrid1.SelectedItem;
             if (DataGrid1.CurrentColumn.Header.ToString() == "OrderId")
             {
-                var orderId = row[0].ToString();
-                Validate.Visibility = Visibility.Collapsed;
-                Delete.Visibility = Visibility.Collapsed;
-                Test.Visibility = Visibility.Collapsed;
-                Partial.Visibility = Visibility.Collapsed;
-                Close.Visibility = Visibility.Collapsed;
+                var orderId = ((Order)((sender as DataGrid).SelectedItem)).OrderId;
+                Validate.IsEnabled = false;
+                Delete.IsEnabled = false;
+                Test.IsEnabled = false;
+                Partial.IsEnabled = false;
+                Close.IsEnabled = false;
                 Validate.Tag = "";
                 Delete.Tag = "";
                 Test.Tag = "";
@@ -127,55 +118,56 @@ namespace ShopInterfaceBeta
                 string status = DbUtils.RefList("Status", "orders where OrderId = \"" + orderId + "\"")[0];
                 if (status == "pending")
                 {
-                    Validate.Visibility = Visibility.Visible;
+                    Validate.IsEnabled = true;
                     Validate.Tag = orderId;
-                    Delete.Visibility = Visibility.Visible;
+                    Delete.IsEnabled = true;
                     Delete.Tag = orderId;
                 }
                 else if (status == "validate")
                 {
-                    Test.Visibility = Visibility.Visible;
+                    Test.IsEnabled = true;
                     Test.Tag = orderId;
                 }
                 else if (status.Length > 11)
                 {
                     if (status.Substring(0, 11) == "uncompleted")
                     {
-                        Test.Visibility = Visibility.Visible;
+                        Test.IsEnabled = true;
                         Test.Tag = orderId;
                     }
                     else if (status == "awaiting for removal")
                     {
-                        Close.Visibility = Visibility.Visible;
+                        Close.IsEnabled = true;
                         Close.Tag = orderId;
                     }
                 }
                 else if (status == "not ready")
                 {
-                    Partial.Visibility = Visibility.Visible;
+                    Partial.IsEnabled = true;
                     Partial.Tag = orderId;
-                    Test.Visibility = Visibility.Visible;
+                    Test.IsEnabled = true;
                     Test.Tag = orderId;
                 }
             }
-            ShowMenu(true);
         }
 
         private void OnElementClicked(object sender, RoutedEventArgs e)
         {
             string action = (sender as AppBarButton).Name.ToString();
             string orderId = (sender as AppBarButton).Tag.ToString();
+            string z = "";
             if (action == "Validate")
             {
                 Sandbox.SandBox(orderId);
                 List<string> codeList = DbUtils.RefList("Code", "listsitems where OrderId = \"" + orderId + "\"");
                 foreach (string i in codeList)
                 {
-                    output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+
+                    z = DbUtils.UpdateDb("listsitems", "Disponibility",
                         "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "never tested");
                 }
 
-                output.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
+                z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
             }
             else if (action == "Test")
             {
@@ -195,12 +187,12 @@ namespace ShopInterfaceBeta
                             Convert.ToInt32(number) > 4)
                         {
                             isalltrue += 1;
-                            output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                            z = DbUtils.UpdateDb("listsitems", "Disponibility",
                                 "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "true");
                         }
                         else
                         {
-                            output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                            z= DbUtils.UpdateDb("listsitems", "Disponibility",
                                 "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "false");
                         }
 
@@ -210,7 +202,7 @@ namespace ShopInterfaceBeta
 
                 if (isalltrue == all)
                 {
-                    output.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                    z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                         "awaiting for removal");
                     foreach (string i in codeList)
                     {
@@ -222,22 +214,22 @@ namespace ShopInterfaceBeta
                                 "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                             string stock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                             int stockNow = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                            output.Text = DbUtils.UpdateDb("kitbox", "Instock", "Code =\"" + i + "\"",
+                            z = DbUtils.UpdateDb("kitbox", "Instock", "Code =\"" + i + "\"",
                                 stockNow.ToString());
-                            output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                            z = DbUtils.UpdateDb("listsitems", "Disponibility",
                                 "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "completed");
                         }
                     }
                 }
                 else
                 {
-                    output.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                    z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                         "not ready");
                 }
             }
             else if (action == "Close")
             {
-                output.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "completed");
+                z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "completed");
             }
             else if (action == "Partial")
             {
@@ -260,9 +252,9 @@ namespace ShopInterfaceBeta
                                 "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                             string stock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                             int stockNow = Convert.ToInt32(stock) - Convert.ToInt32(quantity);
-                            output.Text = DbUtils.UpdateDb("kibox", "Instock", "Code =\"" + i + "\"",
+                            z = DbUtils.UpdateDb("kibox", "Instock", "Code =\"" + i + "\"",
                                 stockNow.ToString());
-                            output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                            z = DbUtils.UpdateDb("listsitems", "Disponibility",
                                 "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "completed");
                             isalltrue += 1;
                         }
@@ -275,7 +267,7 @@ namespace ShopInterfaceBeta
                                 string quantity = DbUtils.RefList("Quantity",
                                     "listsitems where OrderId = \"" + orderId + "\" and Code = \"" + i + "\"")[0];
                                 AddToPendingSuppliers(i, quantity);
-                                output.Text = DbUtils.UpdateDb("listsitems", "Disponibility",
+                                z = DbUtils.UpdateDb("listsitems", "Disponibility",
                                     "OrderId = \"" + orderId + "\" and Code = \"" + i + "\"", "added");
                             }
                         }
@@ -297,16 +289,21 @@ namespace ShopInterfaceBeta
                 float kn = all;
                 float procent = alll / kn * 100;
                 int procentint = (int)procent;
-                output.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
+                z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"",
                     "uncompleted, " + procentint + "%");
             }
             else if (action == "Delete")
             {
-                output.Text = DbUtils.DeleteRow("orders", "OrderId = \"" + orderId + "\"");
+                z = DbUtils.DeleteRow("orders", "OrderId = \"" + orderId + "\"");
             }
             
-            FillDataGrid(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), DataGrid2);
-            FillDataGrid(SetColumnsOrder(DbUtils.RefreshDb("orders natural join customers")), DataGrid1);
+            FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), DataGrid2);
+            FillDataGrid1(SetColumnsOrder(DbUtils.RefreshDb("orders natural join customers")), DataGrid1);
+            Validate.IsEnabled = false;
+            Delete.IsEnabled = false;
+            Test.IsEnabled = false;
+            Partial.IsEnabled = false;
+            Close.IsEnabled = false;
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -341,7 +338,7 @@ namespace ShopInterfaceBeta
                 dataTable.Columns.Remove("CustomerPhone");
                 dataTable.Columns.Remove("CustomerId");
                 dataTable.Columns.Remove("Status");
-                FillDataGrid(dataTable, DataGrid2);
+                FillDataGrid2(dataTable, DataGrid2);
                 
             }
         }
@@ -351,8 +348,24 @@ namespace ShopInterfaceBeta
             string orderId = ComboBox1.SelectedItem.ToString();
             if (orderId != "")
             {
-                FillDataGrid(DbUtils.RefreshDb("listsitems where OrderId =\"" + orderId + "\""), DataGrid2);
+                FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId =\"" + orderId + "\""), DataGrid2);
             }
+        }
+
+        public class Order
+        {
+            public string CustomerName { get; set; }
+            public string OrderId { get; set; }
+            public string Status { get; set; }
+
+        }
+        public class Item
+        {
+            public string OrderId { get; set; }
+            public string Code { get; set; }
+            public string Quantity { get; set; }
+            public string Disponibility { get; set; }
+
         }
     }
 }
