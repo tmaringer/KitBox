@@ -26,6 +26,7 @@ namespace ShopInterfaceBeta
     public sealed partial class SuppliersOrders : Page
     {
         private static DataTable DataTable = new DataTable();
+        private string SupplierOrderId;
         public SuppliersOrders()
         {
             this.InitializeComponent();
@@ -35,7 +36,7 @@ namespace ShopInterfaceBeta
         }
         public void FirstThings()
         {
-            FillDataGrid(DbUtils.RefreshDb("suppliersorders"), DataGrid1);
+            FillDataGrid1(DbUtils.RefreshDb("suppliersorders"), DataGrid1);
             ComboBox4.Items.Clear();
             foreach (string i in DbUtils.RefList("Code", "kitbox"))
             {
@@ -62,64 +63,51 @@ namespace ShopInterfaceBeta
                 ComboBox1.Items.Add(i);
             }
         }
-        public static void FillDataGrid(DataTable table, DataGrid grid)
-        {
-            grid.Columns.Clear();
-            for (int i = 0; i < table.Columns.Count; i++)
-            {
-                grid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = table.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
 
-            var collection = new ObservableCollection<object>();
+        public static void FillDataGrid1(DataTable table, DataGrid grid)
+        {
+            List<SupplierOrder> supplierOrders = new List<SupplierOrder>();
             foreach (DataRow row in table.Rows)
             {
-                try
+                if (row["Status"].ToString() == "received")
                 {
-                    if (row["Status"].ToString() == "received")
-                    {
-                        row["Status"] = "\xE8FB";
-                    }
-                    else
-                    {
-                        row["Status"] = "\xE724";
-                    }
+                    row["Status"] = "\xE8FB";
                 }
-                catch
+                else
                 {
-
+                    row["Status"] = "\xE724";
                 }
-
-                collection.Add(row.ItemArray);
+                supplierOrders.Add(new SupplierOrder()
+                {
+                    SupplierOrderId = row["SupplierOrderId"].ToString(),
+                    SupplierId = row["SupplierId"].ToString(),
+                    Amount = row["Amount"].ToString() + "€",
+                    Date = row["Date"].ToString(),
+                    Status = row["Status"].ToString()
+                }); 
             }
+            grid.ItemsSource = supplierOrders;
             grid.AutoGenerateColumns = false;
-            grid.ItemsSource = collection;
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
-            DataGrid2.Columns.Clear();
-            string supplierOrderId = ComboBox1.SelectedItem.ToString();
+            string supplierOrderId = SupplierOrderId;
             DataTable items = DbUtils.RefreshDb("supplierslistsitems where SupplierOrderId = \"" + supplierOrderId + "\"");
-            for (int i = 0; i < items.Columns.Count; i++)
-            {
-                DataGrid2.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = items.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-
-            var collection = new ObservableCollection<object>();
+            List<SupplierOrderPart> supplierOrderParts = new List<SupplierOrderPart>();
             foreach (DataRow row in items.Rows)
             {
-                collection.Add(row.ItemArray);
+                supplierOrderParts.Add(new SupplierOrderPart()
+                {
+                    ItemId = row["ItemId"].ToString(),
+                    SupplierOrderId = row["SupplierOrderId"].ToString(),
+                    Code = row["Code"].ToString(),
+                    Quantity = row["Quantity"].ToString()
+                });
             }
+            DataGrid2.ItemsSource = supplierOrderParts;
             DataGrid2.AutoGenerateColumns = false;
-            DataGrid2.ItemsSource = collection;
+            Show.IsEnabled = false;
         }
 
         private void Button3_Click(object sender, RoutedEventArgs e)
@@ -170,9 +158,22 @@ namespace ShopInterfaceBeta
                     elements.Rows.Add(myDataRow);
                 }
             }
+            List<SupplierPendingPart> supplierPendingParts = new List<SupplierPendingPart>();
+            foreach (DataRow row in elements.Rows)
+            {
+                supplierPendingParts.Add(new SupplierPendingPart()
+                {
+                    Id = row["Id"].ToString(),
+                    Code = row["Code"].ToString(),
+                    Quantity = row["Quantity"].ToString()
+                });
+            }
+            DataGrid3.ItemsSource = supplierPendingParts;
+            DataGrid3.AutoGenerateColumns = false;
             DataTable = elements;
-            FillDataGrid(DataTable, DataGrid3);
             amountLabel.Text = @"Amount: " + amount + @"€";
+            Add.IsEnabled = true;
+            ShowFlyout.Hide();
         }
 
         private void Button4_Click(object sender, RoutedEventArgs e)
@@ -210,7 +211,6 @@ namespace ShopInterfaceBeta
 
             amountLabel.Text = @"Amount: 0€";
             Button4.IsEnabled = false;
-            DataGrid3.Columns.Clear();
             ComboBox3.Text = "";
             FirstThings();
         }
@@ -284,6 +284,15 @@ namespace ShopInterfaceBeta
             public string Id { get; set; }
             public string Code { get; set; }
             public string Quantity { get; set; }
+        }
+
+        private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if((sender as DataGrid).CurrentColumn.Header.ToString() == "SupplierOrderId")
+            {
+                SupplierOrderId = ((SupplierOrder)((sender as DataGrid).SelectedItem)).SupplierOrderId.ToString();
+                Show.IsEnabled = true;
+            }
         }
     }
 }

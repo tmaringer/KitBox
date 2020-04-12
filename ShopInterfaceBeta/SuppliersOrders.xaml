@@ -9,84 +9,106 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
-    <ScrollViewer  HorizontalScrollBarVisibility="Auto">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-                <RowDefinition Height="40"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Orders" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
-            <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Parts" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="2"/>
-            <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Order to supplier" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0"/>
-            <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" Grid.Column="0" Margin="7,0,0,7" Grid.Row="1">
-                <Controls:DataGrid.Resources>
-                    <Style TargetType="Controls:DataGridCell" x:Key="Test">
-                        <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>
-                    </Style>
-                </Controls:DataGrid.Resources>
-            </Controls:DataGrid>
-            <Controls:DataGrid x:Name="DataGrid2" Grid.Column="0" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="3"/>
-            <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="1" Grid.RowSpan="3"/>
-            <CommandBar Margin="60,0,0,0" Grid.Row="2" Background="Transparent" DefaultLabelPosition="Right">
-                <AppBarButton ToolTipService.ToolTip="Show an order" Label="Show an order">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </CommandBar>
-            <CommandBar Margin="170,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right">
-                <AppBarButton ToolTipService.ToolTip="Show a supplier order" Label="Show a supplier order">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton ToolTipService.ToolTip="Add parts" Label="Add parts" Icon="Add"/>
-                <AppBarButton ToolTipService.ToolTip="Order now" Label="Order now" Icon="Send"/>
-            </CommandBar>
-            <CommandBar Margin="80,0,0,0" Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Right">
-                <AppBarButton ToolTipService.ToolTip="Order received" Label="Order received">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE930;" FontFamily="Segoe MDL2 Assets"/>
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </CommandBar>
-            <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="7" Visibility="Collapsed">
-                <TextBlock Margin="7,0,0,0" Text="Show order parts" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <ComboBox x:Name="ComboBox1" Header="SupplierOrderId" Margin="7" HorizontalAlignment="Stretch"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button1" Content="Show" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button1_Click"/>
-                <TextBlock x:Name="TextBlock1" Height="1"/>
-            </StackPanel>
-            <StackPanel Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="7" Visibility="Collapsed">
-                <TextBlock Margin="7,0,0,0" Text="Order received" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <ComboBox x:Name="ComboBox2" Header="SupplierOrderId" Margin="7" HorizontalAlignment="Stretch"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button2" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button2_Click"/>
-                <TextBlock x:Name="TextBlock2" Height="1"/>
-            </StackPanel>
-            <StackPanel Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Visibility="Collapsed">
-                <TextBlock Margin="7,0,0,0" Text="Select SupplierId" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <ComboBox x:Name="ComboBox3" Header="SupplierId" Margin="7" HorizontalAlignment="Stretch"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Select" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button3_Click"/>
-                <TextBlock x:Name="TextBlock3" Height="1"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="3" Visibility="Collapsed">
-                <TextBlock Margin="7,0,0,0" Text="Send supplier order" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBlock x:Name="amountLabel" Margin="7" Text="Amount: 0€"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button4" Content="Send" Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button4_Click"/>
-            </StackPanel>
-            <StackPanel Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Visibility="Collapsed">
-                <TextBlock Margin="7,0,0,0" Text="Add parts" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <ComboBox x:Name="ComboBox4" Header="Code" Margin="7" HorizontalAlignment="Stretch"/>
-                <TextBox x:Name="TexBox4" Header="Quantity" Margin="7"/>
-                <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button5_Click"/>
-                <TextBlock x:Name="TextBlock4" Height="1"/>
-            </StackPanel>
-        </Grid>
-    </ScrollViewer>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Orders" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
+        <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Parts" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="2"/>
+        <TextBlock Margin="7,0,0,0" VerticalAlignment="Center" Text="Order to supplier" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0"/>
+        <Controls:DataGrid x:Name="DataGrid1" IsReadOnly="True" MinColumnWidth="150" ColumnWidth="*" Grid.Column="0" Margin="7,0,0,7" Grid.Row="1" DoubleTapped="DataGrid1_DoubleTapped" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Header="SupplierOrderId" Binding="{Binding SupplierOrderId}"/>
+                <Controls:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
+                <Controls:DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                <Controls:DataGridTextColumn Header="Date" Binding="{Binding Date}"/>
+                <Controls:DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+            </Controls:DataGrid.Columns>
+            <Controls:DataGrid.Resources>
+                <Style TargetType="Controls:DataGridCell" x:Key="Test">
+                    <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>
+                </Style>
+            </Controls:DataGrid.Resources>
+        </Controls:DataGrid>
+        <Controls:DataGrid x:Name="DataGrid2" Grid.Column="0" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="3" IsReadOnly="True">
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Header="ItemId" Binding="{Binding ItemId}"/>
+                <Controls:DataGridTextColumn Header="SupplierOderId" Binding="{Binding SupplierOrderId}"/>
+                <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
+                <Controls:DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+            </Controls:DataGrid.Columns>
+        </Controls:DataGrid>
+        <Controls:DataGrid x:Name="DataGrid3" Grid.Column="2" MinColumnWidth="150" ColumnWidth="*" Margin="7,0,0,7" Grid.Row="1" Grid.RowSpan="3" IsReadOnly="True">
+            <Controls:DataGrid.Columns>
+                <Controls:DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
+                <Controls:DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+            </Controls:DataGrid.Columns>
+        </Controls:DataGrid>
+        <CommandBar Margin="60,0,0,0" Grid.Row="2" Background="Transparent" DefaultLabelPosition="Right">
+            <AppBarButton ToolTipService.ToolTip="Show an order" Label="Show an order" Click="Button1_Click" IsEnabled="False" x:Name="Show">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+        <CommandBar Margin="170,0,0,0" Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" VerticalAlignment="Stretch">
+            <AppBarButton ToolTipService.ToolTip="Show a supplier order" Label="Show a supplier order" AllowFocusOnInteraction="True">
+                <AppBarButton.Flyout>
+                    <Flyout x:Name="ShowFlyout">
+                        <StackPanel>
+                            <TextBlock Margin="7,0,7,0" Text="Select SupplierId" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                            <ComboBox x:Name="ComboBox3" Header="SupplierId" Margin="7" HorizontalAlignment="Stretch"/>
+                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Select" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button3_Click"/>
+                            <TextBlock x:Name="TextBlock3" Height="1"/>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton ToolTipService.ToolTip="Add parts" Label="Add parts" Icon="Add" IsEnabled="False" x:Name="Add"/>
+            <AppBarButton ToolTipService.ToolTip="Order now" Label="Order now" Icon="Send" IsEnabled="False"/>
+        </CommandBar>
+        <CommandBar Margin="80,0,0,0" Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Right">
+            <AppBarButton ToolTipService.ToolTip="Order received" Label="Order received">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="&#xE930;" FontFamily="Segoe MDL2 Assets"/>
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </CommandBar>
+        <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="7" Visibility="Collapsed">
+            <TextBlock Margin="7,0,0,0" Text="Show order parts" Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <ComboBox x:Name="ComboBox1" Header="SupplierOrderId" Margin="7" HorizontalAlignment="Stretch"/>
+            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button1" Content="Show" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button1_Click"/>
+            <TextBlock x:Name="TextBlock1" Height="1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1" Margin="7" Visibility="Collapsed">
+            <TextBlock Margin="7,0,0,0" Text="Order received" Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <ComboBox x:Name="ComboBox2" Header="SupplierOrderId" Margin="7" HorizontalAlignment="Stretch"/>
+            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button2" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button2_Click"/>
+            <TextBlock x:Name="TextBlock2" Height="1"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="3" Visibility="Collapsed">
+            <TextBlock Margin="7,0,0,0" Text="Send supplier order" Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <TextBlock x:Name="amountLabel" Margin="7" Text="Amount: 0€"/>
+            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button4" Content="Send" Margin="7" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Button4_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="2" Visibility="Collapsed">
+            <TextBlock Margin="7,0,0,0" Text="Add parts" Style="{StaticResource SubtitleTextBlockStyle}"/>
+            <ComboBox x:Name="ComboBox4" Header="Code" Margin="7" HorizontalAlignment="Stretch"/>
+            <TextBox x:Name="TexBox4" Header="Quantity" Margin="7"/>
+            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button5_Click"/>
+            <TextBlock x:Name="TextBlock4" Height="1"/>
+        </StackPanel>
+    </Grid>
 </Page>
