@@ -27,6 +27,8 @@ namespace ShopInterfaceBeta
     {
         private static DataTable DataTable = new DataTable();
         private string SupplierOrderId;
+        private string Amount;
+        private string SupplierId;
         public SuppliersOrders()
         {
             this.InitializeComponent();
@@ -47,20 +49,10 @@ namespace ShopInterfaceBeta
             dataTable.Columns.Add("Code", typeof(string));
             dataTable.Columns.Add("Quantity", typeof(Int32));
             DataGrid1.Columns[DataGrid1.Columns.Count - 1].CellStyle = (Style)DataGrid1.Resources["Test"];
-            ComboBox1.Items.Clear();
-            ComboBox2.Items.Clear();
             ComboBox3.Items.Clear();
             foreach (string i in DbUtils.RefList("SupplierId", "suppliers"))
             {
                 ComboBox3.Items.Add(i);
-            }
-            foreach (string i in DbUtils.RefList("SupplierOrderId", "suppliersorders where Status = \"sent\""))
-            {
-                ComboBox2.Items.Add(i);
-            }
-            foreach (string i in DbUtils.RefList("SupplierOrderId", "suppliersorders"))
-            {
-                ComboBox1.Items.Add(i);
             }
         }
 
@@ -88,26 +80,6 @@ namespace ShopInterfaceBeta
             }
             grid.ItemsSource = supplierOrders;
             grid.AutoGenerateColumns = false;
-        }
-
-        private void Button1_Click(object sender, RoutedEventArgs e)
-        {
-            string supplierOrderId = SupplierOrderId;
-            DataTable items = DbUtils.RefreshDb("supplierslistsitems where SupplierOrderId = \"" + supplierOrderId + "\"");
-            List<SupplierOrderPart> supplierOrderParts = new List<SupplierOrderPart>();
-            foreach (DataRow row in items.Rows)
-            {
-                supplierOrderParts.Add(new SupplierOrderPart()
-                {
-                    ItemId = row["ItemId"].ToString(),
-                    SupplierOrderId = row["SupplierOrderId"].ToString(),
-                    Code = row["Code"].ToString(),
-                    Quantity = row["Quantity"].ToString()
-                });
-            }
-            DataGrid2.ItemsSource = supplierOrderParts;
-            DataGrid2.AutoGenerateColumns = false;
-            Show.IsEnabled = false;
         }
 
         private void Button3_Click(object sender, RoutedEventArgs e)
@@ -141,6 +113,7 @@ namespace ShopInterfaceBeta
             double amount = 0;
             foreach (string i in DbUtils.RefList("Code", "supplierspending"))
             {
+                SupplierId = ComboBox3.SelectedItem.ToString();
                 string supplierId = DbUtils.RefList("SupplierId", "suppliersprices where Code = \"" + i + "\"")[0];
                 if (supplierId == ComboBox3.SelectedItem.ToString())
                 {
@@ -171,48 +144,17 @@ namespace ShopInterfaceBeta
             DataGrid3.ItemsSource = supplierPendingParts;
             DataGrid3.AutoGenerateColumns = false;
             DataTable = elements;
-            amountLabel.Text = @"Amount: " + amount + @"€";
+            Amount = amount.ToString();
             Add.IsEnabled = true;
             ShowFlyout.Hide();
-        }
-
-        private void Button4_Click(object sender, RoutedEventArgs e)
-        {
-            string columns = "SupplierId,Amount,Date,Status";
-            string amount = amountLabel.Text.Split(' ')[1];
-            string amount1 = amount.Split('€')[0];
-            string realamount = amount1.Replace(',', '.');
-            DateTime myDateTime = DateTime.Now;
-            string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd");
-            string values = "\"" + ComboBox3.SelectedItem.ToString() + "\", \"" + realamount + "\", \"" + sqlFormattedDate + "\", \"" +
-                            "sent" + "\"";
-            DbUtils.InsertDb("suppliersorders", columns, values);
-            List<string> idList = DbUtils.RefList("SupplierOrderId", "suppliersorders");
-            int x = 0;
-            foreach (string i in idList)
+            if (supplierPendingParts.Count != 0)
             {
-                if (Convert.ToInt32(i) > x)
-                {
-                    x = Convert.ToInt32(i);
-                }
+                Order.IsEnabled = true;
             }
-
-            string supplierOrderId = (x).ToString();
-            foreach (DataRow row in DataTable.Rows)
+            else
             {
-                string code = row["Code"].ToString();
-                string quantity = row["Quantity"].ToString();
-                string col = "SupplierOrderId,Code,Quantity";
-                string val = "\"" + supplierOrderId + "\", \"" + code + "\", \"" + quantity + "\"";
-                DbUtils.InsertDb("supplierslistsitems", col, val);
-                amountLabel.Text = DbUtils.DeleteRow("supplierspending",
-                    "Code = \"" + code + "\"and Quantity = \"" + quantity + "\"");
+                Order.IsEnabled = false;
             }
-
-            amountLabel.Text = @"Amount: 0€";
-            Button4.IsEnabled = false;
-            ComboBox3.Text = "";
-            FirstThings();
         }
 
         private void AddToPendingSuppliers(string code, string quantity)
@@ -233,7 +175,6 @@ namespace ShopInterfaceBeta
                 DbUtils.DeleteRow("supplierspending", "Quantity = \"0\"");
             }
             TexBox4.Text = "";
-
         }
 
         private void Button5_Click(object sender, RoutedEventArgs e)
@@ -241,25 +182,27 @@ namespace ShopInterfaceBeta
             string code = ComboBox4.SelectedItem.ToString();
             string quantity = TexBox4.Text;
             AddToPendingSuppliers(code, quantity);
+            AddFlyout.Hide();
         }
 
         private void Button2_Click(object sender, RoutedEventArgs e)
         {
+            string z;
             foreach (string i in DbUtils.RefList("Code",
-                    "supplierslistsitems where SupplierOrderId = \"" + ComboBox2.SelectedItem + "\""))
+                    "supplierslistsitems where SupplierOrderId = \"" + SupplierOrderId + "\""))
             {
                 string quantity = DbUtils.RefList("Quantity",
-                    "supplierslistsitems where SupplierOrderId = \"" + ComboBox2.SelectedItem + "\"and Code = \"" +
+                    "supplierslistsitems where SupplierOrderId = \"" + SupplierOrderId + "\"and Code = \"" +
                     i + "\"")[0];
                 string instock = DbUtils.RefList("Instock", "kitbox where Code = \"" + i + "\"")[0];
                 int newquantity = Convert.ToInt32(quantity) + Convert.ToInt32(instock);
-                TextBlock2.Text = DbUtils.UpdateDb("kitbox", "Instock", "Code = \"" + i + "\"",
+                z = DbUtils.UpdateDb("kitbox", "Instock", "Code = \"" + i + "\"",
                     newquantity.ToString());
-                TextBlock2.Text = DbUtils.UpdateDb("suppliersorders", "Status",
-                    "SupplierOrderId = \"" + ComboBox2.SelectedItem + "\"", "received");
-                ComboBox2.Text = "";
+                z = DbUtils.UpdateDb("suppliersorders", "Status",
+                    "SupplierOrderId = \"" + SupplierOrderId + "\"", "received");
                 FirstThings();
             }
+            Received.IsEnabled = false;
         }
 
         public class SupplierOrder
@@ -291,8 +234,80 @@ namespace ShopInterfaceBeta
             if((sender as DataGrid).CurrentColumn.Header.ToString() == "SupplierOrderId")
             {
                 SupplierOrderId = ((SupplierOrder)((sender as DataGrid).SelectedItem)).SupplierOrderId.ToString();
-                Show.IsEnabled = true;
+                if (DbUtils.RefList("Status", "suppliersorders where SupplierOrderId = \"" + SupplierOrderId + "\"")[0] == "sent")
+                {
+                    Received.IsEnabled = true;
+                }
+                else
+                {
+                    Received.IsEnabled = false;
+                }
+                string supplierOrderId = SupplierOrderId;
+                DataTable items = DbUtils.RefreshDb("supplierslistsitems where SupplierOrderId = \"" + supplierOrderId + "\"");
+                List<SupplierOrderPart> supplierOrderParts = new List<SupplierOrderPart>();
+                foreach (DataRow row in items.Rows)
+                {
+                    supplierOrderParts.Add(new SupplierOrderPart()
+                    {
+                        ItemId = row["ItemId"].ToString(),
+                        SupplierOrderId = row["SupplierOrderId"].ToString(),
+                        Code = row["Code"].ToString(),
+                        Quantity = row["Quantity"].ToString()
+                    });
+                }
+                DataGrid2.ItemsSource = supplierOrderParts;
+                DataGrid2.AutoGenerateColumns = false;
             }
+        }
+
+        private async void Order_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog Order = new ContentDialog()
+            {
+                Title = "Order confirmation",
+                Content = "Order now ?\n The amount equals " + Amount + " €.",
+                PrimaryButtonText = "Yes",
+                SecondaryButtonText = "I'm not sure",
+                DefaultButton = ContentDialogButton.Secondary
+            };
+            ContentDialogResult result = await Order.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string columns = "SupplierId,Amount,Date,Status";
+                string realamount = Amount.Replace(',','.');
+                DateTime myDateTime = DateTime.Now;
+                string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd");
+                string values = "\"" + SupplierId + "\", \"" + realamount + "\", \"" + sqlFormattedDate + "\", \"" +"sent" + "\"";
+                string k = "";
+                k = DbUtils.InsertDb("suppliersorders", columns, values);
+                List<string> idList = DbUtils.RefList("SupplierOrderId", "suppliersorders");
+                int x = 0;
+                foreach (string i in idList)
+                {
+                    if (Convert.ToInt32(i) > x)
+                    {
+                        x = Convert.ToInt32(i);
+                    }
+                }
+                string supplierOrderId = (x).ToString();
+                foreach (DataRow row in DataTable.Rows)
+                {
+                    string code = row["Code"].ToString();
+                    string quantity = row["Quantity"].ToString();
+                    string col = "SupplierOrderId,Code,Quantity";
+                    string val = "\"" + supplierOrderId + "\", \"" + code + "\", \"" + quantity + "\"";
+                    k = DbUtils.InsertDb("supplierslistsitems", col, val);
+                    k = DbUtils.DeleteRow("supplierspending", "Code = \"" + code + "\"");
+                }
+                Order.IsEnabled = false;
+                FirstThings();
+                DataGrid3.ItemsSource = null;
+            }
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

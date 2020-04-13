@@ -11,6 +11,7 @@
     <Grid  Margin="7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition Width="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -18,7 +19,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Width="170" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Supplier catalogue" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0" />
-        <TextBlock Width="200" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Best suppliers' prices" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="1" Grid.Row="0" />
+        <TextBlock Width="200" HorizontalAlignment="Left" Margin="7,0,0,0" Text="Best suppliers' prices" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="2" Grid.Row="0" />
         <CommandBar MinWidth="50"  Grid.Row="0" Grid.Column="0" DefaultLabelPosition="Right" Background="Transparent" Margin="180,0,7,0">
             <AppBarButton x:Name="Initialise" Label="Show" ToolTipService.ToolTip="Show"  AllowFocusOnInteraction="True">
                 <AppBarButton.Icon>
@@ -49,24 +50,19 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Name="Modify" Icon="Edit" Label="Edit" IsEnabled="False" ToolTipService.ToolTip="Edit"  AllowFocusOnInteraction="True">
-                <AppBarButton.Flyout>
-                    <Flyout x:Name="FlyoutModify">
-                        <StackPanel>
-                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Modify a part of the catalogue"/>
-                            <ComboBox x:Name="modifyCode" Header="Code" HorizontalAlignment="Stretch"/>
-                            <ComboBox x:Name="modifyRow" Header="Row" HorizontalAlignment="Stretch" SelectionChanged="modifyRow_SelectionChanged"/>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="Value"/>
-                            <controls:NumberBox Margin="0,4,0,0" Minimum="0.01" x:Name="modifyValue" SpinButtonPlacementMode="Compact"/>
-                            <Button Click="Modify_Click" Content="Modify" Margin="0,7,0,0"/>
-                        </StackPanel>
-                    </Flyout>
-                </AppBarButton.Flyout>
+            <AppBarButton x:Name="Edit" Icon="Edit" Label="Enable edit mode" IsEnabled="False" ToolTipService.ToolTip="Edit"  AllowFocusOnInteraction="True" Click="Edit_Click">
             </AppBarButton>
-            <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete"/>
-            <AppBarButton x:Name="Update" Label="Update" Icon="Refresh" ToolTipService.ToolTip="Update" Click="Refresh_Click"/>
+            <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete" Click="Delete_Click"/>
         </CommandBar>
-        <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" DoubleTapped="DataGrid1_DoubleTapped" IsReadOnly="True" CellEditEnding="DataGrid1_CellEditEnding">
+            <controls1:DataGrid.Columns>
+                <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}" IsReadOnly="True"/>
+                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}" IsReadOnly="True"/>
+                <controls1:DataGridTextColumn Header="SuppPrice" Binding="{Binding SuppPrice}"/>
+                <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
+            </controls1:DataGrid.Columns>
+        </controls1:DataGrid>
+        <controls1:DataGrid x:Name="DataGrid2" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="2" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls1:DataGrid.Columns>
                 <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
                 <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
@@ -74,13 +70,8 @@
                 <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
             </controls1:DataGrid.Columns>
         </controls1:DataGrid>
-        <controls1:DataGrid x:Name="DataGrid2" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
-            <controls1:DataGrid.Columns>
-                <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}"/>
-                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
-                <controls1:DataGridTextColumn Header="SuppPrice" Binding="{Binding SuppPrice}"/>
-                <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
-            </controls1:DataGrid.Columns>
-        </controls1:DataGrid>
+        <CommandBar MinWidth="50"  Grid.Row="0" Grid.Column="2" DefaultLabelPosition="Right" Background="Transparent" Margin="210,0,7,0">
+            <AppBarButton x:Name="Update" Label="Update and show" Icon="Refresh" ToolTipService.ToolTip="Update and show" Click="Refresh_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

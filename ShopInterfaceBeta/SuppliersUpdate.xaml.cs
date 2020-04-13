@@ -20,6 +20,7 @@ using Windows.Globalization.NumberFormatting;
 using Microsoft.UI.Xaml.Controls;
 using MySql.Data.MySqlClient;
 using ShopInterface;
+using Windows.UI;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -31,6 +32,8 @@ namespace ShopInterfaceBeta
     public sealed partial class SuppliersUpdate : Page
     {
         private string actualSupplierId;
+        private SolidColorBrush fore;
+        private string actualCode;
         public SuppliersUpdate()
         {
             this.InitializeComponent();
@@ -231,53 +234,23 @@ namespace ShopInterfaceBeta
             addCode.Text = "";
             addSuppPrice.Text = "";
             addSuppDelay.Text = "";
+            FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             string SupplierId = ComboBox1.SelectedItem.ToString();
             actualSupplierId = SupplierId;
-            modifyCode.Items.Clear();
-            foreach (string i in DbUtils.RefList("Code", "supplierslistprices where SupplierId = \"" + actualSupplierId + "\""))
-            {
-                modifyCode.Items.Add(i);
-            }
-            modifyRow.Items.Clear();
             DataTable supplierCatalogue = DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + SupplierId + "\"");
             foreach (DataColumn i in supplierCatalogue.Columns)
             {
                 string header = i.ColumnName;
             }
-            modifyRow.Items.Add("SuppPrice");
-            modifyRow.Items.Add("SuppDelay");
             FillDataGrid(supplierCatalogue, DataGrid1);
             FlyoutCreate.Hide();
             Add.IsEnabled = true;
-            Delete.IsEnabled = true;
-            Modify.IsEnabled = true;
+            Edit.IsEnabled = true;
             FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
-        }
-
-        private void Modify_Click(object sender, RoutedEventArgs e)
-        {
-            string code = modifyCode.SelectedItem.ToString();
-            string row = modifyRow.SelectedItem.ToString();
-            double value1 = modifyValue.Value;
-            string value;
-            if (row == "SuppPrice")
-            {
-                value = value1.ToString().Replace(',', '.');
-            }
-            else
-            {
-                value = value1.ToString();
-            }
-            modifyValue.Text = DbUtils.UpdateDb("supplierslistprices", row, "SupplierId = \"" + actualSupplierId + "\" and Code = \"" + code + "\"", value);
-            modifyValue.Text = "";
-            modifyCode.SelectedItem = "";
-            modifyRow.SelectedItem = "";
-            FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
-            FlyoutModify.Hide();
         }
 
         private void SetNumberBoxNumberFormatter(double x, int decimals, NumberBox numberBox)
@@ -292,19 +265,88 @@ namespace ShopInterfaceBeta
             numberBox.NumberFormatter = formatter;
         }
 
-        private void modifyRow_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            if ((sender as ComboBox).SelectedItem != null)
+            if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Code")
             {
-                if ((sender as ComboBox).SelectedItem.ToString() == "SuppPrice")
+                actualCode = ((SuppliersItem)((sender as DataGrid).SelectedItem)).Code;
+                Delete.IsEnabled = true;
+            }
+            else
+            {
+                Delete.IsEnabled = false;
+            }
+        }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid1.IsReadOnly == false)
+            {
+                DataGrid1.IsReadOnly = true;
+                Edit.Foreground = fore;
+                Edit.Label = "Enable edit mode";
+            }
+            else
+            {
+                DataGrid1.IsReadOnly = false;
+                fore = (SolidColorBrush)Edit.Foreground;
+                Edit.Foreground = new SolidColorBrush(Colors.Red);
+                Edit.Label = "Disable edit mode";
+            }
+        }
+
+        private async void DataGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            try
+            {
+                if (e.EditAction == DataGridEditAction.Commit)
                 {
-                    SetNumberBoxNumberFormatter(0.01, 2, modifyValue);
-                }
-                else if ((sender as ComboBox).SelectedItem.ToString() == "SuppDelay")
-                {
-                    SetNumberBoxNumberFormatter(1, 0, modifyValue);
+                    string value = (e.EditingElement as TextBox).Text.ToString();
+                    string column = (sender as DataGrid).CurrentColumn.Header.ToString();
+                    string code = ((SuppliersItem)((sender as DataGrid).SelectedItem)).Code;
+                    string OriginalValue = DbUtils.RefList(column, "supplierslistprices where SupplierId = \"" + actualSupplierId + "\" and code = \"" + code + "\"")[0];
+                    if (value != OriginalValue)
+                    {
+                        ContentDialog ConfirmEdit = new ContentDialog()
+                        {
+                            Title = "Update a part",
+                            Content = "Do you really want to modify \"" + OriginalValue + "\" to \"" + value + "\" ?",
+                            PrimaryButtonText = "Yes",
+                            SecondaryButtonText = "I'm not sure",
+                            DefaultButton = ContentDialogButton.Secondary
+                        };
+                        ContentDialogResult result = await ConfirmEdit.ShowAsync();
+                        if (result == ContentDialogResult.Primary)
+                        {
+                            string i = DbUtils.UpdateDb("supplierslistprices", column, "Code = \"" + code + "\" and SupplierId = \"" + actualSupplierId + "\"", value.Replace(',', '.'));
+                        }
+                        FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
+                    }
                 }
             }
+            catch
+            {
+
+            }
+        }
+
+        private async void Delete_Click(object sender, RoutedEventArgs e)
+        {             
+            ContentDialog ConfirmEdit = new ContentDialog()
+            {
+                Title = "Delete a part",
+                Content = "Do you really want to delete \"" + actualCode + "\" from supplier n°" + actualSupplierId + "?",
+                PrimaryButtonText = "Yes",
+                SecondaryButtonText = "I'm not sure",
+                DefaultButton = ContentDialogButton.Secondary
+            };
+            ContentDialogResult result = await ConfirmEdit.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string i = DbUtils.DeleteRow("supplierslistprices", "Code = \"" + actualCode + "\" and SupplierId = \"" + actualSupplierId + "\"");
+            }
+            FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
+            Delete.IsEnabled = false;
         }
     }
 }
