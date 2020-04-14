@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cleats`
+-- Table structure for table `panels`
 --
 
-DROP TABLE IF EXISTS `cleats`;
+DROP TABLE IF EXISTS `panels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cleats` (
-  `CleatId` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `panels` (
+  `PanelId` int NOT NULL AUTO_INCREMENT,
   `BoxId` int DEFAULT NULL,
   `Code` text,
-  PRIMARY KEY (`CleatId`),
-  KEY `MK_idx` (`BoxId`),
-  CONSTRAINT `MK` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Position` text,
+  PRIMARY KEY (`PanelId`),
+  KEY `euuuh_idx` (`BoxId`),
+  CONSTRAINT `euuuh` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cleats`
+-- Dumping data for table `panels`
 --
 
-LOCK TABLES `cleats` WRITE;
-/*!40000 ALTER TABLE `cleats` DISABLE KEYS */;
-INSERT INTO `cleats` VALUES (1,1,'CLE47'),(2,1,'CLE47'),(3,1,'CLE47'),(4,1,'CLE47'),(5,2,'CLE37'),(6,2,'CLE37'),(7,2,'CLE37'),(8,2,'CLE37');
-/*!40000 ALTER TABLE `cleats` ENABLE KEYS */;
+LOCK TABLES `panels` WRITE;
+/*!40000 ALTER TABLE `panels` DISABLE KEYS */;
+INSERT INTO `panels` VALUES (1,1,'PHL62120WH','H'),(2,1,'PHL62120WH','L'),(3,1,'PAB52120WH','B'),(4,1,'PLR5262WH','RS'),(5,1,'PLR5262WH','LS'),(6,2,'PHL62120WH','H'),(7,2,'PHL62120WH','L'),(8,2,'PAB42120WH','B'),(9,2,'PLR4262WH','RS'),(10,2,'PLR4262WH','LS');
+/*!40000 ALTER TABLE `panels` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:06
+-- Dump completed on 2020-04-14 15:01:42

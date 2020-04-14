@@ -16,28 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `crossbars`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
+DROP TABLE IF EXISTS `crossbars`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliers` (
-  `SupplierId` int NOT NULL,
-  `SupplierName` varchar(45) DEFAULT NULL,
-  `SupplierAddress` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SupplierId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `crossbars` (
+  `CrossbarId` int NOT NULL AUTO_INCREMENT,
+  `BoxId` int DEFAULT NULL,
+  `Code` text,
+  `Position` text,
+  PRIMARY KEY (`CrossbarId`),
+  KEY `it_idx` (`BoxId`) /*!80000 INVISIBLE */,
+  CONSTRAINT `it` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `crossbars`
 --
 
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'Trabelbo SA','Parc industriel 9 '),(2,'TraitBois SPRL','Chemin des 2 Maisons, 140');
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+LOCK TABLES `crossbars` WRITE;
+/*!40000 ALTER TABLE `crossbars` DISABLE KEYS */;
+INSERT INTO `crossbars` VALUES (1,1,'CBF120','HF'),(2,1,'CBF120','LF'),(3,1,'CBS62','HL'),(4,1,'CBS62','HR'),(5,1,'CBS62','LL'),(6,1,'CBS62','LR'),(7,1,'CBB120','HB'),(8,1,'CBB120','LB'),(9,2,'CBF120','HF'),(10,2,'CBF120','LF'),(11,2,'CBS62','HL'),(12,2,'CBS62','HR'),(13,2,'CBS62','LL'),(14,2,'CBS62','LR'),(15,2,'CBB120','HB'),(16,2,'CBB120','LB');
+/*!40000 ALTER TABLE `crossbars` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:07
+-- Dump completed on 2020-04-14 15:01:39

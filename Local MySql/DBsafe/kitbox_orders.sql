@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `listsitems`
+-- Table structure for table `orders`
 --
 
-DROP TABLE IF EXISTS `listsitems`;
+DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `listsitems` (
-  `OrderId` int NOT NULL,
-  `Code` varchar(50) NOT NULL,
-  `Quantity` int DEFAULT NULL,
-  `Disponibility` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`OrderId`,`Code`),
-  KEY `listsitems_ibfk_1` (`OrderId`),
-  CONSTRAINT `OrderId` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `orders` (
+  `OrderId` int NOT NULL AUTO_INCREMENT,
+  `CustomerId` int DEFAULT NULL,
+  `Status` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`OrderId`),
+  KEY `Ninja_idx` (`CustomerId`),
+  CONSTRAINT `Ninja` FOREIGN KEY (`CustomerId`) REFERENCES `customers` (`CustomerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `listsitems`
+-- Dumping data for table `orders`
 --
 
-LOCK TABLES `listsitems` WRITE;
-/*!40000 ALTER TABLE `listsitems` DISABLE KEYS */;
-INSERT INTO `listsitems` VALUES (1,'ANB125BLCUT',4,'completed'),(1,'CBB100',4,'completed'),(1,'CBF100',4,'completed'),(1,'CBS62',8,'completed'),(1,'CLE37',4,'completed'),(1,'CLE47',4,'completed'),(1,'Cup',4,'completed'),(1,'DOO4252GS',2,'completed'),(1,'DOO5252BR',1,'completed'),(1,'DOO5252GS',1,'completed'),(1,'PAB42100WH',1,'completed'),(1,'PAB52100WH',1,'completed'),(1,'PHL62100WH',4,'completed'),(1,'PLR4262WH',2,'completed'),(1,'PLR5262WH',2,'completed');
-/*!40000 ALTER TABLE `listsitems` ENABLE KEYS */;
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,1,'uncompleted, 93%');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:06
+-- Dump completed on 2020-04-14 15:01:41

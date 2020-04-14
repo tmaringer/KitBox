@@ -16,29 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `cupboards`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `cupboards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `users` varchar(100) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `job` varchar(45) NOT NULL,
-  PRIMARY KEY (`users`),
-  UNIQUE KEY `users_UNIQUE` (`users`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `cupboards` (
+  `CupboardId` int NOT NULL AUTO_INCREMENT,
+  `OrderId` int DEFAULT NULL,
+  `Height` int DEFAULT NULL,
+  `Depth` int DEFAULT NULL,
+  `Width` int DEFAULT NULL,
+  PRIMARY KEY (`CupboardId`),
+  KEY `OrderId_idx` (`OrderId`),
+  CONSTRAINT `cupboards_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `cupboards`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('Thibaut','82a8a38c4381c8a29e9fa1b9c77a9fababa10391e794b64444f83a231809e1cd','admin');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `cupboards` WRITE;
+/*!40000 ALTER TABLE `cupboards` DISABLE KEYS */;
+INSERT INTO `cupboards` VALUES (1,1,102,62,120);
+/*!40000 ALTER TABLE `cupboards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:05
+-- Dump completed on 2020-04-14 15:01:41

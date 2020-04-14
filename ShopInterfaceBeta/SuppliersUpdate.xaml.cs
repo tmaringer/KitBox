@@ -39,8 +39,6 @@ namespace ShopInterfaceBeta
             this.InitializeComponent();
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Wait, 1);
             ComboBox1.Items.Clear();
-            SetNumberBoxNumberFormatter(0.01, 2, addSuppPrice);
-            SetNumberBoxNumberFormatter(1, 0, addSuppDelay);
             foreach (string i in DbUtils.RefList("SupplierId","suppliers"))
             {
                 ComboBox1.Items.Add(i);
@@ -221,22 +219,6 @@ namespace ShopInterfaceBeta
             Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
         }
 
-        private void Add_Click(object sender, RoutedEventArgs e)
-        {
-            string supplierId = actualSupplierId;
-            string code = addCode.Text;
-            double suppPrice = addSuppPrice.Value;
-            string price = suppPrice.ToString().Replace(',', '.');
-            string suppDelay = addSuppDelay.Text;
-            string columns = "SupplierId,Code,SuppPrice,SuppDelay";
-            string values = "\"" + supplierId + "\", \"" + code + "\", \"" + price + "\", \"" + suppDelay + "\"";
-            addCode.Text = DbUtils.InsertDb("supplierslistprices", columns, values);
-            addCode.Text = "";
-            addSuppPrice.Text = "";
-            addSuppDelay.Text = "";
-            FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
-        }
-
         private void Button1_Click(object sender, RoutedEventArgs e)
         {
             string SupplierId = ComboBox1.SelectedItem.ToString();
@@ -251,18 +233,6 @@ namespace ShopInterfaceBeta
             Add.IsEnabled = true;
             Edit.IsEnabled = true;
             FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
-        }
-
-        private void SetNumberBoxNumberFormatter(double x, int decimals, NumberBox numberBox)
-        {
-            IncrementNumberRounder rounder = new IncrementNumberRounder();
-            rounder.Increment = x;
-            rounder.RoundingAlgorithm = RoundingAlgorithm.RoundUp;
-
-            DecimalFormatter formatter = new DecimalFormatter();
-            formatter.NumberRounder = rounder;
-            formatter.FractionDigits = decimals;
-            numberBox.NumberFormatter = formatter;
         }
 
         private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -347,6 +317,12 @@ namespace ShopInterfaceBeta
             }
             FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
             Delete.IsEnabled = false;
+        }
+
+        private void Add_Click_1(object sender, RoutedEventArgs e)
+        {
+            string i = DbUtils.InsertDb("supplierslistprices", "SupplierId,Code,SuppPrice,SuppDelay", "\"" + actualSupplierId + "\",\"NEW\",\"0.00\",\"0\"");
+            FillDataGrid(DbUtils.RefreshDb("supplierslistprices where SupplierId = \"" + actualSupplierId + "\""), DataGrid1);
         }
     }
 }

@@ -16,31 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `panels`
+-- Table structure for table `suppliers`
 --
 
-DROP TABLE IF EXISTS `panels`;
+DROP TABLE IF EXISTS `suppliers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `panels` (
-  `PanelId` int NOT NULL AUTO_INCREMENT,
-  `BoxId` int DEFAULT NULL,
-  `Code` text,
-  `Position` text,
-  PRIMARY KEY (`PanelId`),
-  KEY `euuuh_idx` (`BoxId`),
-  CONSTRAINT `euuuh` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `suppliers` (
+  `SupplierId` int NOT NULL,
+  `SupplierName` varchar(45) DEFAULT NULL,
+  `SupplierAddress` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`SupplierId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `panels`
+-- Dumping data for table `suppliers`
 --
 
-LOCK TABLES `panels` WRITE;
-/*!40000 ALTER TABLE `panels` DISABLE KEYS */;
-INSERT INTO `panels` VALUES (1,1,'PHL62100WH','H'),(2,1,'PHL62100WH','L'),(3,1,'PAB52100WH','B'),(4,1,'PLR5262WH','RS'),(5,1,'PLR5262WH','LS'),(6,2,'PHL62100WH','H'),(7,2,'PHL62100WH','L'),(8,2,'PAB42100WH','B'),(9,2,'PLR4262WH','RS'),(10,2,'PLR4262WH','LS');
-/*!40000 ALTER TABLE `panels` ENABLE KEYS */;
+LOCK TABLES `suppliers` WRITE;
+/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
+INSERT INTO `suppliers` VALUES (1,'Trabelbo SA','Parc industriel 9 '),(2,'TraitBois SPRL','Chemin des 2 Maisons, 140');
+/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:08
+-- Dump completed on 2020-04-14 15:01:41

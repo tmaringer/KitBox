@@ -16,28 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customers`
+-- Table structure for table `angles`
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `angles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customers` (
-  `CustomerId` int NOT NULL AUTO_INCREMENT,
-  `CustomerName` varchar(100) DEFAULT NULL,
-  `CustomerPhone` varchar(14) DEFAULT NULL,
-  PRIMARY KEY (`CustomerId`)
+CREATE TABLE `angles` (
+  `AngleId` int NOT NULL AUTO_INCREMENT,
+  `CupboardId` int DEFAULT NULL,
+  `Code` text,
+  PRIMARY KEY (`AngleId`),
+  KEY `blabla_idx` (`CupboardId`),
+  CONSTRAINT `blabla` FOREIGN KEY (`CupboardId`) REFERENCES `cupboards` (`CupboardId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customers`
+-- Dumping data for table `angles`
 --
 
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'Maringer','0470599833'),(2,'DeGroote','AHAH');
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+LOCK TABLES `angles` WRITE;
+/*!40000 ALTER TABLE `angles` DISABLE KEYS */;
+INSERT INTO `angles` VALUES (1,1,'ANB125BLCUT'),(2,1,'ANB125BLCUT'),(3,1,'ANB125BLCUT'),(4,1,'ANB125BLCUT');
+/*!40000 ALTER TABLE `angles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:05
+-- Dump completed on 2020-04-14 15:01:40

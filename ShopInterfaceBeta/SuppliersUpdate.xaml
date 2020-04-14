@@ -35,29 +35,14 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Name="Add" Icon="Add" Label="Add" IsEnabled="False" ToolTipService.ToolTip="Add" AllowFocusOnInteraction="True">
-                <AppBarButton.Flyout>
-                    <Flyout>
-                        <StackPanel x:Name="addPanel">
-                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Add a part to the catalogue"/>
-                            <TextBox x:Name="addCode" Header="Code"/>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppPrice"/>
-                            <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppPrice" Header="SuppPrice" Minimum="0.001" SmallChange="0.001" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
-                            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Margin="0,4,0,0" Text="SuppDelay"/>
-                            <controls:NumberBox Margin="0,4,0,0" x:Name="addSuppDelay" Header="SuppDelay"  Minimum="1" SmallChange="1" SpinButtonPlacementMode="Compact" ValidationMode="InvalidInputOverwritten"/>
-                            <Button Click="Add_Click" Content="Add" Margin="0,7,0,0"/>
-                        </StackPanel>
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-            <AppBarButton x:Name="Edit" Icon="Edit" Label="Enable edit mode" IsEnabled="False" ToolTipService.ToolTip="Edit"  AllowFocusOnInteraction="True" Click="Edit_Click">
-            </AppBarButton>
+            <AppBarButton x:Name="Add" Icon="Add" Label="Add" IsEnabled="False" ToolTipService.ToolTip="Add" AllowFocusOnInteraction="True" Click="Add_Click_1"/>
+            <AppBarButton x:Name="Edit" Icon="Edit" Label="Enable edit mode" IsEnabled="False" ToolTipService.ToolTip="Edit"  AllowFocusOnInteraction="True" Click="Edit_Click"/>
             <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" IsEnabled="False" ToolTipService.ToolTip="Delete" Click="Delete_Click"/>
         </CommandBar>
         <controls1:DataGrid x:Name="DataGrid1" MinColumnWidth="150" ColumnWidth="*" MaxColumnWidth="400" Margin="7,0,7,7" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" DoubleTapped="DataGrid1_DoubleTapped" IsReadOnly="True" CellEditEnding="DataGrid1_CellEditEnding">
             <controls1:DataGrid.Columns>
                 <controls1:DataGridTextColumn Header="SupplierId" Binding="{Binding SupplierId}" IsReadOnly="True"/>
-                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}" IsReadOnly="True"/>
+                <controls1:DataGridTextColumn Header="Code" Binding="{Binding Code}"/>
                 <controls1:DataGridTextColumn Header="SuppPrice" Binding="{Binding SuppPrice}"/>
                 <controls1:DataGridTextColumn Header="SuppDelay" Binding="{Binding SuppDelay}"/>
             </controls1:DataGrid.Columns>

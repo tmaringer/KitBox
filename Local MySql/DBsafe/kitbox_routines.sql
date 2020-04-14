@@ -16,33 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `supplierslistsitems`
+-- Dumping events for database 'kitbox'
 --
 
-DROP TABLE IF EXISTS `supplierslistsitems`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `supplierslistsitems` (
-  `ItemId` int NOT NULL AUTO_INCREMENT,
-  `SupplierOrderId` int DEFAULT NULL,
-  `Code` varchar(15) DEFAULT NULL,
-  `Quantity` int DEFAULT NULL,
-  PRIMARY KEY (`ItemId`),
-  UNIQUE KEY `ItemId_UNIQUE` (`ItemId`),
-  KEY `azert_idx` (`SupplierOrderId`),
-  CONSTRAINT `azert` FOREIGN KEY (`SupplierOrderId`) REFERENCES `suppliersorders` (`SupplierOrderId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
--- Dumping data for table `supplierslistsitems`
+-- Dumping routines for database 'kitbox'
 --
-
-LOCK TABLES `supplierslistsitems` WRITE;
-/*!40000 ALTER TABLE `supplierslistsitems` DISABLE KEYS */;
-INSERT INTO `supplierslistsitems` VALUES (1,1,'ANB125BLCUT',32),(3,5,'ANB168BL',1000),(4,6,'CLE47',4),(5,7,'ANB138WH',10);
-/*!40000 ALTER TABLE `supplierslistsitems` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +32,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:07
+-- Dump completed on 2020-04-14 15:01:42

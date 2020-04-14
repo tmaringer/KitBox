@@ -16,32 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cupboards`
+-- Table structure for table `supplierspending`
 --
 
-DROP TABLE IF EXISTS `cupboards`;
+DROP TABLE IF EXISTS `supplierspending`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cupboards` (
-  `CupboardId` int NOT NULL AUTO_INCREMENT,
-  `OrderId` int DEFAULT NULL,
-  `Height` int DEFAULT NULL,
-  `Depth` int DEFAULT NULL,
-  `Width` int DEFAULT NULL,
-  PRIMARY KEY (`CupboardId`),
-  KEY `OrderId_idx` (`OrderId`),
-  CONSTRAINT `cupboards_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `supplierspending` (
+  `Code` varchar(45) NOT NULL,
+  `Quantity` int DEFAULT NULL,
+  PRIMARY KEY (`Code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cupboards`
+-- Dumping data for table `supplierspending`
 --
 
-LOCK TABLES `cupboards` WRITE;
-/*!40000 ALTER TABLE `cupboards` DISABLE KEYS */;
-INSERT INTO `cupboards` VALUES (1,1,102,62,100);
-/*!40000 ALTER TABLE `cupboards` ENABLE KEYS */;
+LOCK TABLES `supplierspending` WRITE;
+/*!40000 ALTER TABLE `supplierspending` DISABLE KEYS */;
+/*!40000 ALTER TABLE `supplierspending` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +47,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-12 13:51:07
+-- Dump completed on 2020-04-14 15:01:39
