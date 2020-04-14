@@ -214,8 +214,13 @@ namespace kitbox_user_interface_V1
 
 
 
-            //vérifier que tout soit rempli
+            //vérifier que tout soit rempli [OK]
             //proposer toutes les hauteurs
+            /*
+             * pour ce faire : supprimer toutes les entrées de combobox6
+             * puis refaire une requête et ajouter toutes les entrée
+             * le tout après avoir appuyé sur button3
+             */
             //gérer si choix de hauteur inadéquat -> message box
 
             //une fois un choix correct effectué
