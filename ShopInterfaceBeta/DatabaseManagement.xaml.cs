@@ -34,12 +34,13 @@ namespace ShopInterfaceBeta
     {
         private ObservableCollection<string> code;
         private ObservableCollection<string> columns;
-        private static ObservableCollection<Part> _items;
+        private static ObservableCollection<Item> _items;
         private static CollectionViewSource groupedItems;
         private string OriginalCode;
         private string OriginalValue;
         private SolidColorBrush fore;
         private List<string> _nameList;
+        private string ActualCode;
         public DatabaseManagement()
         {
             this.InitializeComponent();
@@ -54,11 +55,11 @@ namespace ShopInterfaceBeta
         public void FillDataGrid(DataTable dataTable, DataGrid dataGrid)
         {
             _nameList = new List<string>();
-            _items = new ObservableCollection<Part>();
-            List<Part> parts = new List<Part>();
+            _items = new ObservableCollection<Item>();
+            List<Item> parts = new List<Item>();
             foreach (DataRow row in dataTable.Rows)
             {
-                Part part = new Part()
+                Item part = new Item()
                 {
                     Ref = row["Ref"].ToString(),
                     Code = row["Code"].ToString(),
@@ -95,17 +96,6 @@ namespace ShopInterfaceBeta
             }
         }
 
-        private void StackPanelDatabaseManagement1Button1_Click(object sender, RoutedEventArgs e)
-        {
-            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Wait, 1);
-            string code = ComboBox1.SelectedItem.ToString();
-            string value = TextBox1.Text.ToString();
-            string column = ComboBox2.SelectedItem.ToString();
-            TextBlock1.Text = DbUtils.UpdateDb("kitbox", column, "Code = \"" + code + "\"", value);
-            FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
-            Window.Current.CoreWindow.PointerCursor = new Windows.UI.Core.CoreCursor(Windows.UI.Core.CoreCursorType.Arrow, 1);
-        }
-
         public class GroupInfoCollection<T> : ObservableCollection<T>
         {
             public object Key { get; set; }
@@ -116,7 +106,7 @@ namespace ShopInterfaceBeta
             }
         }
 
-        public class Part
+        public class Item
         {
             public string Code { get; set; }
             public string Instock { get; set; }
@@ -139,7 +129,7 @@ namespace ShopInterfaceBeta
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Create grouping for collection
-            ObservableCollection<GroupInfoCollection<Part>> parts = new ObservableCollection<GroupInfoCollection<Part>>();
+            ObservableCollection<GroupInfoCollection<Item>> parts = new ObservableCollection<GroupInfoCollection<Item>>();
 
             //Implement grouping through LINQ queries
             var query = from item in _items
@@ -149,7 +139,7 @@ namespace ShopInterfaceBeta
             //Populate Mountains grouped collection with results of the query
             foreach (var g in query)
             {
-                GroupInfoCollection<Part> info = new GroupInfoCollection<Part>();
+                GroupInfoCollection<Item> info = new GroupInfoCollection<Item>();
                 info.Key = g.GroupName;
                 foreach (var item in g.Items)
                 {
@@ -162,13 +152,14 @@ namespace ShopInterfaceBeta
             groupedItems.Source = parts;
             DataGridView1.RowGroupHeaderPropertyNameAlternative = "Ref";
             DataGridView1.ItemsSource = groupedItems.View;
+            Sort.IsEnabled = false;
         }
 
         private void DataGridView1_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
         {
 
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
-            Part item = group.GroupItems[0] as Part;
+            Item item = group.GroupItems[0] as Item;
             e.RowGroupHeader.PropertyValue = item.Ref;
         }
 
@@ -177,7 +168,7 @@ namespace ShopInterfaceBeta
             try
             {
                 string column = (sender as DataGrid).CurrentColumn.Header.ToString();
-                OriginalCode = ((Part)((sender as DataGrid).SelectedItem)).Code.ToString();
+                OriginalCode = ((Item)((sender as DataGrid).SelectedItem)).Code.ToString();
                 int index = (sender as DataGrid).Columns.IndexOf((sender as DataGrid).CurrentColumn);
                 OriginalValue = DbUtils.RefList(column, "kitbox where Code = \"" + OriginalCode + "\"")[0];
             }
@@ -210,18 +201,12 @@ namespace ShopInterfaceBeta
                         string i = "";
                         i = DbUtils.UpdateDb("kitbox", column, "Code = \"" + OriginalCode + "\"", value);
                     }
-                    FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
                 }
             }
             catch
             {
 
             }
-        }
-
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -243,7 +228,8 @@ namespace ShopInterfaceBeta
 
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
-
+            string i = DbUtils.InsertDb("kitbox", "Ref,Code,Height,Width,Depth,Colour,Instock,MinimumStock,Custprice,NbPartsBox", "\"DEFAULT\",\"NEW\",\"0\",\"0\",\"0\",\"DEFAULT\",\"0\",\"0\",\"0\",\"0\"");
+            FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -261,7 +247,7 @@ namespace ShopInterfaceBeta
             {
                 AutoSuggestBox.Text = args.ChosenSuggestion.ToString();
                 string value = AutoSuggestBox.Text.ToString();
-                List<Part> parts = new List<Part>();
+                List<Item> parts = new List<Item>();
                 DataTable result = new DataTable();
                 result = DbUtils.RefreshDb("kitbox");
                 result.Columns.Remove("Dimensions");
@@ -272,7 +258,7 @@ namespace ShopInterfaceBeta
                     if (row.Contains(value))
                     {
                         result.Rows.Add(row);
-                        parts.Add(new Part()
+                        parts.Add(new Item()
                         {
                             Ref = dataRow["Ref"].ToString(),
                             Code = dataRow["Code"].ToString(),
@@ -300,6 +286,44 @@ namespace ShopInterfaceBeta
         {
             var selectedItem = args.SelectedItem.ToString();
             sender.Text = selectedItem;
+        }
+
+        private void AppBarButton_Click_2(object sender, RoutedEventArgs e)
+        {
+            FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
+            Sort.IsEnabled = true;
+        }
+
+        private void DataGridView1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Code")
+            {
+                ActualCode = ((Item)((sender as DataGrid).SelectedItem)).Code;
+                Delete.IsEnabled = true;
+            }
+            else
+            {
+                Delete.IsEnabled = false;
+            }
+        }
+
+        private async void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            ContentDialog ConfirmEdit = new ContentDialog()
+            {
+                Title = "Delete an item",
+                Content = "Do you really want to delete \"" + ActualCode + "\" from the database ?",
+                PrimaryButtonText = "Yes",
+                SecondaryButtonText = "I'm not sure",
+                DefaultButton = ContentDialogButton.Secondary
+            };
+            ContentDialogResult result = await ConfirmEdit.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string i = DbUtils.DeleteRow("kitbox", "Code = \"" + ActualCode + "\"");
+            }
+            FillDataGrid(DbUtils.RefreshDb("kitbox"), DataGridView1);
+            Delete.IsEnabled = false;
         }
     }
 }
