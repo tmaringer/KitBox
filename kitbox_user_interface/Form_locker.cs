@@ -62,6 +62,8 @@ namespace kitbox_user_interface_V1
             textBox6.Text = "height = ";
             textBox8.Text = "0";
 
+            button4.Visible = false;
+            button4.Enabled = false;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -70,6 +72,10 @@ namespace kitbox_user_interface_V1
 
         public void button2_Click(object sender, EventArgs e)
         {
+            /*
+             * le button 4 cache le button 2 dans form_locker.designer
+             */
+
             //ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
             int width = ShoppingCart.widthChosen;
             int depth = ShoppingCart.depthChosen;
@@ -109,8 +115,12 @@ namespace kitbox_user_interface_V1
                 {
                     button2.Enabled = false;
                 }
-                currentLocker++;
-                textBox12.Text = currentLocker.ToString();
+                else
+                {
+                    currentLocker++;
+                    textBox12.Text = currentLocker.ToString();
+                }
+                
 
 
                 int maxHeight = Int32.Parse(textBox9.Text);
@@ -133,10 +143,12 @@ namespace kitbox_user_interface_V1
             {
                 MessageBox.Show("Fill every choices");
             }
-            if(currentLocker==numberOfLocker+1)
+            if(!button2.Enabled)
             {
                 button1.Visible = true;
                 button1.Enabled = true;
+                button3.Visible = true;
+                button3.Enabled = true;
             }
 
                 //pas encore utile, ne pas supprimer
@@ -159,7 +171,8 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dataGridView1.CurrentCell.RowIndex.ToString());
+            
+            textBox12.Text = (dataGridView1.CurrentCell.RowIndex + 1).ToString();
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
@@ -174,7 +187,53 @@ namespace kitbox_user_interface_V1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Faire un truc :)");
+            //créer les objets
+            this.Hide();
+            Form1 form_1 = new Form1();
+            form_1.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button2.Visible = false;
+            button2.Enabled = false;
+            button4.Visible = true;
+            button4.Enabled = true;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            /*
+             * le button 4 cache le button 2 dans form_locker.designer
+             */
+            
+
+            int currentLocker = Int32.Parse(textBox12.Text);
+            int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
+
+
+
+            //vérifier que tout soit rempli
+            //proposer toutes les hauteurs
+            //gérer si choix de hauteur inadéquat -> message box
+
+            //une fois un choix correct effectué
+            //supprimer formerHeight+4 de la hauteur totale
+            //ajouter la nouvelle hauteur
+            //enregistrer les autres modifications dans la datagridview
+
+
+            if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
+            {
+                string doorsColor = comboBox1.SelectedItem.ToString();
+                string panelColor = comboBox2.SelectedItem.ToString();
+                int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Fill every choices");
+            }
         }
     }
 }
