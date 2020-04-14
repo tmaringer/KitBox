@@ -37,33 +37,6 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Name="Modify" IsEnabled="False" ToolTipService.ToolTip="Edit a cupboard" Icon="Edit" AllowFocusOnInteraction="True">
-                <AppBarButton.Flyout>
-                    <Flyout x:Name="FlyoutModify">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,0,0" Text="Modify a cupboard" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox3" Header="Orientation" Margin="7" HorizontalAlignment="Stretch" SelectionChanged="ComboBox3_SelectionChanged"/>
-                            <ComboBox x:Name="ComboBox4" Header="Value" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button2" Content="Modify" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button2_Click"/>
-                            <TextBlock x:Name="TextBlock2" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
-        </CommandBar>
-        <CommandBar Grid.Row="2" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="70,0,7,0">
-            <AppBarButton x:Name="Edit1" IsEnabled="False" ToolTipService.ToolTip="Edit a box" Icon="Edit" AllowFocusOnInteraction="True">
-                <AppBarButton.Flyout>
-                    <Flyout x:Name="FlyoutEdit1">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,0,0" Text="Modify a box height" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox7" Header="Height value" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Modify" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button3_Click"/>
-                            <TextBlock x:Name="TextBlock3" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
         </CommandBar>
         <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="57,0,7,0">
             <AppBarButton IsEnabled="False" AllowFocusOnInteraction="True" ToolTipService.ToolTip="Door management" x:Name="Door">
@@ -124,19 +97,26 @@
                 <controls:DataGridComboBoxColumn Header="Depth" Binding="{Binding Depth}" ItemsSource="{x:Bind depthList}"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7"  MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7"  MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" CellEditEnding="DataGrid2_CellEditEnding">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="BoxId" Binding="{Binding BoxId}" />
                 <controls:DataGridTextColumn IsReadOnly="True" Header="CupboardId" Binding="{Binding CupboardId}" />
                 <controls:DataGridComboBoxColumn Header="Height" Binding="{Binding Height}" ItemsSource="{x:Bind heightList}"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" BeginningEdit="DataGrid3_BeginningEdit">
             <controls:DataGrid.Resources>
                 <Style TargetType="controls:DataGridCell" x:Key="Test">
                     <Setter Target="true" Property="FontFamily" Value="Segoe MDL2 Assets"/>
                 </Style>
             </controls:DataGrid.Resources>
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}"/>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="Code" Binding="{Binding Code}"/>
+                <controls:DataGridComboBoxColumn Header="Colour" Binding="{Binding Colour}" ItemsSource="{x:Bind ColourList}"/>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="Position" Binding="{Binding Position}"/>
+                <controls:DataGridTextColumn IsReadOnly="True" Header="Stock" Binding="{Binding Stock}"/>
+            </controls:DataGrid.Columns>
         </controls:DataGrid>
     </Grid>
 </Page>

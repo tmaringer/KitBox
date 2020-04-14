@@ -375,7 +375,7 @@ namespace ShopInterfaceBeta
             
         }
 
-        public static void Angles(string cupboardId, DataGrid dataGridView)
+        public static DataTable Angles(string cupboardId)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -432,34 +432,10 @@ namespace ShopInterfaceBeta
                 elements.Rows.Add(myDataRow);
                 index += 1;
             }
-            dataGridView.Columns.Clear();
-            for (int i = 0; i < dataTable.Columns.Count; i++)
-            {
-                dataGridView.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = dataTable.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-
-            var collection = new ObservableCollection<object>();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                if (row["Stock"].ToString() == "true")
-                {
-                    row["Stock"] = "\xE8FB";
-                }
-                else if (row["Stock"].ToString() == "false")
-                {
-                    row["Stock"] = "\xE711";
-                }
-                collection.Add(row.ItemArray);
-            }
-            dataGridView.AutoGenerateColumns = false;
-            dataGridView.ItemsSource = collection;
+            return elements;
         }
 
-        public static void ElementList(string boxId, DataGrid dataGridView)
+        public static DataTable ElementList(string boxId)
         {
             DataTable dataTable = new DataTable();
             DataTable elements = dataTable;
@@ -578,30 +554,7 @@ namespace ShopInterfaceBeta
                 elements.Rows.Add(myDataRow);
                 index += 1;
             }
-            dataGridView.Columns.Clear();
-            for (int i = 0; i < dataTable.Columns.Count; i++)
-            {
-                dataGridView.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = dataTable.Columns[i].ColumnName,
-                    Binding = new Binding { Path = new PropertyPath("[" + i.ToString() + "]") }
-                });
-            }
-            var collection = new ObservableCollection<object>();
-            foreach (DataRow row in dataTable.Rows)
-            {
-                if (row["Stock"].ToString() == "true")
-                {
-                    row["Stock"] = "\xE8FB";
-                }
-                else if (row["Stock"].ToString() == "false")
-                {
-                    row["Stock"] = "\xE711";
-                }
-                collection.Add(row.ItemArray);
-            }
-            dataGridView.AutoGenerateColumns = false;
-            dataGridView.ItemsSource = collection;
+            return elements;
         }
     }
 }

@@ -39,9 +39,11 @@ namespace ShopInterfaceBeta
         private List<string> heightList;
         private List<string> widthList;
         private List<string> depthList;
+        private List<string> ColourList;
         private string boxId;
         private string cupId;
         private List<string> part;
+
         public OrderVisualisation()
         {
             this.InitializeComponent();
@@ -51,10 +53,6 @@ namespace ShopInterfaceBeta
             orderIdCustomer = new ObservableCollection<string>();
             boxIds = new ObservableCollection<string>();
             part = new List<string>();
-            ComboBox3.Items.Clear();
-            ComboBox3.Items.Add("Width");
-            ComboBox3.Items.Add("Depth");
-            ComboBox7.Items.Clear();
             ComboDoor.Items.Clear();
             ComboDoor.Items.Add("0");
             ComboDoor.Items.Add("1");
@@ -65,7 +63,6 @@ namespace ShopInterfaceBeta
             foreach (string i in DbUtils.RefListNd("Height", "kitbox where Ref = \"Cleat\""))
             {
                 int height = Convert.ToInt32(i) + 4;
-                ComboBox7.Items.Add(height.ToString());
                 heightList.Add(height.ToString());
             }
             foreach (string i in DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\""))
@@ -113,6 +110,24 @@ namespace ShopInterfaceBeta
             grid.AutoGenerateColumns = false;
             grid.ItemsSource = boxes;
         }
+
+        public static void FillDataGridItem(DataTable table, DataGrid grid)
+        {
+            List<Item> items = new List<Item>();
+            foreach (DataRow row in table.Rows)
+            {
+                items.Add(new Item()
+                {
+                    Id = row["Id"].ToString(),
+                    Code = row["Code"].ToString(),
+                    Colour = DbUtils.RefList("Colour","kitbox where Code = \"" + row["Code"].ToString() + "\"")[0],
+                    Position = row["Position"].ToString(),
+                    Stock = row["Stock"].ToString()
+                });
+            }
+            grid.AutoGenerateColumns = false;
+            grid.ItemsSource = items;
+        }
         private static void FillComboBox(List<string> list, ObservableCollection<string> code)
         {
             code.Clear();
@@ -145,17 +160,14 @@ namespace ShopInterfaceBeta
         private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             Door.IsEnabled = false;
-            Edit1.IsEnabled = false;
             ModifyPart.IsEnabled = false;
-            Modify.IsEnabled = false;
             Infos.IsEnabled = false;
             string columnValue = DataGrid1.CurrentColumn.Header.ToString();
             if (columnValue == "CupboardId")
             {
-                Modify.IsEnabled = true;
                 cupId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
                 FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + cupId + "\""), DataGrid2);
-                Sandbox.Angles(cupId, DataGrid3);
+                FillDataGridItem(Sandbox.Angles(cupId), DataGrid3);
                 DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
                 FillComboBox(DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + cupId + "\""), boxIds);
             }
@@ -164,9 +176,7 @@ namespace ShopInterfaceBeta
         private void DataGrid2_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             Door.IsEnabled = false;
-            Edit1.IsEnabled = false;
             ModifyPart.IsEnabled = false;
-            Modify.IsEnabled = false;
             Infos.IsEnabled = false;
             string columnValue = DataGrid2.CurrentColumn.Header.ToString();
             if (columnValue == "BoxId")
@@ -177,63 +187,21 @@ namespace ShopInterfaceBeta
                 {
                     Door.IsEnabled = true;
                 }
-
-                Edit1.IsEnabled = true;
-                Sandbox.ElementList(boxId, DataGrid3);
+                FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
                 DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
             }
-        }
-
-        private void ComboBox3_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox4.Items.Clear();
-            if (ComboBox3.SelectedItem.ToString() == "Width")
-            {
-                foreach (string i in DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\""))
-                {
-                    ComboBox4.Items.Add(i);
-                }
-            }
-            else if (ComboBox3.SelectedItem.ToString() == "Depth")
-            {
-                foreach (string i in DbUtils.RefListNd("Depth", "kitbox where Ref = \"Panel LR\""))
-                {
-                    ComboBox4.Items.Add(i);
-                }
-            }
-        }
-
-        private void Button2_Click(object sender, RoutedEventArgs e)
-        {
-            string cupboardId = cupId;
-            string orientation = ComboBox3.SelectedItem.ToString();
-            string value = ComboBox4.SelectedItem.ToString();
-            if (orientation == "Width")
-            {
-                Sandbox.Width(cupboardId, Convert.ToInt32(value));
-            }
-            else if (orientation == "Depth")
-            {
-                Sandbox.Depth(cupboardId, Convert.ToInt32(value));
-            }
-            string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + cupboardId + "\"")[0];
-            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
-            Modify.IsEnabled = false;
-            FlyoutModify.Hide();
         }
 
         private void Button3_Click(object sender, RoutedEventArgs e)
         {
             string CupboardId = cupId;
             string BoxId = boxId;
-            Sandbox.Height(BoxId, Convert.ToInt32(ComboBox7.SelectedItem.ToString()));
-            Sandbox.Angles(CupboardId, DataGrid3);
+            //Sandbox.Height(BoxId, Convert.ToInt32(ComboBox7.SelectedItem.ToString()));
+            FillDataGridItem(Sandbox.Angles(CupboardId), DataGrid3);
             string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
             FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
             DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
             FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + CupboardId + "\""), DataGrid2);
-            Edit1.IsEnabled = false;
-            FlyoutEdit1.Hide();
         }
 
         private void Button5_Click(object sender, RoutedEventArgs e)
@@ -264,7 +232,7 @@ namespace ShopInterfaceBeta
                 }
             }
             DbUtils.Arrange("doors", "DoorId");
-            Sandbox.ElementList(boxId, DataGrid3);
+            FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
             DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
             DoorManagement.Hide();
         }
@@ -275,9 +243,7 @@ namespace ShopInterfaceBeta
             {
                 part.Clear();
             }
-            Edit1.IsEnabled = false;
             ModifyPart.IsEnabled = false;
-            Modify.IsEnabled = false;
             Infos.IsEnabled = false;
             if (DataGrid3.CurrentColumn.Header.ToString() == "Code")
             {
@@ -395,28 +361,23 @@ namespace ShopInterfaceBeta
                 //panel
                 List<string> Id = DbUtils.RefList("PanelId", "panels where Position = \"" + pos + "\" and Code = \"" + code + "\" and BoxId = \"" + boxId + "\"");
                 w = DbUtils.UpdateDb("panels", "Code", "PanelId = \"" + Id[0] + "\"", new_code);
-                Sandbox.ElementList(boxId, DataGrid3);
+                FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
             }
             else if (reff == "Door")
             {
                 List<string> Id = DbUtils.RefList("DoorId", "doors where Code = \"" + code + "\" and BoxId = \"" + boxId + "\"");
                 w = DbUtils.UpdateDb("doors", "Code", "DoorId = \"" + Id[0] + "\"", new_code);
-                Sandbox.ElementList(boxId, DataGrid3);
+                FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
             }
             else if (reff == "AngleBracket")
             {
                 List<string> Id = DbUtils.RefList("AngleId", "angles where Code = \"" + code + "\" and CupboardId = \"" + cupId + "\"");
                 w = DbUtils.UpdateDb("angles", "Code", "AngleId = \"" + Id[0] + "\"", new_code);
-                Sandbox.Angles(cupId, DataGrid3);
+                FillDataGridItem(Sandbox.Angles(cupId), DataGrid3);
             }
             DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
             ModifyPart.IsEnabled = false;
             ModifyPartFlyout.Hide();
-        }
-
-        private void Edit1_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         public class Cupboard
@@ -436,7 +397,11 @@ namespace ShopInterfaceBeta
         }
         public class Item
         {
-
+            public string Id { get; set; }
+            public string Code { get; set; }
+            public string Colour { get; set; }
+            public string Position { get; set; }
+            public string Stock { get; set; }
         }
 
         private async void DataGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -480,6 +445,42 @@ namespace ShopInterfaceBeta
                 }
             }
             FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + CupboardId + "\"")[0] + "\""), DataGrid1);
+        }
+
+        private async void DataGrid2_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+            string original = "";
+            string value = "";
+            string setting = "Height";
+            original = DbUtils.RefList("Height", "boxes where BoxId = \"" + BoxId + "\"")[0];
+            value = ((Box)((sender as DataGrid).SelectedItem)).Height;
+            ContentDialog ModifyBox = new ContentDialog()
+            {
+                Title = "Box modification",
+                Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " from \"" + original + "\" to \"" + value + "\" ?",
+                PrimaryButtonText = "Yes",
+                SecondaryButtonText = "I'm not sure",
+                DefaultButton = ContentDialogButton.Secondary
+            };
+            ContentDialogResult result = await ModifyBox.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                string i = DbUtils.UpdateDb("boxes", setting, "BoxId = \"" + BoxId + "\"", value);
+                Sandbox.Height(BoxId, Convert.ToInt32(value));
+            }
+            FillDataGridItem(Sandbox.Angles(DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0]),DataGrid3);
+            string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\"")[0];
+            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
+            DataGrid3.Columns[3].CellStyle = (Style)DataGrid3.Resources["Test"];
+            FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
+        }
+
+        private void DataGrid3_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            string Code = ((Item)((sender as DataGrid).SelectedItem)).Code;
+            ColourList = new List<string>();
+            ColourList = DbUtils.RefListNd("Colour", "kitbox where Ref = \"" + DbUtils.RefList("Ref", "kitbox where Code = \"" + Code + "\"")[0] + "\"");
         }
     }
 }
