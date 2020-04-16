@@ -6,35 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
+    Background="{ThemeResource SystemControlAcrylicElementBrush}">
     <NavigationView x:Name="NavigationBar" Loaded="NavigationBar_Loaded" PaneTitle="Kitbox" Tapped="NavigationTouched" PaneDisplayMode="LeftCompact" IsSettingsVisible="False" IsBackEnabled="False">
         <NavigationView.Header>
             <TextBlock x:Name="Header" Margin="0,0,0,0" Text="Welcome Page" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
         </NavigationView.Header>
         <NavigationView.MenuItems>
             <NavigationViewItemHeader Content="Customers Management"/>
-            <NavigationViewItem x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
+            <NavigationViewItem x:Name="OrV" x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph=""/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem x:Uid="AppsNavItem" Icon="Shop" Content="Orders management" Tag="Orders management"/>
+            <NavigationViewItem x:Name="OrM" x:Uid="AppsNavItem" Icon="Shop" Content="Orders management" Tag="Orders management"/>
             <NavigationViewItemSeparator/>
             <NavigationViewItemHeader Content="Shop Management"/>
-            <NavigationViewItem x:Uid="AppsNavItem" Icon="AllApps" Content="Database management" Tag="Database management" />
-            <NavigationViewItem Content="Stock management" Tag="Stock management">
+            <NavigationViewItem x:Name="DaM" x:Uid="AppsNavItem" Icon="AllApps" Content="Database management" Tag="Database management" />
+            <NavigationViewItem x:Name="StM" Content="Stock management" Tag="Stock management">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE9D2;"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItemSeparator/>
             <NavigationViewItemHeader Content="Suppliers Management"/>
-            <NavigationViewItem x:Uid="AppsNavItem" Content="Suppliers orders" Tag="Suppliers orders">
+            <NavigationViewItem x:Name="SuO" x:Uid="AppsNavItem" Content="Suppliers orders" Tag="Suppliers orders">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem x:Uid="AppsNavItem" Content="Suppliers update" Tag="Suppliers update">
+            <NavigationViewItem x:Name="SuU" x:Uid="AppsNavItem" Content="Suppliers update" Tag="Suppliers update">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph=""/>
                 </NavigationViewItem.Icon>

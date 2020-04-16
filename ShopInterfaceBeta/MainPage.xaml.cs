@@ -119,27 +119,39 @@ namespace ShopInterfaceBeta
             if (ItemSelected != null)
             {
                 Header.Text = ItemSelected.Tag.ToString();
+                SuU.IsSelected = false;
+                SuO.IsSelected = false;
+                StM.IsSelected = false;
+                DaM.IsSelected = false;
+                OrM.IsSelected = false;
+                OrV.IsSelected = false;
                 switch (ItemSelected.Tag)
                 {
                     case @"Welcome page":
                         break;
                     case @"Order visualisation":
                         ContentFrame.Navigate(typeof(OrderVisualisation));
+                        OrV.IsSelected = true;
                         break;
                     case @"Orders management":
                         ContentFrame.Navigate(typeof(OrdersManagement));
+                        OrM.IsSelected = true;
                         break;
                     case @"Database management":
                         ContentFrame.Navigate(typeof(DatabaseManagement));
+                        DaM.IsSelected = true;
                         break;
                     case @"Stock management":
                         ContentFrame.Navigate(typeof(StockManagement));
+                        StM.IsSelected = true;
                         break;
                     case @"Suppliers orders":
                         ContentFrame.Navigate(typeof(SuppliersOrders));
+                        SuO.IsSelected = true;
                         break;
                     case @"Suppliers update":
                         ContentFrame.Navigate(typeof(SuppliersUpdate));
+                        SuU.IsSelected = true;
                         break;
 
 
