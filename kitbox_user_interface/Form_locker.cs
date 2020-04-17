@@ -199,7 +199,13 @@ namespace kitbox_user_interface_V1
             button2.Enabled = false;
             button4.Visible = true;
             button4.Enabled = true;
-
+            string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            conn.Open();
+            List<string> HeightBoxList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"Panel B\"");
+            conn.Close();
+            comboBox6.Items.Clear();
+            comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -211,11 +217,10 @@ namespace kitbox_user_interface_V1
 
             int currentLocker = Int32.Parse(textBox12.Text);
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
-
-
+            
 
             //vérifier que tout soit rempli [OK]
-            //proposer toutes les hauteurs
+            //proposer toutes les hauteurs [OK]
             /*
              * pour ce faire : supprimer toutes les entrées de combobox6
              * puis refaire une requête et ajouter toutes les entrée
