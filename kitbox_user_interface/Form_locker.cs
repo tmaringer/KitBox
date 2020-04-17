@@ -227,7 +227,7 @@ namespace kitbox_user_interface_V1
              * puis refaire une requête et ajouter toutes les entrée
              * le tout après avoir appuyé sur button3
              */
-            //gérer si choix de hauteur inadéquat -> message box (+hauteur max red ?)
+            //gérer si choix de hauteur inadéquat -> message box (+hauteur max red ?) [OK]
 
             //une fois un choix correct effectué
             //supprimer formerHeight+4 de la hauteur totale
@@ -243,6 +243,10 @@ namespace kitbox_user_interface_V1
                 if (totalHeight - formerHeight - 4 + height < maxHeight)
                 {
                     //save changes
+                    totalHeight -= formerHeight;
+                    totalHeight += height;
+                    textBox8.Text = totalHeight.ToString();
+                    dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker,height,doorsColor,panelColor);
                 }
                 else
                     MessageBox.Show("Maximal height reached");
