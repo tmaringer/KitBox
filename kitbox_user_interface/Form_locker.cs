@@ -41,7 +41,10 @@ namespace kitbox_user_interface_V1
             int width = ShoppingCart.widthChosen;
             int depth = ShoppingCart.depthChosen;
             int numberOfLocker = ShoppingCart.boxNumberChosen;
-            if (width < 62)
+
+            //todo chercher door width et mettre la plus grande en fonction
+
+            if (width > 62)
             {
                 comboBox1.Items.Clear();
                 comboBox1.Items.Add("none");
