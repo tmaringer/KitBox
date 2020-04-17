@@ -211,7 +211,7 @@ namespace kitbox_user_interface_V1
         private void button4_Click(object sender, EventArgs e)
         {
             /*
-             * le button 4 cache le button 2 dans form_locker.designer
+             * button 4 hides button 2 in form_locker.designer
              */
             
 
@@ -219,20 +219,6 @@ namespace kitbox_user_interface_V1
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
-
-            //vérifier que tout soit rempli [OK]
-            //proposer toutes les hauteurs [OK]
-            /*
-             * pour ce faire : supprimer toutes les entrées de combobox6
-             * puis refaire une requête et ajouter toutes les entrée
-             * le tout après avoir appuyé sur button3
-             */
-            //gérer si choix de hauteur inadéquat -> message box (+hauteur max red ?) [OK]
-
-            //une fois un choix correct effectué
-            //supprimer formerHeight+4 de la hauteur totale
-            //ajouter la nouvelle hauteur
-            //enregistrer les autres modifications dans la datagridview
 
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
