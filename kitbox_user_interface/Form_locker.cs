@@ -217,7 +217,8 @@ namespace kitbox_user_interface_V1
 
             int currentLocker = Int32.Parse(textBox12.Text);
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
-            
+            int totalHeight = Int32.Parse(textBox8.Text);
+            int maxHeight = Int32.Parse(textBox9.Text);
 
             //vérifier que tout soit rempli [OK]
             //proposer toutes les hauteurs [OK]
@@ -226,7 +227,7 @@ namespace kitbox_user_interface_V1
              * puis refaire une requête et ajouter toutes les entrée
              * le tout après avoir appuyé sur button3
              */
-            //gérer si choix de hauteur inadéquat -> message box
+            //gérer si choix de hauteur inadéquat -> message box (+hauteur max red ?)
 
             //une fois un choix correct effectué
             //supprimer formerHeight+4 de la hauteur totale
@@ -239,6 +240,12 @@ namespace kitbox_user_interface_V1
                 string doorsColor = comboBox1.SelectedItem.ToString();
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+                if (totalHeight - formerHeight - 4 + height < maxHeight)
+                {
+                    //save changes
+                }
+                else
+                    MessageBox.Show("Maximal height reached");
             }
             else
             {
