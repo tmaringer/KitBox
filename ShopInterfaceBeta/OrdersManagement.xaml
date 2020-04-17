@@ -6,8 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:muxc="using:Windows.UI.Xaml.Controls" xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    mc:Ignorable="d"
-    Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
+    mc:Ignorable="d">
     <Grid  Margin="7">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -18,8 +17,8 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <CommandBar Grid.Column="2" Background="Transparent" Margin="0,0,7,0">
-            <AppBarButton AllowFocusOnInteraction="True">
+        <CommandBar Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="0,0,7,0">
+            <AppBarButton AllowFocusOnInteraction="True" Label="Choose an order">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
@@ -35,7 +34,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
-        <CommandBar Background="Transparent">
+        <CommandBar Background="Transparent" DefaultLabelPosition="Right">
             <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Validate" Label="Validate" Icon="Accept" ToolTipService.ToolTip="Accept" IsEnabled="False" Click="OnElementClicked"/>
             <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Delete" Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" IsEnabled="False" Click="OnElementClicked"/>
             <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Test" Label="Test" ToolTipService.ToolTip="Test" IsEnabled="False" Click="OnElementClicked">

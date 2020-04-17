@@ -83,6 +83,7 @@ namespace ShopInterfaceBeta
                 Window.Current.Activate();
             }
             this.ExtendAcrylicIntoTitleBar();
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(700, 350));
         }
 
         /// <summary>

@@ -16,6 +16,8 @@ using MySql.Data.MySqlClient;
 using MySql.Data;
 using Windows.ApplicationModel.Core;
 using ShopInterface;
+using Windows.UI.ViewManagement;
+using Windows.Foundation;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,9 +29,11 @@ namespace ShopInterfaceBeta
 
     public sealed partial class MainPage : Page
     {
+        private string tag;
         public MainPage()
         {
             this.InitializeComponent();
+            tag = "";
         }
 
         private async void DisplayNoConnectionDialog()
@@ -41,7 +45,7 @@ namespace ShopInterfaceBeta
                 CloseButtonText = "Ok"
             };
 
-            ContentDialogResult result = await noConnectionDialog.ShowAsync();
+            await noConnectionDialog.ShowAsync();
             CoreApplication.Exit();
         }
 
@@ -100,14 +104,14 @@ namespace ShopInterfaceBeta
                 conn.Open();
                 conn.Close();
                 IconConnectivity.Glyph = "\uE701";
-                ConText.Text = "Database connected";
+                ConText.Tag = "Database connected";
                 LoginDialog();
                 NotificationToast.SimpleNotification("Database connected");
             }
             catch
             {
                 IconConnectivity.Glyph = "\uEB5E";
-                ConText.Text = "Database not connected";
+                ConText.Tag = "Database not connected";
                 DisplayNoConnectionDialog();
                 string title = "Database connection failed";
                 NotificationToast.SimpleNotification(title);
@@ -115,9 +119,9 @@ namespace ShopInterfaceBeta
         }
         private void NavigationTouched(object sender, TappedRoutedEventArgs e)
         {
-            NavigationViewItem ItemSelected = NavigationBar.SelectedItem as NavigationViewItem;
-            if (ItemSelected != null)
+            if (NavigationBar.SelectedItem is NavigationViewItem ItemSelected && ItemSelected.Tag.ToString() != tag)
             {
+                tag = ItemSelected.Tag.ToString();
                 Header.Text = ItemSelected.Tag.ToString();
                 SuU.IsSelected = false;
                 SuO.IsSelected = false;
@@ -153,15 +157,11 @@ namespace ShopInterfaceBeta
                         ContentFrame.Navigate(typeof(SuppliersUpdate));
                         SuU.IsSelected = true;
                         break;
-
-
                 }
-                NavigationBar.SelectedItem = null;
             }
         }
         private void NavigationBar_Loaded(object sender, RoutedEventArgs e)
         {
-            NavigationBar.IsPaneOpen = false;
             CheckConnection();
         }
     }

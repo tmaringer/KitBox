@@ -4,15 +4,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ShopInterfaceBeta"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource SystemControlAcrylicElementBrush}">
-    <NavigationView x:Name="NavigationBar" Loaded="NavigationBar_Loaded" PaneTitle="Kitbox" Tapped="NavigationTouched" PaneDisplayMode="LeftCompact" IsSettingsVisible="False" IsBackEnabled="False">
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
+                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".8"/>
+        <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
+                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".8"/>
+        <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
+                  BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".8"/>
+    </Page.Resources>
+    <NavigationView x:Name="NavigationBar" OpenPaneLength="240" Loaded="NavigationBar_Loaded" PaneDisplayMode="Left" IsPaneToggleButtonVisible="True" IsBackButtonVisible="Collapsed" Tapped="NavigationTouched" IsSettingsVisible="False" IsBackEnabled="False">
+        <NavigationView.PaneHeader >
+            <Image Height="70" HorizontalAlignment="Left" Margin="0,-19" Source="Assets/Square44x44Logo.scale-400.png"/>
+        </NavigationView.PaneHeader>
+        <NavigationView.PaneCustomContent>
+            <controls:DropShadowPanel ShadowOpacity="0"/>
+        </NavigationView.PaneCustomContent>
         <NavigationView.Header>
             <TextBlock x:Name="Header" Margin="0,0,0,0" Text="Welcome Page" Style="{StaticResource HeaderTextBlockStyle}"></TextBlock>
         </NavigationView.Header>
         <NavigationView.MenuItems>
-            <NavigationViewItemHeader Content="Customers Management"/>
+            <NavigationViewItemHeader x:Name="H1" Content="Customers Management"/>
             <NavigationViewItem x:Name="OrV" x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph=""/>
@@ -20,7 +33,7 @@
             </NavigationViewItem>
             <NavigationViewItem x:Name="OrM" x:Uid="AppsNavItem" Icon="Shop" Content="Orders management" Tag="Orders management"/>
             <NavigationViewItemSeparator/>
-            <NavigationViewItemHeader Content="Shop Management"/>
+            <NavigationViewItemHeader x:Name="H2" Content="Shop Management"/>
             <NavigationViewItem x:Name="DaM" x:Uid="AppsNavItem" Icon="AllApps" Content="Database management" Tag="Database management" />
             <NavigationViewItem x:Name="StM" Content="Stock management" Tag="Stock management">
                 <NavigationViewItem.Icon>
@@ -28,7 +41,7 @@
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
             <NavigationViewItemSeparator/>
-            <NavigationViewItemHeader Content="Suppliers Management"/>
+            <NavigationViewItemHeader x:Name="H3" Content="Suppliers Management"/>
             <NavigationViewItem x:Name="SuO" x:Uid="AppsNavItem" Content="Suppliers orders" Tag="Suppliers orders">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
@@ -41,10 +54,11 @@
             </NavigationViewItem>
         </NavigationView.MenuItems>
         <NavigationView.PaneFooter>
-            <StackPanel ToolTipService.ToolTip="Database Status">
-                <FontIcon Width="auto" HorizontalAlignment="Left" Margin="11,0,0,-18" x:Name="IconConnectivity" Grid.ColumnSpan="1" FontFamily="Segoe MDL2 Assets" Glyph="&#xE701;"/>
-                <TextBlock x:Name="ConText" Margin="48,0,0,10"/>
-            </StackPanel>
+            <NavigationViewItem x:Name="ConText">
+                <NavigationViewItem.Icon>
+                    <FontIcon x:Name="IconConnectivity" FontFamily="Segoe MDL2 Assets" Glyph="&#xE701;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.PaneFooter>
         <Frame x:Name="ContentFrame">
         </Frame>

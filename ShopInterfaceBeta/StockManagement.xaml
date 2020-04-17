@@ -7,8 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:datavis="using:WinRTXamlToolkit.Controls.DataVisualization" xmlns:chartingprimitives="using:WinRTXamlToolkit.Controls.DataVisualization.Charting.Primitives" xmlns:Controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    mc:Ignorable="d"
-    Background="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}">
+    mc:Ignorable="d">
     <Page.Resources>
         <ControlTemplate x:Key="ColumnChartControlTemplate" TargetType="Charting:Chart">
             <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
@@ -49,7 +48,7 @@
         <CommandBar Margin="7,0,7,0" Background="Transparent" DefaultLabelPosition="Right">
             <AppBarButton Icon="Refresh" Click="ButtonUpdate_Click" Label="Update the MinimumStock value"/>
         </CommandBar>
-        <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}"  Margin="7,0,7,0" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
+        <Controls:DataGrid x:Name="DataGrid1" ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True"  Margin="7,0,7,0" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />
                 <Controls:DataGridTextColumn Header="Instock" Binding="{Binding Instock}" />
