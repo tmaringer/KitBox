@@ -1,4 +1,5 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Printing;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -128,6 +130,11 @@ namespace ShopInterfaceBeta
                     Test.IsEnabled = true;
                     Test.Tag = orderId;
                 }
+                else if (status == "completed")
+                {
+                    Print.IsEnabled = true;
+                    Print.Tag = orderId;
+                }
                 else if (status.Length > 11)
                 {
                     if (status.Substring(0, 11) == "uncompleted")
@@ -151,7 +158,7 @@ namespace ShopInterfaceBeta
             }
         }
 
-        private void OnElementClicked(object sender, RoutedEventArgs e)
+        private async void OnElementClicked(object sender, RoutedEventArgs e)
         {
             string action = (sender as AppBarButton).Name.ToString();
             string orderId = (sender as AppBarButton).Tag.ToString();
@@ -168,6 +175,24 @@ namespace ShopInterfaceBeta
                 }
 
                 z = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
+            }
+            else if (action == "Print")
+            {
+                // Create a new PrintHelperOptions instance
+                var defaultPrintHelperOptions = new PrintHelperOptions();
+
+                // Configure options that you want to be displayed on the print dialog
+                defaultPrintHelperOptions.AddDisplayOption(StandardPrintTaskOptions.Orientation);
+                defaultPrintHelperOptions.Orientation = PrintOrientation.Portrait;
+
+                // Create a new PrintHelper instance
+                // "container" is a XAML panel that will be used to host printable control. 
+                // It needs to be in your visual tree but can be hidden with Opacity = 0
+
+                // Add controls that you want to print
+                FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), printData);
+                var printHelper = new PrintHelper(container, defaultPrintHelperOptions);
+                await printHelper.ShowPrintUIAsync("Order");
             }
             else if (action == "Test")
             {

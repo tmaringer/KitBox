@@ -19,54 +19,66 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Margin="7,0,0,0" Width="150" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Cupboards" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Column="0" Grid.Row="0"/>
-        <CommandBar Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Right" Margin="120,0,7,0">
+        <CommandBar x:Name="Com1" Grid.Row="0" Grid.Column="0" Background="Transparent" DefaultLabelPosition="Right" Margin="120,0,7,0">
             <AppBarButton x:Name="Initialise" Label="Select an order" ToolTipService.ToolTip="Select a customer and an order" AllowFocusOnInteraction="True">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <Flyout x:Name="FlyoutInitialise">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,0,0" Text="Select a customer and an order" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox0" SelectionChanged="ComboBox0_SelectionChanged" ItemsSource="{x:Bind customers}" Header="Customer name" Margin="7" HorizontalAlignment="Stretch"/>
-                            <ComboBox x:Name="ComboBox1" ItemsSource="{x:Bind orderIdCustomer}" Header="OrderId" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button1" Content="Select" Click="Button1_Click" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="TextBlock1" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout x:Name="FlyoutInitialise">
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <TextBlock Margin="7,0,0,0" Text="Select a customer and an order" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    <ComboBox x:Name="ComboBox0" SelectionChanged="ComboBox0_SelectionChanged" ItemsSource="{x:Bind customers}" Header="Customer name" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <ComboBox x:Name="ComboBox1" ItemsSource="{x:Bind orderIdCustomer}" Header="OrderId" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button1" Content="Select" Click="Button1_Click" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TextBlock1" Height="1"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
-        <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Collapsed" Margin="57,0,7,0">
-            <AppBarButton IsEnabled="False" AllowFocusOnInteraction="True" ToolTipService.ToolTip="Door management" x:Name="Door">
+        <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="57,0,7,0">
+            <AppBarButton IsEnabled="False" AllowFocusOnInteraction="True" Label="Doors" ToolTipService.ToolTip="Door management" x:Name="Door">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <Flyout x:Name="DoorManagement">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,0,0" Text="Modify the number of door" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboDoor" Header="Colour" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Modify" Click="Button5_Click" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBlock x:Name="TextBlock5" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout x:Name="DoorManagement">
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <TextBlock Margin="7,0,0,0" Text="Modify the number of door" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    <ComboBox x:Name="ComboDoor" Header="Colour" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Modify" Click="Button5_Click" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    <TextBlock x:Name="TextBlock5" Height="1"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
-            <AppBarButton x:Name="Infos" IsEnabled="False">
+            <AppBarButton x:Name="Infos" IsEnabled="False" Label="Infos">
                 <AppBarButton.Icon>
                     <FontIcon Glyph=""/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <Flyout>
-                        <StackPanel>
-                            <Image x:Name="InfosImage" Margin="15" Width="200" Height="200"/>
-                            <TextBlock Margin="7,0,0,0" Style="{StaticResource SubtitleTextBlockStyle}" x:Name="InfosCode"/>
-                            <TextBlock Margin="7,0,0,0" x:Name="InfosRef"/>
-                            <TextBlock Margin="7,0,0,0" x:Name="InfosInfos"/>
-                            <TextBlock Margin="7,0,0,0" x:Name="InfosColour"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout>
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <Image x:Name="InfosImage" Margin="15" Width="200" Height="200"/>
+                                    <TextBlock Margin="7,0,0,0" Style="{StaticResource SubtitleTextBlockStyle}" x:Name="InfosCode"/>
+                                    <TextBlock Margin="7,0,0,0" x:Name="InfosRef"/>
+                                    <TextBlock Margin="7,0,0,0" x:Name="InfosInfos"/>
+                                    <TextBlock Margin="7,0,0,0" x:Name="InfosColour"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>

@@ -17,43 +17,52 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <CommandBar Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="0,0,7,0">
+        <StackPanel x:Name="container" Visibility="Collapsed">
+            <Controls:DataGrid x:Name="printData"/>
+        </StackPanel>
+        <CommandBar Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="170,0,7,0">
             <AppBarButton AllowFocusOnInteraction="True" Label="Choose an order">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <Flyout>
-                        <StackPanel Margin="7">
-                            <TextBlock Margin="7,0,0,0" Text="Show parts of an order" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox1" Header="OrderId" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button2" Content="Show" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button2_Click"/>
-                            <TextBlock x:Name="TextBlock1" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout>
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel Margin="7">
+                                    <TextBlock Margin="7,0,0,0" Text="Show parts of an order" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    <ComboBox x:Name="ComboBox1" Header="OrderId" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button2" Content="Show" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button2_Click"/>
+                                    <TextBlock x:Name="TextBlock1" Height="1"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
         </CommandBar>
         <CommandBar Background="Transparent" DefaultLabelPosition="Right">
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Validate" Label="Validate" Icon="Accept" ToolTipService.ToolTip="Accept" IsEnabled="False" Click="OnElementClicked"/>
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Delete" Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" IsEnabled="False" Click="OnElementClicked"/>
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Test" Label="Test" ToolTipService.ToolTip="Test" IsEnabled="False" Click="OnElementClicked">
+            <AppBarButton x:Name="Validate" Label="Validate" Icon="Accept" ToolTipService.ToolTip="Accept" IsEnabled="False" Click="OnElementClicked"/>
+            <AppBarButton x:Name="Delete" Label="Delete" Icon="Delete" ToolTipService.ToolTip="Delete" IsEnabled="False" Click="OnElementClicked"/>
+            <AppBarButton x:Name="Test" Label="Test" ToolTipService.ToolTip="Test" IsEnabled="False" Click="OnElementClicked">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE9D5;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Partial" Label="Partial Removal" ToolTipService.ToolTip="Partial Removal" IsEnabled="False" Click="OnElementClicked">
+            <AppBarButton x:Name="Partial" Label="Partial Removal" ToolTipService.ToolTip="Partial Removal" IsEnabled="False" Click="OnElementClicked">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xEA86;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Style="{ThemeResource AppBarButtonRevealStyle}" x:Name="Close" Label="Close Order" ToolTipService.ToolTip="Close Order" IsEnabled="False" Click="OnElementClicked">
+            <AppBarButton x:Name="Close" Label="Close Order" ToolTipService.ToolTip="Close Order" IsEnabled="False" Click="OnElementClicked">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="&#xE930;"/>
                 </AppBarButton.Icon>
             </AppBarButton>
+            <AppBarButton x:Name="Print" Label="Print an order" Icon="Print" ToolTipService.ToolTip="Print Order" IsEnabled="False" Click="OnElementClicked">
+            </AppBarButton>
         </CommandBar>
-        <AutoSuggestBox x:Name="AutoSuggestBox1" Grid.Column="2" Width="250" QueryIcon="Find" PlaceholderText="CustomerName" Margin="7,4,4,4" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+        <AutoSuggestBox x:Name="AutoSuggestBox1" Grid.Column="2" Width="150" QueryIcon="Find" PlaceholderText="CustomerName" Margin="7,4,4,4" HorizontalAlignment="Left" QuerySubmitted="AutoSuggestBox_QuerySubmitted" TextChanged="AutoSuggestBox_TextChanged" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
         <Controls:DataGrid x:Name="DataGrid1" Margin="7,0,0,7" MinColumnWidth="150" ColumnWidth="*" Grid.Column="0" Grid.Row="1" DoubleTapped="DataGrid1_DoubleTapped" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" IsReadOnly="True">
             <Controls:DataGrid.Columns>
                 <Controls:DataGridTextColumn Header="OrderId" Binding="{Binding OrderId}" />

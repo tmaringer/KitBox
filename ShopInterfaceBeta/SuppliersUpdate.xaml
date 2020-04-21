@@ -25,13 +25,17 @@
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                 </AppBarButton.Icon>
                 <AppBarButton.Flyout>
-                    <Flyout x:Name="FlyoutCreate">
-                        <StackPanel>
-                            <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Select a supplierId"/>
-                            <ComboBox x:Name="ComboBox1" Header="SupplierId" HorizontalAlignment="Stretch" />
-                            <Button Click="Button1_Click"  Content="Select" Margin="0,7,0,0"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout x:Name="FlyoutCreate">
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Background="{StaticResource SystemControlAcrylicElementBrush}" Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Select a supplierId"/>
+                                    <ComboBox x:Name="ComboBox1" Header="SupplierId" HorizontalAlignment="Stretch" />
+                                    <Button Click="Button1_Click"  Content="Select" Margin="0,7,0,0"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton x:Name="Add" Icon="Add" Label="Add" IsEnabled="False" ToolTipService.ToolTip="Add" AllowFocusOnInteraction="True" Click="Add_Click_1"/>

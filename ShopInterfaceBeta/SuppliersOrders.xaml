@@ -55,14 +55,18 @@
         <CommandBar Margin="170,0,7,0" Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" VerticalAlignment="Stretch">
             <AppBarButton ToolTipService.ToolTip="Show a supplier order" Label="Show a supplier order" AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
-                    <Flyout x:Name="ShowFlyout">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,7,0" Text="Select SupplierId" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox3" Header="SupplierId" Margin="7" HorizontalAlignment="Stretch"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Select" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button3_Click"/>
-                            <TextBlock x:Name="TextBlock3" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout x:Name="ShowFlyout">
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <TextBlock Margin="7,0,7,0" Text="Select SupplierId" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    <ComboBox x:Name="ComboBox3" Header="SupplierId" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button3" Content="Select" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button3_Click"/>
+                                    <TextBlock x:Name="TextBlock3" Height="1"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
                 <AppBarButton.Icon>
                     <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
@@ -70,15 +74,19 @@
             </AppBarButton>
             <AppBarButton ToolTipService.ToolTip="Add parts" Label="Add parts" Icon="Add" x:Name="Add" AllowFocusOnInteraction="True">
                 <AppBarButton.Flyout>
-                    <Flyout x:Name="AddFlyout">
-                        <StackPanel>
-                            <TextBlock Margin="7,0,0,0" Text="Add parts to supplier" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                            <ComboBox x:Name="ComboBox4" Header="Code" Margin="7" HorizontalAlignment="Stretch"/>
-                            <TextBox x:Name="TexBox4" Header="Quantity" Margin="7"/>
-                            <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button5_Click"/>
-                            <TextBlock x:Name="TextBlock4" Height="1"/>
-                        </StackPanel>
-                    </Flyout>
+                    <CommandBarFlyout x:Name="AddFlyout">
+                        <CommandBarFlyout.SecondaryCommands>
+                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
+                                <StackPanel>
+                                    <TextBlock Margin="7,0,0,0" Text="Add parts to supplier" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                                    <ComboBox x:Name="ComboBox4" Header="Code" Margin="7" HorizontalAlignment="Stretch"/>
+                                    <TextBox x:Name="TexBox4" Header="Quantity" Margin="7"/>
+                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Add" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center" Click="Button5_Click"/>
+                                    <TextBlock x:Name="TextBlock4" Height="1"/>
+                                </StackPanel>
+                            </AppBarElementContainer>
+                        </CommandBarFlyout.SecondaryCommands>
+                    </CommandBarFlyout>
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton ToolTipService.ToolTip="Order now" Label="Order now" Icon="Send" IsEnabled="False" x:Name="Order" Click="Order_Click"/>

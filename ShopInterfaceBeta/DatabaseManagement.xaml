@@ -22,7 +22,7 @@
             <AppBarButton x:Name="Sort" Icon="List" Label="Sort" Click="Button_Click" ToolTipService.ToolTip="Sort"/>
             <AppBarButton Icon="Refresh" Label="Default view" Click="AppBarButton_Click_2" ToolTipService.ToolTip="Default view"/>
         </CommandBar>
-        <controls:DataGrid ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" Margin="7,0,0,0" LoadingRowGroup="DataGridView1_LoadingRowGroup" RowBackground="{ThemeResource SystemControlChromeMediumAcrylicWindowMediumBrush}" RowDetailsVisibilityMode="VisibleWhenSelected"  x:Name="DataGridView1" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" DoubleTapped="DataGridView1_DoubleTapped">
+        <controls:DataGrid ColumnWidth="*" MinColumnWidth="150" IsReadOnly="True" BeginningEdit="dg_Editing" CellEditEnding="dg_CellEditEnding" Margin="7,0,0,0" LoadingRowGroup="DataGridView1_LoadingRowGroup" RowDetailsVisibilityMode="VisibleWhenSelected"  x:Name="DataGridView1" Grid.Column="0" Grid.Row="1" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" DoubleTapped="DataGridView1_DoubleTapped">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Ref" Binding="{Binding Ref}" />
                 <controls:DataGridTextColumn Header="Code" Binding="{Binding Code}" />
