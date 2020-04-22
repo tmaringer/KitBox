@@ -17,9 +17,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="container" Visibility="Collapsed">
-            <Controls:DataGrid x:Name="printData"/>
-        </StackPanel>
+        <Canvas x:Name="container" Opacity="0">
+        </Canvas>
+        <Rectangle x:Name="RectangleToPrint" Width="500" Height="500" Fill="AliceBlue"/>
         <CommandBar Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="170,0,7,0">
             <AppBarButton AllowFocusOnInteraction="True" Label="Choose an order">
                 <AppBarButton.Icon>

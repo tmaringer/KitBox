@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using Microsoft.Toolkit.Uwp.UI.Controls;
+using Renci.SshNet;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,9 +8,12 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Printing;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -17,6 +21,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Printing;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,6 +33,9 @@ namespace ShopInterfaceBeta
     public sealed partial class OrdersManagement : Page
     {
         List<string> _listSuggestion = null;
+        private PrintManager printMan;
+        private PrintDocument printDoc;
+        private IPrintDocumentSource printDocSource;
         public OrdersManagement()
         {
             this.InitializeComponent();
@@ -178,21 +186,47 @@ namespace ShopInterfaceBeta
             }
             else if (action == "Print")
             {
-                // Create a new PrintHelperOptions instance
-                var defaultPrintHelperOptions = new PrintHelperOptions();
+                FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), DataGrid2);
+                // Register for PrintTaskRequested event
+                printMan = PrintManager.GetForCurrentView();
+                printMan.PrintTaskRequested += PrintTaskRequested;
 
-                // Configure options that you want to be displayed on the print dialog
-                defaultPrintHelperOptions.AddDisplayOption(StandardPrintTaskOptions.Orientation);
-                defaultPrintHelperOptions.Orientation = PrintOrientation.Portrait;
-
-                // Create a new PrintHelper instance
-                // "container" is a XAML panel that will be used to host printable control. 
-                // It needs to be in your visual tree but can be hidden with Opacity = 0
-
-                // Add controls that you want to print
-                FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), printData);
-                var printHelper = new PrintHelper(container, defaultPrintHelperOptions);
-                await printHelper.ShowPrintUIAsync("Order");
+                // Build a PrintDocument and register for callbacks
+                printDoc = new PrintDocument();
+                printDocSource = printDoc.DocumentSource;
+                printDoc.Paginate += Paginate;
+                printDoc.GetPreviewPage += GetPreviewPage;
+                printDoc.AddPages += AddPages;
+                if (PrintManager.IsSupported())
+                {
+                    try
+                    {
+                        // Show print UI
+                        await PrintManager.ShowPrintUIAsync();
+                    }
+                    catch
+                    {
+                        // Printing cannot proceed at this time
+                        ContentDialog noPrintingDialog = new ContentDialog()
+                        {
+                            Title = "Printing error",
+                            Content = "\nSorry, printing can' t proceed at this time.",
+                            PrimaryButtonText = "OK"
+                        };
+                        await noPrintingDialog.ShowAsync();
+                    }
+                }
+                else
+                {
+                    // Printing is not supported on this device
+                    ContentDialog noPrintingDialog = new ContentDialog()
+                    {
+                        Title = "Printing not supported",
+                        Content = "\nSorry, printing is not supported on this device.",
+                        PrimaryButtonText = "OK"
+                    };
+                    await noPrintingDialog.ShowAsync();
+                }
             }
             else if (action == "Test")
             {
@@ -321,7 +355,6 @@ namespace ShopInterfaceBeta
             {
                 z = DbUtils.DeleteRow("orders", "OrderId = \"" + orderId + "\"");
             }
-            
             FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), DataGrid2);
             FillDataGrid1(SetColumnsOrder(DbUtils.RefreshDb("orders natural join customers")), DataGrid1);
             Validate.IsEnabled = false;
@@ -363,8 +396,7 @@ namespace ShopInterfaceBeta
                 dataTable.Columns.Remove("CustomerPhone");
                 dataTable.Columns.Remove("CustomerId");
                 dataTable.Columns.Remove("Status");
-                FillDataGrid2(dataTable, DataGrid2);
-                
+                FillDataGrid2(dataTable, DataGrid2);          
             }
         }
 
@@ -391,6 +423,56 @@ namespace ShopInterfaceBeta
             public string Quantity { get; set; }
             public string Disponibility { get; set; }
 
+        }
+
+        private void PrintTaskRequested(PrintManager sender, PrintTaskRequestedEventArgs args)
+        {
+            // Create the PrintTask.
+            // Defines the title and delegate for PrintTaskSourceRequested
+            var printTask = args.Request.CreatePrintTask("Print", PrintTaskSourceRequrested);
+
+            // Handle PrintTask.Completed to catch failed print jobs
+            printTask.Completed += PrintTaskCompleted;
+        }
+
+        private void PrintTaskSourceRequrested(PrintTaskSourceRequestedArgs args)
+        {
+            // Set the document source.
+            args.SetSource(printDocSource);
+        }
+        private void Paginate(object sender, PaginateEventArgs e)
+        {
+            // As I only want to print one Rectangle, so I set the count to 1
+            printDoc.SetPreviewPageCount(1, PreviewPageCountType.Final);
+        }
+        private void GetPreviewPage(object sender, GetPreviewPageEventArgs e)
+        {
+            // Provide a UIElement as the print preview.
+            printDoc.SetPreviewPage(e.PageNumber, DataGrid2);
+        }
+        private void AddPages(object sender, AddPagesEventArgs e)
+        {
+            printDoc.AddPage(DataGrid2);
+
+            // Indicate that all of the print pages have been provided
+            printDoc.AddPagesComplete();
+        }
+        private async void PrintTaskCompleted(PrintTask sender, PrintTaskCompletedEventArgs args)
+        {
+            // Notify the user when the print operation fails.
+            if (args.Completion == PrintTaskCompletion.Failed)
+            {
+                await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    ContentDialog noPrintingDialog = new ContentDialog()
+                    {
+                        Title = "Printing error",
+                        Content = "\nSorry, failed to print.",
+                        PrimaryButtonText = "OK"
+                    };
+                    await noPrintingDialog.ShowAsync();
+                });
+            }
         }
     }
 }
