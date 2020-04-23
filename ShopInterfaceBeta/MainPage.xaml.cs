@@ -163,19 +163,22 @@ namespace ShopInterfaceBeta
         private void NavigationBar_Loaded(object sender, RoutedEventArgs e)
         {
             CheckConnection();
-            NavigationBar.IsPaneOpen = false;
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if ((sender as MainPage).ActualWidth < 900)
             {
+                Marg.Width = new GridLength(40);
+                logo.Visibility = Visibility.Collapsed;
                 NavigationBar.IsPaneOpen = false;
-                NavigationBar.IsPaneToggleButtonVisible = false;
             }
             else
             {
-                NavigationBar.IsPaneToggleButtonVisible = true;
+                Marg.Width = new GridLength(230);
+                logo.Visibility = Visibility.Visible;
+                NavigationBar.IsPaneOpen = true;
+
             }
         }
     }

@@ -140,6 +140,7 @@
     <Compile Include="OrderVisualisation.xaml.cs">
       <DependentUpon>OrderVisualisation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sandbox.cs" />
     <Compile Include="StockManagement.xaml.cs">
