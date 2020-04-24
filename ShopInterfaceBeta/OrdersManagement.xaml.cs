@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -190,16 +191,16 @@ namespace ShopInterfaceBeta
             {
                 PrintService.PrintingContainer = PrintingContainer;
                 var service = new PrintService();
-
+                
+                DateTime now = DateTime.Now;
                 // Define Header, Footer, and Page Numbering.
-                service.Header = new TextBlock() { Text = "Header", Margin = new Thickness(0, 0, 0, 20) };
-                service.Footer = new TextBlock() { Text = "Footer", Margin = new Thickness(0, 20, 0, 0) };
-                service.PageNumbering = PageNumbering.TopRight;
+                string MegaHeader = now.ToString("yyyy-MM-dd") + "\n\n" + "Name: " + DbUtils.RefList("CustomerName", "orders natural join customers where OrderId = \"" + orderId + "\"")[0] + "\n" + "Order n°" + orderId;
+                service.Header = new TextBlock() { Text = MegaHeader, Margin = new Thickness(0, 0, 0, 20) };
+                service.Footer = new TextBlock() { Text = "Prom. de l'Alma 50, 1200 Woluwe-Saint-Lambert", Margin = new Thickness(0, 20, 0, 0) };
+                service.PageNumbering = PageNumbering.BottomRight;
                 DataGrid dataGrid = new DataGrid();
                 FillDataGrid2(DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\""), dataGrid);
                 dataGrid.AutoGenerateColumns = true;
-                dataGrid.Columns.RemoveAt(0);
-                dataGrid.Columns.RemoveAt(3);
                 dataGrid.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
                 dataGrid.Margin = new Thickness(30, 0, 30, 0);
                 dataGrid.BorderThickness = new Thickness(1);

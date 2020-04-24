@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -50,7 +51,14 @@ namespace ShopInterface
         {
             Grid.SetRow(content, 1);
             _printArea.Children.Add(content);
-
+            //Add the Logo image
+            Image Logo = new Image() { Source = new BitmapImage(new Uri("ms-appx:///Assets/Square44x44Logo.scale-400.png")) };
+            Logo.Width = 100;
+            Logo.Height = 100;
+            Logo.Margin = new Thickness(0, -50, 0, 0);
+            Logo.HorizontalAlignment = HorizontalAlignment.Right;
+            _printArea.Children.Add(Logo);
+            Grid.SetRow(Logo, 0);
             if (PageNumbering != PageNumbering.None)
             {
                 _pageNumber += 1;
@@ -96,6 +104,8 @@ namespace ShopInterface
                     case PageNumbering.BottomRight:
                         Grid.SetRow(pageNumberText, 2);
                         pageNumberText.Margin = new Thickness(0, 20, 0, 0);
+                        pageNumberText.HorizontalAlignment = HorizontalAlignment.Stretch;
+                        pageNumberText.HorizontalTextAlignment = TextAlignment.Right;
                         _printArea.Children.Add(pageNumberText);
                         break;
                     default:
@@ -110,8 +120,8 @@ namespace ShopInterface
             {
                 if (value != null)
                 {
-                    var header = value;
-                    Grid.SetRow(header, 0);
+                    _printArea.Children.Add(value);
+                    Grid.SetRow(value, 0);
                 }
             }
         }
@@ -122,8 +132,8 @@ namespace ShopInterface
             {
                 if (value != null)
                 {
-                    var footer = value;
-                    Grid.SetRow(footer, 2);
+                    _printArea.Children.Add(value);
+                    Grid.SetRow(value, 2);
                 }
             }
         }
