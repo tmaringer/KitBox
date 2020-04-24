@@ -140,6 +140,10 @@
     <Compile Include="OrderVisualisation.xaml.cs">
       <DependentUpon>OrderVisualisation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PageNumbering.cs" />
+    <Compile Include="PrintPage.xaml.cs">
+      <DependentUpon>PrintPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrintService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sandbox.cs" />
@@ -244,6 +248,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OrderVisualisation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

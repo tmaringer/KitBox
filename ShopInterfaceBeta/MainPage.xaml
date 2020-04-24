@@ -9,11 +9,14 @@
     mc:Ignorable="d">
     <Page.Resources>
         <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
-                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".5"/>
-        <AcrylicBrush x:Key="NavigationViewTopPaneBackground"
-                  BackgroundSource="Backdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".5"/>
+                  BackgroundSource="Backdrop" FallbackColor="{ThemeResource SystemListAccentHighColor}" TintColor="{StaticResource SystemAccentColor}" TintOpacity=".8"/>
         <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
-                  BackgroundSource="HostBackdrop" TintColor="{ThemeResource SystemChromeMediumColor}" TintOpacity=".5"/>
+                  BackgroundSource="HostBackdrop" FallbackColor="{ThemeResource SystemListAccentHighColor}" TintColor="{StaticResource SystemAccentColor}" TintOpacity=".8"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -31,38 +34,37 @@
     AlwaysShowHeader="True"
     PaneDisplayMode="Left" 
     SelectionFollowsFocus="Disabled"
+    Foreground="White"
     IsTabStop="False">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader Margin="0,40,0,0" x:Name="H1" Content="Customers Management"/>
-                <NavigationViewItem x:Name="OrV" x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
+                <NavigationViewItem Foreground="White" x:Name="OrV" x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph=""/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Name="OrM" x:Uid="AppsNavItem" Icon="Shop" Content="Orders management" Tag="Orders management"/>
-                <NavigationViewItemSeparator/>
+                <NavigationViewItem Foreground="White" x:Name="OrM" x:Uid="AppsNavItem" Icon="Shop" Content="Orders management" Tag="Orders management"/>
                 <NavigationViewItemHeader x:Name="H2" Content="Shop Management"/>
-                <NavigationViewItem x:Name="DaM" x:Uid="AppsNavItem" Icon="AllApps" Content="Database management" Tag="Database management" />
-                <NavigationViewItem x:Name="StM" Content="Stock management" Tag="Stock management">
+                <NavigationViewItem Foreground="White" x:Name="DaM" x:Uid="AppsNavItem" Icon="AllApps" Content="Database management" Tag="Database management" />
+                <NavigationViewItem Foreground="White" x:Name="StM" Content="Stock management" Tag="Stock management">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE9D2;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader x:Name="H3" Content="Suppliers Management"/>
-                <NavigationViewItem x:Name="SuO" x:Uid="AppsNavItem" Content="Suppliers orders" Tag="Suppliers orders">
+                <NavigationViewItem Foreground="White" x:Name="SuO" x:Uid="AppsNavItem" Content="Suppliers orders" Tag="Suppliers orders">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Name="SuU" x:Uid="AppsNavItem" Content="Suppliers update" Tag="Suppliers update">
+                <NavigationViewItem Foreground="White" x:Name="SuU" x:Uid="AppsNavItem" Content="Suppliers update" Tag="Suppliers update">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph=""/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
             <NavigationView.PaneFooter>
-                <NavigationViewItem x:Name="ConText">
+                <NavigationViewItem x:Name="ConText" Foreground="White">
                     <NavigationViewItem.Icon>
                         <FontIcon x:Name="IconConnectivity" FontFamily="Segoe MDL2 Assets" Glyph="&#xE701;"/>
                     </NavigationViewItem.Icon>
