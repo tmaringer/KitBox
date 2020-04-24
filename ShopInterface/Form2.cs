@@ -23,6 +23,15 @@ namespace ShopInterface
         private readonly List<string> _elements = new List<string>();
         private readonly List<string> _types = new List<string>();
         private int _x = 1;
+        private StringFormat strFormat;
+        private List<int> arrColumnLefts;
+        private List<int> arrColumnWidths;
+        private int iCellHeight;
+        private int iCount;
+        private bool bFirstPage;
+        private bool bNewPage;
+        private int iTotalWidth;
+        private int iHeaderHeight;
 
         public Form2(string user)
         {
@@ -160,7 +169,7 @@ namespace ShopInterface
         {
             string columns = DbUtils.ConvertStringNoQuotes(_columns);
             string elements = DbUtils.ConvertStringQuotes(_elements);
-            DbUtils.InsertDb("kitbox", columns, elements);
+            string i = DbUtils.InsertDb("kitbox", columns, elements);
             dataGridView1.DataSource = DbUtils.RefreshDb("kitbox");
         }
 
@@ -1312,6 +1321,26 @@ namespace ShopInterface
 
                     label25.Text = DbUtils.UpdateDb("orders", "Status", "OrderId = \"" + orderId + "\"", "validate");
                 }
+                else if (action == "print")
+                {
+                    dataGridView3.DataSource = DbUtils.RefreshDb("listsitems where OrderId = \"" + orderId + "\"");
+                    foreach (DataGridViewColumn col in dataGridView3.Columns)
+                    {
+                        col.Visible = true;
+                    }
+
+                    Colours(dataGridView3, "Disponibility");
+                    //Open the print dialog
+                    PrintDialog printDialog = new PrintDialog();
+                    printDialog.Document = printDocument1;
+                    printDialog.UseEXDialog = true;
+                    //Get the document
+                    if (DialogResult.OK == printDialog.ShowDialog())
+                    {
+                        printDocument1.DocumentName = "Test Page Print";
+                        printDocument1.Print();
+                    }
+                }
                 else if (action == "test availability")
                 {
                     int isalltrue = 0;
@@ -1561,6 +1590,10 @@ namespace ShopInterface
                     comboBox7.Items.Add("validate");
                     comboBox7.Items.Add("delete this order");
                 }
+                else if (status == "completed")
+                {
+                    comboBox7.Items.Add("print");
+                }
                 else if (status == "validate")
                 {
                     comboBox7.Items.Add("test availability");
@@ -1746,6 +1779,166 @@ namespace ShopInterface
                 {
                     AddToPendingSuppliers(row.Cells["Code"].Value.ToString(), "1000");
                 }
+            }
+        }
+        private void printDocument1_BeginPrint(object sender,
+    System.Drawing.Printing.PrintEventArgs e)
+        {
+            try
+            {
+                strFormat = new StringFormat();
+                strFormat.Alignment = StringAlignment.Near;
+                strFormat.LineAlignment = StringAlignment.Center;
+                strFormat.Trimming = StringTrimming.EllipsisCharacter;
+                arrColumnLefts = new List<int>();
+                arrColumnLefts.Clear();
+                arrColumnWidths = new List<int>();
+                arrColumnWidths.Clear();
+                iCellHeight = 0;
+                iCount = 0;
+                bFirstPage = true;
+                bNewPage = true;
+
+                // Calculating Total Widths
+                iTotalWidth = 0;
+                foreach (DataGridViewColumn dgvGridCol in dataGridView3.Columns)
+                {
+                    iTotalWidth += dgvGridCol.Width;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void printDocument1_PrintPage(object sender,
+    System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            try
+            {
+                //Set the left margin
+                int iLeftMargin = e.MarginBounds.Left;
+                //Set the top margin
+                int iTopMargin = e.MarginBounds.Top;
+                //Whether more pages have to print or not
+                bool bMorePagesToPrint = false;
+                int iTmpWidth = 0;
+
+                //For the first page to print set the cell width and header height
+                if (bFirstPage)
+                {
+                    foreach (DataGridViewColumn GridCol in dataGridView3.Columns)
+                    {
+                        iTmpWidth = (int)(Math.Floor((double)((double)GridCol.Width /
+                            (double)iTotalWidth * (double)iTotalWidth *
+                            ((double)e.MarginBounds.Width / (double)iTotalWidth))));
+
+                        iHeaderHeight = (int)(e.Graphics.MeasureString(GridCol.HeaderText,
+                            GridCol.InheritedStyle.Font, iTmpWidth).Height) + 11;
+
+                        // Save width and height of headers
+                        arrColumnLefts.Add(iLeftMargin);
+                        arrColumnWidths.Add(iTmpWidth);
+                        iLeftMargin += iTmpWidth;
+                    }
+                }
+                int iRow = 0;
+                //Loop till all the grid rows not get printed
+                while (iRow <= dataGridView3.Rows.Count - 1)
+                {
+                    DataGridViewRow GridRow = dataGridView3.Rows[iRow];
+                    //Set the cell height
+                    iCellHeight = GridRow.Height + 5;
+                    int iCount = 0;
+                    //Check whether the current page settings allows more rows to print
+                    if (iTopMargin + iCellHeight >= e.MarginBounds.Height + e.MarginBounds.Top)
+                    {
+                        bNewPage = true;
+                        bFirstPage = false;
+                        bMorePagesToPrint = true;
+                        break;
+                    }
+                    else
+                    {
+                        if (bNewPage)
+                        {
+                            //Draw Header
+                            string orderId = GridRow.Cells["OrderId"].Value.ToString();
+                            e.Graphics.DrawString("Kitbox \nCustomer: " + DbUtils.RefList("CustomerName", "orders natural join customers where OrderId =\"" + orderId + "\"")[0],
+                                new Font(dataGridView3.Font, FontStyle.Bold),
+                                Brushes.Black, e.MarginBounds.Left,
+                                e.MarginBounds.Top - e.Graphics.MeasureString("Kitbox \nCustomer: " + DbUtils.RefList("CustomerName", "orders natural join customers where OrderId =\"" + orderId + "\"")[0],
+                                new Font(dataGridView3.Font, FontStyle.Bold),
+                                e.MarginBounds.Width).Height - 13);
+                            DateTime now = DateTime.Now;
+                            string strDate = now.ToString("dddd, yyyy MMMM dd", CultureInfo.CreateSpecificCulture("en-US"));
+                            //Draw Date
+                            e.Graphics.DrawString(strDate,
+                                new Font(dataGridView3.Font, FontStyle.Bold), Brushes.Black,
+                                e.MarginBounds.Left +
+                                (e.MarginBounds.Width - e.Graphics.MeasureString(strDate,
+                                new Font(dataGridView3.Font, FontStyle.Bold),
+                                e.MarginBounds.Width).Width),
+                                e.MarginBounds.Top - e.Graphics.MeasureString("Kitbox \nCustomer: " + DbUtils.RefList("CustomerName", "orders natural join customers where OrderId =\"" + orderId + "\"")[0],
+                                new Font(new Font(dataGridView3.Font, FontStyle.Bold),
+                                FontStyle.Bold), e.MarginBounds.Width).Height - 13);
+
+                            //Draw Columns                 
+                            iTopMargin = e.MarginBounds.Top;
+                            foreach (DataGridViewColumn GridCol in dataGridView3.Columns)
+                            {
+                                e.Graphics.FillRectangle(new SolidBrush(Color.LightGray),
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawRectangle(Pens.Black,
+                                    new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight));
+
+                                e.Graphics.DrawString(GridCol.HeaderText,
+                                    GridCol.InheritedStyle.Font,
+                                    new SolidBrush(GridCol.InheritedStyle.ForeColor),
+                                    new RectangleF((int)arrColumnLefts[iCount], iTopMargin,
+                                    (int)arrColumnWidths[iCount], iHeaderHeight), strFormat);
+                                iCount++;
+                            }
+                            bNewPage = false;
+                            iTopMargin += iHeaderHeight;
+                        }
+                        iCount = 0;
+                        //Draw Columns Contents                
+                        foreach (DataGridViewCell Cel in GridRow.Cells)
+                        {
+                            if (Cel.Value != null)
+                            {
+                                e.Graphics.DrawString(Cel.Value.ToString(),
+                                    Cel.InheritedStyle.Font,
+                                    new SolidBrush(Cel.InheritedStyle.ForeColor),
+                                    new RectangleF((int)arrColumnLefts[iCount],
+                                    (float)iTopMargin,
+                                    (int)arrColumnWidths[iCount], (float)iCellHeight),
+                                    strFormat);
+                            }
+                            //Drawing Cells Borders 
+                            e.Graphics.DrawRectangle(Pens.Black,
+                                new Rectangle((int)arrColumnLefts[iCount], iTopMargin,
+                                (int)arrColumnWidths[iCount], iCellHeight));
+                            iCount++;
+                        }
+                    }
+                    iRow++;
+                    iTopMargin += iCellHeight;
+                }
+                //If more lines exist, print another page.
+                if (bMorePagesToPrint)
+                    e.HasMorePages = true;
+                else
+                    e.HasMorePages = false;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
             }
         }
     }

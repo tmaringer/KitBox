@@ -18,6 +18,8 @@ using Windows.ApplicationModel.Core;
 using ShopInterface;
 using Windows.UI.ViewManagement;
 using Windows.Foundation;
+using System.Threading.Tasks;
+using System.Linq;
 
 // Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -46,7 +48,7 @@ namespace ShopInterfaceBeta
             };
 
             await noConnectionDialog.ShowAsync();
-            CoreApplication.Exit();
+            await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
         }
 
         private static async void LoginDialog()
@@ -71,6 +73,16 @@ namespace ShopInterfaceBeta
                 DefaultButton = ContentDialogButton.Primary
             };
             await CheckAsync(LoginDialog);
+        }
+        private async Task ComposeEmail(string subject, string messageBody)
+        {
+            var emailMessage = new Windows.ApplicationModel.Email.EmailMessage();
+            emailMessage.Body = messageBody;
+            var emailRecipient = new Windows.ApplicationModel.Email.EmailRecipient("17068@ecam.be");
+            emailMessage.To.Add(emailRecipient);
+            emailMessage.Subject = subject;
+
+            await Windows.ApplicationModel.Email.EmailManager.ShowComposeNewEmailAsync(emailMessage);
         }
         public static async System.Threading.Tasks.Task CheckAsync(ContentDialog LoginDialog)
         {

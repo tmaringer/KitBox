@@ -11,7 +11,7 @@ namespace ShopInterfaceBeta
 {
     public static class DbUtils
     {
-        public static string MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6; Allow User Variables=True";
+        public static string MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6; Allow User Variables=True;";
 
         static string ComputeSha256Hash(string rawData)
         {

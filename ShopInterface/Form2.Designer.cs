@@ -42,6 +42,7 @@ namespace ShopInterface
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.button16 = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -232,7 +233,8 @@ namespace ShopInterface
             this.button21 = new System.Windows.Forms.Button();
             this.dataGridView10 = new System.Windows.Forms.DataGridView();
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
-            this.button13 = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -295,6 +297,18 @@ namespace ShopInterface
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Stock management";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // button13
+            // 
+            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Location = new System.Drawing.Point(702, 543);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(99, 24);
+            this.button13.TabIndex = 17;
+            this.button13.Text = "Redo the stock";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // progressBar2
             // 
@@ -2468,17 +2482,14 @@ namespace ShopInterface
             this.dataGridView9.Size = new System.Drawing.Size(522, 267);
             this.dataGridView9.TabIndex = 12;
             // 
-            // button13
+            // printDialog1
             // 
-            this.button13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button13.Location = new System.Drawing.Point(702, 543);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(99, 24);
-            this.button13.TabIndex = 17;
-            this.button13.Text = "Redo the stock";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
             // Form2
             // 
@@ -2757,5 +2768,7 @@ namespace ShopInterface
         private System.Windows.Forms.Label label70;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
