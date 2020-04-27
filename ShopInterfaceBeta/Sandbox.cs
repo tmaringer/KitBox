@@ -555,6 +555,7 @@ namespace ShopInterfaceBeta
                 index += 1;
             }
             return elements;
+            //Thibaut dans la sauce 
         }
     }
 }
