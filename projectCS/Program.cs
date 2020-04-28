@@ -1,4 +1,9 @@
-﻿using System;
+﻿using projectCS.Tools_class;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace projectCS
 {
@@ -6,15 +11,12 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            CrossBar c = new CrossBar();
-            Console.WriteLine(c.color);
-
+            Console.WriteLine("pppppppp");
             Console.WriteLine("\n");
             /*
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             */
-        }
-        
+        }        
     }
 }

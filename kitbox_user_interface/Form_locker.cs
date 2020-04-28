@@ -89,7 +89,7 @@ namespace kitbox_user_interface_V1
 
             int currentLocker = Int32.Parse(textBox12.Text);
 
-            //------------------------------------------------------------------------------
+
             //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
             //ErrorWindow test = new ErrorWindow(width.ToString()+" "+depth.ToString());
             //ErrorWindow test2 = new ErrorWindow(a.ToString());
@@ -111,12 +111,7 @@ namespace kitbox_user_interface_V1
             // check that the object fields are filled
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
-                Cleat cleat1 = new Cleat();
-                Door door1 = new Door();
-                Panels panels1 = new Panels();
-                CrossBar crossBar1 = new CrossBar();
-
-
+                
                 string doorsColor = comboBox1.SelectedItem.ToString();
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());

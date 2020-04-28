@@ -73,9 +73,9 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(21, 0, 0), false, 0, ComponentColor.white);
-            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new ComponentSize(11, 0, 0), false, 0, ComponentColor.white);
-            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new ComponentSize(8, 0, 0), false, 0, ComponentColor.white);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(21, 0, 0), false, 0);
+            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new ComponentSize(11, 0, 0), false, 0);
+            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new ComponentSize(8, 0, 0), false, 0);
 
             pannel1 = new Panels();
             pannel2 = new Panels();
@@ -88,7 +88,7 @@ namespace UnitTest
             cleat2 = new Cleat();
             cleat3 = new Cleat();
             cleat4 = new Cleat();
-            cleatWithPara1 = new Cleat(10, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0, ComponentColor.white);
+            cleatWithPara1 = new Cleat(10, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0);
 
             catalogueComponentsListFull = new List<CatalogueComponents>(){ crossBar1, crossBar2, crossBar3, crossBar4, crossBar5, crossBar6 ,crossBar7, crossBar8,
                                                                             cleat1, cleat2, cleat3, cleat4,

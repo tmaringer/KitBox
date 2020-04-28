@@ -23,8 +23,9 @@ namespace projectCS
     {
         protected ComponentColor _color;
 
-        public ComponentColor color 
-        { 
+        public ComponentColor color
+        {
+            get => _color;
             set
             {
                 if (value == ComponentColor.transparent)
@@ -56,7 +57,7 @@ namespace projectCS
     public class Door : CatalogueComponents
     {
         protected ComponentColor _color;
-        public virtual ComponentColor color
+        public ComponentColor color
         {
             get => _color;
             set => _color = value;

@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{D14265C0-F342-4054-B4B1-778E85470715}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kitbox_user_interface_V1", "..\kitbox_user_interface\kitbox_user_interface_V1.csproj", "{DD5C1BE3-8258-4F8D-AC63-59D3603566D4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D14265C0-F342-4054-B4B1-778E85470715} = {D14265C0-F342-4054-B4B1-778E85470715}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopInterface", "..\ShopInterface\ShopInterface.csproj", "{DD660FD7-F911-41D4-961D-CC2A543F9CF2}"
 EndProject

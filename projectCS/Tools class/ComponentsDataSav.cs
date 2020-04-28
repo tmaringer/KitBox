@@ -35,6 +35,12 @@ namespace projectCS.Tools_class
             foreach (string line in File.ReadLines(_completePath))
             {
                 obj = JsonConvert.DeserializeObject<AngleBracket>(line);
+                /*
+                if (line.Contains("episode") & line.Contains("2006"))
+                {
+                    Console.WriteLine(line);
+                }
+                */
             }
 
             return obj;

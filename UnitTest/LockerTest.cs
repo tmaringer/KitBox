@@ -66,8 +66,8 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0, ComponentColor.white);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0, ComponentColor.white);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0);
 
             pannel1 = new Panels();
             pannel2 = new Panels();
@@ -79,8 +79,8 @@ namespace UnitTest
             cleat2 = new Cleat();
             cleat3 = new Cleat();
             cleat4 = new Cleat();
-            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(11, 7, 8), false, 0, ComponentColor.white);
-            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(17, 3, 5), false, 0, ComponentColor.white);
+            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(11, 7, 8), false, 0);
+            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(17, 3, 5), false, 0);
 
             door1 = new Door();
             doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(32, 0, 0), false, 0, ComponentColor.white);

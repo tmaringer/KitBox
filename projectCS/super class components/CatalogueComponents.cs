@@ -49,7 +49,6 @@ namespace projectCS
             set => _dimension = value;
         }
 
-
         protected CatalogueComponents(double price,
                                       string reference,
                                       string code,
@@ -91,7 +90,6 @@ namespace projectCS
                    + _dimension;
         }
     }
-
 
     public struct ComponentSize
     {

@@ -5,7 +5,8 @@ namespace projectCS
 {
     public class AngleBracket : CatalogueComponents, ICupboardComponents
     {
-        public override ComponentColor color
+        private ComponentColor _color;
+        public ComponentColor color
         {
             //toto : demander prof pq si je le rajoute pas, il n'appelle pas dynamiquement
             get => _color;
@@ -35,8 +36,9 @@ namespace projectCS
                         ComponentSize size,
                         bool inStock,
                         int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
+                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
         {
+            this.color = color;
         }
 
         /// <summary>
@@ -52,7 +54,7 @@ namespace projectCS
 
         public override string ToString()
         {
-            return base.ToString() + ", height : " + height;
+            return base.ToString() + ", height : " + height + ", color : " + _color;
         }
     }
 }
