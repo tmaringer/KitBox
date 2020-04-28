@@ -108,6 +108,7 @@ namespace kitbox_user_interface_V1
             
             */
 
+            // check that the object fields are filled
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
                 string doorsColor = comboBox1.SelectedItem.ToString();
@@ -192,6 +193,9 @@ namespace kitbox_user_interface_V1
 
         }
 
+        /// <summary>
+        ///     Validate cupboard button.
+        /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
             //créer les objets
