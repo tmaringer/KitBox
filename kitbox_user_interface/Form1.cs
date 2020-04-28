@@ -47,8 +47,6 @@ namespace kitbox_user_interface_V1
 
         }
 
-        
-
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -64,6 +62,9 @@ namespace kitbox_user_interface_V1
 
         }
 
+        /// <summary>
+        ///     Validate button.
+        /// </summary>
         public void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
@@ -180,28 +181,6 @@ namespace kitbox_user_interface_V1
             */
 
         }
-        
-        public void button2_Click(object sender, EventArgs e)
-        {
-            //int height = comboBox6.SelectedIndex;
-            //combobox1 : type doors
-            //combobox2 : panel colors
-            int width = Int32.Parse(comboBox4.SelectedItem.ToString());//ça a l'air con mais ça marche
-            int depth = Int32.Parse(comboBox5.SelectedItem.ToString());
-            string color1 = comboBox7.SelectedItem.ToString();//va servir à créer les anglebrackets
-            MessageBox.Show(width.ToString());
-        }
-
-        
-        private void comboBox7_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void textBox10_TextChanged_1(object sender, EventArgs e)
         {
@@ -224,11 +203,6 @@ namespace kitbox_user_interface_V1
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox9_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -73,6 +73,9 @@ namespace kitbox_user_interface_V1
         {
         }
 
+        /// <summary>
+        ///     Add locker button.
+        /// </summary>
         public void button2_Click(object sender, EventArgs e)
         {
             /*
@@ -93,7 +96,7 @@ namespace kitbox_user_interface_V1
             //test.displayWindow();
             //test2.displayWindow();
 
-            /* -------------------------------------------------------------   exemple de comment faire
+            // -------------------------------------------------------------   exemple de comment faire
             Door dorxxxx = new Door();
             Panels panelxxxx = new Panels();
 
@@ -101,7 +104,7 @@ namespace kitbox_user_interface_V1
             panelxxxx.color = ColorParse.parseToEnum(comboBox2.SelectedItem.ToString());
             //attention ne prends pas en compte le choix "none"
             // -------------------------------------------------------------   exemple de comment faire
-            */
+            
 
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
@@ -196,6 +199,9 @@ namespace kitbox_user_interface_V1
             form_1.Show();
         }
 
+        /// <summary>
+        ///     Modify cupboard button.
+        /// </summary>
         private void button3_Click(object sender, EventArgs e)
         {
             button2.Visible = false;
@@ -211,6 +217,9 @@ namespace kitbox_user_interface_V1
             comboBox6.Items.AddRange(HeightBoxList.Cast<object>().ToArray());
         }
 
+        /// <summary>
+        ///     Save changes button.
+        /// </summary>
         private void button4_Click(object sender, EventArgs e)
         {
             /*
