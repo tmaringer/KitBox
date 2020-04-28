@@ -1,10 +1,11 @@
 ﻿using projectCS.Tools_class;
+using System.Configuration;
 
 namespace projectCS
 {
     public class CrossBar : CatalogueComponents
     {
-        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
+        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0)
         {
         }
         public CrossBar(double price,
@@ -12,8 +13,7 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
+                        int dimension) : base(price, reference, code, size, inStock, dimension)
         {
         }
 
@@ -21,7 +21,9 @@ namespace projectCS
 
     public class Panels : CatalogueComponents
     {
-        public override ComponentColor color 
+        protected ComponentColor _color;
+
+        public ComponentColor color 
         { 
             set
             {
@@ -31,9 +33,10 @@ namespace projectCS
                     window.displayWindow();
                 }
                 else
-                    base.color = value;
+                    _color = value;
             }
         }
+
 
         public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
         {
@@ -44,13 +47,22 @@ namespace projectCS
                         ComponentSize size,
                         bool inStock,
                         int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
+                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
         {
+            this.color = color;
         }
     }
 
     public class Door : CatalogueComponents
     {
+        protected ComponentColor _color;
+        public virtual ComponentColor color
+        {
+            get => _color;
+            set => _color = value;
+        }
+
+
         public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
         {
         }
@@ -60,14 +72,15 @@ namespace projectCS
                         ComponentSize size,
                         bool inStock,
                         int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
+                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
         {
+            this.color = color;
         }
     }
 
     public class Cleat : CatalogueComponents
     {
-        public Cleat() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
+        public Cleat() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0)
         {
         }
         public Cleat(double price,
@@ -75,9 +88,21 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension, color)
+                        int dimension) : base(price, reference, code, size, inStock, dimension)
         {
         }
     }
+
+    /// <summary>
+    ///     regroup all color available in catalog
+    /// </summary>
+    public enum ComponentColor
+    {
+        white,
+        brown,
+        galvanised,
+        black,
+        transparent
+    }
+
 }

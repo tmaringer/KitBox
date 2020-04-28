@@ -49,20 +49,13 @@ namespace projectCS
             set => _dimension = value;
         }
 
-        protected ComponentColor _color;
-        public virtual ComponentColor color
-        {
-            get => _color;
-            set => _color = value;
-        }
 
         protected CatalogueComponents(double price,
                                       string reference,
                                       string code,
                                       ComponentSize size,
                                       bool inStock,
-                                      int dimension,
-                                      ComponentColor color)
+                                      int dimension)
         {
             this._price = price;
             this._reference = reference;
@@ -70,7 +63,6 @@ namespace projectCS
             this._size = size;
             this._inStock = inStock;
             this._dimension = dimension;
-            this._color = color;
         }
 
         /// <summary>
@@ -96,23 +88,10 @@ namespace projectCS
                    + ", in stock : "
                    + _inStock
                    + ", dimension : "
-                   + _dimension
-                   + ", color : "
-                   + _color;
+                   + _dimension;
         }
     }
 
-    /// <summary>
-    ///     regroup all color available in catalog
-    /// </summary>
-    public enum ComponentColor
-    {
-        white,
-        brown,
-        galvanised,
-        black,
-        transparent
-    }
 
     public struct ComponentSize
     {
