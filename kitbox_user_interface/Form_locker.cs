@@ -96,6 +96,7 @@ namespace kitbox_user_interface_V1
             //test.displayWindow();
             //test2.displayWindow();
 
+            /*
             // -------------------------------------------------------------   exemple de comment faire
             Door dorxxxx = new Door();
             Panels panelxxxx = new Panels();
@@ -105,7 +106,7 @@ namespace kitbox_user_interface_V1
             //attention ne prends pas en compte le choix "none"
             // -------------------------------------------------------------   exemple de comment faire
             
-
+            */
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
