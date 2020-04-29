@@ -82,9 +82,6 @@ namespace kitbox_user_interface_V1
             int depth = ShoppingCart.depthChosen;
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
-            // numéro du casier sur lequel on travail
-            int currentLocker = Int32.Parse(textBox12.Text);
-
             // check that the object fields are filled
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
@@ -100,7 +97,8 @@ namespace kitbox_user_interface_V1
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
 
-                int currentbox = Int32.Parse(locker.lockerID);
+                // numéro du casier sur lequel on travail
+                int currentbox = locker.lockerID;
 
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
@@ -116,14 +114,14 @@ namespace kitbox_user_interface_V1
                 int totalHeight = Int32.Parse(textBox8.Text);
                 totalHeight += height + 4;
                 textBox8.Text = totalHeight.ToString();
-                if (currentLocker == numberOfLocker)
+                if (currentbox == numberOfLocker)
                 {
                     button2.Enabled = false;
                 }
                 else
                 {
-                    currentLocker++;
-                    textBox12.Text = currentLocker.ToString();
+                    currentbox++;
+                    textBox12.Text = currentbox.ToString();
                 }
 
 
@@ -227,7 +225,6 @@ namespace kitbox_user_interface_V1
             /*
              * button 4 hides button 2 in form_locker.designer
              */
-
 
             int currentLocker = Int32.Parse(textBox12.Text);
 
