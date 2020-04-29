@@ -154,12 +154,6 @@ namespace kitbox_user_interface_V1
                 button3.Enabled = true;
             }
 
-            //pas encore utile, ne pas supprimer
-            /*
-            this.Hide();
-            Form1 form = new Form1();
-            form.Show();
-            */
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
