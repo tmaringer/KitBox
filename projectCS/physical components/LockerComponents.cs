@@ -21,8 +21,7 @@ namespace projectCS
 
     public class Panels : CatalogueComponents
     {
-        protected ComponentColor _color;
-
+        private ComponentColor _color;
         public ComponentColor color
         {
             get => _color;
@@ -38,8 +37,14 @@ namespace projectCS
             }
         }
 
+        private PanelsType _type;
+        public PanelsType type
+        {
+            get => _type;
+            set => _type = value;
+        }
 
-        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
+        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.bottom)
         {
         }
         public Panels(double price,
@@ -48,15 +53,17 @@ namespace projectCS
                         ComponentSize size,
                         bool inStock,
                         int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
+                        ComponentColor color,
+                        PanelsType type) : base(price, reference, code, size, inStock, dimension)
         {
             this.color = color;
+            this._type = type;
         }
     }
 
     public class Door : CatalogueComponents
     {
-        protected ComponentColor _color;
+        private ComponentColor _color;
         public ComponentColor color
         {
             get => _color;
@@ -106,4 +113,21 @@ namespace projectCS
         transparent
     }
 
+    public enum PanelsType
+    {
+        bottom,
+        top,
+        back,
+        right,
+        left
+    }
+
+    public enum Type
+    {
+        bottom,
+        top,
+        back,
+        right,
+        left
+    }
 }

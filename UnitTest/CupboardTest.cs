@@ -82,7 +82,7 @@ namespace UnitTest
             pannel3 = new Panels();
             pannel4 = new Panels();
             pannel5 = new Panels();
-            pannelWithPara1 = new Panels(10, "referenceTest", "1", new ComponentSize(23, 0, 0), false, 0, ComponentColor.white);
+            pannelWithPara1 = new Panels(10, "referenceTest", "1", new ComponentSize(23, 0, 0), false, 0, ComponentColor.white, PanelsType.bottom);
 
             cleat1 = new Cleat();
             cleat2 = new Cleat();

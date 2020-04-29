@@ -107,7 +107,8 @@ namespace kitbox_user_interface_V1
                 panels1.size = new ComponentSize(height, 0, depth);
                 crossBar1.size = new ComponentSize(height, 0, depth);
 
-                locker.addComponent(new List<CatalogueComponents>() { cleat1, door1, panels1, crossBar1 });
+                locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, door1, door1,
+                                                                        panels1, crossBar1 });
                 ShoppingCart.addCupboardComponent(locker);
 
                 // met dans le order preveiw
@@ -228,7 +229,7 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
-            Locker locker = new Locker();
+            Locker locker;
 
             foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
@@ -242,6 +243,7 @@ namespace kitbox_user_interface_V1
                 string doorsColor = comboBox1.SelectedItem.ToString();
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+
                 if (totalHeight - formerHeight - 4 + height < maxHeight)
                 {
                     //save changes
