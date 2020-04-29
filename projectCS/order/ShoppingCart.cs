@@ -70,24 +70,6 @@ namespace projectCS
             set => _colorDoodChosen = value; 
         }
 
-        public static List<Locker> LockerList
-        {
-            get
-            {
-                List<Locker> provi = new List<Locker>();
-                Locker refer = new Locker();
-
-                foreach (ICupboardComponents elem in _cupboardComponentsList)
-                {
-                    if (elem.GetType() == refer.GetType())
-                    {
-                        provi.Add((Locker)elem);
-                    }
-                }
-                return provi;
-            }
-        }
-
         private static Cupboard _cupboard;
         public static Cupboard cupboard
         {
