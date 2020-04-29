@@ -112,19 +112,24 @@ namespace kitbox_user_interface_V1
                 door1.size = new ComponentSize(height, width, 0);
 
                 panelsHB.size = new ComponentSize(0, width, depth);
-                //panelsHB.type = PanelsType.
+                panelsHB.type = PanelsType.top;
                 panelsGD.size = new ComponentSize(height, 0, depth);
-                //panelsGD
+                panelsGD.type = PanelsType.side;
                 panelsAR.size = new ComponentSize(height, width, 0);
-                //panelsAR
+                panelsAR.type = PanelsType.back;
 
                 crossBarAV.size = new ComponentSize(0, width, 0);
+                crossBarAV.type = CrossBarType.front_back;
                 crossBarAR.size = new ComponentSize(0, width, 0);
+                crossBarAR.type = CrossBarType.front_back;
                 crossBarGD.size = new ComponentSize(0, 0, depth);
+                crossBarGD.type = CrossBarType.side;
 
-                locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, door1, door1,
-                                                                        panelsHB,  
-                                                                        crossBarAV });
+                locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, 
+                                                                        door1, door1,
+                                                                        panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
+                                                                        crossBarAV, crossBarAV, crossBarAR, crossBarAR,
+                                                                        crossBarGD, crossBarGD, crossBarGD, crossBarGD });
                 ShoppingCart.addCupboardComponent(locker);
 
                 // met dans le order preveiw

@@ -131,7 +131,7 @@ namespace projectCS
 
     public enum CrossBarType
     {
-        top,
+        front_back,
         side
     }
 }

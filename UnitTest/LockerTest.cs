@@ -105,6 +105,7 @@ namespace UnitTest
                                                                          cleatWithParam1, cleatWithParam2,
                                                                          pannel1, pannel2,
                                                                          doorWithParam1, doorWithParam2};
+
         }
 
         [TestMethod]
@@ -261,6 +262,48 @@ namespace UnitTest
         {
             locker1.addComponent(catalogueComponentsListWith6WithParam);
             Assert.AreEqual(48, locker1.depth);
+        }
+
+        
+        [TestMethod]
+        public void interfaceTest()
+        {
+            Locker locker = new Locker();
+
+            Cleat cleattest = new Cleat();
+            Door doortest = new Door();
+
+            Panels panelsHB = new Panels();
+            Panels panelsGD = new Panels();
+            Panels panelsAR = new Panels();
+
+            CrossBar crossBarAV = new CrossBar();
+            CrossBar crossBarAR = new CrossBar();
+            CrossBar crossBarGD = new CrossBar();
+
+            cleattest.size = new ComponentSize(0, 0, 0);
+            doortest.size = new ComponentSize(0, 0, 0);
+
+            panelsHB.size = new ComponentSize(0, 0, 0);
+            panelsHB.type = PanelsType.top;
+            panelsGD.size = new ComponentSize(0, 0, 0);
+            panelsGD.type = PanelsType.side;
+            panelsAR.size = new ComponentSize(0, 0, 0);
+            panelsAR.type = PanelsType.back;
+
+            crossBarAV.size = new ComponentSize(0, 0, 0);
+            crossBarAV.type = CrossBarType.front_back;
+            crossBarAR.size = new ComponentSize(0, 0, 0);
+            crossBarAR.type = CrossBarType.front_back;
+            crossBarGD.size = new ComponentSize(0, 0, 0);
+            crossBarGD.type = CrossBarType.side;
+
+            locker.addComponent(new List<CatalogueComponents>() { cleattest, cleattest, cleattest, cleattest,
+                                                                        doortest, doortest,
+                                                                        panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
+                                                                        crossBarAV, crossBarAV, crossBarAR, crossBarAR,
+                                                                        crossBarGD, crossBarGD, crossBarGD, crossBarGD });
+            Assert.AreEqual(true, locker.isComplete());
         }
     }
 }
