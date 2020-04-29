@@ -67,6 +67,14 @@ namespace projectCS
             }
         }
 
+        private static int _ID = 0;
+
+        private int _lockerID;
+        public string lockerID
+        {
+            get => _lockerID.ToString();
+        }
+
         private List<CatalogueComponents> _componentsList;
         public List<CatalogueComponents> componentsList
         {
@@ -75,6 +83,8 @@ namespace projectCS
 
         public Locker()
         {
+            _ID++;
+            _lockerID = _ID;
             _componentsList = new List<CatalogueComponents>();
         }
 

@@ -54,7 +54,7 @@ namespace kitbox_user_interface_V1
             foreach (string heightB in HeightBracketsList)
             {
                 int heightBP = Int32.Parse(heightB);
-                if (heightBP>maxHeight)
+                if (heightBP > maxHeight)
                 {
                     maxHeight = heightBP;
                 }
@@ -78,46 +78,42 @@ namespace kitbox_user_interface_V1
         /// </summary>
         public void button2_Click(object sender, EventArgs e)
         {
-            /*
-             * le button 4 cache le button 2 dans form_locker.designer
-             */
-
-            //ComponentColor c =ShoppingCart.cupboard.colorAngleBracket;
             int width = ShoppingCart.widthChosen;
             int depth = ShoppingCart.depthChosen;
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
+            // numéro du casier sur lequel on travail
             int currentLocker = Int32.Parse(textBox12.Text);
 
-
-            //AngleBracket a = ShoppingCart.cupboard.getAngleBracket();
-            //ErrorWindow test = new ErrorWindow(width.ToString()+" "+depth.ToString());
-            //ErrorWindow test2 = new ErrorWindow(a.ToString());
-            //test.displayWindow();
-            //test2.displayWindow();
-
-            /*
-            // -------------------------------------------------------------   exemple de comment faire
-            Door dorxxxx = new Door();
-            Panels panelxxxx = new Panels();
-
-            dorxxxx.color = ColorParse.parseToEnum(comboBox1.SelectedItem.ToString());
-            panelxxxx.color = ColorParse.parseToEnum(comboBox2.SelectedItem.ToString());
-            //attention ne prends pas en compte le choix "none"
-            // -------------------------------------------------------------   exemple de comment faire
-            
-            */
 
             // check that the object fields are filled
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
+                Locker locker = new Locker();
+
+                Cleat cleat1 = new Cleat();
+                Door door1 = new Door();
+                Panels panels1 = new Panels();
+                CrossBar crossBar1 = new CrossBar();
+
+
                 string doorsColor = comboBox1.SelectedItem.ToString();
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
+
+                cleat1.size = new ComponentSize(height, width, 0);
+                door1.size = new ComponentSize(height, width, 0);
+                panels1.size = new ComponentSize(height, 0, depth);
+                crossBar1.size = new ComponentSize(height, 0, depth);
+
+                locker.addComponent(new List<CatalogueComponents>() { cleat1, door1, panels1, crossBar1 });
+                ShoppingCart.addCupboardComponent(locker);
+
+                // met dans le order preveiw
                 dataGridView1.Rows.Add(currentLocker, height, doorsColor, panelColor);
-                
+
                 int totalHeight = Int32.Parse(textBox8.Text);
-                totalHeight += height +4;
+                totalHeight += height + 4;
                 textBox8.Text = totalHeight.ToString();
                 if (currentLocker == numberOfLocker)
                 {
@@ -128,21 +124,21 @@ namespace kitbox_user_interface_V1
                     currentLocker++;
                     textBox12.Text = currentLocker.ToString();
                 }
-                
+
 
 
                 int maxHeight = Int32.Parse(textBox9.Text);
                 List<string> choiceRemove = new List<string>();
-                foreach(string heightChoice in comboBox6.Items)
+                foreach (string heightChoice in comboBox6.Items)
                 {
                     int boxHeight = Int32.Parse(heightChoice);
-                    if (maxHeight - boxHeight -4 < totalHeight)
+                    if (maxHeight - boxHeight - 4 < totalHeight)
                     {
                         choiceRemove.Add(heightChoice);
                     }
-                    
+
                 }
-                foreach(string heightChoice in choiceRemove)
+                foreach (string heightChoice in choiceRemove)
                 {
                     comboBox6.Items.Remove(heightChoice);
                 }
@@ -151,7 +147,7 @@ namespace kitbox_user_interface_V1
             {
                 MessageBox.Show("Fill every choices");
             }
-            if(!button2.Enabled)
+            if (!button2.Enabled)
             {
                 button1.Visible = true;
                 button1.Enabled = true;
@@ -159,13 +155,13 @@ namespace kitbox_user_interface_V1
                 button3.Enabled = true;
             }
 
-                //pas encore utile, ne pas supprimer
-                /*
-                this.Hide();
-                Form1 form = new Form1();
-                form.Show();
-                */
-            }
+            //pas encore utile, ne pas supprimer
+            /*
+            this.Hide();
+            Form1 form = new Form1();
+            form.Show();
+            */
+        }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
@@ -179,7 +175,7 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             textBox12.Text = (dataGridView1.CurrentCell.RowIndex + 1).ToString();
         }
 
@@ -198,7 +194,7 @@ namespace kitbox_user_interface_V1
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            //créer les objets
+
             this.Hide();
             Form1 form_1 = new Form1();
             form_1.Show();
@@ -230,9 +226,22 @@ namespace kitbox_user_interface_V1
             /*
              * button 4 hides button 2 in form_locker.designer
              */
-            
+
+            Locker l = ShoppingCart.LockerList[0];
+            Locker l1 = ShoppingCart.LockerList[1];
+            Locker l2 = ShoppingCart.LockerList[2];
+
+            ErrorWindow e0 = new ErrorWindow("locker 1 : "+l.lockerID);
+            ErrorWindow e1 = new ErrorWindow("locker 2 : " + l1.lockerID);
+            ErrorWindow e2 = new ErrorWindow("locker 3 : " + l2.lockerID);
+
+            e0.displayWindow();
+            e1.displayWindow();
+            e2.displayWindow();
+
 
             int currentLocker = Int32.Parse(textBox12.Text);
+
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
@@ -249,7 +258,7 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox8.Text = totalHeight.ToString();
-                    dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker,height,doorsColor,panelColor);
+                    dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
                 }
                 else
                     MessageBox.Show("Maximal height reached");
