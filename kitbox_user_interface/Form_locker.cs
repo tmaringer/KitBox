@@ -15,6 +15,8 @@ namespace kitbox_user_interface_V1
 {
     public partial class Form_locker : Form
     {
+        private static int currenLocker;
+
         public Form_locker()
         {
             InitializeComponent();
@@ -168,8 +170,8 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            textBox12.Text = (dataGridView1.CurrentCell.RowIndex + 1).ToString();
+            currenLocker = (dataGridView1.CurrentCell.RowIndex + 1);
+            textBox12.Text = currenLocker.ToString();
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
@@ -226,6 +228,14 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
+            Locker locker = new Locker();
+
+            foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+            {
+                if(component is Locker)
+                    if(((Locker)component).lockerID == currenLocker)
+                        locker = (Locker)component;
+            }
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
