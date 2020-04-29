@@ -91,8 +91,14 @@ namespace kitbox_user_interface_V1
 
                 Cleat cleat1 = new Cleat();
                 Door door1 = new Door();
-                Panels panels1 = new Panels();
-                CrossBar crossBar1 = new CrossBar();
+
+                Panels panelsHB = new Panels();
+                Panels panelsGD = new Panels();
+                Panels panelsAR = new Panels();
+
+                CrossBar crossBarAV = new CrossBar();
+                CrossBar crossBarAR = new CrossBar();
+                CrossBar crossBarGD = new CrossBar();
 
 
                 string doorsColor = comboBox1.SelectedItem.ToString();
@@ -104,11 +110,18 @@ namespace kitbox_user_interface_V1
 
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
-                panels1.size = new ComponentSize(height, 0, depth);
-                crossBar1.size = new ComponentSize(height, 0, depth);
+
+                panelsHB.size = new ComponentSize(height, 0, depth);
+                panelsGD.size = new ComponentSize(height, 0, depth);
+                panelsAR.size = new ComponentSize(height, 0, depth);
+
+                crossBarAV.size = new ComponentSize(0, width, 0);
+                crossBarAR.size = new ComponentSize(height, 0, depth);
+                crossBarGD.size = new ComponentSize(height, 0, depth);
 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, door1, door1,
-                                                                        panels1, crossBar1 });
+                                                                        panelsHB,  
+                                                                        crossBarAV });
                 ShoppingCart.addCupboardComponent(locker);
 
                 // met dans le order preveiw
