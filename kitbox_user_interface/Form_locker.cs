@@ -112,11 +112,11 @@ namespace kitbox_user_interface_V1
                 door1.size = new ComponentSize(height, width, 0);
 
                 panelsHB.size = new ComponentSize(0, width, depth);
-                panelsHB.type = PanelsType.
+                //panelsHB.type = PanelsType.
                 panelsGD.size = new ComponentSize(height, 0, depth);
-                panelsGD
+                //panelsGD
                 panelsAR.size = new ComponentSize(height, width, 0);
-                panelsAR
+                //panelsAR
 
                 crossBarAV.size = new ComponentSize(0, width, 0);
                 crossBarAR.size = new ComponentSize(0, width, 0);

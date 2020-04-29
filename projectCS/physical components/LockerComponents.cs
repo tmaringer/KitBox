@@ -12,7 +12,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.bottom)
+        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side)
         {
         }
         public CrossBar(double price,
@@ -53,7 +53,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.bottom)
+        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.side)
         {
         }
         public Panels(double price,
