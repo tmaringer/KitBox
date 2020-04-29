@@ -228,18 +228,6 @@ namespace kitbox_user_interface_V1
              * button 4 hides button 2 in form_locker.designer
              */
 
-            Locker l = ShoppingCart.LockerList[0];
-            Locker l1 = ShoppingCart.LockerList[1];
-            Locker l2 = ShoppingCart.LockerList[2];
-
-            ErrorWindow e0 = new ErrorWindow("locker 1 : "+l.lockerID);
-            ErrorWindow e1 = new ErrorWindow("locker 2 : " + l1.lockerID);
-            ErrorWindow e2 = new ErrorWindow("locker 3 : " + l2.lockerID);
-
-            e0.displayWindow();
-            e1.displayWindow();
-            e2.displayWindow();
-
 
             int currentLocker = Int32.Parse(textBox12.Text);
 
