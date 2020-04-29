@@ -15,6 +15,8 @@ namespace kitbox_user_interface_V1
 {
     public partial class Form_locker : Form
     {
+        private static int currenLocker;
+
         public Form_locker()
         {
             InitializeComponent();
@@ -100,7 +102,7 @@ namespace kitbox_user_interface_V1
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
 
-                int currentbox = Int32.Parse(locker.lockerID);
+                int currentbox = locker.lockerID;
 
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
@@ -176,8 +178,8 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            textBox12.Text = (dataGridView1.CurrentCell.RowIndex + 1).ToString();
+            currenLocker = (dataGridView1.CurrentCell.RowIndex + 1);
+            textBox12.Text = currenLocker.ToString();
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
@@ -240,7 +242,7 @@ namespace kitbox_user_interface_V1
             foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 if(component is Locker)
-                    if(((Locker)component).lockerID == (dataGridView1.CurrentCell.RowIndex + 1))
+                    if(((Locker)component).lockerID == currenLocker)
                         locker = (Locker)component;
             }
 
