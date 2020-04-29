@@ -229,7 +229,7 @@ namespace kitbox_user_interface_V1
 
             Locker l = ShoppingCart.LockerList[0];
             Locker l1 = ShoppingCart.LockerList[1];
-            Locker l2 = ShoppingCart.LockerList[2];
+            Locker l2 = ShoppingCart.LockerList[4];
 
             ErrorWindow e0 = new ErrorWindow("locker 1 : "+l.lockerID);
             ErrorWindow e1 = new ErrorWindow("locker 2 : " + l1.lockerID);

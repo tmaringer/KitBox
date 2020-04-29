@@ -70,9 +70,9 @@ namespace projectCS
         private static int _ID = 0;
 
         private int _lockerID;
-        public string lockerID
+        public int lockerID
         {
-            get => _lockerID.ToString();
+            get => _lockerID;
         }
 
         private List<CatalogueComponents> _componentsList;
