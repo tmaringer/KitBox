@@ -234,6 +234,14 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
+            Locker locker = new Locker();
+
+            foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+            {
+                if(component is Locker)
+                    if(((Locker)component).lockerID == (dataGridView1.CurrentCell.RowIndex + 1))
+                        locker = (Locker)component;
+            }
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {

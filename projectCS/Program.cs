@@ -11,7 +11,11 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("ok");
+            Locker lockd = new Locker();
+            CrossBar des = new CrossBar();
+
+            Console.WriteLine(des is Locker);
+
             Console.WriteLine("\n");
             /*
             Application.EnableVisualStyles();
