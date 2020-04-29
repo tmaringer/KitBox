@@ -124,18 +124,14 @@ namespace projectCS
 
     public enum PanelsType
     {
-        bottom,
         top,
         back,
-        right,
-        left
+        side
     }
 
     public enum CrossBarType
     {
-        bottom,
         top,
-        right,
-        left
+        side
     }
 }

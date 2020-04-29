@@ -111,13 +111,16 @@ namespace kitbox_user_interface_V1
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
 
-                panelsHB.size = new ComponentSize(height, 0, depth);
+                panelsHB.size = new ComponentSize(0, width, depth);
+                panelsHB.type = PanelsType.
                 panelsGD.size = new ComponentSize(height, 0, depth);
-                panelsAR.size = new ComponentSize(height, 0, depth);
+                panelsGD
+                panelsAR.size = new ComponentSize(height, width, 0);
+                panelsAR
 
                 crossBarAV.size = new ComponentSize(0, width, 0);
-                crossBarAR.size = new ComponentSize(height, 0, depth);
-                crossBarGD.size = new ComponentSize(height, 0, depth);
+                crossBarAR.size = new ComponentSize(0, width, 0);
+                crossBarGD.size = new ComponentSize(0, 0, depth);
 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, door1, door1,
                                                                         panelsHB,  
