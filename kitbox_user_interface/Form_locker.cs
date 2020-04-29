@@ -85,7 +85,6 @@ namespace kitbox_user_interface_V1
             // numéro du casier sur lequel on travail
             int currentLocker = Int32.Parse(textBox12.Text);
 
-
             // check that the object fields are filled
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
@@ -101,6 +100,8 @@ namespace kitbox_user_interface_V1
                 string panelColor = comboBox2.SelectedItem.ToString();
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
 
+                int currentbox = Int32.Parse(locker.lockerID);
+
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
                 panels1.size = new ComponentSize(height, 0, depth);
@@ -110,7 +111,7 @@ namespace kitbox_user_interface_V1
                 ShoppingCart.addCupboardComponent(locker);
 
                 // met dans le order preveiw
-                dataGridView1.Rows.Add(currentLocker, height, doorsColor, panelColor);
+                dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor);
 
                 int totalHeight = Int32.Parse(textBox8.Text);
                 totalHeight += height + 4;
