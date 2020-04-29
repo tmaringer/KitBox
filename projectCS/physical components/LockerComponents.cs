@@ -5,7 +5,14 @@ namespace projectCS
 {
     public class CrossBar : CatalogueComponents
     {
-        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0)
+        private CrossBarType _type;
+        public CrossBarType type
+        {
+            get => _type;
+            set => _type = value;
+        }
+
+        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.bottom)
         {
         }
         public CrossBar(double price,
@@ -13,8 +20,10 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension) : base(price, reference, code, size, inStock, dimension)
+                        int dimension,
+                        CrossBarType type) : base(price, reference, code, size, inStock, dimension)
         {
+            this._type = type;
         }
 
     }
@@ -122,11 +131,10 @@ namespace projectCS
         left
     }
 
-    public enum Type
+    public enum CrossBarType
     {
         bottom,
         top,
-        back,
         right,
         left
     }

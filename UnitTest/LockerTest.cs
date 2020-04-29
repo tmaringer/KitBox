@@ -66,8 +66,8 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0, CrossBarType.bottom);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0, CrossBarType.bottom);
 
             pannel1 = new Panels();
             pannel2 = new Panels();

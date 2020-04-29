@@ -56,8 +56,8 @@ namespace UnitTest
 
             angleBracketParam1 = new AngleBracket(100, "null", "0000", new ComponentSize(0, 0, 0), false, 10, ComponentColor.white);
 
-            crossBarWithParam1 = new CrossBar(100, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0);
-            crossBarWithParam2 = new CrossBar(100, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
+            crossBarWithParam1 = new CrossBar(100, "referenceTest", "1", new ComponentSize(10, 0, 0), false, 0, CrossBarType.bottom);
+            crossBarWithParam2 = new CrossBar(100, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.bottom);
 
             cleatWithParam1 = new Cleat(375, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
             cleatWithParam2 = new Cleat(122.37, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
