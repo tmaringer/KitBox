@@ -11,7 +11,7 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("pppppppp");
+            Console.WriteLine("ok");
             Console.WriteLine("\n");
             /*
             Application.EnableVisualStyles();
