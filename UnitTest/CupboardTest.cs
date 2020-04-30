@@ -217,18 +217,6 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void computeHeightLockerTest()
-        {
-            locker1.addComponent(catalogueComponentsListWith5WithParam);
-            locker2.addComponent(catalogueComponentsListWith2WithParam);
-
-            cupboard1.addCupboardComponent(locker1);
-            cupboard1.addCupboardComponent(locker2);
-
-            Assert.AreEqual(106, cupboard1.getHeightOfLocker());
-        }
-
-        [TestMethod]
         public void lockerAvailableTest()
         {
             Assert.AreEqual(7, cupboard1.lockerAvailable);
