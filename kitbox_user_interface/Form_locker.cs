@@ -15,8 +15,6 @@ namespace kitbox_user_interface_V1
 {
     public partial class Form_locker : Form
     {
-        private static int currentLockerSelected;
-
         public Form_locker()
         {
             InitializeComponent();
@@ -192,8 +190,8 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            currentLockerSelected = (dataGridView1.CurrentCell.RowIndex + 1);
-            textBox12.Text = currentLockerSelected.ToString();
+            ShoppingCart.currentLocker = dataGridView1.CurrentCell.RowIndex + 1;
+            textBox12.Text = ShoppingCart.currentLocker.ToString();
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
@@ -259,22 +257,23 @@ namespace kitbox_user_interface_V1
 
             Locker locker = null;
 
-            if (!(currentLockerSelected is int))
+            if (ShoppingCart.currentLocker == 0)
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
                 {
                     if (component is Locker)
                         locker = (Locker)component;
                 }
-                currentLockerSelected = locker.ID;
+                ShoppingCart.currentLocker = locker.ID;
             }
+
             else
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
                 {
                     if (component is Locker)
                     {
-                        if (((Locker)component).ID == currentLockerSelected)
+                        if (((Locker)component).ID == ShoppingCart.currentLocker)
                             locker = (Locker)component;
                     }
                 }
@@ -293,6 +292,7 @@ namespace kitbox_user_interface_V1
                     totalHeight += height;
                     textBox8.Text = totalHeight.ToString();
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
+
 
                     locker.height = height;
                     locker.doorsColor = ColorParse.parseToEnum(doorsColor);
