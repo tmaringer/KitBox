@@ -209,12 +209,13 @@ namespace kitbox_user_interface_V1
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            string recap ="";
+            string recap;
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
-                recap += component.ToString() + "\n";
+                recap = component.ToString();
+                MessageBox.Show(recap);
             }
-            MessageBox.Show(recap);
+            
             /*
             this.Hide();
             Form1 form_1 = new Form1();
