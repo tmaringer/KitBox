@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
+using projectCS.Tools_class;
 using System.Collections.Generic;
 
 namespace UnitTest
@@ -244,10 +245,17 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void heightComputingTest()
+        public void setDoorColorTest()
         {
-            locker1.addComponent(catalogueComponentsListWith6WithParam);
-            Assert.AreEqual(72, locker1.height);
+            locker1.addComponent(doorWithParam1);
+            locker1.doorsColor = ComponentColor.transparent;
+            foreach(CatalogueComponents catalCompo in locker1.componentsList)
+            {
+                if (catalCompo is Door)
+                    doorWithParam1 = (Door)catalCompo;
+            }
+            Assert.AreEqual(ComponentColor.transparent, doorWithParam1.color);
+            Assert.AreNotEqual(ComponentColor.black, doorWithParam1.color);
         }
 
         [TestMethod]

@@ -15,7 +15,7 @@ namespace kitbox_user_interface_V1
 {
     public partial class Form_locker : Form
     {
-        private static int currenLocker;
+        private static int currentLockerSelected;
 
         public Form_locker()
         {
@@ -192,8 +192,8 @@ namespace kitbox_user_interface_V1
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            currenLocker = (dataGridView1.CurrentCell.RowIndex + 1);
-            textBox12.Text = currenLocker.ToString();
+            currentLockerSelected = (dataGridView1.CurrentCell.RowIndex + 1);
+            textBox12.Text = currentLockerSelected.ToString();
         }
 
         private void Form_locker_Load(object sender, EventArgs e)
@@ -250,12 +250,12 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
-            Locker locker;
+            Locker locker = new Locker();
 
             foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 if(component is Locker)
-                    if(((Locker)component).lockerID == currenLocker)
+                    if(((Locker)component).lockerID == currentLockerSelected)
                         locker = (Locker)component;
             }
 
@@ -272,6 +272,10 @@ namespace kitbox_user_interface_V1
                     totalHeight += height;
                     textBox8.Text = totalHeight.ToString();
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
+
+                    locker.height = height;
+                    locker.doorsColor = ColorParse.parseToEnum(doorsColor);
+                    locker.panelColor = ColorParse.parseToEnum(panelColor);
                 }
                 else
                     MessageBox.Show("Maximal height reached");

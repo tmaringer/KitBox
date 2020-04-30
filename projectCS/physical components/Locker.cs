@@ -14,17 +14,11 @@ namespace projectCS
         private readonly int _maximumDoors = 2;
         private readonly int _maximumCleats = 4;
 
+        private int _height;
         public int height
         {
-            get
-            {
-                int height = 0;
-                foreach (CatalogueComponents component in _componentsList)
-                {
-                    height += component.size.height;
-                }
-                return height;
-            }
+            get => height;
+            set => _height = value;
         }
 
         public double price
@@ -75,11 +69,42 @@ namespace projectCS
             get => _lockerID;
         }
 
+        private ComponentColor _doorsColor;
+        public ComponentColor doorsColor 
+        { 
+            get => _doorsColor;
+            set
+            {
+                foreach (CatalogueComponents catalogueCompo in _componentsList)
+                {
+                    if (catalogueCompo is Door)
+                        ((Door)catalogueCompo).color = value;
+                }
+                _doorsColor = value;
+            }
+        }
+
+        private ComponentColor _panelColor;
+        public ComponentColor panelColor 
+        { 
+            get => _panelColor;
+            set
+            {
+                foreach(CatalogueComponents catalogueCompo in _componentsList)
+                {
+                    if (catalogueCompo is Panels)
+                        ((Panels)catalogueCompo).color = value;
+                }
+                _panelColor = value;
+            }
+        }
+
         private List<CatalogueComponents> _componentsList;
         public List<CatalogueComponents> componentsList
         {
             get => _componentsList;
         }
+
 
         public Locker()
         {
