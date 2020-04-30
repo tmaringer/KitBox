@@ -17,7 +17,7 @@ namespace projectCS
         private int _height;
         public int height
         {
-            get => height;
+            get => _height;
             set => _height = value;
         }
 
