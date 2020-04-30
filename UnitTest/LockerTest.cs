@@ -257,21 +257,6 @@ namespace UnitTest
             Assert.AreEqual(ComponentColor.glass, doorWithParam1.color);
             Assert.AreNotEqual(ComponentColor.black, doorWithParam1.color);
         }
-
-        [TestMethod]
-        public void widthComputingTest()
-        {
-            locker1.addComponent(catalogueComponentsListWith6WithParam);
-            Assert.AreEqual(46, locker1.width);
-        }
-
-        [TestMethod]
-        public void depthComputingTest()
-        {
-            locker1.addComponent(catalogueComponentsListWith6WithParam);
-            Assert.AreEqual(48, locker1.depth);
-        }
-
         
         [TestMethod]
         public void interfaceTest()
