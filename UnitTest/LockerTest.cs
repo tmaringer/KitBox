@@ -248,13 +248,13 @@ namespace UnitTest
         public void setDoorColorTest()
         {
             locker1.addComponent(doorWithParam1);
-            locker1.doorsColor = ComponentColor.transparent;
+            locker1.doorsColor = ComponentColor.glass;
             foreach(CatalogueComponents catalCompo in locker1.componentsList)
             {
                 if (catalCompo is Door)
                     doorWithParam1 = (Door)catalCompo;
             }
-            Assert.AreEqual(ComponentColor.transparent, doorWithParam1.color);
+            Assert.AreEqual(ComponentColor.glass, doorWithParam1.color);
             Assert.AreNotEqual(ComponentColor.black, doorWithParam1.color);
         }
 

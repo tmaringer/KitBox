@@ -36,7 +36,7 @@ namespace projectCS
             get => _color;
             set
             {
-                if (value == ComponentColor.transparent)
+                if (value == ComponentColor.glass)
                 {
                     ErrorWindow window = new ErrorWindow(ErrorMessages.invalidColorMsg, ErrorMessages.invalidColorTitle);
                     window.displayWindow();
@@ -119,7 +119,7 @@ namespace projectCS
         brown,
         galvanised,
         black,
-        transparent
+        glass
     }
 
     public enum PanelsType
