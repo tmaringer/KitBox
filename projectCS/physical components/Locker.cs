@@ -38,20 +38,14 @@ namespace projectCS
         public int width
         {
             get => _width;
+            set => _width = value;
         }
 
         private int _depth;
         public int depth
         {
-            get
-            {
-                int depth = 0;
-                foreach (CatalogueComponents component in _componentsList)
-                {
-                    depth += component.size.depth;
-                }
-                return depth;
-            }
+            get => _depth;
+            set => _depth = value;
         }
 
         private static int _ID = 0;
