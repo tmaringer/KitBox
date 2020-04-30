@@ -76,6 +76,13 @@ namespace projectCS
             get => _cupboard;
         }
 
+        private static int _currentLocker = 0;
+        public static int currentLocker
+        {
+            get => _currentLocker;
+            set => _currentLocker = value;
+        }
+
         public static void addCupboardUserChoices(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _widthChosen = width;
