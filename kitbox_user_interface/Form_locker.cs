@@ -106,7 +106,7 @@ namespace kitbox_user_interface_V1
                 int height = Int32.Parse(comboBox6.SelectedItem.ToString());
 
                 // numéro du casier sur lequel on travail
-                int currentbox = locker.lockerID;
+                int currentbox = locker.ID;
 
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
@@ -266,7 +266,7 @@ namespace kitbox_user_interface_V1
                     if (component is Locker)
                         locker = (Locker)component;
                 }
-                currentLockerSelected = locker.lockerID;
+                currentLockerSelected = locker.ID;
             }
             else
             {
@@ -274,7 +274,7 @@ namespace kitbox_user_interface_V1
                 {
                     if (component is Locker)
                     {
-                        if (((Locker)component).lockerID == currentLockerSelected)
+                        if (((Locker)component).ID == currentLockerSelected)
                             locker = (Locker)component;
                     }
                 }

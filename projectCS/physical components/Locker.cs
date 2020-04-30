@@ -48,12 +48,12 @@ namespace projectCS
             set => _depth = value;
         }
 
-        private static int _ID = 0;
+        private static int _numberOfLockers = 0;
 
-        private int _lockerID;
-        public int lockerID
+        private int _ID;
+        public int ID
         {
-            get => _lockerID;
+            get => _ID;
         }
 
         private ComponentColor _doorsColor;
@@ -95,8 +95,8 @@ namespace projectCS
 
         public Locker()
         {
-            _ID++;
-            _lockerID = _ID;
+            _numberOfLockers++;
+            _ID = _numberOfLockers;
             _componentsList = new List<CatalogueComponents>();
             _height = 0;
             _width = 0;
