@@ -259,11 +259,24 @@ namespace kitbox_user_interface_V1
 
             Locker locker = null;
 
-            foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+            if (!(currentLockerSelected is int))
             {
-                if(component is Locker)
-                    if(((Locker)component).lockerID == currentLockerSelected)
+                foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+                {
+                    if (component is Locker)
                         locker = (Locker)component;
+                }
+            }
+            else
+            {
+                foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+                {
+                    if (component is Locker)
+                    {
+                        if (((Locker)component).lockerID == currentLockerSelected)
+                            locker = (Locker)component;
+                    }
+                }
             }
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
