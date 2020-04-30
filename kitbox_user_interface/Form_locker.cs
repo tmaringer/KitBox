@@ -211,10 +211,17 @@ namespace kitbox_user_interface_V1
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string disp = "";
+            foreach(ICupboardComponents cupco in ShoppingCart.catalogueComponentsList)
+            {
+                disp += cupco;
+            }
+            MessageBox.Show(disp);
+            /*
             this.Hide();
             Form1 form_1 = new Form1();
             form_1.Show();
+            */
         }
 
         /// <summary>
@@ -250,9 +257,9 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
-            Locker locker = new Locker();
+            Locker locker = null;
 
-            foreach(ICupboardComponents component in ShoppingCart.cupboardComponentsList)
+            foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 if(component is Locker)
                     if(((Locker)component).lockerID == currentLockerSelected)

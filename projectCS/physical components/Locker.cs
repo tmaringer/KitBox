@@ -17,7 +17,7 @@ namespace projectCS
         private int _height;
         public int height
         {
-            get => height;
+            get => _height;
             set => _height = value;
         }
 
@@ -34,17 +34,10 @@ namespace projectCS
             }
         }
 
+        private int _width;
         public int width
         {
-            get
-            {
-                int width = 0;
-                foreach (CatalogueComponents component in _componentsList)
-                {
-                    width += component.size.width;
-                }
-                return width;
-            }
+            get => _width;
         }
 
         private int _depth;
@@ -111,6 +104,9 @@ namespace projectCS
             _ID++;
             _lockerID = _ID;
             _componentsList = new List<CatalogueComponents>();
+            _height = 0;
+            _width = 0;
+            _depth = 0;
         }
 
         // todo : refactorer
