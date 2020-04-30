@@ -266,6 +266,7 @@ namespace kitbox_user_interface_V1
                     if (component is Locker)
                         locker = (Locker)component;
                 }
+                currentLockerSelected = locker.lockerID;
             }
             else
             {
