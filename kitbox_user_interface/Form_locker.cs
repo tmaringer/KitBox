@@ -250,7 +250,7 @@ namespace kitbox_user_interface_V1
             /*
              * button 4 hides button 2 in form_locker.designer
              */
-
+            
             int currentLocker = Int32.Parse(textBox12.Text);
 
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
