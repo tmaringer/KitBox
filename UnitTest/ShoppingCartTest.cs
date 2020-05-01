@@ -133,11 +133,7 @@ namespace UnitTest
             ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.glass;
             ShoppingCart.addCupboardComponent( locker4);
 
-            Assert.AreEqual(60, ShoppingCart.getSpecificLocker(1).price);
-            Assert.AreEqual(10, ShoppingCart.getSpecificLocker(2).price);
-            Assert.AreEqual(100, ShoppingCart.getSpecificLocker(3).price);
             Assert.AreEqual(ComponentColor.glass, ShoppingCart.getSpecificLocker(3).doorsColor);
-            Assert.AreEqual(90, ShoppingCart.getSpecificLocker(4).price);
 
             ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.galvanised;
             Assert.AreEqual(ComponentColor.galvanised, ShoppingCart.getSpecificLocker(3).doorsColor);
