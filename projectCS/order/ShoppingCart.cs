@@ -172,6 +172,21 @@ namespace projectCS
             }
             return _cupboard;
         }
+
+        public static Locker getSpecificLocker(int lockerID)
+        {
+            int lockerEmplacement = 0;
+            foreach(ICupboardComponents component in _cupboardComponentsList)
+            {
+                if(component is Locker)
+                {
+                    if (((Locker)component).ID == lockerID)
+                        break;
+                }
+                lockerEmplacement += 1;
+            }
+            return (Locker)_cupboardComponentsList.ElementAt(lockerEmplacement);
+        }
         
         public static string ToString()
         {

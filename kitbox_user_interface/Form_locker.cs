@@ -212,7 +212,7 @@ namespace kitbox_user_interface_V1
             string recap ="";
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
-                recap += component.ToString() + "\n";
+                recap += component + "\n";
             }
             MessageBox.Show(recap);
             /*
@@ -256,7 +256,6 @@ namespace kitbox_user_interface_V1
             int maxHeight = Int32.Parse(textBox9.Text);
 
             Locker locker = null;
-
             if (ShoppingCart.currentLocker == 0)
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
@@ -279,6 +278,8 @@ namespace kitbox_user_interface_V1
                 }
             }
 
+            
+
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
                 string doorsColor = comboBox1.SelectedItem.ToString();
@@ -297,6 +298,7 @@ namespace kitbox_user_interface_V1
                     locker.height = height;
                     locker.doorsColor = ColorParse.parseToEnum(doorsColor);
                     locker.panelColor = ColorParse.parseToEnum(panelColor);
+
                 }
                 else
                     MessageBox.Show("Maximal height reached");

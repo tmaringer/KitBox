@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using projectCS;
 
@@ -12,6 +13,8 @@ namespace UnitTest
 
         private Locker locker1;
         private Locker locker2;
+        private Locker locker3;
+        private Locker locker4;
 
         private CrossBar crossBarWithParam1;
         private CrossBar crossBarWithParam2;
@@ -26,6 +29,11 @@ namespace UnitTest
         {
             cupboard1 = new Cupboard();
 
+            locker1 = new Locker();
+            locker2 = new Locker();
+            locker3 = new Locker();
+            locker4 = new Locker();
+
             crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side);
             crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side);
 
@@ -33,6 +41,11 @@ namespace UnitTest
             cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
 
             doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+
+            locker1.addComponent(new List<CatalogueComponents>() { crossBarWithParam1, cleatWithParam2 });
+            locker2.addComponent(new List<CatalogueComponents>() { crossBarWithParam1 });
+            locker3.addComponent(new List<CatalogueComponents>() { cleatWithParam1, cleatWithParam2 });
+            locker4.addComponent(new List<CatalogueComponents>() { doorWithParam1, cleatWithParam2 });
         }
 
         [TestMethod]
@@ -109,6 +122,25 @@ namespace UnitTest
             cupboard1 = ShoppingCart.cupboard;
 
             Assert.AreEqual(270, cupboard1.getPrice());
+        }
+
+        [TestMethod]
+        public void getSpecificLockerTest()
+        {
+            ShoppingCart.addCupboardComponent( locker1);
+            ShoppingCart.addCupboardComponent( locker2);
+            ShoppingCart.addCupboardComponent( locker3);
+            ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.glass;
+            ShoppingCart.addCupboardComponent( locker4);
+
+            Assert.AreEqual(60, ShoppingCart.getSpecificLocker(1).price);
+            Assert.AreEqual(10, ShoppingCart.getSpecificLocker(2).price);
+            Assert.AreEqual(100, ShoppingCart.getSpecificLocker(3).price);
+            Assert.AreEqual(ComponentColor.glass, ShoppingCart.getSpecificLocker(3).doorsColor);
+            Assert.AreEqual(90, ShoppingCart.getSpecificLocker(4).price);
+
+            ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.galvanised;
+            Assert.AreEqual(ComponentColor.galvanised, ShoppingCart.getSpecificLocker(3).doorsColor);
         }
     }
 }
