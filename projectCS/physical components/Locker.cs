@@ -237,6 +237,10 @@ namespace projectCS
                 tostring += composant.ToString() + "\n";
             }
             return base.ToString()
+                + ", locker ID : "
+                + ID
+                + ", price : "
+                + price
                 + ", height : "
                 + height
                 + ", width : "
@@ -244,9 +248,9 @@ namespace projectCS
                 + ", depth : "
                 + depth
                 + ", is Complete : "
-                + isComplete()
-                + "\n" + "\n" + "components list : " + "\n" + "\n"
-                + tostring;
+                + isComplete();
+                //+ "\n" + "\n" + "components list : " + "\n" + "\n"
+                //+ tostring;
         }
     }
 }
