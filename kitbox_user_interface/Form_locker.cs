@@ -209,12 +209,12 @@ namespace kitbox_user_interface_V1
         /// </summary>
         private void button1_Click(object sender, EventArgs e)
         {
-            string recap ="";
+            string recap;
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 recap += component + "\n";
             }
-            MessageBox.Show(recap);
+            
             /*
             this.Hide();
             Form1 form_1 = new Form1();
@@ -248,7 +248,7 @@ namespace kitbox_user_interface_V1
             /*
              * button 4 hides button 2 in form_locker.designer
              */
-
+            
             int currentLocker = Int32.Parse(textBox12.Text);
 
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
