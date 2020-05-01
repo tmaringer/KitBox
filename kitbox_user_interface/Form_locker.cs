@@ -267,33 +267,8 @@ namespace kitbox_user_interface_V1
             int incre = 1;
 
             if (ShoppingCart.currentLocker == 0)
-            {
-                /*
-                foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
-                {
-                    if (component is Locker)
-                    {
-                        //locker = (Locker)component;
-                        incre += 1;
-                    }
-                }*/
                 ShoppingCart.currentLocker = ShoppingCart.cupboardComponentsList.Count;
-            }
             
-            /*
-            else
-            {
-                foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
-                {
-                    if (component is Locker)
-                    {
-                        if (((Locker)component).ID == ShoppingCart.currentLocker)
-                            locker = (Locker)component;
-                    }
-                }
-            }
-            */
-
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
@@ -309,12 +284,6 @@ namespace kitbox_user_interface_V1
                     textBox8.Text = totalHeight.ToString();
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
 
-                    /*
-                    locker.height = height;
-                    locker.doorsColor = ColorParse.parseToEnum(doorsColor);
-                    locker.panelColor = ColorParse.parseToEnum(panelColor);
-                    */
-                    
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).doorsColor = ColorParse.parseToEnum(doorsColor);
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).panelColor = ColorParse.parseToEnum(panelColor);
