@@ -70,7 +70,7 @@ namespace projectCS
             set => _colorDoodChosen = value; 
         }
 
-        private static Cupboard _cupboard;
+        private static Cupboard _cupboard = new Cupboard();
         public static Cupboard cupboard
         {
             get => _cupboard;
@@ -83,6 +83,9 @@ namespace projectCS
             set => _currentLocker = value;
         }
 
+        /// <summary>
+        ///     Adds and saves customer's choices concerning cupboard.
+        /// </summary>
         public static void addCupboardUserChoices(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
         {
             _widthChosen = width;
@@ -90,7 +93,10 @@ namespace projectCS
             _boxNumberChosen = boxNumber;
             _colorAngleBracketChosen = colorAngleBracket;
         }
-        
+
+        /// <summary>
+        ///     Adds and saves customer's choices concerning cupboard.
+        /// </summary>
         public static void addLockerUserChoices(int heigt, ComponentColor panelColor, ComponentColor doodColor)
         {
             _heigtLockerChosen = heigt;
@@ -173,7 +179,16 @@ namespace projectCS
             return _cupboard;
         }
 
-        public static Locker getSpecificLocker(int lockerID)
+        /// <summary>
+        ///     Search for a locker in local list which matches with given id.
+        /// </summary>
+        /// <param name="lockerID">
+        ///     Locker ID to find in local list.
+        /// </param>
+        /// <returns>
+        ///     Locker which matches with given ID or a new locker.
+        /// </returns>
+        public static Locker getLockerByID(int lockerID)
         {
             int lockerEmplacement = 0;
             foreach(ICupboardComponents component in _cupboardComponentsList)
@@ -187,11 +202,37 @@ namespace projectCS
             }
 
             if (lockerEmplacement >= _cupboardComponentsList.Count)
-                lockerEmplacement = 0;
+                return new Locker();
 
-            return (Locker)_cupboardComponentsList.ElementAt(lockerEmplacement);
+            else
+                return (Locker)_cupboardComponentsList.ElementAt(lockerEmplacement);
         }
-        
+
+        public static void resetShoppingCard()
+        {
+            _catalogueComponentsList = new List<CatalogueComponents>();
+
+            _cupboardComponentsList = new List<ICupboardComponents>();
+            
+            _colorAngleBracketChosen = ComponentColor.black;
+
+            _boxNumberChosen = 0;
+
+            _widthChosen = 0;
+            
+            _heigtChosen = 0;
+            
+            _depthChosen = 0;
+
+            _heigtLockerChosen = 0;
+            
+            _colorDoodChosen = ComponentColor.black;
+
+            _cupboard = new Cupboard();
+            
+            _currentLocker = 0;
+    }
+
         public static string ToString()
         {
             return "catalogue components list : "
