@@ -268,6 +268,7 @@ namespace kitbox_user_interface_V1
 
             if (ShoppingCart.currentLocker == 0)
             {
+                /*
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
                 {
                     if (component is Locker)
@@ -275,9 +276,10 @@ namespace kitbox_user_interface_V1
                         //locker = (Locker)component;
                         incre += 1;
                     }
-                }
-                ShoppingCart.currentLocker = incre;
+                }*/
+                ShoppingCart.currentLocker = ShoppingCart.cupboardComponentsList.Count;
             }
+            
             /*
             else
             {
@@ -291,7 +293,7 @@ namespace kitbox_user_interface_V1
                 }
             }
             */
-            
+
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
             {
@@ -312,9 +314,11 @@ namespace kitbox_user_interface_V1
                     locker.doorsColor = ColorParse.parseToEnum(doorsColor);
                     locker.panelColor = ColorParse.parseToEnum(panelColor);
                     */
+                    
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).doorsColor = ColorParse.parseToEnum(doorsColor);
                     ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).panelColor = ColorParse.parseToEnum(panelColor);
+                    ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker);
                 }
                 else
                     MessageBox.Show("Maximal height reached");
