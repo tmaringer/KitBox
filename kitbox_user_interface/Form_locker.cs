@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Ubiety.Dns.Core.Records.NotUsed;
 
 namespace kitbox_user_interface_V1
 {
@@ -105,6 +106,13 @@ namespace kitbox_user_interface_V1
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
+                
+                
+                locker.panelColor = ColorParse.parseToEnum(panelColor);
+                locker.doorsColor = ColorParse.parseToEnum(doorsColor);
+                locker.height = height;
+                locker.depth = depth;
+                locker.width = width;
 
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
@@ -123,7 +131,7 @@ namespace kitbox_user_interface_V1
                 crossBarGD.size = new ComponentSize(0, 0, depth);
                 crossBarGD.type = CrossBarType.side;
 
-                locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1, 
+                locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         door1, door1,
                                                                         panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
                                                                         crossBarAV, crossBarAV, crossBarAR, crossBarAR,
@@ -212,9 +220,9 @@ namespace kitbox_user_interface_V1
             string recap;
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
-                recap += component + "\n";
+                recap = component.ToString();
+                MessageBox.Show(recap);
             }
-            
             /*
             this.Hide();
             Form1 form_1 = new Form1();
@@ -255,18 +263,22 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox8.Text);
             int maxHeight = Int32.Parse(textBox9.Text);
 
-            Locker locker = null;
+            //Locker locker = null;
+            int incre = 1;
 
             if (ShoppingCart.currentLocker == 0)
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
                 {
                     if (component is Locker)
-                        locker = (Locker)component;
+                    {
+                        //locker = (Locker)component;
+                        incre += 1;
+                    }
                 }
-                ShoppingCart.currentLocker = locker.ID;
+                ShoppingCart.currentLocker = incre;
             }
-
+            /*
             else
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
@@ -278,7 +290,7 @@ namespace kitbox_user_interface_V1
                     }
                 }
             }
-
+            */
             
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox6.SelectedItem != null)
