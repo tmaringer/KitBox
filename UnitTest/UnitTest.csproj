@@ -59,7 +59,6 @@
     <Compile Include="OrderFormTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="ShoppingCartTest.cs" />
-    <Compile Include="OrderFormViewInterfaceTest.cs" />
     <Compile Include="ComponentsDataSavTest.cs" />
   </ItemGroup>
   <ItemGroup>

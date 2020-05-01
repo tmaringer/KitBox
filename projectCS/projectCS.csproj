@@ -101,7 +101,6 @@
     <Compile Include="Tools class\ColorParse.cs" />
     <Compile Include="Tools class\ComponentsDataSav.cs" />
     <Compile Include="Tools class\DbUtils.cs" />
-    <Compile Include="ManagingClass\OrderFormViewInterface.cs" />
     <Compile Include="order\Client.cs" />
     <Compile Include="order\OrderForm.cs" />
     <Compile Include="order\ShoppingCart.cs" />
@@ -142,6 +141,9 @@
     <Analyzer Include="packages\Microsoft.NetCore.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetCore.CSharp.Analyzers.dll" />
     <Analyzer Include="packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="packages\Microsoft.NetFramework.Analyzers.2.9.8\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ManagingClass\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
