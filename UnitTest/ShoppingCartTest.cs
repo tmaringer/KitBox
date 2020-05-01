@@ -141,6 +141,8 @@ namespace UnitTest
 
             ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.galvanised;
             Assert.AreEqual(ComponentColor.galvanised, ShoppingCart.getSpecificLocker(3).doorsColor);
+
+            Assert.AreEqual(60, ShoppingCart.getSpecificLocker(40).price);
         }
     }
 }

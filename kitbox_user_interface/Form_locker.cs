@@ -256,6 +256,7 @@ namespace kitbox_user_interface_V1
             int maxHeight = Int32.Parse(textBox9.Text);
 
             Locker locker = null;
+
             if (ShoppingCart.currentLocker == 0)
             {
                 foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
@@ -294,11 +295,14 @@ namespace kitbox_user_interface_V1
                     textBox8.Text = totalHeight.ToString();
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
 
-
+                    /*
                     locker.height = height;
                     locker.doorsColor = ColorParse.parseToEnum(doorsColor);
                     locker.panelColor = ColorParse.parseToEnum(panelColor);
-
+                    */
+                    ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).height = height;
+                    ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).doorsColor = ColorParse.parseToEnum(doorsColor);
+                    ShoppingCart.getSpecificLocker(ShoppingCart.currentLocker).panelColor = ColorParse.parseToEnum(panelColor);
                 }
                 else
                     MessageBox.Show("Maximal height reached");

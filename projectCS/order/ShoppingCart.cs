@@ -185,6 +185,10 @@ namespace projectCS
                 }
                 lockerEmplacement += 1;
             }
+
+            if (lockerEmplacement >= _cupboardComponentsList.Count)
+                lockerEmplacement = 0;
+
             return (Locker)_cupboardComponentsList.ElementAt(lockerEmplacement);
         }
         
