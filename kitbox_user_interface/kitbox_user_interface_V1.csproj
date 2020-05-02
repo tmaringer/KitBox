@@ -93,6 +93,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_purchase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_purchase.Designer.cs">
+      <DependentUpon>Form_purchase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_locker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     <Compile Include="QueryKitbox.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_purchase.resx">
+      <DependentUpon>Form_purchase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_locker.resx">
       <DependentUpon>Form_locker.cs</DependentUpon>
