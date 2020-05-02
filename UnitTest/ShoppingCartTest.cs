@@ -8,9 +8,9 @@ namespace UnitTest
     [TestClass]
     public class ShoppingCartTest
     {
-
         private Cupboard cupboard1;
 
+        private Locker locker0;
         private Locker locker1;
         private Locker locker2;
         private Locker locker3;
@@ -24,12 +24,19 @@ namespace UnitTest
 
         private Door doorWithParam1;
 
+        PrivateObject privLocker;
+
         [TestInitialize()]
         public void testsInitialize()
         {
+            ShoppingCart.resetShoppingCard();
+            locker0 = new Locker();
+            privLocker = new PrivateObject(locker0);
+            privLocker.Invoke("resetID");
+
             cupboard1 = new Cupboard();
 
-            locker1 = new Locker();
+            locker1 = new Locker();            
             locker2 = new Locker();
             locker3 = new Locker();
             locker4 = new Locker();
@@ -125,20 +132,22 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void getSpecificLockerTest()
-        {
+        public void getgetLockerByIDTest()
+        {           
             ShoppingCart.addCupboardComponent( locker1);
             ShoppingCart.addCupboardComponent( locker2);
             ShoppingCart.addCupboardComponent( locker3);
-            ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.glass;
+            ShoppingCart.getLockerByID(3).doorsColor = ComponentColor.glass;
             ShoppingCart.addCupboardComponent( locker4);
 
-            Assert.AreEqual(ComponentColor.glass, ShoppingCart.getSpecificLocker(3).doorsColor);
+            Assert.AreEqual(ComponentColor.glass, ShoppingCart.getLockerByID(3).doorsColor); 
+            Assert.AreEqual(3, ShoppingCart.getLockerByID(3).ID);
 
-            ShoppingCart.getSpecificLocker(3).doorsColor = ComponentColor.galvanised;
-            Assert.AreEqual(ComponentColor.galvanised, ShoppingCart.getSpecificLocker(3).doorsColor);
 
-            Assert.AreEqual(60, ShoppingCart.getSpecificLocker(40).price);
+            ShoppingCart.getLockerByID(3).doorsColor = ComponentColor.galvanised;
+            Assert.AreEqual(ComponentColor.galvanised, ShoppingCart.getLockerByID(3).doorsColor);
+
+            Assert.AreEqual(0, ShoppingCart.getLockerByID(40).price);
         }
     }
 }

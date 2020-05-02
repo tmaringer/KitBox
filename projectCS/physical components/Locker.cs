@@ -229,6 +229,11 @@ namespace projectCS
             return numberOfComponent;
         }
 
+        private void resetID()
+        {
+            _numberOfLockers = 0;
+        }
+
         public override string ToString()
         {
             string tostring = "";
