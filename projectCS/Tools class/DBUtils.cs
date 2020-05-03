@@ -140,7 +140,7 @@ namespace projectCS
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             List<string> result = new List<string>();
-            string sql = "Select " + column + " from " + table + ";";
+            string sql = "Select " + column + " from kitbox." + table + ";";
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,

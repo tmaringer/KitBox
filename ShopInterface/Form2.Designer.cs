@@ -136,13 +136,9 @@ namespace ShopInterface
             this.label65 = new System.Windows.Forms.Label();
             this.comboBox31 = new System.Windows.Forms.ComboBox();
             this.comboBox30 = new System.Windows.Forms.ComboBox();
-            this.comboBox32 = new System.Windows.Forms.ComboBox();
-            this.label64 = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
             this.comboBox28 = new System.Windows.Forms.ComboBox();
-            this.comboBox29 = new System.Windows.Forms.ComboBox();
             this.label62 = new System.Windows.Forms.Label();
             this.button28 = new System.Windows.Forms.Button();
             this.dataGridView11 = new System.Windows.Forms.DataGridView();
@@ -235,6 +231,8 @@ namespace ShopInterface
             this.dataGridView9 = new System.Windows.Forms.DataGridView();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.label64 = new System.Windows.Forms.Label();
+            this.comboBox32 = new System.Windows.Forms.ComboBox();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -1324,9 +1322,7 @@ namespace ShopInterface
             this.groupBox23.Controls.Add(this.label64);
             this.groupBox23.Controls.Add(this.label63);
             this.groupBox23.Controls.Add(this.label59);
-            this.groupBox23.Controls.Add(this.label60);
             this.groupBox23.Controls.Add(this.comboBox28);
-            this.groupBox23.Controls.Add(this.comboBox29);
             this.groupBox23.Controls.Add(this.label62);
             this.groupBox23.Controls.Add(this.button28);
             this.groupBox23.Location = new System.Drawing.Point(6, 396);
@@ -1339,7 +1335,7 @@ namespace ShopInterface
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(287, 156);
+            this.label61.Location = new System.Drawing.Point(287, 128);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(39, 13);
             this.label61.TabIndex = 29;
@@ -1410,29 +1406,6 @@ namespace ShopInterface
             this.comboBox30.Size = new System.Drawing.Size(114, 21);
             this.comboBox30.TabIndex = 26;
             // 
-            // comboBox32
-            // 
-            this.comboBox32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox32.FormattingEnabled = true;
-            this.comboBox32.Items.AddRange(new object[] {
-            "Angle",
-            "Door",
-            "Panels"});
-            this.comboBox32.Location = new System.Drawing.Point(121, 76);
-            this.comboBox32.Name = "comboBox32";
-            this.comboBox32.Size = new System.Drawing.Size(114, 21);
-            this.comboBox32.TabIndex = 23;
-            this.comboBox32.SelectionChangeCommitted += new System.EventHandler(this.comboBox32_SelectionChangeCommitted);
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(32, 79);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(83, 13);
-            this.label64.TabIndex = 22;
-            this.label64.Text = "Type of element";
-            // 
             // label63
             // 
             this.label63.AutoSize = true;
@@ -1445,38 +1418,20 @@ namespace ShopInterface
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(284, 113);
+            this.label59.Location = new System.Drawing.Point(284, 79);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(31, 13);
             this.label59.TabIndex = 19;
             this.label59.Text = "Color";
             // 
-            // label60
-            // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(264, 79);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(54, 13);
-            this.label60.TabIndex = 18;
-            this.label60.Text = "ElementId";
-            // 
             // comboBox28
             // 
             this.comboBox28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox28.FormattingEnabled = true;
-            this.comboBox28.Location = new System.Drawing.Point(324, 110);
+            this.comboBox28.Location = new System.Drawing.Point(324, 76);
             this.comboBox28.Name = "comboBox28";
             this.comboBox28.Size = new System.Drawing.Size(114, 21);
             this.comboBox28.TabIndex = 17;
-            // 
-            // comboBox29
-            // 
-            this.comboBox29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox29.FormattingEnabled = true;
-            this.comboBox29.Location = new System.Drawing.Point(324, 76);
-            this.comboBox29.Name = "comboBox29";
-            this.comboBox29.Size = new System.Drawing.Size(114, 21);
-            this.comboBox29.TabIndex = 16;
             // 
             // label62
             // 
@@ -1491,7 +1446,7 @@ namespace ShopInterface
             // 
             this.button28.Enabled = false;
             this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button28.Location = new System.Drawing.Point(343, 152);
+            this.button28.Location = new System.Drawing.Point(343, 124);
             this.button28.Name = "button28";
             this.button28.Size = new System.Drawing.Size(95, 24);
             this.button28.TabIndex = 0;
@@ -2491,6 +2446,29 @@ namespace ShopInterface
             this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.printDocument1_BeginPrint);
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(32, 79);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(83, 13);
+            this.label64.TabIndex = 22;
+            this.label64.Text = "Type of element";
+            // 
+            // comboBox32
+            // 
+            this.comboBox32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox32.FormattingEnabled = true;
+            this.comboBox32.Items.AddRange(new object[] {
+            "Angle",
+            "Door",
+            "Panels"});
+            this.comboBox32.Location = new System.Drawing.Point(121, 76);
+            this.comboBox32.Name = "comboBox32";
+            this.comboBox32.Size = new System.Drawing.Size(114, 21);
+            this.comboBox32.TabIndex = 23;
+            this.comboBox32.SelectionChangeCommitted += new System.EventHandler(this.comboBox32_SelectionChangeCommitted);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2712,13 +2690,9 @@ namespace ShopInterface
         private System.Windows.Forms.Button button25;
         public System.Windows.Forms.DataGridView dataGridView12;
         private System.Windows.Forms.GroupBox groupBox23;
-        private System.Windows.Forms.ComboBox comboBox32;
-        private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label label59;
-        private System.Windows.Forms.Label label60;
         private System.Windows.Forms.ComboBox comboBox28;
-        private System.Windows.Forms.ComboBox comboBox29;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Button button28;
         private System.Windows.Forms.ComboBox comboBox31;
@@ -2770,5 +2744,7 @@ namespace ShopInterface
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.ComboBox comboBox32;
+        private System.Windows.Forms.Label label64;
     }
 }

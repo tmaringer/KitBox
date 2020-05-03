@@ -867,12 +867,6 @@ namespace ShopInterface
                     Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
                     comboBox31.Enabled = false;
                     comboBox33.Enabled = false;
-                    comboBox29.Items.Clear();
-                    foreach (DataGridViewRow row in dataGridView12.Rows)
-                    {
-                        comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
-                    }
-
                     comboBox28.Items.Clear();
                     foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"AngleBracket\""))
                     {
@@ -891,11 +885,6 @@ namespace ShopInterface
                     {
                         groupBox24.Visible = true;
                         comboBox33.Enabled = true;
-                        comboBox29.Items.Clear();
-                        foreach (DataGridViewRow row in dataGridView12.Rows)
-                        {
-                            comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
-                        }
 
                         comboBox28.Items.Clear();
                         foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Door\""))
@@ -911,11 +900,6 @@ namespace ShopInterface
                     comboBox31.Enabled = true;
                     dataGridView12.DataSource = null;
                     Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
-                    comboBox29.Items.Clear();
-                    foreach (DataGridViewRow row in dataGridView12.Rows)
-                    {
-                        comboBox29.Items.Add(row.Cells["Id"].Value.ToString());
-                    }
 
                     comboBox28.Items.Clear();
                     foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panels LR\""))
@@ -1221,77 +1205,78 @@ namespace ShopInterface
 
         private void button28_Click(object sender, EventArgs e)
         {
-            if (comboBox28.Text != "" && comboBox29.Text != "" && comboBox30.Text != "" && comboBox31.Text != "" &&
-                comboBox32.Text != "")
+            if (comboBox28.SelectedItem != null  && comboBox30.SelectedItem != null &&
+                comboBox32.SelectedItem != null)
             {
-                string elementId = comboBox29.SelectedItem.ToString();
-                string code = "";
-                foreach (DataGridViewRow row in dataGridView12.Rows)
-                {
-                    if (row.Cells["Id"].Value.ToString() == elementId)
-                    {
-                        code = row.Cells["Code"].Value.ToString();
-                    }
-                }
-
                 string couleur = comboBox28.SelectedItem.ToString();
                 if (comboBox32.Text == @"Angle")
                 {
                     string cupboardId = comboBox30.Text;
-                    List<string> angleId =
-                        DbUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
-                    string height = DbUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
-                    string newCode = DbUtils.RefList("Code",
-                        "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + couleur +
-                        "\"")[0];
-                    label61.Text = DbUtils.UpdateDb("angles", "Code",
-                        "AngleId = \"" + angleId[Convert.ToInt32(elementId) - 1] + "\" and CupboardId = \"" +
-                        cupboardId + "\"", newCode);
+                    List<string> angleId = DbUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
+                    foreach (string i in angleId)
+                    {
+                        string elementId = i;
+                        string height = DbUtils.RefList("Height", "kitbox where Code =\"" + DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0] + "\"")[0];
+                        string newCode = DbUtils.RefList("Code",
+                            "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + couleur +
+                            "\"")[0];
+                        label61.Text = DbUtils.UpdateDb("angles", "Code",
+                            "AngleId = \"" + i + "\" and CupboardId = \"" +
+                            cupboardId + "\"", newCode);
+                    }
                     dataGridView12.DataSource = null;
                     Sandbox.Angles(comboBox30.SelectedItem.ToString(), dataGridView12);
                 }
                 else if (comboBox32.Text == @"Door")
                 {
                     string boxId = comboBox31.Text;
-                    List<string> doorId = DbUtils.RefList("DoorId", "doors where BoxId = \"" + boxId + "\"");
-                    string height = DbUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
-                    string width = DbUtils.RefList("Width", "kitbox where Code =\"" + code + "\"")[0];
-                    string newCode = DbUtils.RefList("Code",
-                        "kitbox where Height =\"" + height + "\"and Width = \"" + width +
-                        "\" and Ref = \"Door\" and Colour = \"" + couleur + "\"")[0];
-                    label61.Text = DbUtils.UpdateDb("doors", "Code",
-                        "DoorId = \"" + doorId[Convert.ToInt32(elementId) - 1] + "\" and BoxId = \"" + boxId + "\"",
-                        newCode);
+                    List<string> DoorId = DbUtils.RefList("DoorId", "doors where boxId = \"" + boxId + "\"");
+                    foreach (string i in DoorId)
+                    {
+                        string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                        string height = DbUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
+                        string width = DbUtils.RefList("Width", "kitbox where Code =\"" + code + "\"")[0];
+                        string newCode = DbUtils.RefList("Code",
+                            "kitbox where Height =\"" + height + "\"and Width = \"" + width +
+                            "\" and Ref = \"Door\" and Colour = \"" + couleur + "\"")[0];
+                        label61.Text = DbUtils.UpdateDb("doors", "Code",
+                            "DoorId = \"" + i + "\" and BoxId = \"" + boxId + "\"",
+                            newCode);
+                    }
                     dataGridView12.DataSource = null;
                     Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                 }
                 else if (comboBox32.Text == @"Panels")
                 {
                     var boxId = comboBox31.Text;
-                    string position = "";
-                    foreach (DataGridViewRow row in dataGridView12.Rows)
-                    {
-                        if (row.Cells["Id"].Value.ToString() == elementId)
-                        {
-                            position = row.Cells["Position"].Value.ToString();
-                        }
-                    }
-
                     List<string> panelId = DbUtils.RefList("PanelId", "panels where BoxId = \"" + boxId + "\"");
-                    string suffix;
-                    if (couleur == "White")
+                    foreach(string i in panelId)
                     {
-                        suffix = "WH";
-                    }
-                    else
-                    {
-                        suffix = "BR";
-                    }
+                        string code = DbUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
+                        string position = "";
+                        foreach (DataGridViewRow row in dataGridView12.Rows)
+                        {
+                            if (row.Cells["Id"].Value.ToString() == i)
+                            {
+                                position = row.Cells["Position"].Value.ToString();
+                            }
+                        }
 
-                    string newCode = code.Substring(0, code.Length - 2) + suffix;
-                    label61.Text = DbUtils.UpdateDb("panels", "Code",
-                        "PanelId = \"" + panelId[Convert.ToInt32(elementId) - 1] + "\" and BoxId = \"" + boxId +
-                        "\" and Position = \"" + position + "\"", newCode);
+                        string suffix;
+                        if (couleur == "White")
+                        {
+                            suffix = "WH";
+                        }
+                        else
+                        {
+                            suffix = "BR";
+                        }
+
+                        string newCode = code.Substring(0, code.Length - 2) + suffix;
+                        label61.Text = DbUtils.UpdateDb("panels", "Code",
+                            "PanelId = \"" + panelId[Convert.ToInt32(i) - 1] + "\" and BoxId = \"" + boxId +
+                            "\" and Position = \"" + position + "\"", newCode);
+                    }
                     dataGridView12.DataSource = null;
                     Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
                 }
