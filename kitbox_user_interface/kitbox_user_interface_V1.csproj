@@ -93,6 +93,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="User_Interface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User_Interface.Designer.cs">
+      <DependentUpon>User_Interface.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_purchase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User_Interface.resx">
+      <DependentUpon>User_Interface.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
