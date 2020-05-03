@@ -42,18 +42,7 @@ namespace kitbox_user_interface_V1
             conn.Open();
             List<string> HeightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
             conn.Close();
-            conn.Open();
-            List<string> testlist = QueryKitbox.SpecsBoxList2(conn, "CustPrice", "Ref = \"Panel LR\"", "Depth = \"32\"");
-            conn.Close();
-
-
-            string ca = "";
-            foreach(string machin in testlist)
-            {
-                ca += machin;
-            }
-            MessageBox.Show(ca);
-
+            
             comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7" });
             //TODO : get variable globale max_lockers puis boucle pour remplir combobox3
             comboBox2.Items.AddRange(WidthBoxList.Cast<object>().ToArray());
@@ -207,7 +196,7 @@ namespace kitbox_user_interface_V1
                     }
                     catch
                     {
-                        prixTotal -= 1;
+                        MessageBox.Show("fail");
                     }
                 }
 
@@ -215,7 +204,7 @@ namespace kitbox_user_interface_V1
 
 
 
-                // met dans le order preveiw
+                // met dans le order preview
                 dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor,prixTotal.ToString());
 
                 int totalHeight = Int32.Parse(textBox12.Text);
