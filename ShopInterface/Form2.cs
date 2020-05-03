@@ -875,36 +875,53 @@ namespace ShopInterface
                 }
                 else if (comboBox32.SelectedItem.ToString() == "Door")
                 {
-                    comboBox31.Enabled = true;
-                    dataGridView12.DataSource = null;
-                    Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
-                    string cupboardid = DbUtils.RefList("CupboardId",
-                        "boxes where BoxId = \"" + comboBox31.SelectedItem + "\"")[0];
-                    if (Convert.ToInt32(
-                        DbUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardid + "\"")[0]) >= 62)
+                    if (comboBox31.SelectedItem != null)
                     {
-                        groupBox24.Visible = true;
-                        comboBox33.Enabled = true;
+                        comboBox31.Enabled = true;
+                        dataGridView12.DataSource = null;
+                        Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
+                        string cupboardid = DbUtils.RefList("CupboardId",
+                            "boxes where BoxId = \"" + comboBox31.SelectedItem + "\"")[0];
+                        if (Convert.ToInt32(
+                            DbUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardid + "\"")[0]) >= 62)
+                        {
+                            groupBox24.Visible = true;
+                            comboBox33.Enabled = true;
+
+                            comboBox28.Items.Clear();
+                            foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Door\""))
+                            {
+                                comboBox28.Items.Add(i);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Please select a boxId", @"Element missing", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+                    }
+                    
+                }
+                else if (comboBox32.SelectedItem.ToString() == "Panels")
+                {
+                    if (comboBox31.SelectedItem != null)
+                    {
+                        groupBox24.Visible = false;
+                        comboBox33.Enabled = false;
+                        comboBox31.Enabled = true;
+                        dataGridView12.DataSource = null;
+                        Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
 
                         comboBox28.Items.Clear();
-                        foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Door\""))
+                        foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panel LR\""))
                         {
                             comboBox28.Items.Add(i);
                         }
                     }
-                }
-                else if (comboBox32.SelectedItem.ToString() == "Panels")
-                {
-                    groupBox24.Visible = false;
-                    comboBox33.Enabled = false;
-                    comboBox31.Enabled = true;
-                    dataGridView12.DataSource = null;
-                    Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
-
-                    comboBox28.Items.Clear();
-                    foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panels LR\""))
+                    else
                     {
-                        comboBox28.Items.Add(i);
+                        MessageBox.Show(@"Please select a boxId", @"Element missing", MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
                     }
                 }
             }
@@ -1215,7 +1232,6 @@ namespace ShopInterface
                     List<string> angleId = DbUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
                     foreach (string i in angleId)
                     {
-                        string elementId = i;
                         string height = DbUtils.RefList("Height", "kitbox where Code =\"" + DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0] + "\"")[0];
                         string newCode = DbUtils.RefList("Code",
                             "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + couleur +
@@ -1253,15 +1269,6 @@ namespace ShopInterface
                     foreach(string i in panelId)
                     {
                         string code = DbUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
-                        string position = "";
-                        foreach (DataGridViewRow row in dataGridView12.Rows)
-                        {
-                            if (row.Cells["Id"].Value.ToString() == i)
-                            {
-                                position = row.Cells["Position"].Value.ToString();
-                            }
-                        }
-
                         string suffix;
                         if (couleur == "White")
                         {
@@ -1274,8 +1281,7 @@ namespace ShopInterface
 
                         string newCode = code.Substring(0, code.Length - 2) + suffix;
                         label61.Text = DbUtils.UpdateDb("panels", "Code",
-                            "PanelId = \"" + panelId[Convert.ToInt32(i) - 1] + "\" and BoxId = \"" + boxId +
-                            "\" and Position = \"" + position + "\"", newCode);
+                            "PanelId = \"" + i + "\" and BoxId = \"" + boxId + "\"", newCode);
                     }
                     dataGridView12.DataSource = null;
                     Sandbox.Panels(comboBox31.SelectedItem.ToString(), dataGridView12);
