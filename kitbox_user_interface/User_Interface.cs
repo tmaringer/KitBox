@@ -322,11 +322,11 @@ namespace kitbox_user_interface_V1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string recap = "";
+            string ticket = "";
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
-                recap = component.ToString();
-                MessageBox.Show(recap);
+                ticket = component.ToString();
+                MessageBox.Show(ticket);
             }
         }
 
