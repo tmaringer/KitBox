@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Math;
 using projectCS;
 using projectCS.Tools_class;
@@ -185,11 +186,12 @@ namespace kitbox_user_interface_V1
                         string compHeight = "Height = \"" + component.size.height.ToString() + "\"";
                         string compdepth = "Depth = \"" + component.size.depth.ToString() + "\"";
                         string compWidth = "Width = \"" + component.size.width.ToString() + "\"";
-                        //string compColour = "Height = \"" + component.colour.ToString() + "\"";
+                        string compColour = "Colour = \"" + component.size.width.ToString() + "\"";//TODO fill with colour
+                        string reference = "";
                         string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
                         MySqlConnection conn = new MySqlConnection(MyConString);
                         conn.Open();
-                        List<string> prix = QueryKitbox.BigMoney(conn, compHeight, compdepth, compWidth);//, compColour
+                        List<string> prix = QueryKitbox.BigMoney(conn, reference, compHeight, compdepth, compWidth, compColour);
                         conn.Close();
                         float compoPrix = Single.Parse(prix[0]);
                         prixTotal += compoPrix;
@@ -324,5 +326,8 @@ namespace kitbox_user_interface_V1
             ShoppingCart.currentLocker = dataGridView1.CurrentCell.RowIndex + 1;
             textBox8.Text = ShoppingCart.currentLocker.ToString();
         }
+
+        
     }
+
 }

@@ -89,10 +89,10 @@ namespace kitbox_user_interface_V1
             return result;
         }
 
-        public static List<string> BigMoney (MySqlConnection conn, string height, string depth, string width)//, string colour
+        public static List<string> BigMoney (MySqlConnection conn, string reference ,string height, string depth, string width, string colour)
         {
             List<string> result = new List<string>();
-            string sql = "Select CustPrice from kitbox where " + height + " and " + depth + " and " + width; //+" and " + colour
+            string sql = "Select CustPrice from kitbox where " + height + " and " + depth + " and " + width + " and Ref = \"" + reference + "\"" + " and " + colour;
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,
@@ -154,5 +154,6 @@ namespace kitbox_user_interface_V1
                 adapter.UpdateCommand.ExecuteNonQuery();
             }
         }
+        //"Select Code, CustPrice, InStock from kitbox where Height = 32 and Depth = 32 and Width = 32 and Colour = white and Ref= Panel LR
     }
 }
