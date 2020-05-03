@@ -614,12 +614,12 @@ namespace ShopInterface
             }
             else
             {
-                DbUtils.InsertDb("supplierspending", "code, quantity", "\"" + code + "\", \"" + quantity + "\"");
+                string z = DbUtils.InsertDb("supplierspending", "code, quantity", "\"" + code + "\", \"" + quantity + "\"");
             }
 
             if (DbUtils.RefList("Quantity", "supplierspending").Contains("0"))
             {
-                DbUtils.DeleteRow("supplierspending", "Quantity = \"0\"");
+                label35.Text = DbUtils.DeleteRow("supplierspending", "Quantity = \"0\"");
             }
         }
 
@@ -950,7 +950,7 @@ namespace ShopInterface
                             "cupboards where CupboardId = \"" + comboBox30.SelectedItem + "\"")[0];
                         string code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
                                       "WH";
-                        DbUtils.InsertDb("doors", "(BoxId,Code)",
+                        label61.Text = DbUtils.InsertDb("doors", "(BoxId,Code)",
                             "\"" + comboBox31.SelectedItem + "\", \"" + code + "\"");
                         dataGridView12.DataSource = null;
                         Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
@@ -959,7 +959,7 @@ namespace ShopInterface
                     {
                         List<string> id = DbUtils.RefList("DoorId",
                             "doors where BoxId = \"" + comboBox31.SelectedItem + "\"");
-                        DbUtils.DeleteRow("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
+                        label61.Text = DbUtils.DeleteRow("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
                         dataGridView12.DataSource = null;
                         Sandbox.Doors(comboBox31.SelectedItem.ToString(), dataGridView12);
                     }
@@ -1012,7 +1012,7 @@ namespace ShopInterface
                     string columns = "SupplierId,Code,SuppPrice,SuppDelay";
                     string elements = "\"" + comboBox34.SelectedItem + "\", \"" + textBox1.Text + "\", \"" +
                                       textBox5.Text + "\", \"" + textBox7.Text + "\"";
-                    DbUtils.InsertDb("supplierslistprices", columns, elements);
+                    string i = DbUtils.InsertDb("supplierslistprices", columns, elements);
                     dataGridView10.DataSource =
                         DbUtils.RefreshDb("supplierslistprices where SupplierId=\"" + comboBox34.SelectedItem + "\"");
                 }
@@ -1211,7 +1211,7 @@ namespace ShopInterface
             {
                 string price = row["SuppPrice"].ToString();
                 string price1 = price.Replace(',', '.');
-                DbUtils.InsertDb("suppliersprices", "SupplierId,Code,SuppPrice,SuppDelay",
+                string i = DbUtils.InsertDb("suppliersprices", "SupplierId,Code,SuppPrice,SuppDelay",
                     "\"" + row["SupplierId"] + "\", \"" + row["Code"] + "\", \"" + price1 + "\", \"" +
                     row["SuppDelay"] + "\"");
                 progressBar3.PerformStep();
@@ -1683,7 +1683,7 @@ namespace ShopInterface
             string sqlFormattedDate = myDateTime.ToString("yyyy-MM-dd");
             string values = "\"" + comboBox18.Text + "\", \"" + realamount + "\", \"" + sqlFormattedDate + "\", \"" +
                             "send" + "\"";
-            DbUtils.InsertDb("suppliersorders", columns, values);
+            string o = DbUtils.InsertDb("suppliersorders", columns, values);
             List<string> idList = DbUtils.RefList("SupplierOrderId", "suppliersorders");
             int x = 0;
             foreach (string i in idList)
@@ -1701,7 +1701,7 @@ namespace ShopInterface
                 string quantity = row.Cells["Quantity"].Value.ToString();
                 string col = "SupplierOrderId,Code,Quantity";
                 string val = "\"" + supplierOrderId + "\", \"" + code + "\", \"" + quantity + "\"";
-                DbUtils.InsertDb("supplierslistsitems", col, val);
+                string z = DbUtils.InsertDb("supplierslistsitems", col, val);
                 label34.Text = DbUtils.DeleteRow("supplierspending",
                     "Code = \"" + code + "\"and Quantity = \"" + quantity + "\"");
             }
