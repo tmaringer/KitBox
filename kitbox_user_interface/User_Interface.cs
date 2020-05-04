@@ -185,15 +185,21 @@ namespace kitbox_user_interface_V1
                     {
                         string compHeight = component.size.height.ToString() ;
                         string compdepth = component.size.depth.ToString();
-                        string compWidth =component.size.width.ToString() ;
+                        string compWidth = component.size.width.ToString() ;
                         string compColour = "white";//TODO fill with colour
                         string reference = "";
                         string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
                         MySqlConnection conn = new MySqlConnection(MyConString);
                         conn.Open();
-                        List<string> prix = QueryKitbox.BigMoney(conn, reference, compHeight, compdepth, compWidth, compColour);
+                        List<string> infos = QueryKitbox.BigMoney(conn, reference, compHeight, compdepth, compWidth, compColour);
                         conn.Close();
-                        float compoPrix = Single.Parse(prix[0]);
+                        component.code = infos[0];
+                        if(Int32.Parse(infos[1]) > 0)
+                        {
+                            component.inStock = true;
+                        }
+                        component.price = Single.Parse(infos[2]);
+                        float compoPrix = Single.Parse(infos[2]);
                         prixTotal += compoPrix;
                     }
                     catch
