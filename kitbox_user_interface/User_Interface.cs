@@ -183,10 +183,10 @@ namespace kitbox_user_interface_V1
                 {
                     try
                     {
-                        string compHeight = "Height = \"" + component.size.height.ToString() + "\"";
-                        string compdepth = "Depth = \"" + component.size.depth.ToString() + "\"";
-                        string compWidth = "Width = \"" + component.size.width.ToString() + "\"";
-                        string compColour = "Colour = \"" + component.size.width.ToString() + "\"";//TODO fill with colour
+                        string compHeight = component.size.height.ToString() ;
+                        string compdepth = component.size.depth.ToString();
+                        string compWidth =component.size.width.ToString() ;
+                        string compColour = "white";//TODO fill with colour
                         string reference = "";
                         string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
                         MySqlConnection conn = new MySqlConnection(MyConString);

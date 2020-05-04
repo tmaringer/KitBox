@@ -127,11 +127,11 @@ namespace projectCS
         top,
         back,
         side
-    }
+    }//TODO : rename HL, LR, B
 
     public enum CrossBarType
     {
         front_back,
         side
-    }
+    }//TODO : new types : LR, F, B
 }
