@@ -98,8 +98,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tools class\CatalogueDB.cs" />
     <Compile Include="Tools class\ColorParse.cs" />
-    <Compile Include="Tools class\ComponentsDataSav.cs" />
     <Compile Include="Tools class\DbUtils.cs" />
     <Compile Include="order\Client.cs" />
     <Compile Include="order\OrderForm.cs" />

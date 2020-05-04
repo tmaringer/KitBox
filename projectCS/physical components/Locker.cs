@@ -59,7 +59,7 @@ namespace projectCS
         private ComponentColor _doorsColor;
         public ComponentColor doorsColor 
         { 
-            get => _doorsColor;
+            //get => _doorsColor;
             set
             {
                 foreach (CatalogueComponents catalogueCompo in _componentsList)
@@ -74,7 +74,7 @@ namespace projectCS
         private ComponentColor _panelColor;
         public ComponentColor panelColor 
         { 
-            get => _panelColor;
+            //get => _panelColor;
             set
             {
                 foreach(CatalogueComponents catalogueCompo in _componentsList)

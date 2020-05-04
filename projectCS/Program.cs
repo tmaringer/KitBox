@@ -11,7 +11,10 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            
+            CatalogueDB cb = new CatalogueDB();
+            Door d;
+            //d = (Door)cb.createComponents();
+
             Console.WriteLine("\n");
             /*
             Application.EnableVisualStyles();
