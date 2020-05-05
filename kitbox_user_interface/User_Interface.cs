@@ -217,10 +217,6 @@ namespace kitbox_user_interface_V1
                         prixTotal += compoPrix;
                         */
 
-                        
-                        CatalogueDB cdb = new CatalogueDB();
-                        Door d;
-                        d = cdb.createComponents(height, width, depth, "Door");
                     }
                     catch
                     {
