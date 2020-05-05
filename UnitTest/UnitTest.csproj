@@ -59,6 +59,7 @@
     <Compile Include="OrderFormTest.cs" />
     <Compile Include="ClientTest.cs" />
     <Compile Include="ShoppingCartTest.cs" />
+    <Compile Include="CatalogueDBTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\projectCS\projectCS.csproj">

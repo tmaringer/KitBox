@@ -41,8 +41,8 @@ namespace UnitTest
             locker3 = new Locker();
             locker4 = new Locker();
 
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR);
 
             cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
             cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);

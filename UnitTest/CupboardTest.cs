@@ -73,16 +73,16 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(21, 0, 0), false, 0, CrossBarType.front_back);
-            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new ComponentSize(11, 0, 0), false, 0, CrossBarType.front_back);
-            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new ComponentSize(8, 0, 0), false, 0, CrossBarType.front_back);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(21, 0, 0), false, 0, CrossBarType.F);
+            crossBarWithParam2 = new CrossBar(20, "referenceTest", "2", new ComponentSize(11, 0, 0), false, 0, CrossBarType.F);
+            crossBarWithParam3 = new CrossBar(20, "referenceTest", "3", new ComponentSize(8, 0, 0), false, 0, CrossBarType.F);
 
             pannel1 = new Panels();
             pannel2 = new Panels();
             pannel3 = new Panels();
             pannel4 = new Panels();
             pannel5 = new Panels();
-            pannelWithPara1 = new Panels(10, "referenceTest", "1", new ComponentSize(23, 0, 0), false, 0, ComponentColor.white, PanelsType.back);
+            pannelWithPara1 = new Panels(10, "referenceTest", "1", new ComponentSize(23, 0, 0), false, 0, ComponentColor.white, PanelsType.B);
 
             cleat1 = new Cleat();
             cleat2 = new Cleat();

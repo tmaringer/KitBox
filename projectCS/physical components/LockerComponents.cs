@@ -12,7 +12,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.side)
+        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR)
         {
         }
         public CrossBar(double price,
@@ -53,7 +53,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.side)
+        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.LR)
         {
         }
         public Panels(double price,
@@ -124,14 +124,15 @@ namespace projectCS
 
     public enum PanelsType
     {
-        top,
-        back,
-        side
-    }//TODO : rename HL, LR, B
+        HL,
+        B,
+        LR
+    }
 
     public enum CrossBarType
     {
-        front_back,
-        side
-    }//TODO : new types : LR, F, B
+        F,
+        B,
+        LR
+    }
 }

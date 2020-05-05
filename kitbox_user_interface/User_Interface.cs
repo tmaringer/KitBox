@@ -145,6 +145,7 @@ namespace kitbox_user_interface_V1
                 CatalogueDB cb = new CatalogueDB();
 
                 Cleat cleat1 = (Cleat)cb.createComponents(depth, width, depth, "Cleat");
+                
                 Door door1 = (Door)cb.createComponents(depth, width, depth, "Door");
                 
                 Panels panelsHB = (Panels)cb.createComponents(depth, width, depth, "Panels");
@@ -174,16 +175,16 @@ namespace kitbox_user_interface_V1
                 panelsHB.size = new ComponentSize(0, width, depth);
                 panelsHB.type = PanelsType.top;
                 panelsGD.size = new ComponentSize(height, 0, depth);
-                panelsGD.type = PanelsType.side;
+                panelsGD.type = PanelsType.LR;
                 panelsAR.size = new ComponentSize(height, width, 0);
-                panelsAR.type = PanelsType.back;
+                panelsAR.type = PanelsType.B;
 
                 crossBarAV.size = new ComponentSize(0, width, 0);
-                crossBarAV.type = CrossBarType.front_back;
+                crossBarAV.type = CrossBarType.F;
                 crossBarAR.size = new ComponentSize(0, width, 0);
-                crossBarAR.type = CrossBarType.front_back;
+                crossBarAR.type = CrossBarType.F;
                 crossBarGD.size = new ComponentSize(0, 0, depth);
-                crossBarGD.type = CrossBarType.side;
+                crossBarGD.type = CrossBarType.LR;
                 */
 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
