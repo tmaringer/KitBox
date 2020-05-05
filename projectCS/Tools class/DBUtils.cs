@@ -374,5 +374,31 @@ namespace projectCS
             }
             return columnString;
         }
+        public static List<string> BigMoney(MySqlConnection conn, string reference, string height, string depth, string width, string colour)
+        {
+            List<string> result = new List<string>();
+            string sql = "Select Code, Instock, CustPrice from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"" + colour + "\"";
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = sql
+            };
+            {
+                DbDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal("CustPrice"));
+                        if (!result.Contains(WhereSQLAnswer))
+                        {
+                            result.Add(WhereSQLAnswer);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
