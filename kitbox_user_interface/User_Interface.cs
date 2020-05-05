@@ -139,16 +139,16 @@ namespace kitbox_user_interface_V1
                 */
                 CatalogueDB cb = new CatalogueDB();
 
-                Cleat cleat1 = (Cleat)cb.createComponents(depth, width, 5, "Cleat");
-                Door door1 = (Door)cb.createComponents(depth, width, 5, "Door");
+                Cleat cleat1 = (Cleat)cb.createComponents(depth, width, depth, "Cleat");
+                Door door1 = (Door)cb.createComponents(depth, width, depth, "Door");
                 
-                Panels panelsHB = (Panels)cb.createComponents(depth, width, 5, "Panels");
-                Panels panelsGD = (Panels)cb.createComponents(depth, width, 5, "Panels");
-                Panels panelsAR = (Panels)cb.createComponents(depth, width, 5, "Panels");
+                Panels panelsHB = (Panels)cb.createComponents(depth, width, depth, "Panels");
+                Panels panelsGD = (Panels)cb.createComponents(depth, width, depth, "Panels");
+                Panels panelsAR = (Panels)cb.createComponents(depth, width, depth, "Panels");
 
-                CrossBar crossBarAV = (CrossBar)cb.createComponents(depth, width, 5, "CrossBar");
-                CrossBar crossBarAR = (CrossBar)cb.createComponents(depth, width, 5, "CrossBar");
-                CrossBar crossBarGD = (CrossBar)cb.createComponents(depth, width, 5, "CrossBar");
+                CrossBar crossBarAV = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
+                CrossBar crossBarAR = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
+                CrossBar crossBarGD = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
 
 
 
