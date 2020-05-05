@@ -124,6 +124,11 @@ namespace kitbox_user_interface_V1
             // check that the object fields are filled
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
             {
+                int height = Int32.Parse(comboBox5.SelectedItem.ToString());
+                string doorsColor = comboBox6.SelectedItem.ToString();
+                string panelColor = comboBox7.SelectedItem.ToString();
+
+
                 Locker locker = new Locker();
 
                 Cleat cleat1 = new Cleat();
@@ -138,14 +143,12 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarGD = new CrossBar();
 
                 CatalogueDB cb = new CatalogueDB();
-                CrossBar crossBarGDrtgrt = (CrossBar)cb.createComponents(depth, width, "CrossBar");
+                CrossBar crossBarGDrtgrt = (CrossBar)cb.createComponents(height, depth, width, "CrossBar");
 
 
 
 
-                int height = Int32.Parse(comboBox5.SelectedItem.ToString());
-                string doorsColor = comboBox6.SelectedItem.ToString();
-                string panelColor = comboBox7.SelectedItem.ToString();
+                
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
@@ -211,7 +214,7 @@ namespace kitbox_user_interface_V1
                         
                         CatalogueDB cdb = new CatalogueDB();
                         Door d;
-                        d = cdb.createComponents(height, width, depth, "Door");
+                        d = (Door)cdb.createComponents(height, width, depth, "Door");
                     }
                     catch
                     {
