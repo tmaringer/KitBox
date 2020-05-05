@@ -130,7 +130,7 @@ namespace kitbox_user_interface_V1
 
 
                 Locker locker = new Locker();
-
+                /*
                 Cleat cleat1 = new Cleat();
                 Door door1 = new Door();
 
@@ -141,9 +141,19 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarAV = new CrossBar();
                 CrossBar crossBarAR = new CrossBar();
                 CrossBar crossBarGD = new CrossBar();
-
+                */
                 CatalogueDB cb = new CatalogueDB();
 
+                Cleat cleat1 = (Cleat)cb.createComponents(depth, width, depth, "Cleat");
+                Door door1 = (Door)cb.createComponents(depth, width, depth, "Door");
+                
+                Panels panelsHB = (Panels)cb.createComponents(depth, width, depth, "Panels");
+                Panels panelsGD = (Panels)cb.createComponents(depth, width, depth, "Panels");
+                Panels panelsAR = (Panels)cb.createComponents(depth, width, depth, "Panels");
+
+                CrossBar crossBarAV = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
+                CrossBar crossBarAR = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
+                CrossBar crossBarGD = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
 
 
 
