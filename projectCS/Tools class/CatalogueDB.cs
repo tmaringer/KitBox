@@ -19,9 +19,13 @@ namespace projectCS.Tools_class
             switch (typeObj)
             {
                 case "CrossBar":
-                    //return new CrossBar(height, width);
+                    return new CrossBar();
                 case "Door":
-                    //return new Door(height, width);
+                    return new Door();
+                case "Panels":
+                    return new Panels();
+                case "Cleat":
+                    return new Cleat();
                 default:
                     break;
             }
