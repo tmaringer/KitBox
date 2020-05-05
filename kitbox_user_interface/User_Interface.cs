@@ -191,7 +191,7 @@ namespace kitbox_user_interface_V1
                         string compdepth = component.size.depth.ToString();
                         string compWidth = component.size.width.ToString() ;
                         string compColour = "white";//TODO fill with colour
-                        string reference = "";
+                        string reference = component.GetType().ToString() ;//works ?
                         string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
                         MySqlConnection conn = new MySqlConnection(MyConString);
                         conn.Open();
@@ -208,7 +208,7 @@ namespace kitbox_user_interface_V1
                     }
                     catch
                     {
-                        MessageBox.Show("fail");
+                        //MessageBox.Show("fail");
                     }
                 }
 
@@ -323,12 +323,16 @@ namespace kitbox_user_interface_V1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string ticket = "";
+            string ticket;
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 ticket = component.ToString();
                 MessageBox.Show(ticket);
             }
+            this.Hide();
+            Form_purchase validation = new Form_purchase();
+            validation.Show();
+            validation.FormClosed += new FormClosedEventHandler(Form_purchase_FormClosed);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -337,7 +341,10 @@ namespace kitbox_user_interface_V1
             textBox8.Text = ShoppingCart.currentLocker.ToString();
         }
 
-        
+        void Form_purchase_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+        }
     }
 
 }

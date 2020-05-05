@@ -38,8 +38,9 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(159, 26);
             this.textBox3.TabIndex = 4;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            //this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
@@ -152,6 +153,13 @@
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 8;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
             // textBox6
             // 
             this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -166,12 +174,15 @@
             this.textBox6.TabIndex = 42;
             this.textBox6.Text = "Order preview";
             // 
-            // Price
+            // button1
             // 
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 8;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
+            this.button1.Location = new System.Drawing.Point(12, 271);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 34);
+            this.button1.TabIndex = 44;
+            this.button1.Text = "validate";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form_purchase
             // 
@@ -179,6 +190,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(806, 642);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
@@ -188,7 +200,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form_purchase";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            //this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -209,5 +221,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.Button button1;
     }
 }
