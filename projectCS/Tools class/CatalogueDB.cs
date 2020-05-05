@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,12 +10,15 @@ namespace projectCS.Tools_class
 {
     public class CatalogueDB
     {
+        private static string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
+        private MySqlConnection conn;
+
         public CatalogueDB()
         {
-
+            //conn = "quelque chose";
         }
 
-        public CatalogueComponents createComponents(int height, int width, string typeObj)
+        public CatalogueComponents createComponents(int height, int width, int depth, string typeObj)
         {
             switch (typeObj)
             {
@@ -31,5 +35,6 @@ namespace projectCS.Tools_class
             }
             return new Door();
         }
+
     }
 }
