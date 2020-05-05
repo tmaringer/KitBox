@@ -196,6 +196,7 @@ namespace kitbox_user_interface_V1
                 {
                     try
                     {
+                        /*
                         string compHeight = component.size.height.ToString() ;
                         string compdepth = component.size.depth.ToString();
                         string compWidth = component.size.width.ToString() ;
@@ -214,6 +215,12 @@ namespace kitbox_user_interface_V1
                         component.price = Single.Parse(infos[2]);
                         float compoPrix = Single.Parse(infos[2]);
                         prixTotal += compoPrix;
+                        */
+
+                        
+                        CatalogueDB cdb = new CatalogueDB();
+                        Door d;
+                        d = cdb.createComponents(height, width, depth, "Door");
                     }
                     catch
                     {
