@@ -137,8 +137,12 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarAR = new CrossBar();
                 CrossBar crossBarGD = new CrossBar();
 
+                CatalogueDB cb = new CatalogueDB();
+                CrossBar crossBarGDrtgrt = (CrossBar)cb.createComponents(depth, width, "CrossBar");
 
-                
+
+
+
                 int height = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string doorsColor = comboBox6.SelectedItem.ToString();
                 string panelColor = comboBox7.SelectedItem.ToString();
