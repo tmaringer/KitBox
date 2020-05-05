@@ -143,12 +143,10 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarGD = new CrossBar();
 
                 CatalogueDB cb = new CatalogueDB();
-                CrossBar crossBarGDrtgrt = (CrossBar)cb.createComponents(height, depth, width, "CrossBar");
 
 
 
 
-                
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
@@ -159,7 +157,7 @@ namespace kitbox_user_interface_V1
                 locker.height = height;
                 locker.depth = depth;
                 locker.width = width;
-
+                /*
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
 
@@ -176,6 +174,7 @@ namespace kitbox_user_interface_V1
                 crossBarAR.type = CrossBarType.front_back;
                 crossBarGD.size = new ComponentSize(0, 0, depth);
                 crossBarGD.type = CrossBarType.side;
+                */
 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         door1, door1,
@@ -211,10 +210,6 @@ namespace kitbox_user_interface_V1
                         prixTotal += compoPrix;
                         */
 
-                        
-                        CatalogueDB cdb = new CatalogueDB();
-                        Door d;
-                        d = (Door)cdb.createComponents(height, width, depth, "Door");
                     }
                     catch
                     {
