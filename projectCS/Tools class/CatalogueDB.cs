@@ -1,21 +1,25 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using kitbox_user_interface_V1;
 
 namespace projectCS.Tools_class
 {
     public class CatalogueDB
     {
+        private static string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
+        private MySqlConnection conn;
+
         public CatalogueDB()
         {
-
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
         }
 
-        public CatalogueComponents createComponents(int height, int width, string typeObj)
+        public CatalogueComponents createComponents(int height, int width, int depth, string typeObj)
         {
+            float pricewidth;
+            List<string> infos = QueryKitbox.BigMoney(conn, typeObj, height, depth, width, ComponentColor.black);
+
             switch (typeObj)
             {
                 case "CrossBar":
@@ -31,5 +35,6 @@ namespace projectCS.Tools_class
             }
             return new Door();
         }
+
     }
 }
