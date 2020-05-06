@@ -1,4 +1,5 @@
-﻿using System;
+﻿using projectCS.Tools_class;
+using System;
 
 namespace projectCS
 {
@@ -11,7 +12,7 @@ namespace projectCS
         public double price
         {
             get => _price;
-            set => _price = value;
+            set => _price = ConvertDoubleToPrice.convertToPrice(value);
         }
 
         protected string _reference;

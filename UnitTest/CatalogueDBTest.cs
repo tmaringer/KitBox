@@ -20,8 +20,8 @@ namespace UnitTest
         [TestMethod]
         public void createComponentTest()
         {
-            cleat1 = (Cleat)catalogueDB.createComponents(32, 32, 32, "Cleat");
-            Assert.AreEqual(0.2, cleat1);
+            cleat1 = (Cleat)catalogueDB.createComponents(32, 0, 0, "Cleat");
+            Assert.AreEqual(0.2, cleat1.price);
         }
     }
 }
