@@ -48,7 +48,7 @@ namespace projectCS.Tools_class
 
             // 0 = code, 1 = in stock, 2 = price
             List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
-            string price = infos[0];
+            string price = infos[2];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], "f", size, 5 > 0, 0, color);
@@ -61,7 +61,7 @@ namespace projectCS.Tools_class
 
             // 0 = code, 1 = in stock, 2 = price
             List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
-            string price = infos[0];
+            string price = infos[2];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], "f", size, 5 > 0, 0, color, panelsType);
@@ -74,7 +74,7 @@ namespace projectCS.Tools_class
 
             // 0 = code, 1 = in stock, 2 = price
             List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
-            string price = infos[0];
+            string price = infos[2];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], "f", size, 5 > 0, 0, crossType);

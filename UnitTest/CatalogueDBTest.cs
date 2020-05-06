@@ -9,6 +9,10 @@ namespace UnitTest
     public class CatalogueDBTest
     {
         private Cleat cleat1;
+        private Door door1;
+        private CrossBar crossBar1;
+        private Panels panel1;
+
         private CatalogueDB catalogueDB;
 
         [TestInitialize()]
@@ -18,10 +22,31 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void createComponentTest()
+        public void createComponentTest1()
         {
             cleat1 = (Cleat)catalogueDB.createComponents(32, 0, 0, "Cleat");
             Assert.AreEqual(0.2, cleat1.price);
+        }
+
+        [TestMethod]
+        public void createComponentTest2()
+        {
+            door1 = (Door)catalogueDB.createComponents(32, 62, 0, ComponentColor.brown, "Door");
+            Assert.AreEqual(9.92, door1.price);
+        }
+
+        [TestMethod]
+        public void createComponentTest3()
+        {
+            crossBar1 = (CrossBar)catalogueDB.createComponents(32, 0, 0, "CrossBar");
+            Assert.AreEqual(0.2, crossBar1.price);
+        }
+
+        [TestMethod]
+        public void createComponentTest4()
+        {
+            panel1 = (Panels)catalogueDB.createComponents(32, 0, 0, "Panels");
+            Assert.AreEqual(0.2, panel1.price);
         }
     }
 }
