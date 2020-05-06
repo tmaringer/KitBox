@@ -12,7 +12,7 @@ namespace projectCS
         public double price
         {
             get => _price;
-            set => _price = ConvertDoubleToPrice.convertToPrice(value);
+            set => _price = value;
         }
 
         protected string _reference;

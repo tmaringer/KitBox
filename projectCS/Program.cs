@@ -11,13 +11,12 @@ namespace projectCS
     {
         static void Main(string[] args)
         {
-            /*
+            
             CatalogueDB catalogueDB = new CatalogueDB();
-            Cleat cleat1;
-            cleat1 = (Cleat)catalogueDB.createComponents(32, 32, 32, "Cleat");
-            */
-            double x = ConvertDoubleToPrice.convertToPrice(6.145);
-            Console.WriteLine(Math.Round(x,3));
+            Door cleat1;
+            cleat1 = (Door)catalogueDB.createComponents(32, 62, 0, ComponentColor.brown, "Door");
+            
+            Console.WriteLine(cleat1);
             Console.WriteLine("\n");
             /*
             Application.EnableVisualStyles();
