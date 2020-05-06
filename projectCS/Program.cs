@@ -13,8 +13,8 @@ namespace projectCS
         {
             
             CatalogueDB catalogueDB = new CatalogueDB();
-            Cleat cleat1;
-            cleat1 = (Cleat)catalogueDB.createComponents(32, 0, 0, "Cleat");
+            Door cleat1;
+            cleat1 = (Door)catalogueDB.createComponents(32, 62, 0, "Door");
             
             Console.WriteLine(cleat1);
             Console.WriteLine("\n");
