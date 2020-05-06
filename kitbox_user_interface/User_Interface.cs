@@ -148,9 +148,9 @@ namespace kitbox_user_interface_V1
                 
                 Door door1 = (Door)cb.createComponents(depth, width, depth, "Door");
                 
-                Panels panelsHB = (Panels)cb.createComponents(depth, width, depth, "Panels");
-                Panels panelsGD = (Panels)cb.createComponents(depth, width, depth, "Panels");
-                Panels panelsAR = (Panels)cb.createComponents(depth, width, depth, "Panels");
+                Panels panelsHB = (Panels)cb.createComponents(depth, width, depth, "Panel");
+                Panels panelsGD = (Panels)cb.createComponents(depth, width, depth, "Panel");
+                Panels panelsAR = (Panels)cb.createComponents(depth, width, depth, "Panel");
 
                 CrossBar crossBarAV = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
                 CrossBar crossBarAR = (CrossBar)cb.createComponents(depth, width, depth, "CrossBar");
