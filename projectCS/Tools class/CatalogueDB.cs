@@ -34,7 +34,7 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
             string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
@@ -47,7 +47,7 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
             string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
