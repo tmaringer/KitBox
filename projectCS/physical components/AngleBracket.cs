@@ -22,12 +22,6 @@ namespace projectCS
             }
         }
 
-        public double price
-        {
-            get => _price;
-            set => _price = ConvertDoubleToPrice.convertToPrice(value);
-        }
-
         public int height
         {
             get => _size.height;
