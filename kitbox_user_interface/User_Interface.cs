@@ -163,7 +163,7 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarLR = (CrossBar)cb.createComponents(0, 0, depth, CrossBarType.LR, "CrossBar");
 
                 
-
+                 
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
@@ -202,41 +202,7 @@ namespace kitbox_user_interface_V1
 
                 //premier essai de calcul de prix
                 float prixTotal = 0;
-                foreach(CatalogueComponents component in locker.componentsList)
-                {
-                    try
-                    {
-                        /*
-                        string compHeight = component.size.height.ToString() ;
-                        string compdepth = component.size.depth.ToString();
-                        string compWidth = component.size.width.ToString() ;
-                        string compColour = "white";//TODO fill with colour
-                        string reference = component.GetType().ToString() ;//works ?
-                        string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
-                        MySqlConnection conn = new MySqlConnection(MyConString);
-                        conn.Open();
-                        List<string> infos = QueryKitbox.BigMoney(conn, reference, compHeight, compdepth, compWidth, compColour);
-                        conn.Close();
-                        component.code = infos[0];
-                        if(Int32.Parse(infos[1]) > 0)
-                        {
-                            component.inStock = true;
-                        }
-                        component.price = Single.Parse(infos[2]);
-                        float compoPrix = Single.Parse(infos[2]);
-                        prixTotal += compoPrix;
-                        */
-
-                    }
-                    catch
-                    {
-                        //MessageBox.Show("fail");
-                    }
-                }
-
-
-
-
+                
 
                 // met dans le order preview
                 dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor,prixTotal.ToString());
