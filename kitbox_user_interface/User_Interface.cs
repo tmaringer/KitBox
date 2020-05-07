@@ -174,6 +174,7 @@ namespace kitbox_user_interface_V1
                 locker.height = height;
                 locker.depth = depth;
                 locker.width = width;
+               
                 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
@@ -250,9 +251,7 @@ namespace kitbox_user_interface_V1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int currentLocker = ShoppingCart.currentLocker;
-
-            int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
+            int formerHeight = Int32.Parse(dataGridView1[1, ShoppingCart.currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
 
@@ -275,8 +274,7 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
-                    //TODO mettre le prix à jour
-                    dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
+                    dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor);
 
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
