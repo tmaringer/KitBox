@@ -35,11 +35,14 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
-            string price = infos[0];
-            ComponentSize size = new ComponentSize(height, width, depth);
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]; 
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
 
-            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], "f", size, 5 > 0, 0);
+            ComponentSize size = new ComponentSize(height, width, depth);
+            conn.Close();
+
+            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock, 0);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, string typeObj)
@@ -48,11 +51,14 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
-            string price = infos[0];
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
+            
             ComponentSize size = new ComponentSize(height, width, depth);
+            conn.Close();
 
-            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], "f", size, 5 > 0, 0, color);
+            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], code, size, inStock, 0, color);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, PanelsType panelsType, string typeObj)
@@ -61,12 +67,15 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
-            string price = infos[0];
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType); 
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
+            
             ComponentSize size = new ComponentSize(height, width, depth);
+            conn.Close();
 
-            return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], "f", size, 5 > 0, 0, color, panelsType);
+            return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], code, size, inStock, 0, color, panelsType);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, CrossBarType crossType, string typeObj)
@@ -76,11 +85,14 @@ namespace projectCS.Tools_class
 
             // 0 = code, 1 = in stock, 2 = price
             typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(crossType);
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
-            string price = infos[0];
-            ComponentSize size = new ComponentSize(height, width, depth);
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0]) > 0;
 
-            return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], "f", size, 5 > 0, 0, crossType);
+            ComponentSize size = new ComponentSize(height, width, depth);
+            conn.Close();
+
+            return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, 0, crossType);
         }
 
     }
