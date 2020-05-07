@@ -57,7 +57,11 @@ namespace projectCS.Tools_class
 
             // 0 = code, 1 = in stock, 2 = price
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            conn.Close();
+            conn.Open();
             string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            conn.Close();
+            conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
             
             ComponentSize size = new ComponentSize(height, width, depth);
@@ -74,7 +78,11 @@ namespace projectCS.Tools_class
             // 0 = code, 1 = in stock, 2 = price
             typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType); 
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            conn.Close();
+            conn.Open();
             string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            conn.Close();
+            conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
             
             ComponentSize size = new ComponentSize(height, width, depth);
@@ -91,7 +99,11 @@ namespace projectCS.Tools_class
             // 0 = code, 1 = in stock, 2 = price
             typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(crossType);
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            conn.Close();
+            conn.Open();
             string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            conn.Close();
+            conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0]) > 0;
 
             ComponentSize size = new ComponentSize(height, width, depth);

@@ -398,7 +398,7 @@ namespace projectCS
 
                     while (reader.Read())
                     {
-                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal("CustPrice"));
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal(target));
                         if (!result.Contains(WhereSQLAnswer))
                         {
                             result.Add(WhereSQLAnswer);
