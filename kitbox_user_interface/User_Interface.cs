@@ -121,13 +121,32 @@ namespace kitbox_user_interface_V1
             int depth = ShoppingCart.depthChosen;
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
+            
+
+
+
+
             // check that the object fields are filled
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
             {
                 int height = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string doorsColor = comboBox6.SelectedItem.ToString();
                 string panelColor = comboBox7.SelectedItem.ToString();
-
+                int doorWidth = 0; ;
+                if (doorsColor!="none")
+                {
+                    if (width >= 62)
+                    {
+                        if (width == 62)
+                        {
+                            doorWidth = 31;
+                        }
+                        else
+                        {
+                            doorWidth = width / 2 + 2;
+                        }
+                    }
+                }
 
                 Locker locker = new Locker();
                 /*
@@ -145,8 +164,10 @@ namespace kitbox_user_interface_V1
                 CatalogueDB cb = new CatalogueDB();
 
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
-                
-                Door door1 = (Door)cb.createComponents(height, width, 0, "Door");
+                if (doorsColor != "none")
+                {
+                    Door door1 = (Door)cb.createComponents(height, doorWidth, 0, "Door");
+                    locker.addComponent(new List<CatalogueComponents>(){ door1, door1 });
                 
                 Panels panelsHB = (Panels)cb.createComponents(0, width, depth, "Panel");
                 Panels panelsGD = (Panels)cb.createComponents(height, 0, depth, "Panel");
@@ -188,7 +209,6 @@ namespace kitbox_user_interface_V1
                 */
 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
-                                                                        door1, door1,
                                                                         panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
                                                                         crossBarAV, crossBarAV, crossBarAR, crossBarAR,
                                                                         crossBarGD, crossBarGD, crossBarGD, crossBarGD });

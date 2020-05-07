@@ -380,11 +380,11 @@ namespace projectCS
             string sql;
             if (colour.Length == 0)
             {
-                sql = "Select Code, Instock, CustPrice from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"\"";
+                sql = "Select CustPrice from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"\"";
             }
             else
             {
-                sql = "Select Code, Instock, CustPrice from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"" + colour + "\"";
+                sql = "Select CustPrice from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"" + colour + "\"";
             }
             MySqlCommand cmd = new MySqlCommand
             {
