@@ -121,10 +121,6 @@ namespace kitbox_user_interface_V1
             int depth = ShoppingCart.depthChosen;
             int numberOfLocker = ShoppingCart.boxNumberChosen;
 
-            
-
-
-
 
             // check that the object fields are filled
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
@@ -149,24 +145,13 @@ namespace kitbox_user_interface_V1
                 }
 
                 Locker locker = new Locker();
-                /*
-                Cleat cleat1 = new Cleat();
-                Door door1 = new Door();
-
-                Panels panelsHL = new Panels();
-                Panels panelsLR = new Panels();
-                Panels panelsB = new Panels();
-
-                CrossBar crossBarF = new CrossBar();
-                CrossBar crossBarB = new CrossBar();
-                CrossBar crossBarLR = new CrossBar();
-                */
+               
                 CatalogueDB cb = new CatalogueDB();
                 
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
                 if (doorsColor != "none")
                 {
-                    Door door1 = (Door)cb.createComponents(height, doorWidth, 0, "Door");
+                    Door door1 = (Door)cb.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(doorsColor), "Door");
                     locker.addComponent(new List<CatalogueComponents>() { door1, door1 });
                 }
                 Panels panelsHL = (Panels)cb.createComponents(0, width, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.HL, "Panel");

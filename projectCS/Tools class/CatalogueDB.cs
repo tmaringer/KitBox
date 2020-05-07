@@ -10,6 +10,7 @@ namespace projectCS.Tools_class
         private static string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
         private MySqlConnection conn;
 
+
         public CatalogueDB()
         {
         }
