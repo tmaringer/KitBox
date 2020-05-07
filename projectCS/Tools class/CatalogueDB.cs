@@ -28,6 +28,7 @@ namespace projectCS.Tools_class
             
         }
 
+
         public CatalogueComponents createComponents(int height, int width, int depth, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
@@ -47,8 +48,8 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
-            string price = infos[2];
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
+            string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], "f", size, 5 > 0, 0, color);
@@ -60,8 +61,9 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
-            string price = infos[2];
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
+            string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], "f", size, 5 > 0, 0, color, panelsType);
@@ -73,8 +75,9 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(crossType);
             List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
-            string price = infos[2];
+            string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], "f", size, 5 > 0, 0, crossType);

@@ -81,7 +81,7 @@ namespace kitbox_user_interface_V1
 
             if (comboBox1.SelectedItem != null && comboBox2.SelectedItem != null && comboBox3.SelectedItem != null && comboBox4.SelectedItem != null)
             {
-                ComponentColor color1 = ColorParse.parseToEnum(comboBox4.SelectedItem.ToString());
+                ComponentColor color1 = EnumParse.parseColorStrToEnum(comboBox4.SelectedItem.ToString());
                 int numberOfLockers = Int32.Parse(comboBox1.SelectedItem.ToString());
                 int width = Int32.Parse(comboBox2.SelectedItem.ToString());
                 int depth = Int32.Parse(comboBox3.SelectedItem.ToString());
@@ -162,7 +162,7 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarGD = new CrossBar();
                 */
                 CatalogueDB cb = new CatalogueDB();
-
+                /*
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
                 if (doorsColor != "none")
                 {
@@ -177,15 +177,15 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarAR = (CrossBar)cb.createComponents(0, width, 0, "CrossBar");
                 CrossBar crossBarGD = (CrossBar)cb.createComponents(0, 0, depth, "CrossBar");
 
-
+                */
 
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
 
 
-                locker.panelColor = ColorParse.parseToEnum(panelColor);
-                locker.doorsColor = ColorParse.parseToEnum(doorsColor);
+                locker.panelColor = EnumParse.parseColorStrToEnum(panelColor);
+                locker.doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
                 locker.height = height;
                 locker.depth = depth;
                 locker.width = width;
@@ -207,11 +207,12 @@ namespace kitbox_user_interface_V1
                 crossBarGD.size = new ComponentSize(0, 0, depth);
                 crossBarGD.type = CrossBarType.LR;
                 */
-
+                /*
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
                                                                         crossBarAV, crossBarAV, crossBarAR, crossBarAR,
                                                                         crossBarGD, crossBarGD, crossBarGD, crossBarGD });
+                                                                        */
                 ShoppingCart.addCupboardComponent(locker);
 
                 //premier essai de calcul de prix
@@ -344,8 +345,8 @@ namespace kitbox_user_interface_V1
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
 
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
-                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = ColorParse.parseToEnum(doorsColor);
-                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = ColorParse.parseToEnum(panelColor);
+                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
+                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker);
                 }
                 else

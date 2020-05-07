@@ -38,15 +38,15 @@ namespace UnitTest
         [TestMethod]
         public void createComponentTest3()
         {
-            crossBar1 = (CrossBar)catalogueDB.createComponents(32, 0, 0, "CrossBar");
-            Assert.AreEqual(0.2, crossBar1.price);
+            crossBar1 = (CrossBar)catalogueDB.createComponents(0, 32, 0, CrossBarType.B, "Crossbar");
+            Assert.AreEqual(1, crossBar1.price);
         }
 
         [TestMethod]
         public void createComponentTest4()
         {
-            panel1 = (Panels)catalogueDB.createComponents(32, 0, 0, "Panels");
-            Assert.AreEqual(0.2, panel1.price);
+            panel1 = (Panels)catalogueDB.createComponents(32, 100, 0, ComponentColor.brown, PanelsType.B, "Panel");
+            Assert.AreEqual(12,8, panel1.price);
         }
     }
 }
