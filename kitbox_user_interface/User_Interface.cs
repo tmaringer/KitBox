@@ -201,7 +201,7 @@ namespace kitbox_user_interface_V1
                 ShoppingCart.addCupboardComponent(locker);
 
                 //premier essai de calcul de prix
-                float prixTotal = 0;
+                double prixTotal = locker.price;
                 foreach(CatalogueComponents component in locker.componentsList)
                 {
                     try
