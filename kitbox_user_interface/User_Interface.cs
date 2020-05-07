@@ -209,7 +209,6 @@ namespace kitbox_user_interface_V1
                 */
                 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
-                                                                        door1, door1,
                                                                         panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
                                                                         crossBarF, crossBarF, crossBarB, crossBarB,
                                                                         crossBarLR, crossBarLR, crossBarLR, crossBarLR });
