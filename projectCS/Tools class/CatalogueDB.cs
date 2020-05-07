@@ -32,15 +32,20 @@ namespace projectCS.Tools_class
         public CatalogueComponents createComponents(int height, int width, int depth, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
-            conn.Open();
+
 
             // 0 = code, 1 = in stock, 2 = price
+            conn.Open();
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
-            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]; 
-            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
-
-            ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
+            conn.Open();
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
+            conn.Close();
+            conn.Open();
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
+            conn.Close();
+            ComponentSize size = new ComponentSize(height, width, depth);
+            
 
             return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock, 0);
         }
