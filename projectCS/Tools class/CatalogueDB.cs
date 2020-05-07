@@ -39,7 +39,7 @@ namespace projectCS.Tools_class
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
             conn.Close();
             conn.Open();
-            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
+            //string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
             conn.Close();
             conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
@@ -47,7 +47,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             
 
-            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock, 0);
+            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], "zz", size, inStock, 0);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, string typeObj)
