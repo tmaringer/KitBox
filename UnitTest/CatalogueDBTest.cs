@@ -45,8 +45,8 @@ namespace UnitTest
         [TestMethod]
         public void createComponentTest4()
         {
-            panel1 = (Panels)catalogueDB.createComponents(32, 0, 0, "Panels");
-            Assert.AreEqual(0.2, panel1.price);
+            panel1 = (Panels)catalogueDB.createComponents(32, 100, 0, ComponentColor.brown, PanelsType.B, "Panel");
+            Assert.AreEqual(12,8, panel1.price);
         }
     }
 }
