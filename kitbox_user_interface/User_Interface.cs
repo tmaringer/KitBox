@@ -174,24 +174,6 @@ namespace kitbox_user_interface_V1
                 locker.height = height;
                 locker.depth = depth;
                 locker.width = width;
-                /*
-                cleat1.size = new ComponentSize(height, width, 0);
-                door1.size = new ComponentSize(height, width, 0);
-
-                panelsHL.size = new ComponentSize(0, width, depth);
-                panelsHL.type = PanelsType.top;
-                panelsLR.size = new ComponentSize(height, 0, depth);
-                panelsLR.type = PanelsType.LR;
-                panelsB.size = new ComponentSize(height, width, 0);
-                panelsB.type = PanelsType.B;
-
-                crossBarF.size = new ComponentSize(0, width, 0);
-                crossBarF.type = CrossBarType.F;
-                crossBarB.size = new ComponentSize(0, width, 0);
-                crossBarB.type = CrossBarType.F;
-                crossBarLR.size = new ComponentSize(0, 0, depth);
-                crossBarLR.type = CrossBarType.LR;
-                */
                 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
@@ -201,7 +183,7 @@ namespace kitbox_user_interface_V1
                 ShoppingCart.addCupboardComponent(locker);
 
                 //premier essai de calcul de prix
-                float prixTotal = 0;
+                double prixTotal = locker.price;
                 
 
                 // met dans le order preview
