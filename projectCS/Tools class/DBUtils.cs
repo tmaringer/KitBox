@@ -408,6 +408,6 @@ namespace projectCS
             }
             return result;
         }
-        //"Select Code, CustPrice, InStock from kitbox where Height = 32 and Depth = 32 and Width = 32 and Colour = white and Ref= Panel LR
+        //"Select Code, CustPrice, Instock from kitbox where Height = 32 and Depth = 32 and Width = 32 and Colour = white and Ref= Panel LR
     }
 }

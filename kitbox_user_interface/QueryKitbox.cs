@@ -62,10 +62,10 @@ namespace kitbox_user_interface_V1
             return result;
         }
 
-        public static List<string> PriceAndCode (MySqlConnection conn, string height, string depth, string width, string colour)
+        public static List<string> Code (MySqlConnection conn, string height, string depth, string width, string colour)
         {
             List<string> result = new List<string>();
-            string sql = "Select Code, CustPrice from kitbox where " + height + " and " + depth + " and " + width + " and " + colour;
+            string sql = "Select Code from kitbox where " + height + " and " + depth + " and " + width + " and " + colour;
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,

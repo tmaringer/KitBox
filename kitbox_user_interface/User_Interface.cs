@@ -167,8 +167,8 @@ namespace kitbox_user_interface_V1
                 if (doorsColor != "none")
                 {
                     Door door1 = (Door)cb.createComponents(height, doorWidth, 0, "Door");
-                    locker.addComponent(new List<CatalogueComponents>(){ door1, door1 });
-                
+                    locker.addComponent(new List<CatalogueComponents>() { door1, door1 });
+                }
                 Panels panelsHL = (Panels)cb.createComponents(0, width, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.HL, "Panel");
                 Panels panelsLR = (Panels)cb.createComponents(height, 0, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.LR, "Panel");
                 Panels panelsB = (Panels)cb.createComponents(height, width, 0, EnumParse.parseColorStrToEnum(panelColor), PanelsType.B, "Panel");
