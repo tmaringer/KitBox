@@ -13,7 +13,7 @@ namespace UnitTest
         public void testsInitialize()
         {
             angleBracket1 = new AngleBracket();
-            angleBracketParam1 = new AngleBracket(5, "testtest", "codetest", new ComponentSize(12, 0, 0), false, 12, ComponentColor.white);
+            angleBracketParam1 = new AngleBracket(5, "testtest", "codetest", new ComponentSize(12, 0, 0), false, ComponentColor.white);
         }
 
         [TestMethod]

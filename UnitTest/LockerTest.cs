@@ -67,8 +67,8 @@ namespace UnitTest
             crossBar6 = new CrossBar();
             crossBar7 = new CrossBar();
             crossBar8 = new CrossBar();
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, 0, CrossBarType.LR);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, 0, CrossBarType.LR);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 10, 10), false, CrossBarType.LR);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(4, 20, 20), false, CrossBarType.LR);
 
             pannel1 = new Panels();
             pannel2 = new Panels();
@@ -80,12 +80,12 @@ namespace UnitTest
             cleat2 = new Cleat();
             cleat3 = new Cleat();
             cleat4 = new Cleat();
-            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(11, 7, 8), false, 0);
-            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(17, 3, 5), false, 0);
+            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(11, 7, 8), false);
+            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(17, 3, 5), false);
 
             door1 = new Door();
-            doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(32, 0, 0), false, 0, ComponentColor.white);
-            doorWithParam2 = new Door(40, "referenceTest", "1", new ComponentSize(4, 6, 5), false, 0, ComponentColor.white);
+            doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(32, 0, 0), false, ComponentColor.white);
+            doorWithParam2 = new Door(40, "referenceTest", "1", new ComponentSize(4, 6, 5), false, ComponentColor.white);
 
             catalogueComponentsListEmpty = new List<CatalogueComponents>();
             catalogueComponentsListWith3 = new List<CatalogueComponents>() { crossBar1, cleat1, door1 };

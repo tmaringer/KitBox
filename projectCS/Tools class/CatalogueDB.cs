@@ -1,17 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +12,6 @@ namespace projectCS.Tools_class
 
         public CatalogueDB()
         {
-            
         }
 
 
@@ -39,7 +25,7 @@ namespace projectCS.Tools_class
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
             conn.Close();
             conn.Open();
-            //string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
             conn.Close();
             conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
@@ -47,7 +33,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             
 
-            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], "zz", size, inStock, 0);
+            return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, string typeObj)
@@ -67,7 +53,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
-            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], code, size, inStock, 0, color);
+            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], code, size, inStock, color);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, PanelsType panelsType, string typeObj)
@@ -88,7 +74,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
-            return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], code, size, inStock, 0, color, panelsType);
+            return new Panels(double.Parse(price), typeof(Panels).ToString().Split('.')[1], code, size, inStock, color, panelsType);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, CrossBarType crossType, string typeObj)
@@ -109,8 +95,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
-            return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, 0, crossType);
+            return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, crossType);
         }
-
     }
 }

@@ -27,7 +27,7 @@ namespace projectCS
             get => _size.height;
         }
 
-        public AngleBracket() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white)
+        public AngleBracket() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.white)
         {
         }
         public AngleBracket(double price,
@@ -35,8 +35,7 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
+                        ComponentColor color) : base(price, reference, code, size, inStock)
         {
             this.color = color;
         }

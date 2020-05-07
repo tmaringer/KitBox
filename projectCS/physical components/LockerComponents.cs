@@ -12,7 +12,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR)
+        public CrossBar() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, CrossBarType.LR)
         {
         }
         public CrossBar(double price,
@@ -20,8 +20,7 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
-                        CrossBarType type) : base(price, reference, code, size, inStock, dimension)
+                        CrossBarType type) : base(price, reference, code, size, inStock)
         {
             this._type = type;
         }
@@ -53,7 +52,7 @@ namespace projectCS
             set => _type = value;
         }
 
-        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black, PanelsType.LR)
+        public Panels() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.black, PanelsType.LR)
         {
         }
         public Panels(double price,
@@ -61,9 +60,8 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
                         ComponentColor color,
-                        PanelsType type) : base(price, reference, code, size, inStock, dimension)
+                        PanelsType type) : base(price, reference, code, size, inStock)
         {
             this.color = color;
             this._type = type;
@@ -80,7 +78,7 @@ namespace projectCS
         }
 
 
-        public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0, ComponentColor.black)
+        public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.black)
         {
         }
         public Door(double price,
@@ -88,8 +86,7 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        int dimension,
-                        ComponentColor color) : base(price, reference, code, size, inStock, dimension)
+                        ComponentColor color) : base(price, reference, code, size, inStock)
         {
             this.color = color;
         }
@@ -97,15 +94,14 @@ namespace projectCS
 
     public class Cleat : CatalogueComponents
     {
-        public Cleat() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, 0)
+        public Cleat() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false)
         {
         }
         public Cleat(double price,
                         string reference,
                         string code,
                         ComponentSize size,
-                        bool inStock,
-                        int dimension) : base(price, reference, code, size, inStock, dimension)
+                        bool inStock) : base(price, reference, code, size, inStock)
         {
         }
     }

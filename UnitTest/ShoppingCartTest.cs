@@ -41,13 +41,13 @@ namespace UnitTest
             locker3 = new Locker();
             locker4 = new Locker();
 
-            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR);
-            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, CrossBarType.LR);
+            crossBarWithParam1 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, CrossBarType.LR);
+            crossBarWithParam2 = new CrossBar(10, "referenceTest", "1", new ComponentSize(0, 0, 0), false, CrossBarType.LR);
 
-            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
-            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0);
+            cleatWithParam1 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false);
+            cleatWithParam2 = new Cleat(50, "referenceTest", "1", new ComponentSize(0, 0, 0), false);
 
-            doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(0, 0, 0), false, 0, ComponentColor.white);
+            doorWithParam1 = new Door(40, "referenceTest", "1", new ComponentSize(0, 0, 0), false, ComponentColor.white);
 
             locker1.addComponent(new List<CatalogueComponents>() { crossBarWithParam1, cleatWithParam2 });
             locker2.addComponent(new List<CatalogueComponents>() { crossBarWithParam1 });

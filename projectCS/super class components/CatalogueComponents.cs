@@ -43,26 +43,18 @@ namespace projectCS
             set => _inStock = value;
         }
 
-        protected int _dimension;
-        public int dimension
-        {
-            get => _dimension;
-            set => _dimension = value;
-        }
 
         protected CatalogueComponents(double price,
                                       string reference,
                                       string code,
                                       ComponentSize size,
-                                      bool inStock,
-                                      int dimension)
+                                      bool inStock)
         {
             this._price = price;
             this._reference = reference;
             this._code = code;
             this._size = size;
             this._inStock = inStock;
-            this._dimension = dimension;
         }
 
         /// <summary>
@@ -86,9 +78,7 @@ namespace projectCS
                    + ", depth : " + _size.depth
                    + "}"
                    + ", in stock : "
-                   + _inStock
-                   + ", dimension : "
-                   + _dimension;
+                   + _inStock;
         }
     }
 
