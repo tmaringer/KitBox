@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tools class\CatalogueDB.cs" />
-    <Compile Include="Tools class\ColorParse.cs" />
+    <Compile Include="Tools class\EnumParse.cs" />
     <Compile Include="Tools class\ConvertDoubleToPrice.cs" />
     <Compile Include="Tools class\DbUtils.cs" />
     <Compile Include="order\Client.cs" />

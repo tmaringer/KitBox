@@ -28,6 +28,7 @@ namespace projectCS.Tools_class
             
         }
 
+
         public CatalogueComponents createComponents(int height, int width, int depth, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
@@ -47,8 +48,8 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
-            string price = infos[2];
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
+            string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], "f", size, 5 > 0, 0, color);
@@ -60,7 +61,7 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), ColorParse.parseToStr(color));
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color));
             string price = infos[2];
             ComponentSize size = new ComponentSize(height, width, depth);
 
@@ -73,7 +74,7 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
+            List<string> infos = DbUtils.BigMoney(conn, typeObj+" "+EnumParse.parseTypeEnumToStr(crossType), height.ToString(), depth.ToString(), width.ToString(), "");
             string price = infos[2];
             ComponentSize size = new ComponentSize(height, width, depth);
 
