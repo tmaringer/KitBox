@@ -251,14 +251,16 @@ namespace kitbox_user_interface_V1
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (ShoppingCart.currentLocker == 0)
+                ShoppingCart.currentLocker = ShoppingCart.cupboardComponentsList.Count;
+
             int formerHeight = Int32.Parse(dataGridView1[1, ShoppingCart.currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
 
             int incre = 1;
 
-            if (ShoppingCart.currentLocker == 0)
-                ShoppingCart.currentLocker = ShoppingCart.cupboardComponentsList.Count;
+            
 
 
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
@@ -274,6 +276,7 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
+                    //TODO mettre à jour price
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor);
 
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
