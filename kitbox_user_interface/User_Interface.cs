@@ -134,29 +134,29 @@ namespace kitbox_user_interface_V1
                 Cleat cleat1 = new Cleat();
                 Door door1 = new Door();
 
-                Panels panelsHB = new Panels();
-                Panels panelsGD = new Panels();
-                Panels panelsAR = new Panels();
+                Panels panelsHL = new Panels();
+                Panels panelsLR = new Panels();
+                Panels panelsB = new Panels();
 
-                CrossBar crossBarAV = new CrossBar();
-                CrossBar crossBarAR = new CrossBar();
-                CrossBar crossBarGD = new CrossBar();
+                CrossBar crossBarF = new CrossBar();
+                CrossBar crossBarB = new CrossBar();
+                CrossBar crossBarLR = new CrossBar();
                 */
                 CatalogueDB cb = new CatalogueDB();
-                /*
+                
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
                 
                 Door door1 = (Door)cb.createComponents(height, width, 0, "Door");
                 
-                Panels panelsHB = (Panels)cb.createComponents(0, width, depth, "Panel");
-                Panels panelsGD = (Panels)cb.createComponents(height, 0, depth, "Panel");
-                Panels panelsAR = (Panels)cb.createComponents(height, width, 0, "Panel");
+                Panels panelsHL = (Panels)cb.createComponents(0, width, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.HL, "Panel");
+                Panels panelsLR = (Panels)cb.createComponents(height, 0, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.LR, "Panel");
+                Panels panelsB = (Panels)cb.createComponents(height, width, 0, EnumParse.parseColorStrToEnum(panelColor), PanelsType.B, "Panel");
 
-                CrossBar crossBarAV = (CrossBar)cb.createComponents(0, width, 0, "CrossBar");
-                CrossBar crossBarAR = (CrossBar)cb.createComponents(0, width, 0, "CrossBar");
-                CrossBar crossBarGD = (CrossBar)cb.createComponents(0, 0, depth, "CrossBar");
+                CrossBar crossBarF = (CrossBar)cb.createComponents(0, width, 0, CrossBarType.F, "CrossBar");
+                CrossBar crossBarB = (CrossBar)cb.createComponents(0, width, 0, CrossBarType.B, "CrossBar");
+                CrossBar crossBarLR = (CrossBar)cb.createComponents(0, 0, depth, CrossBarType.LR, "CrossBar");
 
-                */
+                
 
 
                 // numéro du casier sur lequel on travail
@@ -172,26 +172,26 @@ namespace kitbox_user_interface_V1
                 cleat1.size = new ComponentSize(height, width, 0);
                 door1.size = new ComponentSize(height, width, 0);
 
-                panelsHB.size = new ComponentSize(0, width, depth);
-                panelsHB.type = PanelsType.top;
-                panelsGD.size = new ComponentSize(height, 0, depth);
-                panelsGD.type = PanelsType.LR;
-                panelsAR.size = new ComponentSize(height, width, 0);
-                panelsAR.type = PanelsType.B;
+                panelsHL.size = new ComponentSize(0, width, depth);
+                panelsHL.type = PanelsType.top;
+                panelsLR.size = new ComponentSize(height, 0, depth);
+                panelsLR.type = PanelsType.LR;
+                panelsB.size = new ComponentSize(height, width, 0);
+                panelsB.type = PanelsType.B;
 
-                crossBarAV.size = new ComponentSize(0, width, 0);
-                crossBarAV.type = CrossBarType.F;
-                crossBarAR.size = new ComponentSize(0, width, 0);
-                crossBarAR.type = CrossBarType.F;
-                crossBarGD.size = new ComponentSize(0, 0, depth);
-                crossBarGD.type = CrossBarType.LR;
+                crossBarF.size = new ComponentSize(0, width, 0);
+                crossBarF.type = CrossBarType.F;
+                crossBarB.size = new ComponentSize(0, width, 0);
+                crossBarB.type = CrossBarType.F;
+                crossBarLR.size = new ComponentSize(0, 0, depth);
+                crossBarLR.type = CrossBarType.LR;
                 */
                 /*
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         door1, door1,
-                                                                        panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
-                                                                        crossBarAV, crossBarAV, crossBarAR, crossBarAR,
-                                                                        crossBarGD, crossBarGD, crossBarGD, crossBarGD });
+                                                                        panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
+                                                                        crossBarF, crossBarF, crossBarB, crossBarB,
+                                                                        crossBarLR, crossBarLR, crossBarLR, crossBarLR });
                                                                         */
                 ShoppingCart.addCupboardComponent(locker);
 
