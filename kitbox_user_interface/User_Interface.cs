@@ -174,24 +174,7 @@ namespace kitbox_user_interface_V1
                 locker.height = height;
                 locker.depth = depth;
                 locker.width = width;
-                /*
-                cleat1.size = new ComponentSize(height, width, 0);
-                door1.size = new ComponentSize(height, width, 0);
-
-                panelsHL.size = new ComponentSize(0, width, depth);
-                panelsHL.type = PanelsType.top;
-                panelsLR.size = new ComponentSize(height, 0, depth);
-                panelsLR.type = PanelsType.LR;
-                panelsB.size = new ComponentSize(height, width, 0);
-                panelsB.type = PanelsType.B;
-
-                crossBarF.size = new ComponentSize(0, width, 0);
-                crossBarF.type = CrossBarType.F;
-                crossBarB.size = new ComponentSize(0, width, 0);
-                crossBarB.type = CrossBarType.F;
-                crossBarLR.size = new ComponentSize(0, 0, depth);
-                crossBarLR.type = CrossBarType.LR;
-                */
+               
                 
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
@@ -268,9 +251,7 @@ namespace kitbox_user_interface_V1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int currentLocker = Int32.Parse(textBox8.Text);
-
-            int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
+            int formerHeight = Int32.Parse(dataGridView1[1, ShoppingCart.currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
 
@@ -293,7 +274,7 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
-                    dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
+                    dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor);
 
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
