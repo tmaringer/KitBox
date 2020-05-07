@@ -207,13 +207,13 @@ namespace kitbox_user_interface_V1
                 crossBarLR.size = new ComponentSize(0, 0, depth);
                 crossBarLR.type = CrossBarType.LR;
                 */
-                /*
+                
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         door1, door1,
                                                                         panelsHL, panelsHL, panelsLR,  panelsLR, panelsB,
                                                                         crossBarF, crossBarF, crossBarB, crossBarB,
                                                                         crossBarLR, crossBarLR, crossBarLR, crossBarLR });
-                                                                        */
+                                                                        
                 ShoppingCart.addCupboardComponent(locker);
 
                 //premier essai de calcul de prix
