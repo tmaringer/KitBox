@@ -250,7 +250,7 @@ namespace kitbox_user_interface_V1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            int currentLocker = Int32.Parse(textBox8.Text);
+            int currentLocker = ShoppingCart.currentLocker;
 
             int formerHeight = Int32.Parse(dataGridView1[1, currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox12.Text);
@@ -275,6 +275,7 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
+                    //TODO mettre le prix à jour
                     dataGridView1.Rows[currentLocker - 1].SetValues(currentLocker, height, doorsColor, panelColor);
 
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
