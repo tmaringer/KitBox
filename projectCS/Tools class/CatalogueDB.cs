@@ -74,8 +74,9 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            List<string> infos = DbUtils.BigMoney(conn, typeObj+" "+EnumParse.parseTypeEnumToStr(crossType), height.ToString(), depth.ToString(), width.ToString(), "");
-            string price = infos[2];
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(crossType);
+            List<string> infos = DbUtils.BigMoney(conn, typeObj, height.ToString(), depth.ToString(), width.ToString(), "");
+            string price = infos[0];
             ComponentSize size = new ComponentSize(height, width, depth);
 
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], "f", size, 5 > 0, 0, crossType);

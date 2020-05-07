@@ -38,8 +38,8 @@ namespace UnitTest
         [TestMethod]
         public void createComponentTest3()
         {
-            crossBar1 = (CrossBar)catalogueDB.createComponents(32, 0, 0, CrossBarType.B, "Crossbar");
-            Assert.AreEqual(0, crossBar1.price);
+            crossBar1 = (CrossBar)catalogueDB.createComponents(0, 32, 0, CrossBarType.B, "Crossbar");
+            Assert.AreEqual(1, crossBar1.price);
         }
 
         [TestMethod]

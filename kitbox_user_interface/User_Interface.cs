@@ -143,7 +143,7 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarGD = new CrossBar();
                 */
                 CatalogueDB cb = new CatalogueDB();
-
+                /*
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
                 
                 Door door1 = (Door)cb.createComponents(height, width, 0, "Door");
@@ -156,7 +156,7 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarAR = (CrossBar)cb.createComponents(0, width, 0, "CrossBar");
                 CrossBar crossBarGD = (CrossBar)cb.createComponents(0, 0, depth, "CrossBar");
 
-
+                */
 
 
                 // numéro du casier sur lequel on travail
@@ -186,12 +186,13 @@ namespace kitbox_user_interface_V1
                 crossBarGD.size = new ComponentSize(0, 0, depth);
                 crossBarGD.type = CrossBarType.LR;
                 */
-
+                /*
                 locker.addComponent(new List<CatalogueComponents>() { cleat1, cleat1, cleat1, cleat1,
                                                                         door1, door1,
                                                                         panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
                                                                         crossBarAV, crossBarAV, crossBarAR, crossBarAR,
                                                                         crossBarGD, crossBarGD, crossBarGD, crossBarGD });
+                                                                        */
                 ShoppingCart.addCupboardComponent(locker);
 
                 //premier essai de calcul de prix
