@@ -408,6 +408,74 @@ namespace projectCS
             }
             return result;
         }
+        public static List<string> getCode(MySqlConnection conn, string reference, string height, string depth, string width, string colour)
+        {
+            List<string> result = new List<string>();
+            string sql;
+            if (colour.Length == 0)
+            {
+                sql = "Select code from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"\"";
+            }
+            else
+            {
+                sql = "Select Code from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"" + colour + "\"";
+            }
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = sql
+            };
+            {
+                DbDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal("CustPrice"));
+                        if (!result.Contains(WhereSQLAnswer))
+                        {
+                            result.Add(WhereSQLAnswer);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        public static List<string> getInStock(MySqlConnection conn, string reference, string height, string depth, string width, string colour)
+        {
+            List<string> result = new List<string>();
+            string sql;
+            if (colour.Length == 0)
+            {
+                sql = "Select InStock from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"\"";
+            }
+            else
+            {
+                sql = "Select InStock from kitbox where Ref = \"" + reference + "\" and Height = \"" + height + "\" and Depth = \"" + depth + "\" and Width = \"" + width + "\" and  Colour = \"" + colour + "\"";
+            }
+            MySqlCommand cmd = new MySqlCommand
+            {
+                Connection = conn,
+                CommandText = sql
+            };
+            {
+                DbDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        string WhereSQLAnswer = reader.GetString(reader.GetOrdinal("CustPrice"));
+                        if (!result.Contains(WhereSQLAnswer))
+                        {
+                            result.Add(WhereSQLAnswer);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
         //"Select Code, CustPrice, InStock from kitbox where Height = 32 and Depth = 32 and Width = 32 and Colour = white and Ref= Panel LR
     }
 }
