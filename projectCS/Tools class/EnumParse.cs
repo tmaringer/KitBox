@@ -39,5 +39,10 @@ namespace projectCS.Tools_class
         {
             return Enum.GetName(type.GetType(), type);
         }
+
+        public static String parseTypeEnumToStr(PanelsType type)
+        {
+            return Enum.GetName(type.GetType(), type);
+        }
     }
 }
