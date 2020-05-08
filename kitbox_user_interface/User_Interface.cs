@@ -307,7 +307,7 @@ namespace kitbox_user_interface_V1
             validation.FormClosed += new FormClosedEventHandler(Form_purchase_FormClosed);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ShoppingCart.currentLocker = dataGridView1.CurrentCell.RowIndex + 1;
             textBox8.Text = ShoppingCart.currentLocker.ToString();
@@ -317,6 +317,8 @@ namespace kitbox_user_interface_V1
         {
             this.Close();
         }
+
+       
     }
 
 }
