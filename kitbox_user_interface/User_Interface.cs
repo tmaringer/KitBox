@@ -163,7 +163,6 @@ namespace kitbox_user_interface_V1
                 CrossBar crossBarLR = (CrossBar)cb.createComponents(0, 0, depth, CrossBarType.LR, "CrossBar");
 
                 
-                 
 
                 // numéro du casier sur lequel on travail
                 int currentbox = locker.ID;
@@ -190,6 +189,7 @@ namespace kitbox_user_interface_V1
                 // met dans le order preview
                 dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor,prixTotal.ToString());
 
+                //TODO remplacer total height par la somme des hauteurs
                 int totalHeight = Int32.Parse(textBox12.Text);
                 totalHeight += height + 4;
                 textBox12.Text = totalHeight.ToString();
@@ -258,9 +258,6 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
 
-            int incre = 1;
-
-            
 
 
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
@@ -276,13 +273,16 @@ namespace kitbox_user_interface_V1
                     totalHeight -= formerHeight;
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
-                    //TODO mettre à jour price
-                    dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor);
-
+                    
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
-                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker);
+                    double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
+
+                    //TODO mettre à jour price
+                    dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor,newPrice);
+                    
+
                 }
                 else
                     MessageBox.Show("Maximal height reached");
