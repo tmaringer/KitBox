@@ -278,6 +278,7 @@ namespace kitbox_user_interface_V1
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
                     double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
+                    
 
                     //TODO mettre à jour price
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor,newPrice);
