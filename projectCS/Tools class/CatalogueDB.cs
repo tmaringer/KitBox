@@ -101,6 +101,8 @@ namespace projectCS.Tools_class
 
         public double getPrice(int height, int width, int depth, string typeObj)
         {
+            string a = typeObj;
+
             conn = new MySqlConnection(MyConString);
             conn.Open();
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
