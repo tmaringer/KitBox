@@ -280,6 +280,14 @@ namespace kitbox_user_interface_V1
                     double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
                     
 
+                    CatalogueDB catalogeDB = new CatalogueDB();
+
+                    foreach(CatalogueComponents compo in ShoppingCart.getLockerByID(ShoppingCart.currentLocker).componentsList)
+                    {
+                        //compo.price = catalogeDB.getPrice(compo);
+                    }
+
+
                     //TODO mettre à jour price
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor,newPrice);
                     
