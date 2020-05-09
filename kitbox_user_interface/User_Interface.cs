@@ -258,7 +258,7 @@ namespace kitbox_user_interface_V1
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
 
-
+            
 
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
             {

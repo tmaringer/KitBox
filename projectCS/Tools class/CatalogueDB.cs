@@ -109,11 +109,11 @@ namespace projectCS.Tools_class
             return double.Parse(price);
         }
 
-        public double getPrice(int height, int width, int depth, ComponentColor color, string typeObj)
+        public double getPrice(int height, int width, int depth, string color, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
             conn.Open();
-            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), color)[0];
             conn.Close();
 
             return double.Parse(price);

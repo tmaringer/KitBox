@@ -48,5 +48,12 @@ namespace UnitTest
             panel1 = (Panels)catalogueDB.createComponents(32, 100, 0, ComponentColor.brown, PanelsType.B, "Panel");
             Assert.AreEqual(12,8, panel1.price);
         }
+
+        [TestMethod]
+        public void getPriceTest()
+        {
+            door1.price = catalogueDB.getPrice(42, 52, 32, EnumParse.parseColorEnumToStr(ComponentColor.brown), "Door");
+            Assert.AreEqual(5, door1.price);
+        }
     }
 }
