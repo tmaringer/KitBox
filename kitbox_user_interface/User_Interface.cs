@@ -277,15 +277,21 @@ namespace kitbox_user_interface_V1
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
-                    double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
+                    
+                    
 
-                    CatalogueDB catalogeDB = new CatalogueDB();
+                    CatalogueDB catalogueDB = new CatalogueDB();
 
                     foreach(CatalogueComponents compo in ShoppingCart.getLockerByID(ShoppingCart.currentLocker).componentsList)
                     {
-                        //compo.price = catalogeDB.getPrice(compo);
+                        if(compo.GetType().ToString().Split('.')[1]=="Door")
+                            compo.price = catalogueDB.getPrice(height, compo.size.width,compo.size.depth, doorsColor,compo.GetType().ToString().Split('.')[1]);
+                        if (compo.GetType().ToString().Split('.')[1] == "Panels")
+                            compo.price = catalogueDB.getPrice(height, compo.size.width, compo.size.depth, panelColor, "Panel");
+                        else
+                            compo.price = catalogueDB.getPrice(height, compo.size.width, compo.size.depth, compo.GetType().ToString().Split('.')[1]);
                     }
-
+                    double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
 
                     //TODO mettre à jour price
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor,newPrice);
