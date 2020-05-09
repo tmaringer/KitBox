@@ -46,14 +46,23 @@ namespace UnitTest
         public void createComponentTest4()
         {
             panel1 = (Panels)catalogueDB.createComponents(32, 100, 0, ComponentColor.brown, PanelsType.B, "Panel");
-            Assert.AreEqual(12,8, panel1.price);
+            Assert.AreEqual(12, 8, panel1.price);
         }
 
         [TestMethod]
-        public void getPriceTest()
+        public void getPriceOnDoorTest()
         {
-            door1.price = catalogueDB.getPrice(42, 52, 32, EnumParse.parseColorEnumToStr(ComponentColor.brown), "Door");
-            Assert.AreEqual(5, door1.price);
+            door1 = new Door();
+            door1.price = catalogueDB.getPrice(42, 52, 0, EnumParse.parseColorEnumToStr(ComponentColor.brown), "Door");
+            Assert.AreEqual(10.92, door1.price);
+        }
+
+        [TestMethod]
+        public void getPriceOnCleatTest()
+        {
+            cleat1 = new Cleat();
+            cleat1.price = catalogueDB.getPrice(32, 0, 0, "Cleat");
+            Assert.AreEqual(0.2, cleat1.price);
         }
     }
 }
