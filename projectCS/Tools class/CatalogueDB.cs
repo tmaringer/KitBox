@@ -98,5 +98,25 @@ namespace projectCS.Tools_class
 
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, crossType);
         }
+
+        public double getPrice(int height, int width, int depth, string typeObj)
+        {
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            conn.Close();
+
+            return double.Parse(price);
+        }
+
+        public double getPrice(int height, int width, int depth, ComponentColor color, string typeObj)
+        {
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
+            conn.Close();
+
+            return double.Parse(price);
+        }
     }
 }
