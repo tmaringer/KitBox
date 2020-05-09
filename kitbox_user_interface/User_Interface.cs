@@ -285,8 +285,8 @@ namespace kitbox_user_interface_V1
                     foreach(CatalogueComponents compo in ShoppingCart.getLockerByID(ShoppingCart.currentLocker).componentsList)
                     {
                         if(compo.GetType().ToString().Split('.')[1]=="Door")
-                            compo.price = catalogueDB.getPrice(height, compo.size.width,compo.size.depth, doorsColor,compo.GetType().ToString().Split('.')[1]);
-                        if (compo.GetType().ToString().Split('.')[1] == "Panels")
+                            compo.price = catalogueDB.getPrice(height, compo.size.width,compo.size.depth, doorsColor, compo.GetType().ToString().Split('.')[1]);
+                        else if (compo.GetType().ToString().Split('.')[1] == "Panels")
                             compo.price = catalogueDB.getPrice(height, compo.size.width, compo.size.depth, panelColor, "Panel");
                         else
                             compo.price = catalogueDB.getPrice(height, compo.size.width, compo.size.depth, compo.GetType().ToString().Split('.')[1]);

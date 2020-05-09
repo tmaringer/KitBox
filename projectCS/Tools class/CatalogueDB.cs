@@ -118,5 +118,28 @@ namespace projectCS.Tools_class
 
             return double.Parse(price);
         }
+
+        public double getPrice(int height, int width, int depth, string color, PanelsType panelsType, string typeObj)
+        {
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), color)[0];
+            conn.Close();
+
+            return double.Parse(price);
+        }
+        
+        public double getPrice(int height, int width, int depth, CrossBarType crossType, string typeObj)
+        {
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(crossType);
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
+            conn.Close();
+
+            return double.Parse(price);
+        }
+
     }
 }
