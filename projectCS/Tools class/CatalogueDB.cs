@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace projectCS.Tools_class
 {
@@ -99,6 +100,7 @@ namespace projectCS.Tools_class
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, crossType);
         }
 
+        
         public double getPrice(int height, int width, int depth, string typeObj)
         {
             string a = typeObj;
@@ -142,6 +144,40 @@ namespace projectCS.Tools_class
 
             return double.Parse(price);
         }
+        
+        public double newPrice(int height, string doorsColor, string panelColor, CatalogueComponents compo)
+        {
+            string typeObj = compo.GetType().ToString().Split('.')[1];
+            string rqHeight ="0";
+            string rqColor = "";
 
+            if(typeObj =="Panels")
+            {
+                typeObj = "Panel" +  " " + EnumParse.parseTypeEnumToStr(((Panels)compo).type);
+                rqColor = panelColor;
+                if (EnumParse.parseTypeEnumToStr(((Panels)compo).type) == "HL")
+                    rqHeight = "0";
+                else
+                    rqHeight = height.ToString();
+            }
+            else if (typeObj == "Door")
+            {
+                rqColor = doorsColor;
+                rqHeight = height.ToString();
+            }
+            else if (typeObj == "CrossBar")
+                typeObj += " " + EnumParse.parseTypeEnumToStr(((CrossBar)compo).type);
+            else if (typeObj == "Cleat")
+                rqHeight = height.ToString();
+
+
+            conn = new MySqlConnection(MyConString);
+            conn.Open();
+            //typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
+            string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, rqHeight, compo.size.depth.ToString(), compo.size.width.ToString(), rqColor)[0];
+            conn.Close();
+
+            return double.Parse(price);
+        }
     }
 }
