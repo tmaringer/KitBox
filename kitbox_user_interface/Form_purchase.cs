@@ -31,6 +31,8 @@ namespace kitbox_user_interface_V1
 
                 string price = box.price.ToString();
 
+                //TODO afficher le prix total avec les angle brackets !
+
                 //dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor, price);
             }
 

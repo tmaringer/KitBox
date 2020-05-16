@@ -111,6 +111,7 @@ namespace kitbox_user_interface_V1
                 comboBox6.Enabled = true;
                 comboBox7.Enabled = true;
                 comboBox8.Enabled = true;
+                comboBox9.Enabled = true;
                 button2.Enabled = true;
             }
 
@@ -302,7 +303,7 @@ namespace kitbox_user_interface_V1
                     //TODO mettre à jour price
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor, panelColor,newPrice);
                     
-
+                    
 
 
                 }
@@ -342,10 +343,12 @@ namespace kitbox_user_interface_V1
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox6.SelectedItem.ToString()=="none")
+            if (comboBox6.SelectedItem.ToString() == "none")
             {
                 comboBox9.Enabled = false;
             }
+            else
+                comboBox9.Enabled = true;
         }
     }
 
