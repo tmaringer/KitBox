@@ -63,6 +63,7 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
+            this.comboBox9 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -181,7 +182,7 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(362, 274);
+            this.button4.Location = new System.Drawing.Point(362, 308);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(131, 34);
             this.button4.TabIndex = 58;
@@ -227,7 +228,7 @@
             // 
             this.comboBox7.Enabled = false;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(362, 206);
+            this.comboBox7.Location = new System.Drawing.Point(362, 240);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(263, 28);
             this.comboBox7.TabIndex = 54;
@@ -242,11 +243,12 @@
             this.comboBox6.Size = new System.Drawing.Size(263, 28);
             this.comboBox6.TabIndex = 53;
             this.comboBox6.Text = "doors";
+            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
             // 
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(362, 274);
+            this.button2.Location = new System.Drawing.Point(362, 308);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 34);
             this.button2.TabIndex = 52;
@@ -269,7 +271,7 @@
             // 
             this.comboBox8.Enabled = false;
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(362, 240);
+            this.comboBox8.Location = new System.Drawing.Point(362, 274);
             this.comboBox8.Name = "comboBox8";
             this.comboBox8.Size = new System.Drawing.Size(263, 28);
             this.comboBox8.TabIndex = 59;
@@ -300,7 +302,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(494, 214);
             this.dataGridView1.TabIndex = 61;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            //this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Column1
             // 
@@ -446,12 +447,23 @@
             this.textBox16.TabIndex = 69;
             this.textBox16.Text = "total";
             // 
+            // comboBox9
+            // 
+            this.comboBox9.Enabled = false;
+            this.comboBox9.FormattingEnabled = true;
+            this.comboBox9.Location = new System.Drawing.Point(362, 206);
+            this.comboBox9.Name = "comboBox9";
+            this.comboBox9.Size = new System.Drawing.Size(263, 28);
+            this.comboBox9.TabIndex = 70;
+            this.comboBox9.Text = "doors cup";
+            // 
             // User_Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1233, 491);
+            this.Controls.Add(this.comboBox9);
             this.Controls.Add(this.textBox16);
             this.Controls.Add(this.textBox15);
             this.Controls.Add(this.textBox14);
@@ -528,5 +540,6 @@
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.ComboBox comboBox9;
     }
 }
