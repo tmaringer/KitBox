@@ -60,10 +60,6 @@ namespace ShopInterfaceBeta
             DoorsColourList = new ObservableCollection<string>();
             DoorsNumberList = new ObservableCollection<string>();
             ANBList = new ObservableCollection<string>();
-            ComboDoor.Items.Clear();
-            ComboDoor.Items.Add("0");
-            ComboDoor.Items.Add("1");
-            ComboDoor.Items.Add("2");
             heightList = new List<string>();
             widthList = new List<string>();
             depthList = new List<string>();
@@ -191,7 +187,6 @@ namespace ShopInterfaceBeta
 
         private void DataGrid1_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            Door.IsEnabled = false;
             Infos.IsEnabled = false;
             string columnValue = DataGrid1.CurrentColumn.Header.ToString();
             if (columnValue == "CupboardId")
@@ -216,17 +211,12 @@ namespace ShopInterfaceBeta
 
         private void DataGrid2_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            Door.IsEnabled = false;
             Infos.IsEnabled = false;
             string columnValue = DataGrid2.CurrentColumn.Header.ToString();
             if (columnValue == "BoxId")
             {
                 boxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
                 string cupboardId = DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + boxId + "\"")[0];
-                if (Convert.ToInt32(DbUtils.RefList("Width", "cupboards where CupboardId = \"" + cupboardId + "\"")[0]) > 60)
-                {
-                    Door.IsEnabled = true;
-                }
                 FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
                 
             }
@@ -242,39 +232,6 @@ namespace ShopInterfaceBeta
             FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
             
             FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + CupboardId + "\""), DataGrid2);
-        }
-
-        private void Button5_Click(object sender, RoutedEventArgs e)
-        {
-            string w = "";
-            DataTable doors = Sandbox.Doors(boxId);
-            string numberDoor = ComboDoor.SelectedItem.ToString();
-            while (doors.Rows.Count - Convert.ToInt32(numberDoor) != 0)
-            {
-                if (doors.Rows.Count < Convert.ToInt32(numberDoor))
-                {
-                    string height = DbUtils.RefList("Height",
-                        "boxes where BoxId = \"" + boxId + "\"")[0];
-                    string width = DbUtils.RefList("Width",
-                        "cupboards where CupboardId = \"" + cupId + "\"")[0];
-                    string code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
-                                  "WH";
-                    w = DbUtils.InsertDb("doors", "BoxId,Code",
-                        "\"" + boxId + "\", \"" + code + "\"");
-                    doors = Sandbox.Doors(boxId);
-                }
-                else if (doors.Rows.Count > Convert.ToInt32(numberDoor))
-                {
-                    List<string> id = DbUtils.RefList("DoorId",
-                        "doors where BoxId = \"" + boxId + "\"");
-                    w = DbUtils.DeleteRow("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
-                    doors = Sandbox.Doors(boxId);
-                }
-            }
-            DbUtils.Arrange("doors", "DoorId");
-            FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
-            
-            DoorManagement.Hide();
         }
 
         private void DataGrid3_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
