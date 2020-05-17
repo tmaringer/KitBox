@@ -39,7 +39,10 @@ namespace ShopInterfaceBeta
         private List<string> heightList;
         private List<string> widthList;
         private List<string> depthList;
-        private ObservableCollection<string> ColourList;
+        private ObservableCollection<string> PanelsColourList;
+        private ObservableCollection<string> DoorsColourList;
+        private ObservableCollection<string> DoorsNumberList;
+        private ObservableCollection<string> ANBList;
         private string boxId;
         private string cupId;
         private List<string> part;
@@ -53,7 +56,10 @@ namespace ShopInterfaceBeta
             orderIdCustomer = new ObservableCollection<string>();
             boxIds = new ObservableCollection<string>();
             part = new List<string>();
-            ColourList = new ObservableCollection<string>();
+            PanelsColourList = new ObservableCollection<string>();
+            DoorsColourList = new ObservableCollection<string>();
+            DoorsNumberList = new ObservableCollection<string>();
+            ANBList = new ObservableCollection<string>();
             ComboDoor.Items.Clear();
             ComboDoor.Items.Add("0");
             ComboDoor.Items.Add("1");
@@ -65,6 +71,10 @@ namespace ShopInterfaceBeta
             {
                 int height = Convert.ToInt32(i) + 4;
                 heightList.Add(height.ToString());
+            }
+            foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"AngleBracket\""))
+            {
+                ANBList.Add(i);
             }
             foreach (string i in DbUtils.RefListNd("Width", "kitbox where Ref = \"Panel B\""))
             {
@@ -89,7 +99,8 @@ namespace ShopInterfaceBeta
                     OrderId = row["OrderId"].ToString(),
                     Height = row["Height"].ToString(),
                     Width = row["Width"].ToString(),
-                    Depth = row["Depth"].ToString()
+                    Depth = row["Depth"].ToString(),
+                    AngleColour = DbUtils.RefList("Colour","kitbox where Code = \"" + DbUtils.RefList("Code","angles where CupboardId =\"" + row["CupboardId"] + "\"")[0] + "\"")[0]
                 });
             }
             grid.AutoGenerateColumns = false;
@@ -101,11 +112,23 @@ namespace ShopInterfaceBeta
             List<Box> boxes = new List<Box>();
             foreach (DataRow row in table.Rows)
             {
+                string coco;
+                if (DbUtils.RefList("Code", "doors where BoxId=\"" + row["BoxId"] + "\"").Count > 0)
+                {
+                    coco = DbUtils.RefListNd("Colour", "kitbox where Code=\"" + DbUtils.RefListNd("Code", "doors where BoxId=\"" + row["BoxId"] + "\"")[0] + "\"")[0];
+                }
+                else
+                {
+                    coco = "";
+                }
                 boxes.Add(new Box()
                 {
                     CupboardId = row["CupboardId"].ToString(),
                     Height = row["Height"].ToString(),
-                    BoxId = row["BoxId"].ToString()
+                    BoxId = row["BoxId"].ToString(),
+                    PanelsColour = DbUtils.RefListNd("Colour", "kitbox where Code=\"" + DbUtils.RefListNd("Code", "panels where BoxId=\"" + row["BoxId"] + "\"")[0] + "\"")[0],
+                    DoorsNumber = DbUtils.RefList("Code", "doors where BoxId=\"" + row["BoxId"] + "\"").Count.ToString(),
+                    DoorsColour = coco
                 });
             }
             grid.AutoGenerateColumns = false;
@@ -174,6 +197,16 @@ namespace ShopInterfaceBeta
             if (columnValue == "CupboardId")
             {
                 cupId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
+                if (Convert.ToInt32(DbUtils.RefListNd("Width", "cupboards where CupboardId =\"" + cupId + "\"")[0]) > 60)
+                {
+                    DataGrid2.Columns[DataGrid2.Columns.Count - 1].Visibility = Visibility.Visible;
+                    DataGrid2.Columns[DataGrid2.Columns.Count - 2].Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    DataGrid2.Columns[DataGrid2.Columns.Count - 1].Visibility = Visibility.Collapsed;
+                    DataGrid2.Columns[DataGrid2.Columns.Count - 2].Visibility = Visibility.Collapsed;
+                }
                 FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + cupId + "\""), DataGrid2);
                 FillDataGridItem(Sandbox.Angles(cupId), DataGrid3);
                 
@@ -346,6 +379,7 @@ namespace ShopInterfaceBeta
             public string Height { get; set; }
             public string Width { get; set; }
             public string Depth { get; set; }
+            public string AngleColour { get; set; }
         }
 
         public class Box
@@ -353,6 +387,9 @@ namespace ShopInterfaceBeta
             public string BoxId { get; set; }
             public string CupboardId { get; set; }
             public string Height { get; set; }
+            public string PanelsColour { get; set; }
+            public string DoorsNumber { get; set; }
+            public string DoorsColour { get; set; }
         }
         public class Item
         {
@@ -366,82 +403,257 @@ namespace ShopInterfaceBeta
         private async void DataGrid1_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             string CupboardId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
-            string original = "";
-            string value = "";
-            string setting = "";
-            if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Width")
+            if ((sender as DataGrid).CurrentColumn.Header.ToString() != "ANB colour")
             {
-                original = DbUtils.RefList("Width", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
-                value = ((Cupboard)((sender as DataGrid).SelectedItem)).Width;
-                setting = "Width";
-            }
-            else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Depth")
-            {
-                original = DbUtils.RefList("Depth", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
-                value = ((Cupboard)((sender as DataGrid).SelectedItem)).Depth;
-                setting = "Depth";
-            }
-            ContentDialog ModifyCupboard = new ContentDialog()
-            {
-                Title = "Cupboard modification",
-                Content = "Do you want to change the " + setting.ToLower() + " of cupboard n°" + CupboardId + " from \"" + original + "\" to \"" + value + "\" ?",
-                PrimaryButtonText = "Yes",
-                SecondaryButtonText = "I'm not sure",
-                DefaultButton = ContentDialogButton.Secondary
-            };
-            ContentDialogResult result = await ModifyCupboard.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                string i = "";
-                i = DbUtils.UpdateDb("cupboards", setting, "CupboardId = \"" + CupboardId + "\"", value);
-                if (setting == "Width")
+                CupboardId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
+                string original = "";
+                string value = "";
+                string setting = "";
+                if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Width")
                 {
-                    Sandbox.Width(CupboardId, Convert.ToInt32(value));
+                    original = DbUtils.RefList("Width", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
+                    value = ((Cupboard)((sender as DataGrid).SelectedItem)).Width;
+                    setting = "Width";
                 }
-                else if (setting == "Depth")
+                else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Depth")
                 {
-                    Sandbox.Depth(CupboardId, Convert.ToInt32(value));
+                    original = DbUtils.RefList("Depth", "cupboards where CupboardId = \"" + CupboardId + "\"")[0];
+                    value = ((Cupboard)((sender as DataGrid).SelectedItem)).Depth;
+                    setting = "Depth";
                 }
+                ContentDialog ModifyCupboard = new ContentDialog()
+                {
+                    Title = "Cupboard modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of cupboard n°" + CupboardId + " from \"" + original + "\" to \"" + value + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyCupboard.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    string i = "";
+                    i = DbUtils.UpdateDb("cupboards", setting, "CupboardId = \"" + CupboardId + "\"", value);
+                    if (setting == "Width")
+                    {
+                        Sandbox.Width(CupboardId, Convert.ToInt32(value));
+                    }
+                    else if (setting == "Depth")
+                    {
+                        Sandbox.Depth(CupboardId, Convert.ToInt32(value));
+                    }
+                }
+            }
+            else
+            {
+                string setting = "colour of the ANBs";
+                string cupboardId = ((Cupboard)((sender as DataGrid).SelectedItem)).CupboardId;
+                string value = ((Cupboard)((sender as DataGrid).SelectedItem)).AngleColour;
+                ContentDialog ModifyBox = new ContentDialog()
+                {
+                    Title = "Box modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of cupboard n°" + cupboardId + " to \"" + value + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyBox.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    List<string> angleId = DbUtils.RefList("AngleId", "angles where cupboardId = \"" + cupboardId + "\"");
+                    foreach (string i in angleId)
+                    {
+                        string height = DbUtils.RefList("Height", "kitbox where Code =\"" + DbUtils.RefList("Code", "angles where AngleId = \"" + i + "\"")[0] + "\"")[0];
+                        string newCode = DbUtils.RefList("Code",
+                            "kitbox where Height =\"" + height + "\" and Ref = \"AngleBracket\" and Colour = \"" + value +
+                            "\"")[0];
+                        string zy = DbUtils.UpdateDb("angles", "Code",
+                            "AngleId = \"" + i + "\" and CupboardId = \"" +
+                            cupboardId + "\"", newCode);
+                    }
+                }
+            FillDataGridItem(Sandbox.Angles(cupboardId), DataGrid3);
             }
             FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + CupboardId + "\"")[0] + "\""), DataGrid1);
         }
 
         private async void DataGrid2_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
-            string original = "";
-            string value = "";
-            string setting = "Height";
-            original = DbUtils.RefList("Height", "boxes where BoxId = \"" + BoxId + "\"")[0];
-            value = ((Box)((sender as DataGrid).SelectedItem)).Height;
-            ContentDialog ModifyBox = new ContentDialog()
+            if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Height")
             {
-                Title = "Box modification",
-                Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " from \"" + original + "\" to \"" + value + "\" ?",
-                PrimaryButtonText = "Yes",
-                SecondaryButtonText = "I'm not sure",
-                DefaultButton = ContentDialogButton.Secondary
-            };
-            ContentDialogResult result = await ModifyBox.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                string i = DbUtils.UpdateDb("boxes", setting, "BoxId = \"" + BoxId + "\"", value);
-                Sandbox.Height(BoxId, Convert.ToInt32(value));
-            }
-            FillDataGridItem(Sandbox.Angles(DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0]),DataGrid3);
-            string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\"")[0];
-            FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
-            
-            FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
-        }
+                string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+                string original = "";
+                string value = "";
+                string setting = "Height";
+                original = DbUtils.RefList("Height", "boxes where BoxId = \"" + BoxId + "\"")[0];
+                value = ((Box)((sender as DataGrid).SelectedItem)).Height;
+                ContentDialog ModifyBox = new ContentDialog()
+                {
+                    Title = "Box modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " from \"" + original + "\" to \"" + value + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyBox.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    string i = DbUtils.UpdateDb("boxes", setting, "BoxId = \"" + BoxId + "\"", value);
+                    Sandbox.Height(BoxId, Convert.ToInt32(value));
+                }
+                FillDataGridItem(Sandbox.Angles(DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0]), DataGrid3);
+                string OrderId = DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\"")[0];
+                FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + OrderId + "\""), DataGrid1);
 
-        private void DataGrid3_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
-        {
-            string Code = ((Item)((sender as DataGrid).SelectedItem)).Code;
-            ColourList.Clear();
-            foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"" + DbUtils.RefList("Ref", "kitbox where Code = \"" + Code + "\"")[0] + "\""))
+                FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
+            }
+            else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Panels colour")
             {
-                ColourList.Add(i);
+                string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+                string original = "";
+                string value = "";
+                string setting = "Colour of the panels";
+                original = DbUtils.RefListNd("Colour", "kitbox where Code=\"" + DbUtils.RefListNd("Code", "panels where BoxId=\"" + BoxId + "\"")[0] + "\"")[0];
+                value = ((Box)((sender as DataGrid).SelectedItem)).PanelsColour;
+                ContentDialog ModifyBox = new ContentDialog()
+                {
+                    Title = "Box modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " from \"" + original + "\" to \"" + value + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyBox.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    List<string> panelId = DbUtils.RefList("PanelId", "panels where BoxId = \"" + BoxId + "\"");
+                    foreach (string i in panelId)
+                    {
+                        string code = DbUtils.RefList("Code", "panels where PanelId = \"" + i + "\"")[0];
+                        string suffix;
+                        if (value == "White")
+                        {
+                            suffix = "WH";
+                        }
+                        else
+                        {
+                            suffix = "BR";
+                        }
+
+                        string newCode = code.Substring(0, code.Length - 2) + suffix;
+                        string k = DbUtils.UpdateDb("panels", "Code",
+                            "PanelId = \"" + i + "\" and BoxId = \"" + BoxId + "\"", newCode);
+                    }
+                }
+                FillDataGridItem(Sandbox.ElementList(BoxId), DataGrid3);
+                FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
+
+            }
+            else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Doors colour" && ((Box)((sender as DataGrid).SelectedItem)).DoorsColour != "")
+            {
+                string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+                string original = "";
+                string value = "";
+                string setting = "Colour of the doors";
+                original = DbUtils.RefListNd("Colour", "kitbox where Code=\"" + DbUtils.RefListNd("Code", "doors where BoxId=\"" + BoxId + "\"")[0] + "\"")[0];
+                value = ((Box)((sender as DataGrid).SelectedItem)).DoorsColour;
+                ContentDialog ModifyBox = new ContentDialog()
+                {
+                    Title = "Box modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " from \"" + original + "\" to \"" + value + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyBox.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    List<string> DoorId = DbUtils.RefList("DoorId", "doors where boxId = \"" + BoxId + "\"");
+                    foreach (string i in DoorId)
+                    {
+                        string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                        string height = DbUtils.RefList("Height", "kitbox where Code =\"" + code + "\"")[0];
+                        string width = DbUtils.RefList("Width", "kitbox where Code =\"" + code + "\"")[0];
+                        string newCode = DbUtils.RefList("Code",
+                            "kitbox where Height =\"" + height + "\"and Width = \"" + width +
+                            "\" and Ref = \"Door\" and Colour = \"" + value + "\"")[0];
+                        string zz = DbUtils.UpdateDb("doors", "Code",
+                            "DoorId = \"" + i + "\" and BoxId = \"" + BoxId + "\"",
+                            newCode);
+                    }
+                }
+                FillDataGridItem(Sandbox.ElementList(BoxId), DataGrid3);
+                FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
+
+            }
+            else if ((sender as DataGrid).CurrentColumn.Header.ToString() == "Doors number")
+            {
+                string w = "";
+                string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+                string numberDoor = ((Box)((sender as DataGrid).SelectedItem)).DoorsNumber;
+                string setting = "number of doors";
+                ContentDialog ModifyBox = new ContentDialog()
+                {
+                    Title = "Box modification",
+                    Content = "Do you want to change the " + setting.ToLower() + " of box n°" + BoxId + " to \"" + numberDoor + "\" ?",
+                    PrimaryButtonText = "Yes",
+                    SecondaryButtonText = "I'm not sure",
+                    DefaultButton = ContentDialogButton.Secondary
+                };
+                ContentDialogResult result = await ModifyBox.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    DataTable doors = Sandbox.Doors(BoxId);
+                    while (doors.Rows.Count - Convert.ToInt32(numberDoor) != 0)
+                    {
+                        if (doors.Rows.Count < Convert.ToInt32(numberDoor))
+                        {
+                            string height = DbUtils.RefList("Height",
+                                "boxes where BoxId = \"" + BoxId + "\"")[0];
+                            string width = DbUtils.RefList("Width",
+                                "cupboards where CupboardId = \"" + cupId + "\"")[0];
+                            string colour = ((Box)((sender as DataGrid).SelectedItem)).DoorsColour;
+                            string code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
+                                          "WH";
+                            if (colour == "")
+                            {
+                                code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
+                                          "WH";
+                            }
+                            else
+                            {
+                                if (colour == "White")
+                                {
+                                    code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
+                                          "WH";
+                                }
+                                else if (colour == "Brown")
+                                {
+                                    code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
+                                          "BR";
+                                }
+                                else
+                                {
+                                    code = "DOO" + (Convert.ToInt32(height) - 4) + (Convert.ToInt32(width) / 10 * 5 + 2) +
+                                          "GS";
+                                }
+                            }
+                            w = DbUtils.InsertDb("doors", "BoxId,Code",
+                                "\"" + BoxId + "\", \"" + code + "\"");
+                            doors = Sandbox.Doors(BoxId);
+                        }
+                        else if (doors.Rows.Count > Convert.ToInt32(numberDoor))
+                        {
+                            List<string> id = DbUtils.RefList("DoorId",
+                                "doors where BoxId = \"" + BoxId + "\"");
+                            w = DbUtils.DeleteRow("doors", "DoorId = \"" + id[id.Count - 1] + "\"");
+                            doors = Sandbox.Doors(BoxId);
+                        }
+                    }
+                }
+                DbUtils.Arrange("doors", "DoorId");
+                FillDataGridItem(Sandbox.ElementList(BoxId), DataGrid3);
+                FillDataGridBox(DbUtils.RefreshDb("boxes where CupboardId = \"" + DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + BoxId + "\"")[0] + "\""), DataGrid2);
             }
         }
 
@@ -492,6 +704,28 @@ namespace ShopInterfaceBeta
                     }
                 }
             }
+        }
+
+        private void DataGrid2_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            string BoxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
+            PanelsColourList.Clear();
+            foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Panel LR\""))
+            {
+                PanelsColourList.Add(i);
+            }
+            DoorsColourList.Clear();
+            foreach (string i in DbUtils.RefListNd("Colour", "kitbox where Ref = \"Door\""))
+            {
+                if (((Box)((sender as DataGrid).SelectedItem)).DoorsColour != "")
+                {
+                    DoorsColourList.Add(i);
+                }
+            }
+            DoorsNumberList.Clear();
+            DoorsNumberList.Add("0");
+            DoorsNumberList.Add("1");
+            DoorsNumberList.Add("2");
         }
     }
 }

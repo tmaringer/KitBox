@@ -86,7 +86,8 @@ namespace ShopInterfaceBeta
                 foreach (KeyValuePair<string, int> entry in values)
                 {
                     string key = entry.Key;
-                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    //string year = key.Split('/')[1];
+                    string month = key.Split('-')[0] + "/" + key.Split('-')[1];
                     if (graphMonth.ContainsKey(month))
                     {
                         graphMonth[month] = graphMonth[month] + entry.Value;
@@ -97,14 +98,48 @@ namespace ShopInterfaceBeta
                     }
                 }
                 List<string> months = new List<string>();
-                List<Records> records = new List<Records>();
+                List<Records> records2 = new List<Records>();
+                Dictionary<string, int> graphYear = new Dictionary<string, int>();
                 foreach (KeyValuePair<string, int> entry in graphMonth)
                 {
-                    months.Add(entry.Key);
-                    records.Add(new Records()
+                    string key = entry.Key;
+                    string year = "20" + key.Split('/')[1];
+                    if (graphYear.ContainsKey(year))
+                    {
+                        graphYear[year] = graphYear[year] + entry.Value;
+                    }
+                    else
+                    {
+                        graphYear.Add(year, entry.Value);
+                    }
+                }
+
+                foreach (KeyValuePair<string, int> entry in graphYear)
+                {
+                    records2.Add(new Records()
                     {
                         Interval = entry.Key,
                         Number = entry.Value
+                    });
+                }
+                List<Records> records = new List<Records>();
+                for(int x = graphMonth.Count-12; x < graphMonth.Count; x++)
+                {
+                    months.Add(graphMonth.Keys.ElementAt(x));
+                    records.Add(new Records()
+                    {
+                        Interval = graphMonth.Keys.ElementAt(x).Split('/')[0],
+                        Number = graphMonth.Values.ElementAt(x)
+                    });
+                }
+                List<Records> records1 = new List<Records>();
+                for (int x = graphMonth.Count - 24; x < graphMonth.Count-12; x++)
+                {
+                    months.Add(graphMonth.Keys.ElementAt(x));
+                    records1.Add(new Records()
+                    {
+                        Interval = graphMonth.Keys.ElementAt(x).Split('/')[0],
+                        Number = graphMonth.Values.ElementAt(x)
                     });
                 }
                 stockParts.Add(new StockPart()
@@ -113,7 +148,9 @@ namespace ShopInterfaceBeta
                     MinimumStock = row["MinimumStock"].ToString(),
                     Instock = row["Instock"].ToString(),
                     Avaibility = row["Avaibility"].ToString(),
-                    Records = records
+                    Records = records,
+                    Records1 = records1,
+                    Records2 = records2
                 }) ;
             }
             DataGrid1.ItemsSource = stockParts;
@@ -270,6 +307,8 @@ namespace ShopInterfaceBeta
             public string Avaibility { get; set; }
 
             public List<Records> Records { get; set; }
+            public List<Records> Records1 { get; set; }
+            public List<Records> Records2 { get; set; }
         }
 
         private void ButtonUpdate_Click(object sender, RoutedEventArgs e)

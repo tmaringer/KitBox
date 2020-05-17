@@ -474,23 +474,31 @@ namespace ShopInterfaceBeta
             int index = 1;
             foreach (string i in DbUtils.RefList("DoorId", "doors where BoxId= \"" + boxId + "\""))
             {
-                DataRow myDataRow;
-                myDataRow = elements.NewRow();
-                myDataRow["Id"] = index;
-                string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
-                myDataRow["Code"] = code;
-                myDataRow["Position"] = null;
-                string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
-                if (Convert.ToInt32(enstock) < 10)
+                string Cup = DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + boxId + "\"")[0];
+                if (Convert.ToInt32(DbUtils.RefList("Width","cupboards where CupboardId = \"" + Cup + "\"")[0]) > 60)
                 {
-                    myDataRow["Stock"] = "false";
+                    DataRow myDataRow;
+                    myDataRow = elements.NewRow();
+                    myDataRow["Id"] = index;
+                    string code = DbUtils.RefList("Code", "doors where DoorId = \"" + i + "\"")[0];
+                    myDataRow["Code"] = code;
+                    myDataRow["Position"] = null;
+                    string enstock = DbUtils.RefList("Instock", "kitbox where Code = \"" + code + "\"")[0];
+                    if (Convert.ToInt32(enstock) < 10)
+                    {
+                        myDataRow["Stock"] = "false";
+                    }
+                    else
+                    {
+                        myDataRow["Stock"] = "true";
+                    }
+                    elements.Rows.Add(myDataRow);
+                    index += 1;
                 }
                 else
                 {
-                    myDataRow["Stock"] = "true";
+                    string z = DbUtils.DeleteRow("doors", "DoorId = \"" + i + "\"");
                 }
-                elements.Rows.Add(myDataRow);
-                index += 1;
             }
             foreach (string i in DbUtils.RefList("CrossbarId", "crossbars where BoxId= \"" + boxId + "\""))
             {

@@ -8,9 +8,9 @@
     mc:Ignorable="d">
     <Grid x:Name="Grid" Margin="7" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
@@ -42,25 +42,6 @@
             </AppBarButton>
         </CommandBar>
         <CommandBar Grid.Row="0" Grid.Column="2" Background="Transparent" DefaultLabelPosition="Right" Margin="57,0,7,0">
-            <AppBarButton IsEnabled="False" AllowFocusOnInteraction="True" Label="Doors" ToolTipService.ToolTip="Door management" x:Name="Door">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="" FontFamily="Assets/Fabric.ttf#Fabric MDL2 Assets"/>
-                </AppBarButton.Icon>
-                <AppBarButton.Flyout>
-                    <CommandBarFlyout x:Name="DoorManagement">
-                        <CommandBarFlyout.SecondaryCommands>
-                            <AppBarElementContainer Padding="10" AllowFocusOnInteraction="True">
-                                <StackPanel>
-                                    <TextBlock Margin="7,0,0,0" Text="Modify the number of door" Style="{StaticResource SubtitleTextBlockStyle}"/>
-                                    <ComboBox x:Name="ComboDoor" Header="Colour" Margin="7" HorizontalAlignment="Stretch"/>
-                                    <Button Style="{StaticResource ButtonRevealStyle}" x:Name="Button5" Content="Modify" Click="Button5_Click" Margin="7,14,7,7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="TextBlock5" Height="1"/>
-                                </StackPanel>
-                            </AppBarElementContainer>
-                        </CommandBarFlyout.SecondaryCommands>
-                    </CommandBarFlyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
             <AppBarButton x:Name="Infos" IsEnabled="False" Label="Infos">
                 <AppBarButton.Icon>
                     <FontIcon Glyph=""/>
@@ -91,20 +72,23 @@
                 <controls:DataGridTextColumn IsReadOnly="True" Header="Height" Binding="{Binding Height}"/>
                 <controls:DataGridComboBoxColumn Header="Width" Binding="{Binding Width}" ItemsSource="{x:Bind widthList}"/>
                 <controls:DataGridComboBoxColumn Header="Depth" Binding="{Binding Depth}" ItemsSource="{x:Bind depthList}"/>
+                <controls:DataGridComboBoxColumn Header="ANB colour" Binding="{Binding AngleColour}" ItemsSource="{x:Bind ANBList}"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7"  MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" CellEditEnding="DataGrid2_CellEditEnding">
+        <controls:DataGrid x:Name="DataGrid2" Margin="7,0,7,7"  MinColumnWidth="150" ColumnWidth="*" DoubleTapped="DataGrid2_DoubleTapped" Grid.Column="0" Grid.Row="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" BeginningEdit="DataGrid2_BeginningEdit" CellEditEnding="DataGrid2_CellEditEnding">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="BoxId" Binding="{Binding BoxId}" />
                 <controls:DataGridTextColumn IsReadOnly="True" Header="CupboardId" Binding="{Binding CupboardId}" />
                 <controls:DataGridComboBoxColumn Header="Height" Binding="{Binding Height}" ItemsSource="{x:Bind heightList}"/>
+                <controls:DataGridComboBoxColumn Header="Panels colour" Binding="{Binding PanelsColour}" ItemsSource="{x:Bind PanelsColourList}"/>
+                <controls:DataGridComboBoxColumn Header="Doors number" Binding="{Binding DoorsNumber}" ItemsSource="{x:Bind DoorsNumberList}"/>
+                <controls:DataGridComboBoxColumn Header="Doors colour" Binding="{Binding DoorsColour}" ItemsSource="{x:Bind DoorsColourList}"/>
             </controls:DataGrid.Columns>
         </controls:DataGrid>
-        <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" MinColumnWidth="150" CellEditEnding="DataGrid3_CellEditEnding" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" BeginningEdit="DataGrid3_BeginningEdit">
+        <controls:DataGrid x:Name="DataGrid3" Margin="7,0,7,7" ColumnWidth="*" DoubleTapped="DataGrid3_DoubleTapped" MinColumnWidth="150" CellEditEnding="DataGrid3_CellEditEnding" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="3" BorderThickness="1" BorderBrush="{StaticResource ApplicationForegroundThemeBrush}">
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}"/>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="Code" Binding="{Binding Code}"/>
-                <controls:DataGridComboBoxColumn Header="Colour" Binding="{Binding Colour}" ItemsSource="{x:Bind ColourList}"/>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="Position" Binding="{Binding Position}"/>
                 <controls:DataGridTextColumn IsReadOnly="True" Header="Stock" Binding="{Binding Stock}" FontFamily="Segoe MDL2 Assets"/>
             </controls:DataGrid.Columns>

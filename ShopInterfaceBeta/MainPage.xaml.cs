@@ -48,7 +48,7 @@ namespace ShopInterfaceBeta
             };
 
             await noConnectionDialog.ShowAsync();
-            await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
+            //await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
         }
 
         private static async void LoginDialog()
