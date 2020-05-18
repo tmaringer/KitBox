@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -16,28 +18,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `customers`
+-- Table structure for table `boxes`
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `boxes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customers` (
-  `CustomerId` int NOT NULL AUTO_INCREMENT,
-  `CustomerName` varchar(100) DEFAULT NULL,
-  `CustomerPhone` varchar(14) DEFAULT NULL,
-  PRIMARY KEY (`CustomerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `boxes` (
+  `BoxId` int NOT NULL,
+  `CupboardId` int DEFAULT NULL,
+  `Height` int DEFAULT NULL,
+  PRIMARY KEY (`BoxId`),
+  KEY `ok_idx` (`CupboardId`),
+  CONSTRAINT `ok` FOREIGN KEY (`CupboardId`) REFERENCES `cupboards` (`CupboardId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `customers`
+-- Dumping data for table `boxes`
 --
 
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-INSERT INTO `customers` VALUES (1,'Maringer','0470599833'),(2,'DeGroote','AHAH');
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+LOCK TABLES `boxes` WRITE;
+/*!40000 ALTER TABLE `boxes` DISABLE KEYS */;
+INSERT INTO `boxes` VALUES (1,1,36),(2,1,56);
+/*!40000 ALTER TABLE `boxes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:39
+-- Dump completed on 2020-05-18 10:00:41

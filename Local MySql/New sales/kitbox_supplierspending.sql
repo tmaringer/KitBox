@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -35,6 +37,7 @@ CREATE TABLE `supplierspending` (
 
 LOCK TABLES `supplierspending` WRITE;
 /*!40000 ALTER TABLE `supplierspending` DISABLE KEYS */;
+INSERT INTO `supplierspending` VALUES ('DOO3252GS',17),('DOO3262GS',20);
 /*!40000 ALTER TABLE `supplierspending` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:39
+-- Dump completed on 2020-05-18 10:00:37

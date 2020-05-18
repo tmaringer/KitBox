@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -16,31 +18,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `listsitems`
+-- Table structure for table `panels`
 --
 
-DROP TABLE IF EXISTS `listsitems`;
+DROP TABLE IF EXISTS `panels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `listsitems` (
-  `OrderId` int NOT NULL,
-  `Code` varchar(50) NOT NULL,
-  `Quantity` int DEFAULT NULL,
-  `Disponibility` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`OrderId`,`Code`),
-  KEY `listsitems_ibfk_1` (`OrderId`),
-  CONSTRAINT `OrderId` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `panels` (
+  `PanelId` int NOT NULL AUTO_INCREMENT,
+  `BoxId` int DEFAULT NULL,
+  `Code` text,
+  `Position` text,
+  PRIMARY KEY (`PanelId`),
+  KEY `euuuh_idx` (`BoxId`),
+  CONSTRAINT `euuuh` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `listsitems`
+-- Dumping data for table `panels`
 --
 
-LOCK TABLES `listsitems` WRITE;
-/*!40000 ALTER TABLE `listsitems` DISABLE KEYS */;
-INSERT INTO `listsitems` VALUES (1,'ANB125BLCUT',4,'completed'),(1,'CBB100',4,'completed'),(1,'CBF100',4,'completed'),(1,'CBS62',8,'completed'),(1,'CLE37',4,'completed'),(1,'CLE47',4,'added'),(1,'Cup',4,'completed'),(1,'DOO4252GS',2,'completed'),(1,'DOO5252BR',1,'completed'),(1,'DOO5252GS',1,'completed'),(1,'PAB42100WH',1,'completed'),(1,'PAB52100WH',1,'completed'),(1,'PHL62100WH',4,'completed'),(1,'PLR4262WH',2,'completed'),(1,'PLR5262WH',2,'completed');
-/*!40000 ALTER TABLE `listsitems` ENABLE KEYS */;
+LOCK TABLES `panels` WRITE;
+/*!40000 ALTER TABLE `panels` DISABLE KEYS */;
+INSERT INTO `panels` VALUES (1,1,'PHL6262BR','H'),(2,1,'PHL6262BR','L'),(3,1,'PAB3262BR','B'),(4,1,'PLR3262BR','RS'),(5,1,'PLR3262BR','LS'),(6,2,'PHL6262WH','H'),(7,2,'PHL6262WH','L'),(8,2,'PAB5262WH','B'),(9,2,'PLR5262WH','RS'),(10,2,'PLR5262WH','LS');
+/*!40000 ALTER TABLE `panels` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:40
+-- Dump completed on 2020-05-18 10:00:49

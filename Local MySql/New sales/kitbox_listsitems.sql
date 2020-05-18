@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -16,28 +18,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `suppliers`
+-- Table structure for table `listsitems`
 --
 
-DROP TABLE IF EXISTS `suppliers`;
+DROP TABLE IF EXISTS `listsitems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `suppliers` (
-  `SupplierId` int NOT NULL,
-  `SupplierName` varchar(45) DEFAULT NULL,
-  `SupplierAddress` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`SupplierId`)
+CREATE TABLE `listsitems` (
+  `OrderId` int NOT NULL,
+  `Code` varchar(50) NOT NULL,
+  `Quantity` int DEFAULT NULL,
+  `Disponibility` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`OrderId`,`Code`),
+  KEY `listsitems_ibfk_1` (`OrderId`),
+  CONSTRAINT `OrderId` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `suppliers`
+-- Dumping data for table `listsitems`
 --
 
-LOCK TABLES `suppliers` WRITE;
-/*!40000 ALTER TABLE `suppliers` DISABLE KEYS */;
-INSERT INTO `suppliers` VALUES (1,'Trabelbo SA','Parc industriel 9 '),(2,'TraitBois SPRL','Chemin des 2 Maisons, 140');
-/*!40000 ALTER TABLE `suppliers` ENABLE KEYS */;
+LOCK TABLES `listsitems` WRITE;
+/*!40000 ALTER TABLE `listsitems` DISABLE KEYS */;
+INSERT INTO `listsitems` VALUES (1,'ANB112WH',4,'completed'),(1,'CBB120',4,'completed'),(1,'CBF120',4,'completed'),(1,'CBS62',8,'completed'),(1,'CLE47',8,'completed'),(1,'Cup',4,'completed'),(1,'DOO5262BR',2,'completed'),(1,'DOO5262GS',2,'completed'),(1,'PAB52120BR',1,'completed'),(1,'PAB52120WH',1,'completed'),(1,'PHL62120BR',2,'completed'),(1,'PHL62120WH',2,'completed'),(1,'PLR5262BR',2,'completed'),(1,'PLR5262WH',2,'completed');
+/*!40000 ALTER TABLE `listsitems` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:41
+-- Dump completed on 2020-05-18 10:00:42

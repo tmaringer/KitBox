@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -16,32 +18,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `cupboards`
+-- Table structure for table `cleats`
 --
 
-DROP TABLE IF EXISTS `cupboards`;
+DROP TABLE IF EXISTS `cleats`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `cupboards` (
-  `CupboardId` int NOT NULL AUTO_INCREMENT,
-  `OrderId` int DEFAULT NULL,
-  `Height` int DEFAULT NULL,
-  `Depth` int DEFAULT NULL,
-  `Width` int DEFAULT NULL,
-  PRIMARY KEY (`CupboardId`),
-  KEY `OrderId_idx` (`OrderId`),
-  CONSTRAINT `cupboards_ibfk_1` FOREIGN KEY (`OrderId`) REFERENCES `orders` (`OrderId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `cleats` (
+  `CleatId` int NOT NULL AUTO_INCREMENT,
+  `BoxId` int DEFAULT NULL,
+  `Code` text,
+  PRIMARY KEY (`CleatId`),
+  KEY `MK_idx` (`BoxId`),
+  CONSTRAINT `MK` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cupboards`
+-- Dumping data for table `cleats`
 --
 
-LOCK TABLES `cupboards` WRITE;
-/*!40000 ALTER TABLE `cupboards` DISABLE KEYS */;
-INSERT INTO `cupboards` VALUES (1,1,102,62,120);
-/*!40000 ALTER TABLE `cupboards` ENABLE KEYS */;
+LOCK TABLES `cleats` WRITE;
+/*!40000 ALTER TABLE `cleats` DISABLE KEYS */;
+INSERT INTO `cleats` VALUES (1,1,'CLE27'),(2,1,'CLE27'),(3,1,'CLE27'),(4,1,'CLE27'),(5,2,'CLE47'),(6,2,'CLE47'),(7,2,'CLE47'),(8,2,'CLE47');
+/*!40000 ALTER TABLE `cleats` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:41
+-- Dump completed on 2020-05-18 10:00:41

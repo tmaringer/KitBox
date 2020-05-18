@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `kitbox` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `kitbox`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: kitbox
@@ -16,31 +18,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `panels`
+-- Table structure for table `suppliersorders`
 --
 
-DROP TABLE IF EXISTS `panels`;
+DROP TABLE IF EXISTS `suppliersorders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `panels` (
-  `PanelId` int NOT NULL AUTO_INCREMENT,
-  `BoxId` int DEFAULT NULL,
-  `Code` text,
-  `Position` text,
-  PRIMARY KEY (`PanelId`),
-  KEY `euuuh_idx` (`BoxId`),
-  CONSTRAINT `euuuh` FOREIGN KEY (`BoxId`) REFERENCES `boxes` (`BoxId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `suppliersorders` (
+  `SupplierOrderId` int NOT NULL AUTO_INCREMENT,
+  `SupplierId` int DEFAULT NULL,
+  `Amount` double DEFAULT NULL,
+  `Date` varchar(10) DEFAULT NULL,
+  `Status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`SupplierOrderId`),
+  KEY `SupplierId_idx` (`SupplierId`),
+  CONSTRAINT `qwert` FOREIGN KEY (`SupplierId`) REFERENCES `suppliers` (`SupplierId`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `panels`
+-- Dumping data for table `suppliersorders`
 --
 
-LOCK TABLES `panels` WRITE;
-/*!40000 ALTER TABLE `panels` DISABLE KEYS */;
-INSERT INTO `panels` VALUES (1,1,'PHL62120WH','H'),(2,1,'PHL62120WH','L'),(3,1,'PAB52120WH','B'),(4,1,'PLR5262WH','RS'),(5,1,'PLR5262WH','LS'),(6,2,'PHL62120WH','H'),(7,2,'PHL62120WH','L'),(8,2,'PAB42120WH','B'),(9,2,'PLR4262WH','RS'),(10,2,'PLR4262WH','LS');
-/*!40000 ALTER TABLE `panels` ENABLE KEYS */;
+LOCK TABLES `suppliersorders` WRITE;
+/*!40000 ALTER TABLE `suppliersorders` DISABLE KEYS */;
+INSERT INTO `suppliersorders` VALUES (1,2,41.6,'2020-03-26','received'),(5,2,800,'2020-03-26','received'),(6,2,42.88,'2020-03-26','received'),(7,2,2.4,'2020-03-26','received'),(8,2,1270,'2020-04-11','received'),(9,2,27000,'2020-04-14','received'),(10,2,1.92,'2020-04-17','received'),(11,2,1507743.5,'2020-04-24','received'),(12,2,108000,'2020-05-02','received'),(13,2,8700,'2020-05-16','sent');
+/*!40000 ALTER TABLE `suppliersorders` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 15:01:42
+-- Dump completed on 2020-05-18 10:00:46
