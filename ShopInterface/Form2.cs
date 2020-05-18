@@ -644,15 +644,15 @@ namespace ShopInterface
             {
                 if (col.ColumnName != "Code" && col.ColumnName != "Ref")
                 {
-                    string value = col.ColumnName.Split('/')[2];
+                    string value = col.ColumnName.Split('-')[1];
 
                     if (_columnYear.Contains(value) == false)
                     {
                         _columnYear.Add(value);
                     }
 
-                    string valueMonth = col.ColumnName.Split('/')[1] + "/" +
-                                        col.ColumnName.Split('/')[2];
+                    string valueMonth = col.ColumnName.Split('-')[0] + "/" +
+                                        col.ColumnName.Split('-')[1];
 
                     if (_columnMonth.Contains(valueMonth) == false)
                     {
