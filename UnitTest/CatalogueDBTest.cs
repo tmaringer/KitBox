@@ -31,7 +31,7 @@ namespace UnitTest
         [TestMethod]
         public void createComponentTest2()
         {
-            door1 = (Door)catalogueDB.createComponents(32, 62, 0, ComponentColor.brown, "Door");
+            door1 = (Door)catalogueDB.createComponents(32, 62, 0, ComponentColor.brown, false, "Door");
             Assert.AreEqual(9.92, door1.price);
         }
 

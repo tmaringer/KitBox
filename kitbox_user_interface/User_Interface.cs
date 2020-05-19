@@ -164,7 +164,7 @@ namespace kitbox_user_interface_V1
 
                     //TODO create door with doorCup boolean
 
-                    Door door1 = (Door)cb.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(doorsColor), "Door");
+                    Door door1 = (Door)cb.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(doorsColor), false, "Door");
                     locker.addComponent(new List<CatalogueComponents>() { door1, door1 });
                 }
                 Panels panelsHL = (Panels)cb.createComponents(0, width, depth, EnumParse.parseColorStrToEnum(panelColor), PanelsType.HL, "Panel");
