@@ -92,8 +92,8 @@ namespace projectCS
 
                 foreach (CatalogueComponents catalogueCompo in _componentsList)
                 {
-                    if (catalogueCompo is Door)
-                        color = ((Door)catalogueCompo).color;
+                    if (catalogueCompo is Panels)
+                        color = ((Panels)catalogueCompo).color;
                 }
                 return color;
             }
