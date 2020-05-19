@@ -83,12 +83,15 @@ namespace projectCS
         {
             get
             {
-                if (_cup)
-                    _price += 0.01;
+                double tempPrice = _price;
 
-                return _price;
+                if (_cup)
+                    tempPrice += 0.01;
+
+                return tempPrice;
             }
         }
+
         
         public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.black)
         {
@@ -101,7 +104,6 @@ namespace projectCS
                         ComponentColor color) : this(price, reference, code, size, inStock, color, false)
         {
         }
-        
         public Door(double price,
                         string reference,
                         string code,

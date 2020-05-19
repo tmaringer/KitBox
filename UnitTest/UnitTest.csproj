@@ -60,6 +60,7 @@
     <Compile Include="ClientTest.cs" />
     <Compile Include="ShoppingCartTest.cs" />
     <Compile Include="CatalogueDBTest.cs" />
+    <Compile Include="DoorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\projectCS\projectCS.csproj">
