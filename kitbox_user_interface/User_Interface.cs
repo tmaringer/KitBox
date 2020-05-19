@@ -130,7 +130,8 @@ namespace kitbox_user_interface_V1
                 int height = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string doorsColor = comboBox6.SelectedItem.ToString();
                 string panelColor = comboBox7.SelectedItem.ToString();
-                int doorWidth = 0; ;
+                int doorWidth = 0;
+                bool doorCup = false;
                 if (doorsColor!="none")
                 {
                     if (width >= 62)
@@ -144,6 +145,13 @@ namespace kitbox_user_interface_V1
                             doorWidth = width / 2 + 2;
                         }
                     }
+                    if(doorsColor != "Glass" && comboBox9.SelectedItem != null)
+                    {
+                        if(comboBox9.SelectedItem.ToString() == "yes")
+                        {
+                            doorCup = true;
+                        }
+                    }
                 }
 
                 Locker locker = new Locker();
@@ -153,6 +161,9 @@ namespace kitbox_user_interface_V1
                 Cleat cleat1 = (Cleat)cb.createComponents(height, 0, 0, "Cleat");
                 if (doorsColor != "none")
                 {
+
+                    //TODO create door with doorCup boolean
+
                     Door door1 = (Door)cb.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(doorsColor), "Door");
                     locker.addComponent(new List<CatalogueComponents>() { door1, door1 });
                 }
@@ -343,7 +354,7 @@ namespace kitbox_user_interface_V1
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox6.SelectedItem.ToString() == "none")
+            if (comboBox6.SelectedItem.ToString() == "none" || comboBox6.SelectedItem.ToString() == "Glass")
             {
                 comboBox9.Enabled = false;
             }
