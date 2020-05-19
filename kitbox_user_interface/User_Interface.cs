@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Math;
+using Org.BouncyCastle.Security.Certificates;
 using projectCS;
 using projectCS.Tools_class;
 
@@ -279,8 +280,16 @@ namespace kitbox_user_interface_V1
                 int height = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string doorsColor = comboBox6.SelectedItem.ToString();
                 string panelColor = comboBox7.SelectedItem.ToString();
+                bool doorCup = false;
 
-                if (totalHeight - formerHeight - 4 + height < maxHeight)
+                if(doorsColor!="Glass" && doorsColor !="none")
+                {
+                    if (comboBox9.SelectedItem.ToString() == "yes")
+                        doorCup = true;
+                }
+
+
+                    if (totalHeight - formerHeight - 4 + height < maxHeight)
                 {
                     //save changes
                     totalHeight -= formerHeight;
