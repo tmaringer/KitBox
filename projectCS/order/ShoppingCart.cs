@@ -116,34 +116,6 @@ namespace projectCS
             _catalogueComponentsList.Remove(component);
         }
 
-        /// <summary>
-        ///     Builds locker from components stored in list. It also removes components which are used to build locker.
-        /// </summary>
-        /// <returns>
-        ///     Returns the locker built.
-        /// </returns>
-        public static Locker buildLocker()
-        {
-            Locker locker = new Locker();
-            // temporary list which store components added to the locker and is used thereafter to remove components in the main list
-            List<CatalogueComponents> tempList = new List<CatalogueComponents>();
-            bool componentWasAdded = false;
-
-            foreach (CatalogueComponents component in _catalogueComponentsList)
-            {
-                componentWasAdded = locker.addComponent(component);
-                if (componentWasAdded)
-                    tempList.Add(component);
-            }
-
-            foreach (CatalogueComponents component in tempList)
-            {
-                _catalogueComponentsList.Remove(component);
-            }
-
-            return locker;
-        }
-
         public static void addCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Add(cupboardComponent);

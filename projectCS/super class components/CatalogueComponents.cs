@@ -9,7 +9,7 @@ namespace projectCS
     public abstract class CatalogueComponents
     {
         protected double _price;
-        public double price
+        public virtual double price
         {
             get => _price;
             set => _price = value;

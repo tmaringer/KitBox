@@ -77,7 +77,19 @@ namespace projectCS
             set => _color = value;
         }
 
+        private bool _cup;
 
+        public override double price
+        {
+            get
+            {
+                if (_cup)
+                    _price += 0.01;
+
+                return _price;
+            }
+        }
+        
         public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.black)
         {
         }
@@ -86,10 +98,22 @@ namespace projectCS
                         string code,
                         ComponentSize size,
                         bool inStock,
-                        ComponentColor color) : base(price, reference, code, size, inStock)
+                        ComponentColor color) : this(price, reference, code, size, inStock, color, false)
+        {
+        }
+        
+        public Door(double price,
+                        string reference,
+                        string code,
+                        ComponentSize size,
+                        bool inStock,
+                        ComponentColor color,
+                        bool cup) : base(price, reference, code, size, inStock)
         {
             this.color = color;
+            this._cup = cup;
         }
+        
     }
 
     public class Cleat : CatalogueComponents

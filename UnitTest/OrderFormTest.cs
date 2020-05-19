@@ -65,8 +65,10 @@ namespace UnitTest
             doorWithParam1 = new Door(388.96, "referenceTest", "1", new ComponentSize(0, 0, 0), false, ComponentColor.white);
             doorWithParam2 = new Door(38.16, "referenceTest", "1", new ComponentSize(0, 0, 0), false, ComponentColor.white);
 
+            // price = 200
             catalogueComponentsListWith2WithParam = new List<CatalogueComponents>() { crossBarWithParam1, crossBarWithParam2 };
 
+            // 1124.49
             catalogueComponentsListWith6WithParam = new List<CatalogueComponents>() { crossBarWithParam1, crossBarWithParam2,
                                                                          cleatWithParam1, cleatWithParam2,
                                                                          doorWithParam1, doorWithParam2};
