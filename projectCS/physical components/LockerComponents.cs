@@ -86,7 +86,7 @@ namespace projectCS
                 double tempPrice = _price;
 
                 if (_cup)
-                    tempPrice += 0.01;
+                    tempPrice += 0.005;
 
                 return tempPrice;
             }
