@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using projectCS;
@@ -18,6 +19,19 @@ namespace kitbox_user_interface_V1
         {
             InitializeComponent();
             int i;
+            Locker locker;
+            foreach(ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
+            {
+                if(cupCompo is Locker)
+                {
+                    locker = (Locker)cupCompo;
+
+                    string height = locker.height.ToString();
+                    string depth = locker.depth.ToString();
+                    string price = locker.price.ToString();
+                }
+            }
+
             for(i=1;i< ShoppingCart.cupboardComponentsList.Count;i++)
             {
                 Locker box = ShoppingCart.getLockerByID(i);
