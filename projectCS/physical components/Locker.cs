@@ -1,6 +1,7 @@
 ﻿using projectCS.Tools_class;
 using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace projectCS
 {
@@ -58,8 +59,19 @@ namespace projectCS
 
         private ComponentColor _doorsColor;
         public ComponentColor doorsColor 
-        { 
-            get => _doorsColor;
+        {
+            get
+            {
+                ComponentColor color = ComponentColor.black;
+
+                foreach (CatalogueComponents catalogueCompo in _componentsList)
+                {
+                    if (catalogueCompo is Door)
+                        color = ((Door)catalogueCompo).color;
+                }
+                return color;
+            }
+
             set
             {
                 foreach (CatalogueComponents catalogueCompo in _componentsList)
@@ -74,7 +86,18 @@ namespace projectCS
         private ComponentColor _panelColor;
         public ComponentColor panelColor 
         { 
-            get => _panelColor;
+            get
+            {
+                ComponentColor color = ComponentColor.black;
+
+                foreach (CatalogueComponents catalogueCompo in _componentsList)
+                {
+                    if (catalogueCompo is Door)
+                        color = ((Door)catalogueCompo).color;
+                }
+                return color;
+            }
+
             set
             {
                 foreach(CatalogueComponents catalogueCompo in _componentsList)
