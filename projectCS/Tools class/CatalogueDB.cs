@@ -38,7 +38,7 @@ namespace projectCS.Tools_class
             return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock);
         }
 
-        public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, string typeObj)
+        public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, bool ifCup, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
             conn.Open();
@@ -55,7 +55,7 @@ namespace projectCS.Tools_class
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
-            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], code, size, inStock, color);
+            return new Door(double.Parse(price), typeof(Door).ToString().Split('.')[1], code, size, inStock, color, ifCup);
         }
 
         public CatalogueComponents createComponents(int height, int width, int depth, ComponentColor color, PanelsType panelsType, string typeObj)

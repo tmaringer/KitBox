@@ -104,13 +104,11 @@ namespace projectCS
             _colorDoodChosen = doodColor;
         }
 
-        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
         public static void addCatalogueComponent(CatalogueComponents component)
         {
             _catalogueComponentsList.Add(component);
         }
 
-        // todo : voir si on autorise d'ajouter plus de composant pour un locker ou si on limite
         public static void removeCatalogueComponent(CatalogueComponents component)
         {
             _catalogueComponentsList.Remove(component);

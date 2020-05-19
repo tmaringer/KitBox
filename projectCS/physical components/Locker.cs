@@ -103,7 +103,7 @@ namespace projectCS
             _depth = 0;
         }
 
-        // todo : refactorer
+
         /// <summary>
         ///     add a component or a component list which are stored in a components list
         /// </summary>
