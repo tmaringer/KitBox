@@ -290,8 +290,7 @@ namespace kitbox_user_interface_V1
                         doorCup = true;
                 }
 
-
-                    if (totalHeight - formerHeight - 4 + height < maxHeight)
+                if (totalHeight - formerHeight - 4 + height < maxHeight)
                 {
                     //save changes
                     totalHeight -= formerHeight;
@@ -312,14 +311,12 @@ namespace kitbox_user_interface_V1
                     }
                     double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
                     //TODO if new doors add new doors !!!
-                    //TODO mettre à jour price
+                    // => create components & add to the locker then new price
+
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor,doorCup, panelColor,newPrice);
 
                     //TODO mettre yes no plutôt que true false dans l'afficheur
                     
-                    
-
-
                 }
                 else
                     MessageBox.Show("Maximal height reached");
