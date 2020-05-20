@@ -81,6 +81,7 @@ namespace projectCS
         public bool cup
         {
             get => _cup;
+            set => _cup = value;
         }
 
         public override double price
