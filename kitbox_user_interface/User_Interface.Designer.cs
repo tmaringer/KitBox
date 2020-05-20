@@ -65,6 +65,10 @@
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox20 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +82,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(1653, 68);
+            this.textBox1.Size = new System.Drawing.Size(1427, 68);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "KITBOX";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -95,6 +99,8 @@
             // 
             // comboBox4
             // 
+            this.comboBox4.BackColor = System.Drawing.Color.White;
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(178, 240);
             this.comboBox4.Name = "comboBox4";
@@ -103,6 +109,8 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.BackColor = System.Drawing.Color.White;
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(178, 206);
             this.comboBox3.Name = "comboBox3";
@@ -111,6 +119,8 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.White;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(178, 172);
             this.comboBox2.Name = "comboBox2";
@@ -119,6 +129,8 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(178, 138);
             this.comboBox1.Name = "comboBox1";
@@ -218,32 +230,36 @@
             // 
             // comboBox5
             // 
+            this.comboBox5.BackColor = System.Drawing.Color.White;
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox5.Enabled = false;
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(525, 138);
+            this.comboBox5.Location = new System.Drawing.Point(528, 138);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(100, 28);
+            this.comboBox5.Size = new System.Drawing.Size(183, 28);
             this.comboBox5.TabIndex = 55;
             // 
             // comboBox7
             // 
+            this.comboBox7.BackColor = System.Drawing.Color.White;
+            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox7.Enabled = false;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(362, 240);
+            this.comboBox7.Location = new System.Drawing.Point(528, 240);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(263, 28);
+            this.comboBox7.Size = new System.Drawing.Size(183, 28);
             this.comboBox7.TabIndex = 54;
-            this.comboBox7.Text = "panel colors";
             // 
             // comboBox6
             // 
+            this.comboBox6.BackColor = System.Drawing.Color.White;
+            this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.Enabled = false;
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(362, 172);
+            this.comboBox6.Location = new System.Drawing.Point(528, 172);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(263, 28);
+            this.comboBox6.Size = new System.Drawing.Size(183, 28);
             this.comboBox6.TabIndex = 53;
-            this.comboBox6.Text = "doors";
             this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox6_SelectedIndexChanged);
             // 
             // button2
@@ -264,19 +280,20 @@
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(157, 28);
+            this.textBox9.Size = new System.Drawing.Size(160, 28);
             this.textBox9.TabIndex = 51;
             this.textBox9.Text = "height";
             // 
             // comboBox8
             // 
+            this.comboBox8.BackColor = System.Drawing.Color.White;
+            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox8.Enabled = false;
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(362, 274);
+            this.comboBox8.Location = new System.Drawing.Point(528, 274);
             this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(263, 28);
+            this.comboBox8.Size = new System.Drawing.Size(183, 28);
             this.comboBox8.TabIndex = 59;
-            this.comboBox8.Text = "box features";
             // 
             // dataGridView1
             // 
@@ -284,8 +301,6 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -296,17 +311,18 @@
             this.doorCup,
             this.Column4,
             this.price});
-            this.dataGridView1.Location = new System.Drawing.Point(709, 138);
+            this.dataGridView1.Location = new System.Drawing.Point(797, 138);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(956, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(642, 214);
             this.dataGridView1.TabIndex = 61;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Column1
             // 
+            this.Column1.FillWeight = 100.7531F;
             this.Column1.HeaderText = "Locker";
             this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
@@ -314,6 +330,7 @@
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 99.94308F;
             this.Column2.HeaderText = "Height";
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
@@ -321,6 +338,7 @@
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 99.29912F;
             this.Column3.HeaderText = "doors";
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
@@ -328,6 +346,7 @@
             // 
             // doorCup
             // 
+            this.doorCup.FillWeight = 101.5065F;
             this.doorCup.HeaderText = "doorCup";
             this.doorCup.MinimumWidth = 8;
             this.doorCup.Name = "doorCup";
@@ -335,6 +354,7 @@
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 99.63464F;
             this.Column4.HeaderText = "panel";
             this.Column4.MinimumWidth = 8;
             this.Column4.Name = "Column4";
@@ -342,6 +362,7 @@
             // 
             // price
             // 
+            this.price.FillWeight = 98.86364F;
             this.price.HeaderText = "price";
             this.price.MinimumWidth = 8;
             this.price.Name = "price";
@@ -352,7 +373,7 @@
             this.textBox10.BackColor = System.Drawing.Color.White;
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.textBox10.Location = new System.Drawing.Point(709, 107);
+            this.textBox10.Location = new System.Drawing.Point(797, 107);
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(150, 25);
@@ -363,7 +384,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(190)))), ((int)(((byte)(150)))));
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(709, 420);
+            this.button3.Location = new System.Drawing.Point(797, 420);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 44);
             this.button3.TabIndex = 63;
@@ -376,7 +397,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.button5.Enabled = false;
-            this.button5.Location = new System.Drawing.Point(865, 420);
+            this.button5.Location = new System.Drawing.Point(953, 420);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(150, 44);
             this.button5.TabIndex = 62;
@@ -389,7 +410,7 @@
             // 
             this.textBox14.BackColor = System.Drawing.Color.White;
             this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Location = new System.Drawing.Point(951, 358);
+            this.textBox14.Location = new System.Drawing.Point(1039, 358);
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
@@ -401,7 +422,7 @@
             // 
             this.textBox12.BackColor = System.Drawing.Color.PaleGreen;
             this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Location = new System.Drawing.Point(776, 358);
+            this.textBox12.Location = new System.Drawing.Point(864, 358);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
             this.textBox12.ReadOnly = true;
@@ -412,7 +433,7 @@
             // 
             this.textBox11.BackColor = System.Drawing.Color.White;
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox11.Location = new System.Drawing.Point(709, 358);
+            this.textBox11.Location = new System.Drawing.Point(797, 358);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
@@ -424,7 +445,7 @@
             // 
             this.textBox13.BackColor = System.Drawing.Color.White;
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Location = new System.Drawing.Point(898, 358);
+            this.textBox13.Location = new System.Drawing.Point(986, 358);
             this.textBox13.Multiline = true;
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
@@ -436,7 +457,7 @@
             // 
             this.textBox15.BackColor = System.Drawing.Color.White;
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox15.Location = new System.Drawing.Point(709, 389);
+            this.textBox15.Location = new System.Drawing.Point(797, 389);
             this.textBox15.Multiline = true;
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -448,7 +469,7 @@
             // 
             this.textBox16.BackColor = System.Drawing.Color.White;
             this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox16.Location = new System.Drawing.Point(837, 389);
+            this.textBox16.Location = new System.Drawing.Point(925, 389);
             this.textBox16.Multiline = true;
             this.textBox16.Name = "textBox16";
             this.textBox16.ReadOnly = true;
@@ -458,20 +479,68 @@
             // 
             // comboBox9
             // 
+            this.comboBox9.BackColor = System.Drawing.Color.White;
+            this.comboBox9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox9.Enabled = false;
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(362, 206);
+            this.comboBox9.Location = new System.Drawing.Point(528, 206);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(263, 28);
+            this.comboBox9.Size = new System.Drawing.Size(183, 28);
             this.comboBox9.TabIndex = 70;
-            this.comboBox9.Text = "doors cup";
+            // 
+            // textBox17
+            // 
+            this.textBox17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(219)))), ((int)(((byte)(209)))));
+            this.textBox17.Location = new System.Drawing.Point(362, 274);
+            this.textBox17.Multiline = true;
+            this.textBox17.Name = "textBox17";
+            this.textBox17.ReadOnly = true;
+            this.textBox17.Size = new System.Drawing.Size(160, 28);
+            this.textBox17.TabIndex = 74;
+            this.textBox17.Text = "box features";
+            // 
+            // textBox18
+            // 
+            this.textBox18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(219)))), ((int)(((byte)(209)))));
+            this.textBox18.Location = new System.Drawing.Point(362, 172);
+            this.textBox18.Multiline = true;
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(160, 28);
+            this.textBox18.TabIndex = 73;
+            this.textBox18.Text = "doors color";
+            // 
+            // textBox19
+            // 
+            this.textBox19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(219)))), ((int)(((byte)(209)))));
+            this.textBox19.Location = new System.Drawing.Point(362, 240);
+            this.textBox19.Multiline = true;
+            this.textBox19.Name = "textBox19";
+            this.textBox19.ReadOnly = true;
+            this.textBox19.Size = new System.Drawing.Size(160, 28);
+            this.textBox19.TabIndex = 72;
+            this.textBox19.Text = "panels color";
+            // 
+            // textBox20
+            // 
+            this.textBox20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(145)))), ((int)(((byte)(219)))), ((int)(((byte)(209)))));
+            this.textBox20.Location = new System.Drawing.Point(362, 206);
+            this.textBox20.Multiline = true;
+            this.textBox20.Name = "textBox20";
+            this.textBox20.ReadOnly = true;
+            this.textBox20.Size = new System.Drawing.Size(160, 28);
+            this.textBox20.TabIndex = 71;
+            this.textBox20.Text = "door cup";
             // 
             // User_Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1851, 491);
+            this.ClientSize = new System.Drawing.Size(1585, 756);
+            this.Controls.Add(this.textBox17);
+            this.Controls.Add(this.textBox18);
+            this.Controls.Add(this.textBox19);
+            this.Controls.Add(this.textBox20);
             this.Controls.Add(this.comboBox9);
             this.Controls.Add(this.textBox16);
             this.Controls.Add(this.textBox15);
@@ -551,5 +620,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn doorCup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox textBox20;
     }
 }

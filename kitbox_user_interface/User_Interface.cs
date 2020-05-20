@@ -21,6 +21,9 @@ namespace kitbox_user_interface_V1
         public User_Interface()
         {
             InitializeComponent();
+
+            this.WindowState = FormWindowState.Maximized;
+
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
@@ -70,6 +73,9 @@ namespace kitbox_user_interface_V1
             textBox12.Text = "0";
             textBox14.Text = maxHeight.ToString();
             textBox16.Text = "0";
+
+            dataGridView1.Enabled = false;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -256,6 +262,9 @@ namespace kitbox_user_interface_V1
             button2.Enabled = false;
             button4.Visible = true;
             button4.Enabled = true;
+
+            dataGridView1.Enabled = true;
+
             string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
             MySqlConnection conn = new MySqlConnection(MyConString);
             conn.Open();
@@ -329,12 +338,14 @@ namespace kitbox_user_interface_V1
 
         private void button5_Click(object sender, EventArgs e)
         {
+            /*
             string ticket;
             foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
             {
                 ticket = component.ToString();
                 MessageBox.Show(ticket);
             }
+            */
             this.Hide();
             Form_purchase validation = new Form_purchase();
             validation.Show();
@@ -361,6 +372,7 @@ namespace kitbox_user_interface_V1
             else
                 comboBox9.Enabled = true;
         }
+
     }
 
 }
