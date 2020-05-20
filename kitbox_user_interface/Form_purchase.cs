@@ -26,9 +26,14 @@ namespace kitbox_user_interface_V1
                 {
                     locker = (Locker)cupCompo;
 
+                    int currentbox = locker.ID;
                     string height = locker.height.ToString();
-                    string depth = locker.depth.ToString();
+                    //string depth = locker.depth.ToString();
+                    string doorsColor = EnumParse.parseColorEnumToStr(locker.doorsColor);
+                    string panelColor = EnumParse.parseColorEnumToStr(locker.panelColor);
                     string price = locker.price.ToString();
+
+                    dataGridView1.Rows.Add(currentbox, height, doorsColor,false, panelColor, price);
                 }
             }
 

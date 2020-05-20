@@ -49,11 +49,6 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -64,6 +59,12 @@
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.comboBox9 = new System.Windows.Forms.ComboBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.doorCup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(1203, 68);
+            this.textBox1.Size = new System.Drawing.Size(1309, 68);
             this.textBox1.TabIndex = 3;
             this.textBox1.Text = "KITBOX";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -292,6 +293,7 @@
             this.Column1,
             this.Column2,
             this.Column3,
+            this.doorCup,
             this.Column4,
             this.price});
             this.dataGridView1.Location = new System.Drawing.Point(724, 138);
@@ -299,44 +301,9 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(494, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 214);
             this.dataGridView1.TabIndex = 61;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Locker";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Height";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "doors";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "panel";
-            this.Column4.MinimumWidth = 8;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "price";
-            this.price.MinimumWidth = 8;
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
             // 
             // textBox10
             // 
@@ -457,12 +424,54 @@
             this.comboBox9.TabIndex = 70;
             this.comboBox9.Text = "doors cup";
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Locker";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Height";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "doors";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // doorCup
+            // 
+            this.doorCup.HeaderText = "doorCup";
+            this.doorCup.MinimumWidth = 8;
+            this.doorCup.Name = "doorCup";
+            this.doorCup.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "panel";
+            this.Column4.MinimumWidth = 8;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // price
+            // 
+            this.price.HeaderText = "price";
+            this.price.MinimumWidth = 8;
+            this.price.Name = "price";
+            this.price.ReadOnly = true;
+            // 
             // User_Interface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1233, 491);
+            this.ClientSize = new System.Drawing.Size(1339, 491);
             this.Controls.Add(this.comboBox9);
             this.Controls.Add(this.textBox16);
             this.Controls.Add(this.textBox15);
@@ -526,10 +535,6 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button5;
@@ -539,7 +544,12 @@
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.ComboBox comboBox9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn doorCup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
     }
 }
