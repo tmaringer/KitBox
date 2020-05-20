@@ -300,7 +300,7 @@ namespace kitbox_user_interface_V1
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
-                    //ShoppingCart.getLockerByID(ShoppingCart.currentLocker).cup = doorCup;
+                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).setCupOfDoor(doorCup);
                     
 
                     CatalogueDB catalogueDB = new CatalogueDB();
