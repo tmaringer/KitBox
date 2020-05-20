@@ -252,6 +252,15 @@ namespace projectCS
             return numberOfComponent;
         }
 
+        public void setCupOfDoor(bool ifCup)
+        {
+            foreach(CatalogueComponents catacompo in _componentsList)
+            {
+                if(catacompo is Door)
+                    ((Door)catacompo).cup = ifCup;
+            }
+        }
+
         private void resetID()
         {
             _numberOfLockers = 0;
