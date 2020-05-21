@@ -28,17 +28,28 @@ namespace projectCS
             get => _orderFormList;
         }
 
+        private string _adresseMail;
+        public string adresseMail 
+        { 
+            get => _adresseMail; 
+        }
+
 
         public Client() : this("testClient", "name test", "000000000")
         {
         }
 
-        public Client(string firstName, string name, string phoneNumber)
+        public Client(string firstName, string name, string phoneNumber) : this(firstName, name, phoneNumber, "@mail")
+        {
+                   }
+        
+        public Client(string firstName, string name, string phoneNumber, string adresseMail)
         {
             this._orderFormList = new List<OrderForm>();
             this._firstName = firstName;
             this._name = name;
             this._phoneNumber = phoneNumber;
+            this._adresseMail = adresseMail;
         }
 
 
