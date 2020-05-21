@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace projectCS
+﻿namespace projectCS
 {
     public static class ErrorMessages
     {

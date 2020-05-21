@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projectCS.Tools_class
 {
@@ -34,7 +32,7 @@ namespace projectCS.Tools_class
         {
             return Enum.GetName(color.GetType(), color);
         }
-        
+
         public static String parseTypeEnumToStr(CrossBarType type)
         {
             return Enum.GetName(type.GetType(), type);

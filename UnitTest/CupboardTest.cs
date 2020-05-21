@@ -107,17 +107,6 @@ namespace UnitTest
             cupboardComponentsListWith3 = new List<ICupboardComponents>() { locker1, locker2, locker3 };
         }
 
-        [TestMethod]
-        public void cutAnglesTest()
-        {
-            cupboard1.addCupboardComponent(angleBracketParam1);
-            cupboard1.cutAnglesBracket(25);
-
-            Assert.AreEqual(20, angleBracketParam1.height);
-            Assert.AreEqual(20, cupboard1.getAngleBracket().height);
-            Assert.AreNotEqual(2, cupboard1.getAngleBracket().height);
-        }
-
         /// <summary>
         ///     check if the function which search an angle in list work fine
         /// </summary>

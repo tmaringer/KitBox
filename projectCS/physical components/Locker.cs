@@ -1,7 +1,4 @@
-﻿using projectCS.Tools_class;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
 namespace projectCS
 {
@@ -58,7 +55,7 @@ namespace projectCS
         }
 
         private ComponentColor _doorsColor;
-        public ComponentColor doorsColor 
+        public ComponentColor doorsColor
         {
             get
             {
@@ -84,8 +81,8 @@ namespace projectCS
         }
 
         private ComponentColor _panelColor;
-        public ComponentColor panelColor 
-        { 
+        public ComponentColor panelColor
+        {
             get
             {
                 ComponentColor color = ComponentColor.black;
@@ -100,7 +97,7 @@ namespace projectCS
 
             set
             {
-                foreach(CatalogueComponents catalogueCompo in _componentsList)
+                foreach (CatalogueComponents catalogueCompo in _componentsList)
                 {
                     if (catalogueCompo is Panels)
                         ((Panels)catalogueCompo).color = value;
@@ -206,6 +203,15 @@ namespace projectCS
             return isComplete(_componentsList);
         }
 
+        public void setCupOfDoor(bool ifCup)
+        {
+            foreach (CatalogueComponents catacompo in _componentsList)
+            {
+                if (catacompo is Door)
+                    ((Door)catacompo).cup = ifCup;
+            }
+        }
+
         /// <summary>
         ///     Checks if the locker has all components which it be able to contains.
         /// </summary>
@@ -252,15 +258,6 @@ namespace projectCS
             return numberOfComponent;
         }
 
-        public void setCupOfDoor(bool ifCup)
-        {
-            foreach(CatalogueComponents catacompo in _componentsList)
-            {
-                if(catacompo is Door)
-                    ((Door)catacompo).cup = ifCup;
-            }
-        }
-
         private void resetID()
         {
             _numberOfLockers = 0;
@@ -286,8 +283,8 @@ namespace projectCS
                 + depth
                 + ", is Complete : "
                 + isComplete();
-                //+ "\n" + "\n" + "components list : " + "\n" + "\n"
-                //+ tostring;
+            //+ "\n" + "\n" + "components list : " + "\n" + "\n"
+            //+ tostring;
         }
     }
 }

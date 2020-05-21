@@ -1,9 +1,5 @@
-﻿using projectCS;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projectCS
 {
@@ -12,13 +8,7 @@ namespace projectCS
     ///     It build also cupboard with lockers and angle bracket stored in a other list.
     /// </summary>
     public static class ShoppingCart
-    {
-        private static List<CatalogueComponents> _catalogueComponentsList = new List<CatalogueComponents>();
-        public static List<CatalogueComponents> catalogueComponentsList
-        {
-            get => _catalogueComponentsList;
-        }
-
+    {       
         private static List<ICupboardComponents> _cupboardComponentsList = new List<ICupboardComponents>();
         public static List<ICupboardComponents> cupboardComponentsList
         {
@@ -43,37 +33,24 @@ namespace projectCS
             get => _widthChosen;
         }
 
-        private static int _heigtChosen;
-        public static int HeigtChosen 
-        { 
-            get => _heigtChosen; 
-            set => _heigtChosen = value; 
+        public static int heigth
+        {
+            get
+            {
+                int height = 0;
+                foreach (ICupboardComponents cupcompo in _cupboardComponentsList)
+                {
+                    if (cupcompo is Locker)
+                        height += ((Locker)cupcompo).height;
+                }
+                return height;
+            }
         }
 
         private static int _depthChosen;
         public static int depthChosen
         {
             get => _depthChosen;
-        }
-
-        private static int _heigtLockerChosen;
-        public static int HeigtLockerChosen 
-        { 
-            get => _heigtLockerChosen; 
-            set => _heigtLockerChosen = value; 
-        }
-
-        private static ComponentColor _colorDoodChosen;
-        public static ComponentColor ColorDoodChosen 
-        { 
-            get => _colorDoodChosen;
-            set => _colorDoodChosen = value; 
-        }
-
-        private static Cupboard _cupboard = new Cupboard();
-        public static Cupboard cupboard
-        {
-            get => _cupboard;
         }
 
         private static int _currentLocker = 0;
@@ -93,27 +70,7 @@ namespace projectCS
             _boxNumberChosen = boxNumber;
             _colorAngleBracketChosen = colorAngleBracket;
         }
-
-        /// <summary>
-        ///     Adds and saves customer's choices concerning cupboard.
-        /// </summary>
-        public static void addLockerUserChoices(int heigt, ComponentColor panelColor, ComponentColor doodColor)
-        {
-            _heigtLockerChosen = heigt;
-            _colorAngleBracketChosen = panelColor;
-            _colorDoodChosen = doodColor;
-        }
-
-        public static void addCatalogueComponent(CatalogueComponents component)
-        {
-            _catalogueComponentsList.Add(component);
-        }
-
-        public static void removeCatalogueComponent(CatalogueComponents component)
-        {
-            _catalogueComponentsList.Remove(component);
-        }
-
+     
         public static void addCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Add(cupboardComponent);
@@ -122,31 +79,6 @@ namespace projectCS
         public static void removeCupboardComponent(ICupboardComponents cupboardComponent)
         {
             _cupboardComponentsList.Remove(cupboardComponent);
-        }
-
-        /// <summary>
-        ///     Builds cupboard from components stored. It also removes components which are used to build cupboard.
-        /// </summary>
-        /// <returns>
-        ///     Returns the cupboard built.
-        /// </returns>
-        public static Cupboard buildCupboard()
-        {
-            _cupboard = new Cupboard();
-            // temporary list which store components added to the cupboard and is used thereafter to remove components in the main list
-            List<ICupboardComponents> tempList = new List<ICupboardComponents>();
-
-            foreach (ICupboardComponents cupboardComponent in _cupboardComponentsList)
-            {
-                _cupboard.addCupboardComponent(cupboardComponent);
-                tempList.Add(cupboardComponent);
-            }
-
-            foreach (ICupboardComponents component in tempList)
-            {
-                _cupboardComponentsList.Remove(component);
-            }
-            return _cupboard;
         }
 
         /// <summary>
@@ -161,9 +93,9 @@ namespace projectCS
         public static Locker getLockerByID(int lockerID)
         {
             int lockerEmplacement = 0;
-            foreach(ICupboardComponents component in _cupboardComponentsList)
+            foreach (ICupboardComponents component in _cupboardComponentsList)
             {
-                if(component is Locker)
+                if (component is Locker)
                 {
                     if (((Locker)component).ID == lockerID)
                         break;
@@ -180,34 +112,22 @@ namespace projectCS
 
         public static void resetShoppingCard()
         {
-            _catalogueComponentsList = new List<CatalogueComponents>();
-
             _cupboardComponentsList = new List<ICupboardComponents>();
-            
+
             _colorAngleBracketChosen = ComponentColor.black;
 
             _boxNumberChosen = 0;
 
             _widthChosen = 0;
-            
-            _heigtChosen = 0;
-            
+
             _depthChosen = 0;
 
-            _heigtLockerChosen = 0;
-            
-            _colorDoodChosen = ComponentColor.black;
-
-            _cupboard = new Cupboard();
-            
             _currentLocker = 0;
-    }
+        }
 
         public static string ToString()
         {
-            return "catalogue components list : "
-                   + _catalogueComponentsList
-                   + ", cupboard componentsList list : "
+            return "cupboard componentsList list : "
                    + _cupboardComponentsList;
         }
     }

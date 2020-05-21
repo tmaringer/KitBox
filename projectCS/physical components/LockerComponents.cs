@@ -1,5 +1,4 @@
 ﻿using projectCS.Tools_class;
-using System.Configuration;
 
 namespace projectCS
 {
@@ -97,7 +96,7 @@ namespace projectCS
             }
         }
 
-        
+
         public Door() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.black)
         {
         }
@@ -120,7 +119,7 @@ namespace projectCS
             this.color = color;
             this._cup = cup;
         }
-        
+
     }
 
     public class Cleat : CatalogueComponents
