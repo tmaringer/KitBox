@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using MySql.Data.MySqlClient;
-using System.Security.Cryptography;
 using System.Data;
-using System.Windows.Forms;
 using System.Data.Common;
+using System.Security.Cryptography;
+using System.Text;
+using System.Windows.Forms;
 
 namespace projectCS
 {
@@ -52,7 +52,7 @@ namespace projectCS
 
         public static int CheckAccess(string login, string password)
         {
-            int value; 
+            int value;
             try
             {
                 MySqlConnection conn = new MySqlConnection(MyConString);
@@ -87,7 +87,7 @@ namespace projectCS
         public static DataTable RefreshDb(string database)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database  + ";", conn);
+            MySqlCommand cmd = new MySqlCommand("SELECT * from " + database + ";", conn);
             DataTable dataTable = new DataTable();
             MySqlDataAdapter da = new MySqlDataAdapter(cmd);
             conn.Open();
@@ -96,7 +96,7 @@ namespace projectCS
             conn.Close();
             return dataTable;
         }
-        
+
         public static DataTable RefreshDbPartial(string database, string col)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
@@ -109,7 +109,7 @@ namespace projectCS
             conn.Close();
             return dataTable;
         }
-        public static Dictionary<string,int> SelectCondDb(string database, string code)
+        public static Dictionary<string, int> SelectCondDb(string database, string code)
         {
             Dictionary<string, int> values = new Dictionary<string, int>();
             MySqlConnection conn = new MySqlConnection(MyConString);
@@ -129,7 +129,7 @@ namespace projectCS
                 {
 
                 }
-                
+
             }
 
             return values;
@@ -212,10 +212,10 @@ namespace projectCS
             {
                 return "Error";
             }
-            
+
         }
 
-        public static bool SearchDb(DataGridView dataGridView1,TextBox value)
+        public static bool SearchDb(DataGridView dataGridView1, TextBox value)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -260,9 +260,9 @@ namespace projectCS
         }
 
         public static void Arrange(string database, string id)
-        { 
+        {
             MySqlConnection conn = new MySqlConnection(MyConString);
-            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `"+ database + "`; INSERT INTO `test` (`DoorId`, `BoxId`, `code`) SELECT * FROM kitbox." + database + " ORDER BY BoxId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database +"`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
+            MySqlCommand cmd = new MySqlCommand("CREATE TABLE `test` LIKE `" + database + "`; INSERT INTO `test` (`DoorId`, `BoxId`, `code`) SELECT * FROM kitbox." + database + " ORDER BY BoxId ASC; DROP TABLE `" + database + "`; RENAME TABLE `test` TO `" + database + "`; SET @num:= 0; UPDATE kitbox." + database + " SET " + id + "= @num := (@num + 1); ALTER TABLE kitbox." + database + " AUTO_INCREMENT = 1;", conn);
             conn.Open();
             MySqlDataReader MyReader2;
             MyReader2 = cmd.ExecuteReader();
@@ -272,13 +272,13 @@ namespace projectCS
             conn.Close();
         }
 
-        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> columns, List<string> types, List<string> elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
+        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> columns, List<string> types, List<string> elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3)
         {
             label7.RightToLeft = RightToLeft.Yes;
             if (x == 1)
             {
                 int size = dataGridView1.Columns.Count;
-                progressBar1.Maximum = (size * 10)+10;
+                progressBar1.Maximum = (size * 10) + 10;
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     columns.Add(col.Name);
@@ -298,7 +298,7 @@ namespace projectCS
                 button7.Enabled = true;
                 button3.Enabled = false;
                 elements.Add(textBox4.Text);
-                string elementItems = columns[x-1] + ": " + textBox4.Text;
+                string elementItems = columns[x - 1] + ": " + textBox4.Text;
                 listView1.Items.Add(elementItems);
                 textBox4.Text = "";
                 if (x == dataGridView1.ColumnCount)
@@ -332,7 +332,7 @@ namespace projectCS
                 elements.Remove(elements[x - 2]);
                 listView1.Items.RemoveAt(x - 2);
                 textBox4.Text = "";
-                label7.Text = columns[x - 2] + " (" + types[x-2] + ")";
+                label7.Text = columns[x - 2] + " (" + types[x - 2] + ")";
                 if (x == 2)
                 {
                     button7.Enabled = false;
@@ -345,7 +345,7 @@ namespace projectCS
         public static string ConvertStringQuotes(List<string> elements)
         {
             string elementString = "";
-            for(int i=0; i < elements.Count; i++)
+            for (int i = 0; i < elements.Count; i++)
             {
                 if (i == (elements.Count - 1))
                 {
@@ -374,7 +374,7 @@ namespace projectCS
             }
             return columnString;
         }
-        public static List<string> BigMoney(MySqlConnection conn, string target,string reference, string height, string depth, string width, string colour)
+        public static List<string> BigMoney(MySqlConnection conn, string target, string reference, string height, string depth, string width, string colour)
         {
             List<string> result = new List<string>();
             string sql;

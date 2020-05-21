@@ -1,8 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace projectCS.Tools_class
 {
@@ -27,13 +23,13 @@ namespace projectCS.Tools_class
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
             conn.Close();
             conn.Open();
-            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0];
+            string code = DbUtils.BigMoney(conn, "Code", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0];
             conn.Close();
             conn.Open();
-            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(),"")[0]) > 0;
+            bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), "")[0]) > 0;
             conn.Close();
             ComponentSize size = new ComponentSize(height, width, depth);
-            
+
 
             return new Cleat(double.Parse(price), typeof(Cleat).ToString().Split('.')[1], code, size, inStock);
         }
@@ -51,7 +47,7 @@ namespace projectCS.Tools_class
             conn.Close();
             conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
-            
+
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
@@ -64,7 +60,7 @@ namespace projectCS.Tools_class
             conn.Open();
 
             // 0 = code, 1 = in stock, 2 = price
-            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType); 
+            typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0];
             conn.Close();
             conn.Open();
@@ -72,7 +68,7 @@ namespace projectCS.Tools_class
             conn.Close();
             conn.Open();
             bool inStock = int.Parse(DbUtils.BigMoney(conn, "Instock", typeObj, height.ToString(), depth.ToString(), width.ToString(), EnumParse.parseColorEnumToStr(color))[0]) > 0;
-            
+
             ComponentSize size = new ComponentSize(height, width, depth);
             conn.Close();
 
@@ -100,7 +96,7 @@ namespace projectCS.Tools_class
             return new CrossBar(double.Parse(price), typeof(CrossBar).ToString().Split('.')[1], code, size, inStock, crossType);
         }
 
-        
+
         public double getPrice(int height, int width, int depth, string typeObj)
         {
             string a = typeObj;
@@ -133,7 +129,7 @@ namespace projectCS.Tools_class
 
             return double.Parse(price);
         }
-        
+
         public double getPrice(int height, int width, int depth, CrossBarType crossType, string typeObj)
         {
             conn = new MySqlConnection(MyConString);
@@ -144,16 +140,16 @@ namespace projectCS.Tools_class
 
             return double.Parse(price);
         }
-        
+
         public double newPrice(int height, string doorsColor, string panelColor, CatalogueComponents compo)
         {
             string typeObj = compo.GetType().ToString().Split('.')[1];
-            string rqHeight ="0";
+            string rqHeight = "0";
             string rqColor = "";
 
-            if(typeObj =="Panels")
+            if (typeObj == "Panels")
             {
-                typeObj = "Panel" +  " " + EnumParse.parseTypeEnumToStr(((Panels)compo).type);
+                typeObj = "Panel" + " " + EnumParse.parseTypeEnumToStr(((Panels)compo).type);
                 rqColor = panelColor;
                 if (EnumParse.parseTypeEnumToStr(((Panels)compo).type) == "HL")
                     rqHeight = "0";

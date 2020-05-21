@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace projectCS
@@ -28,41 +27,12 @@ namespace projectCS
             get => _cupboardComponentsList;
         }
 
-        private int _width;
-        public int width
-        {
-            get => _width;
-        }
 
-        private int _depth;
-        public int depth
-        {
-            get => _depth;
-        }
-
-
-        public Cupboard() //: this(0, 0, 5, ComponentColor.black)
+        public Cupboard()
         {
             _cupboardComponentsList = new List<ICupboardComponents>();
         }
-        /*
-    public Cupboard(int width, int depth, int boxNumber, ComponentColor colorAngleBracket)
-    {
-        _cupboardComponentsList = new List<ICupboardComponents>();
-        _width = width;
-        _depth = depth;
-    }
-    */
-        /// <summary>
-        ///     Resize the cupboard angles bracket
-        /// </summary>
-        /// <param name="size">
-        ///     Size wich will be cut of angle bracket of cupboard
-        /// </param>
-        public void cutAnglesBracket(int size)
-        {
-            getAngleBracket().cutHeight(size);
-        }
+
 
         public double getPrice()
         {

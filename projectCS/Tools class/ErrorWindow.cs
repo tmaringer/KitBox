@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace projectCS.Tools_class
 {
@@ -15,13 +10,13 @@ namespace projectCS.Tools_class
         public ErrorWindow() : this(ErrorMessages.defaultErrorTitle)
         {
         }
-        
+
         public ErrorWindow(string errorMsg) : this(ErrorMessages.defaultErrorMsg, ErrorMessages.defaultErrorTitle)
         {
             this._errorMessage = errorMsg;
             this._errorTitle = ErrorMessages.defaultErrorTitle;
         }
-        
+
         public ErrorWindow(string errorMsg, string errorTitle)
         {
             this._errorMessage = errorMsg;

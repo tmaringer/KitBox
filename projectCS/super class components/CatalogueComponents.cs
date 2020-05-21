@@ -1,7 +1,4 @@
-﻿using projectCS.Tools_class;
-using System;
-
-namespace projectCS
+﻿namespace projectCS
 {
     /// <summary>
     ///     Super class which group all locker component characteristics as well as angle brackets

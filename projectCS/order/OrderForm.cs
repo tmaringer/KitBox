@@ -1,5 +1,4 @@
-﻿using projectCS;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace projectCS
 {

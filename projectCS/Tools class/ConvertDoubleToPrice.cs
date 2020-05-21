@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace projectCS.Tools_class
 {
@@ -15,7 +11,7 @@ namespace projectCS.Tools_class
         {
             return (double)Math.Round(price, 2);
         }
-        
+
         public static double convertToPrice(float price)
         {
             return (double)Math.Round(price, 2);
