@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 using projectCS;
 using projectCS.Tools_class;
 
@@ -18,7 +19,8 @@ namespace kitbox_user_interface_V1
         public Form_purchase()
         {
             InitializeComponent();
-            int i;
+
+            int totalHeight = 0;
             Locker locker;
             foreach(ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
             {
@@ -33,28 +35,32 @@ namespace kitbox_user_interface_V1
                     string panelColor = EnumParse.parseColorEnumToStr(locker.panelColor);
                     string price = locker.price.ToString();
 
+                    totalHeight += locker.height;
+
                     dataGridView1.Rows.Add(currentbox, height, doorsColor,false, panelColor, price);
                 }
             }
-
-            for(i=1;i< ShoppingCart.cupboardComponentsList.Count;i++)
+            string MyConString = "SERVER=db4free.net;" + "DATABASE=kitbox_kewlax;" + "UID=kewlaw;" + "PASSWORD=locomac6; old guids = true";
+            MySqlConnection conn = new MySqlConnection(MyConString);
+            conn.Open();
+            List<string> HeightBracketsList = QueryKitbox.SpecsBoxList(conn, "Height", "Ref = \"AngleBracket\"");
+            conn.Close();
+            int angleBracketHeight=0;
+            int diff;
+            int minDiff=1000;
+            foreach(string heightBracket in HeightBracketsList)
             {
-                Locker box = ShoppingCart.getLockerByID(i);
-                string currentbox = i.ToString();
-                string height = box.height.ToString();
-
-                //TODO : ajouter les doorsColor et panelColor aux locker?
-
-                //string doorsColor =  EnumParse.parseColorEnumToStr(box.doorsColor);
-                //string panelColor = EnumParse.parseColorEnumToStr(box.panelColor);
-
-                string price = box.price.ToString();
-
-                //TODO afficher le prix total avec les angle brackets !
-
-                //dataGridView1.Rows.Add(currentbox, height, doorsColor, panelColor, price);
+                diff = Int32.Parse(heightBracket) - totalHeight;
+                if (diff > 0 && diff <minDiff)
+                {
+                    minDiff = diff;
+                    angleBracketHeight = Int32.Parse(heightBracket);
+                }
             }
-
+            MessageBox.Show(angleBracketHeight.ToString());
+            //TODO create object anglebracket with color1
+            //TODO request price
+            //TODO add anglebrackets Price
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,9 +69,10 @@ namespace kitbox_user_interface_V1
             string fname =textBox3.Text;
             string lname = textBox5.Text;
 
-            //TODO : voir avec Thibaut quoi faire du nom
+            //TODO create client in form order
+            //TODO add client to DB
 
-            //shoppingCart.rest() ?
+            //TODO shoppingCart.reset()
 
             this.Close();
         }

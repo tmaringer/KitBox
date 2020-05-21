@@ -278,29 +278,36 @@ namespace kitbox_user_interface_V1
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //assign currentLocker
             if (ShoppingCart.currentLocker == 0)
                 ShoppingCart.currentLocker = ShoppingCart.cupboardComponentsList.Count;
 
+            //get former and cupboard values
+            int width = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).width;
             int formerHeight = Int32.Parse(dataGridView1[1, ShoppingCart.currentLocker - 1].Value.ToString());
             int totalHeight = Int32.Parse(textBox12.Text);
             int maxHeight = Int32.Parse(textBox14.Text);
             double formerPrice = Double.Parse(dataGridView1[5, ShoppingCart.currentLocker - 1].Value.ToString());
             double cupboardPrice = Double.Parse(textBox16.Text);
 
+            //verify every box filled
             if (comboBox5.SelectedItem != null && comboBox6.SelectedItem != null && comboBox7.SelectedItem != null)
             {
-
+                //get new values
                 int height = Int32.Parse(comboBox5.SelectedItem.ToString());
                 string doorsColor = comboBox6.SelectedItem.ToString();
                 string panelColor = comboBox7.SelectedItem.ToString();
                 bool doorCup = false;
 
+                //assign doorcup
                 if(doorsColor!="Glass" && doorsColor !="none")
                 {
+                    //TODO check if combobox9 filled
                     if (comboBox9.SelectedItem.ToString() == "yes")
                         doorCup = true;
                 }
 
+                //compute totalHeight and verify max height not reached
                 if (totalHeight - formerHeight - 4 + height < maxHeight)
                 {
                     //save changes
@@ -308,36 +315,47 @@ namespace kitbox_user_interface_V1
                     totalHeight += height;
                     textBox12.Text = totalHeight.ToString();
                     
+                    //save locker new variables
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).height = height;
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).panelColor = EnumParse.parseColorStrToEnum(panelColor);
                     ShoppingCart.getLockerByID(ShoppingCart.currentLocker).setCupOfDoor(doorCup);
                     if (doorsColor != "none")
                         ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorsColor = EnumParse.parseColorStrToEnum(doorsColor);
-                    else
-                    {
-                        //TODO comment retrouver doorWidth ? 
-
-                        //int doorWidth = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).doorWidth;
-                        string formerDoorsColor = dataGridView1[2,ShoppingCart.currentLocker - 1].Value.ToString();
-                        //Door door1 = (Door)cb.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(formerDoorsColor), doorCup, "Door");
-                        //ShoppingCart.getLockerByID(ShoppingCart.currentLocker).removeComponent(door1);
-                    }
-                    //TODO if new doors add new doors !!!
-                    // => create components & add to the locker then new price
-
-
+                    
+                    /*
+                     * if doorsColor were none then add new doors
+                     * if doorsColor were not none then new doors not added (locker definition)
+                     */
                     CatalogueDB catalogueDB = new CatalogueDB();
+                    int doorWidth = 0;
+                    if (width >= 62)
+                    {
+                        if (width == 62)
+                        {
+                            doorWidth = 31;
+                        }
+                        else
+                        {
+                            doorWidth = width / 2 + 2;
+                        }
+                    }
+                    Door door1 = (Door)catalogueDB.createComponents(height, doorWidth, 0, EnumParse.parseColorStrToEnum(doorsColor), doorCup, "Door");
+                    ShoppingCart.getLockerByID(ShoppingCart.currentLocker).addComponent(new List<CatalogueComponents>() { door1, door1 });
 
+                    
+                    //compute newPrice
                     foreach(CatalogueComponents compo in ShoppingCart.getLockerByID(ShoppingCart.currentLocker).componentsList)
                     {
                         compo.price = catalogueDB.newPrice(height, doorsColor, panelColor, compo);
                     }
                     double newPrice = ShoppingCart.getLockerByID(ShoppingCart.currentLocker).price;
                     
+                    //display new informations
                     dataGridView1.Rows[ShoppingCart.currentLocker - 1].SetValues(ShoppingCart.currentLocker, height, doorsColor,doorCup, panelColor,newPrice);
 
                     //TODO mettre yes no plutôt que true false dans l'afficheur
 
+                    //display total lockers price
                     cupboardPrice -= formerPrice;
                     cupboardPrice += newPrice;
                     textBox16.Text = cupboardPrice.ToString();
@@ -354,14 +372,6 @@ namespace kitbox_user_interface_V1
 
         private void button5_Click(object sender, EventArgs e)
         {
-            /*
-            string ticket;
-            foreach (ICupboardComponents component in ShoppingCart.cupboardComponentsList)
-            {
-                ticket = component.ToString();
-                MessageBox.Show(ticket);
-            }
-            */
             this.Hide();
             Form_purchase validation = new Form_purchase();
             validation.Show();

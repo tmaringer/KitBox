@@ -158,6 +158,8 @@ namespace projectCS.Tools_class
             }
             else if (typeObj == "Door")
             {
+                if (doorsColor == "none")
+                    return 0;
                 rqColor = doorsColor;
                 rqHeight = height.ToString();
             }
