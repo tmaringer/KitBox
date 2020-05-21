@@ -78,8 +78,9 @@ namespace kitbox_user_interface_V1
         private void button1_Click(object sender, EventArgs e)
         {
             
-            string fname =textBox3.Text;
+            string fname = textBox3.Text;
             string lname = textBox5.Text;
+            string email = textBox7.Text;
 
             //TODO create client in form order
             //TODO add client to DB
