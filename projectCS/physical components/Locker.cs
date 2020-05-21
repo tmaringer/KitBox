@@ -206,17 +206,6 @@ namespace projectCS
                 _componentsList.Remove(component);
         }
 
-        /// <summary>
-        ///     check if the locker has all components which it must have 
-        /// </summary>
-        /// <returns>
-        ///     return true if the locker have all components, false in other case
-        /// </returns>
-        public bool isComplete()
-        {
-            return isComplete(_componentsList);
-        }
-
         public void setCupOfDoor(bool ifCup)
         {
             foreach (CatalogueComponents catacompo in _componentsList)
@@ -224,29 +213,6 @@ namespace projectCS
                 if (catacompo is Door)
                     ((Door)catacompo).cup = ifCup;
             }
-        }
-
-        /// <summary>
-        ///     Checks if the locker has all components which it be able to contains.
-        /// </summary>
-        /// <param name="componentList">
-        ///     The components list where the function must search.
-        /// </param>
-        /// <returns>
-        ///     Returns true if complete, false otherwise.
-        /// </returns>
-        private bool isComplete(List<CatalogueComponents> componentList)
-        {
-            bool isOk = false;
-            int numberOfCrossBar = numberOfComponentInList(componentList, new CrossBar());
-            int numberOfPannel = numberOfComponentInList(componentList, new Panels());
-            int numberOfCleat = numberOfComponentInList(componentList, new Cleat());
-
-            // check if the locker has 8xcrossbar + 5xPannel + 4xCleat
-            if ((numberOfCrossBar == _maximumCrossBars) && (numberOfPannel == _maximumPannels) && (numberOfCleat == _maximumCleats))
-                isOk = true;
-
-            return isOk;
         }
 
         /// <summary>
@@ -294,11 +260,7 @@ namespace projectCS
                 + ", width : "
                 + width
                 + ", depth : "
-                + depth
-                + ", is Complete : "
-                + isComplete();
-            //+ "\n" + "\n" + "components list : " + "\n" + "\n"
-            //+ tostring;
+                + depth;
         }
     }
 }

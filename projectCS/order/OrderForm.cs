@@ -91,7 +91,7 @@ namespace projectCS
             double price = 0;
             foreach (KeyValuePair<Cupboard, int> cupboard in _cupboardDictionnary)
             {
-                price += cupboard.Key.getPrice() * cupboard.Value;
+                price += cupboard.Key.price * cupboard.Value;
             }
             return price;
         }

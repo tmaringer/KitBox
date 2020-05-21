@@ -27,22 +27,25 @@ namespace projectCS
             get => _cupboardComponentsList;
         }
 
+        public double price
+        {
+            get
+            {
+                double componentsPrice = 0;
+                foreach (ICupboardComponents component in _cupboardComponentsList)
+                {
+                    componentsPrice += component.price;
+                }
+                return componentsPrice;
+            }
+        }
+
 
         public Cupboard()
         {
             _cupboardComponentsList = new List<ICupboardComponents>();
         }
 
-
-        public double getPrice()
-        {
-            double componentsPrice = 0;
-            foreach (ICupboardComponents component in _cupboardComponentsList)
-            {
-                componentsPrice += component.price;
-            }
-            return componentsPrice;
-        }
 
         /// <summary>
         ///     Adds a cupboard component to this cupboard.
@@ -83,6 +86,31 @@ namespace projectCS
         public void removeCupboardComponent(ICupboardComponents component)
         {
             _cupboardComponentsList.Remove(component);
+        }
+
+        /// <summary>
+        ///     Locates the position of angle bracket in CupboardComponent list.
+        /// </summary>
+        /// <returns>
+        ///     Returns the position of angle bracket, otherwise returns -1.
+        /// </returns>
+        private int locationOfAngleInList()
+        {
+            int angleNumberInList = -1;
+            bool angleBracketDontExist = true;
+
+            foreach (ICupboardComponents componants in _cupboardComponentsList)
+            {
+                angleNumberInList++;
+                if (componants is AngleBracket)
+                {
+                    angleBracketDontExist = false;
+                    break;
+                }
+            }
+            if (angleBracketDontExist)
+                angleNumberInList = -1;
+            return angleNumberInList;
         }
     }
 }

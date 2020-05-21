@@ -172,24 +172,7 @@ namespace UnitTest
         {
             locker1.addComponent(new List<CatalogueComponents>() { crossBarWithParam1, cleatWithParam1, doorWithParam1 });
             Assert.AreEqual(100, locker1.price);
-        }
-
-        /// <summary>
-        ///     check if a locker has free emplacements or if it is full
-        /// </summary>
-        [TestMethod]
-        public void isCompleteTest()
-        {
-            Assert.AreEqual(false, locker1.isComplete());
-
-            locker1.addComponent(catalogueComponentsListFull);
-            locker2.addComponent(catalogueComponentsListWith14);
-            locker3.addComponent(catalogueComponentsListWith3);
-
-            Assert.AreEqual(true, locker1.isComplete());
-            Assert.AreEqual(false, locker2.isComplete());
-            Assert.AreEqual(false, locker3.isComplete());
-        }
+        }       
 
         /// <summary>
         ///     check if the method returning the number of components for a type work fine 
@@ -256,47 +239,6 @@ namespace UnitTest
             }
             Assert.AreEqual(ComponentColor.glass, doorWithParam1.color);
             Assert.AreNotEqual(ComponentColor.black, doorWithParam1.color);
-        }
-        
-        [TestMethod]
-        public void interfaceTest()
-        {
-            Locker locker = new Locker();
-
-            Cleat cleattest = new Cleat();
-            Door doortest = new Door();
-
-            Panels panelsHB = new Panels();
-            Panels panelsGD = new Panels();
-            Panels panelsAR = new Panels();
-
-            CrossBar crossBarAV = new CrossBar();
-            CrossBar crossBarAR = new CrossBar();
-            CrossBar crossBarGD = new CrossBar();
-
-            cleattest.size = new ComponentSize(0, 0, 0);
-            doortest.size = new ComponentSize(0, 0, 0);
-
-            panelsHB.size = new ComponentSize(0, 0, 0);
-            panelsHB.type = PanelsType.HL;
-            panelsGD.size = new ComponentSize(0, 0, 0);
-            panelsGD.type = PanelsType.LR;
-            panelsAR.size = new ComponentSize(0, 0, 0);
-            panelsAR.type = PanelsType.B;
-
-            crossBarAV.size = new ComponentSize(0, 0, 0);
-            crossBarAV.type = CrossBarType.F;
-            crossBarAR.size = new ComponentSize(0, 0, 0);
-            crossBarAR.type = CrossBarType.F;
-            crossBarGD.size = new ComponentSize(0, 0, 0);
-            crossBarGD.type = CrossBarType.LR;
-
-            locker.addComponent(new List<CatalogueComponents>() { cleattest, cleattest, cleattest, cleattest,
-                                                                        doortest, doortest,
-                                                                        panelsHB, panelsHB, panelsGD,  panelsGD, panelsAR,
-                                                                        crossBarAV, crossBarAV, crossBarAR, crossBarAR,
-                                                                        crossBarGD, crossBarGD, crossBarGD, crossBarGD });
-            Assert.AreEqual(true, locker.isComplete());
-        }
+        }        
     }
 }

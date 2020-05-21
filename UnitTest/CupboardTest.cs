@@ -149,13 +149,7 @@ namespace UnitTest
 
             Assert.AreEqual(2, privateCupboard.Invoke("locationOfAngleInList"));
         }
-
-        [TestMethod]
-        public void getAngleBracket()
-        {
-            Assert.AreEqual("null", cupboard1.getAngleBracket().reference);
-        }
-
+            
         [TestMethod]
         public void getPriceTest()
         {
@@ -167,43 +161,8 @@ namespace UnitTest
 
             cupboard1.addCupboardComponent(locker1);
 
-            Assert.AreEqual(75, cupboard1.getPrice());
-        }
-
-        [TestMethod]
-        public void isCompleteTest()
-        {
-            cupboard1.addCupboardComponent(angleBracketParam2);
-            cupboard2.addCupboardComponent(angleBracketParam2);
-
-            locker1.addComponent(catalogueComponentsListFull);
-
-            locker2.addComponent(catalogueComponentsListWith13);
-
-            cupboard1.addCupboardComponent(locker1);
-            cupboard2.addCupboardComponent(locker2);
-
-            Assert.AreEqual(true, cupboard1.isComplete());
-            Assert.AreEqual(false, cupboard2.isComplete());
-        }
-
-        /// <summary>
-        ///     check if the function which 
-        /// </summary>
-        [TestMethod]
-        public void allLockerIsCompleteTest()
-        {
-            locker1.addComponent(catalogueComponentsListFull);
-
-            cupboard1.addCupboardComponent(locker1);
-            cupboard2.addCupboardComponent(locker2);
-
-            var privateCupboard = new PrivateObject(cupboard1);
-            var privateCupboard2 = new PrivateObject(cupboard2);
-
-            Assert.AreEqual(true, privateCupboard.Invoke("allLockerIsComplete"));
-            Assert.AreEqual(false, privateCupboard2.Invoke("allLockerIsComplete"));
-        }
+            Assert.AreEqual(75, cupboard1.price);
+        }     
 
         [TestMethod]
         public void lockerAvailableTest()
