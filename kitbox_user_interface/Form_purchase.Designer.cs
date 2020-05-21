@@ -46,6 +46,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,7 +82,6 @@
             this.textBox3.BackColor = System.Drawing.Color.White;
             this.textBox3.Location = new System.Drawing.Point(12, 168);
             this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(281, 26);
             this.textBox3.TabIndex = 4;
             // 
@@ -100,7 +101,6 @@
             this.textBox5.BackColor = System.Drawing.Color.White;
             this.textBox5.Location = new System.Drawing.Point(12, 225);
             this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(281, 26);
             this.textBox5.TabIndex = 6;
             // 
@@ -201,7 +201,6 @@
             this.textBox9.BackColor = System.Drawing.Color.White;
             this.textBox9.Location = new System.Drawing.Point(12, 339);
             this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(281, 26);
             this.textBox9.TabIndex = 48;
             // 
@@ -221,7 +220,6 @@
             this.textBox7.BackColor = System.Drawing.Color.White;
             this.textBox7.Location = new System.Drawing.Point(12, 282);
             this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(281, 26);
             this.textBox7.TabIndex = 46;
             // 
@@ -236,12 +234,36 @@
             this.textBox6.TabIndex = 45;
             this.textBox6.Text = "e-mail :";
             // 
+            // textBox11
+            // 
+            this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox11.BackColor = System.Drawing.Color.White;
+            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.textBox11.Location = new System.Drawing.Point(333, 449);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(103, 25);
+            this.textBox11.TabIndex = 49;
+            this.textBox11.Text = "Quantity :";
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.Color.White;
+            this.textBox12.Location = new System.Drawing.Point(442, 449);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(60, 26);
+            this.textBox12.TabIndex = 50;
+            // 
             // Form_purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1205, 642);
+            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
@@ -282,5 +304,7 @@
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox12;
     }
 }

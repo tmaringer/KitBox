@@ -120,7 +120,10 @@ namespace projectCS
                 foreach(CatalogueComponents cataCompo in _componentsList)
                 {
                     if (cataCompo is Door)
-                        width = ((Door)cataCompo).size.width;
+                    {
+                        width += ((Door)cataCompo).size.width;
+                        break;
+                    }
                 }
                 return width;
             }
