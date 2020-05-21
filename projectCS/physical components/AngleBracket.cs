@@ -7,7 +7,7 @@ namespace projectCS
         private ComponentColor _color;
         public ComponentColor color
         {
-            //toto : demander prof pq si je le rajoute pas, il n'appelle pas dynamiquement
+            //TODO toto : demander prof pq si je le rajoute pas, il n'appelle pas dynamiquement
             get => _color;
             set
             {

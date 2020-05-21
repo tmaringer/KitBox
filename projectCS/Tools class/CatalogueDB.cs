@@ -171,7 +171,6 @@ namespace projectCS.Tools_class
 
             conn = new MySqlConnection(MyConString);
             conn.Open();
-            //typeObj = typeObj + " " + EnumParse.parseTypeEnumToStr(panelsType);
             string price = DbUtils.BigMoney(conn, "CustPrice", typeObj, rqHeight, compo.size.depth.ToString(), compo.size.width.ToString(), rqColor)[0];
             conn.Close();
 

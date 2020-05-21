@@ -35,7 +35,7 @@ namespace kitbox_user_interface_V1
                     string panelColor = EnumParse.parseColorEnumToStr(locker.panelColor);
                     string price = locker.price.ToString();
 
-                    totalHeight += locker.height;
+                    totalHeight += locker.height +4;
 
                     dataGridView1.Rows.Add(currentbox, height, doorsColor,false, panelColor, price);
                 }
@@ -51,15 +51,27 @@ namespace kitbox_user_interface_V1
             foreach(string heightBracket in HeightBracketsList)
             {
                 diff = Int32.Parse(heightBracket) - totalHeight;
-                if (diff > 0 && diff <minDiff)
+                if (diff >= 0 && diff <minDiff)
                 {
                     minDiff = diff;
                     angleBracketHeight = Int32.Parse(heightBracket);
                 }
             }
-            MessageBox.Show(angleBracketHeight.ToString());
-            //TODO create object anglebracket with color1
-            //TODO request price
+
+            conn.Open();
+            string angleBracketPrices = DbUtils.BigMoney(conn, "CustPrice", "AngleBracket", angleBracketHeight.ToString(), "0", "0", EnumParse.parseColorEnumToStr(ShoppingCart.colorAngleBracketChosen))[0];
+            conn.Close();
+            double angleBracketPrice = Double.Parse(angleBracketPrices);
+
+            AngleBracket angleBrackets = new AngleBracket(angleBracketPrice,"null","0000", new ComponentSize(0, 0, 0),true,ShoppingCart.colorAngleBracketChosen);
+            ShoppingCart.addCupboardComponent(angleBrackets);
+            ShoppingCart.addCupboardComponent(angleBrackets);
+            ShoppingCart.addCupboardComponent(angleBrackets);
+            ShoppingCart.addCupboardComponent(angleBrackets);
+
+            dataGridView1.Rows.Add(" ", angleBracketHeight, " ", null, " ", angleBracketPrice.ToString() + " x4");
+
+
             //TODO add anglebrackets Price
         }
 
