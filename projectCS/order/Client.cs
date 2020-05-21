@@ -28,6 +28,7 @@ namespace projectCS
             get => _orderFormList;
         }
 
+
         public Client() : this("testClient", "name test", "000000000")
         {
         }
@@ -39,6 +40,7 @@ namespace projectCS
             this._name = name;
             this._phoneNumber = phoneNumber;
         }
+
 
         /// <summary>
         ///     Adds an order form to the client.
