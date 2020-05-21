@@ -40,8 +40,12 @@
             this.DoorCup = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +59,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(935, 68);
+            this.textBox1.Size = new System.Drawing.Size(1181, 68);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "KITBOX";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -74,17 +78,17 @@
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(12, 175);
+            this.textBox3.Location = new System.Drawing.Point(12, 168);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(159, 26);
+            this.textBox3.Size = new System.Drawing.Size(281, 26);
             this.textBox3.TabIndex = 4;
             // 
             // textBox4
             // 
             this.textBox4.BackColor = System.Drawing.Color.White;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Location = new System.Drawing.Point(12, 207);
+            this.textBox4.Location = new System.Drawing.Point(12, 200);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(159, 19);
@@ -94,10 +98,10 @@
             // textBox5
             // 
             this.textBox5.BackColor = System.Drawing.Color.White;
-            this.textBox5.Location = new System.Drawing.Point(12, 239);
+            this.textBox5.Location = new System.Drawing.Point(12, 225);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(159, 26);
+            this.textBox5.Size = new System.Drawing.Size(281, 26);
             this.textBox5.TabIndex = 6;
             // 
             // dataGridView1
@@ -118,12 +122,12 @@
             this.DoorCup,
             this.Column4,
             this.Price});
-            this.dataGridView1.Location = new System.Drawing.Point(198, 175);
+            this.dataGridView1.Location = new System.Drawing.Point(333, 175);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(749, 268);
+            this.dataGridView1.Size = new System.Drawing.Size(860, 268);
             this.dataGridView1.TabIndex = 43;
             // 
             // Column1
@@ -168,23 +172,23 @@
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             // 
-            // textBox6
+            // textBox10
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.BackColor = System.Drawing.Color.White;
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.textBox6.Location = new System.Drawing.Point(198, 143);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(334, 25);
-            this.textBox6.TabIndex = 42;
-            this.textBox6.Text = "Order preview";
+            this.textBox10.BackColor = System.Drawing.Color.White;
+            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.textBox10.Location = new System.Drawing.Point(333, 144);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(178, 25);
+            this.textBox10.TabIndex = 42;
+            this.textBox10.Text = "Order preview";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 271);
+            this.button1.Location = new System.Drawing.Point(12, 371);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 34);
             this.button1.TabIndex = 44;
@@ -192,15 +196,59 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox9
+            // 
+            this.textBox9.BackColor = System.Drawing.Color.White;
+            this.textBox9.Location = new System.Drawing.Point(12, 339);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(281, 26);
+            this.textBox9.TabIndex = 48;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BackColor = System.Drawing.Color.White;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Location = new System.Drawing.Point(12, 314);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(159, 19);
+            this.textBox8.TabIndex = 47;
+            this.textBox8.Text = "Last name :";
+            // 
+            // textBox7
+            // 
+            this.textBox7.BackColor = System.Drawing.Color.White;
+            this.textBox7.Location = new System.Drawing.Point(12, 282);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(281, 26);
+            this.textBox7.TabIndex = 46;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BackColor = System.Drawing.Color.White;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Location = new System.Drawing.Point(12, 257);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(159, 19);
+            this.textBox6.TabIndex = 45;
+            this.textBox6.Text = "e-mail :";
+            // 
             // Form_purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(959, 642);
+            this.ClientSize = new System.Drawing.Size(1205, 642);
+            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.textBox10);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
@@ -222,7 +270,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -230,5 +278,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoorCup;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
