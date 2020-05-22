@@ -11,7 +11,7 @@ namespace projectCS
 {
     public static class DbUtils
     {
-        private static string MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=locomac6; Allow User Variables=True";
+        public static string MyConString = "SERVER=localhost;" + "PORT=3306;" + "DATABASE=kitbox;" + "UID=root;" + "PASSWORD=K8tB0x_sql; Allow User Variables=True;";
 
         static string ComputeSha256Hash(string rawData)
         {
@@ -79,7 +79,7 @@ namespace projectCS
             }
             catch
             {
-                value = 2;
+                value = 1;
             }
             return value;
         }
@@ -140,7 +140,7 @@ namespace projectCS
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
             List<string> result = new List<string>();
-            string sql = "Select " + column + " from kitbox." + table + ";";
+            string sql = "Select " + column + " from " + table + ";";
             MySqlCommand cmd = new MySqlCommand
             {
                 Connection = conn,
@@ -214,8 +214,8 @@ namespace projectCS
             }
 
         }
-
-        public static bool SearchDb(DataGridView dataGridView1, TextBox value)
+        /*
+        public static bool SearchDb(DataGridView dataGridView1,TextBox value)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -241,6 +241,8 @@ namespace projectCS
             }
             return false;
         }
+        */
+
         public static string DeleteRow(string database, string cond)
         {
             try
@@ -258,7 +260,6 @@ namespace projectCS
             }
 
         }
-
         public static void Arrange(string database, string id)
         {
             MySqlConnection conn = new MySqlConnection(MyConString);
@@ -271,14 +272,14 @@ namespace projectCS
             }
             conn.Close();
         }
-
-        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> columns, List<string> types, List<string> elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3)
+        /*
+        public static int AddItem(Label label7, int x, DataGridView dataGridView1, List<string> columns, List<string> types, List<string> elements, Button button7, TextBox textBox4, ListView listView1, Button button6, ProgressBar progressBar1, Button button3) 
         {
             label7.RightToLeft = RightToLeft.Yes;
             if (x == 1)
             {
                 int size = dataGridView1.Columns.Count;
-                progressBar1.Maximum = (size * 10) + 10;
+                progressBar1.Maximum = (size * 10)+10;
                 foreach (DataGridViewColumn col in dataGridView1.Columns)
                 {
                     columns.Add(col.Name);
@@ -298,7 +299,7 @@ namespace projectCS
                 button7.Enabled = true;
                 button3.Enabled = false;
                 elements.Add(textBox4.Text);
-                string elementItems = columns[x - 1] + ": " + textBox4.Text;
+                string elementItems = columns[x-1] + ": " + textBox4.Text;
                 listView1.Items.Add(elementItems);
                 textBox4.Text = "";
                 if (x == dataGridView1.ColumnCount)
@@ -332,7 +333,7 @@ namespace projectCS
                 elements.Remove(elements[x - 2]);
                 listView1.Items.RemoveAt(x - 2);
                 textBox4.Text = "";
-                label7.Text = columns[x - 2] + " (" + types[x - 2] + ")";
+                label7.Text = columns[x - 2] + " (" + types[x-2] + ")";
                 if (x == 2)
                 {
                     button7.Enabled = false;
@@ -345,7 +346,7 @@ namespace projectCS
         public static string ConvertStringQuotes(List<string> elements)
         {
             string elementString = "";
-            for (int i = 0; i < elements.Count; i++)
+            for(int i=0; i < elements.Count; i++)
             {
                 if (i == (elements.Count - 1))
                 {
@@ -374,6 +375,7 @@ namespace projectCS
             }
             return columnString;
         }
+        */
         public static List<string> BigMoney(MySqlConnection conn, string target, string reference, string height, string depth, string width, string colour)
         {
             List<string> result = new List<string>();
@@ -409,5 +411,10 @@ namespace projectCS
             return result;
         }
         //"Select Code, CustPrice, Instock from kitbox where Height = 32 and Depth = 32 and Width = 32 and Colour = white and Ref= Panel LR
+    
+    
+    
+    
+    
     }
 }

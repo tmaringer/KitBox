@@ -93,6 +93,7 @@
             this.textBox3.Location = new System.Drawing.Point(12, 138);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(160, 28);
             this.textBox3.TabIndex = 36;
             this.textBox3.Text = "number of boxes";
@@ -505,6 +506,7 @@
             this.textBox18.Location = new System.Drawing.Point(362, 172);
             this.textBox18.Multiline = true;
             this.textBox18.Name = "textBox18";
+            this.textBox18.ReadOnly = true;
             this.textBox18.Size = new System.Drawing.Size(160, 28);
             this.textBox18.TabIndex = 73;
             this.textBox18.Text = "doors color";
