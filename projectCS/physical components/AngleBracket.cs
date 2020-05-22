@@ -26,6 +26,7 @@ namespace projectCS
             get => _size.height;
         }
 
+
         public AngleBracket() : this(0, "null", "0000", new ComponentSize(0, 0, 0), false, ComponentColor.white)
         {
         }

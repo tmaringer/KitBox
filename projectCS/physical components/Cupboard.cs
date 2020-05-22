@@ -34,7 +34,10 @@ namespace projectCS
                 double componentsPrice = 0;
                 foreach (ICupboardComponents component in _cupboardComponentsList)
                 {
-                    componentsPrice += component.price;
+                    if(component is AngleBracket)
+                        componentsPrice += (component.price*4);
+                    else
+                        componentsPrice += component.price;
                 }
                 return componentsPrice;
             }

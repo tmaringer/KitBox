@@ -161,7 +161,7 @@ namespace UnitTest
 
             cupboard1.addCupboardComponent(locker1);
 
-            Assert.AreEqual(75, cupboard1.price);
+            Assert.AreEqual(150, cupboard1.price);
         }     
 
         [TestMethod]
