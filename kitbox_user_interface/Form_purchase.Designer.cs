@@ -213,7 +213,7 @@
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(159, 19);
             this.textBox8.TabIndex = 47;
-            this.textBox8.Text = "Last name :";
+            this.textBox8.Text = "Phone number :";
             // 
             // textBox7
             // 
@@ -255,6 +255,7 @@
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(60, 26);
             this.textBox12.TabIndex = 50;
+            this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
             // 
             // Form_purchase
             // 
