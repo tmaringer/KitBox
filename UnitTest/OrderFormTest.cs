@@ -144,22 +144,22 @@ namespace UnitTest
             // locker2 price is 1124.49
             locker2.addComponent(catalogueComponentsListWith6WithParam);
 
-            // the cupboard1 price is 300
+            // the cupboard1 price is 600
             cupboard1.addCupboardComponent(angleBracketParam1);
             cupboard1.addCupboardComponent(locker1);
 
-            // the cupboard1 price is 1224.49
+            // the cupboard1 price is 1524.49
             cupboard2.addCupboardComponent(locker2);
             cupboard2.addCupboardComponent(angleBracketParam1);
 
             order2.addCupboard(cupboard2);
             order2.addCupboard(cupboard2, 5);
-            Assert.AreEqual(6122.45, order2.getPrice());
+            Assert.AreEqual(7622.45, order2.getPrice());
 
             order1.addCupboard(cupboard1);
             order1.addCupboard(cupboard2);
             order1.addCupboard(cupboard1, 5);
-            Assert.AreEqual(2724.49, order1.getPrice());
+            Assert.AreEqual(4524.49, order1.getPrice());
         }
 
         [TestMethod]
