@@ -25,14 +25,6 @@ namespace UnitTest
         }
 
         [TestMethod]
-        public void cutHeightTest()
-        {
-            angleBracketParam1.cutHeight(6);
-
-            Assert.AreEqual(6, angleBracketParam1.height);
-        }
-
-        [TestMethod]
         public void getPriceTest()
         {
             Assert.AreEqual(5, angleBracketParam1.price);

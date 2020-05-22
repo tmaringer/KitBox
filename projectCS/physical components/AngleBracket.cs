@@ -40,17 +40,6 @@ namespace projectCS
             this.color = color;
         }
 
-        /// <summary>
-        ///     resize the angle bracket
-        /// </summary>
-        /// <param name="size">
-        ///     size to cut of the height from angle bracket
-        /// </param>
-        public void cutHeight(int size)
-        {
-            _size.height -= size;
-        }
-
         public override string ToString()
         {
             return base.ToString() + ", height : " + height + ", color : " + _color;
