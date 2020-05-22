@@ -204,28 +204,7 @@ namespace ShopInterface
                 }
 
                 Dictionary<string, int> values = DbUtils.SelectCondDb("sales", comboBox3.SelectedItem.ToString());
-                if (comboBox1.SelectedItem.ToString() == "day")
-                {
-                    while (chart1.Series.Count > 0)
-                    {
-                        chart1.Series.RemoveAt(0);
-                    }
-
-                    chart1.Series.Add(comboBox3.SelectedItem.ToString());
-                    chart1.Series[comboBox3.SelectedItem.ToString()].Color = Color.Black;
-
-                    foreach (KeyValuePair<string, int> entry in values)
-                    {
-                        chart1.Series[comboBox3.SelectedItem.ToString()].Points.AddXY(entry.Key, entry.Value);
-                    }
-
-                    chart1.Titles.Add(comboBox3.SelectedItem + " per day");
-                    if (comboBox2.SelectedItem != null)
-                    {
-                        label14.Text = values[comboBox2.SelectedItem.ToString()].ToString();
-                    }
-                }
-                else if (comboBox1.SelectedItem.ToString() == "month")
+                if (comboBox1.SelectedItem.ToString() == "month")
                 {
                     while (chart1.Series.Count > 0)
                     {
@@ -238,7 +217,7 @@ namespace ShopInterface
                     foreach (KeyValuePair<string, int> entry in values)
                     {
                         string key = entry.Key;
-                        string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                        string month = key;
                         if (graphMonth.ContainsKey(month))
                         {
                             graphMonth[month] = graphMonth[month] + entry.Value;
@@ -286,7 +265,7 @@ namespace ShopInterface
                     foreach (KeyValuePair<string, int> entry in values)
                     {
                         string key = entry.Key;
-                        string month = key.Split('/')[2];
+                        string month = key.Split('-')[1];
                         if (graphMonth.ContainsKey(month))
                         {
                             graphMonth[month] = graphMonth[month] + entry.Value;
@@ -570,7 +549,7 @@ namespace ShopInterface
                 foreach (KeyValuePair<string, int> entry in valuesIncStock)
                 {
                     string key = entry.Key;
-                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    string month = key;
                     if (graphMonthIncStock.ContainsKey(month))
                     {
                         graphMonthIncStock[month] = graphMonthIncStock[month] + entry.Value;
@@ -651,7 +630,7 @@ namespace ShopInterface
                         _columnYear.Add(value);
                     }
 
-                    string valueMonth = col.ColumnName.Split('-')[0] + "/" +
+                    string valueMonth = col.ColumnName.Split('-')[0] + "-" +
                                         col.ColumnName.Split('-')[1];
 
                     if (_columnMonth.Contains(valueMonth) == false)
