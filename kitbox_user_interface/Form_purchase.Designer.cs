@@ -48,6 +48,8 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,7 +243,7 @@
             this.textBox11.BackColor = System.Drawing.Color.White;
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.textBox11.Location = new System.Drawing.Point(333, 449);
+            this.textBox11.Location = new System.Drawing.Point(354, 450);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(103, 25);
@@ -251,11 +253,34 @@
             // textBox12
             // 
             this.textBox12.BackColor = System.Drawing.Color.White;
-            this.textBox12.Location = new System.Drawing.Point(442, 449);
+            this.textBox12.Location = new System.Drawing.Point(463, 449);
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(60, 26);
+            this.textBox12.Size = new System.Drawing.Size(100, 26);
             this.textBox12.TabIndex = 50;
             this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+            // 
+            // textBox13
+            // 
+            this.textBox13.BackColor = System.Drawing.Color.White;
+            this.textBox13.Location = new System.Drawing.Point(463, 481);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(100, 26);
+            this.textBox13.TabIndex = 51;
+            // 
+            // textBox14
+            // 
+            this.textBox14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox14.BackColor = System.Drawing.Color.White;
+            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.textBox14.Location = new System.Drawing.Point(333, 480);
+            this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
+            this.textBox14.Size = new System.Drawing.Size(124, 25);
+            this.textBox14.TabIndex = 52;
+            this.textBox14.Text = "Total Price :";
             // 
             // Form_purchase
             // 
@@ -263,6 +288,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1205, 642);
+            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.textBox9);
@@ -307,5 +334,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox14;
     }
 }

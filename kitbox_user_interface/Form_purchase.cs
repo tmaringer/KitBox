@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,7 +23,6 @@ namespace kitbox_user_interface_V1
 
             int totalHeight = 0;
             Locker locker;
-            Cupboard finalCupboard = new Cupboard();
             foreach(ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
             {
                 if(cupCompo is Locker)
@@ -66,52 +66,70 @@ namespace kitbox_user_interface_V1
 
             AngleBracket angleBrackets = new AngleBracket(angleBracketPrice,"null","0000", new ComponentSize(0, 0, 0),true,ShoppingCart.colorAngleBracketChosen);
             ShoppingCart.addCupboardComponent(angleBrackets);
-            ShoppingCart.addCupboardComponent(angleBrackets);
-            ShoppingCart.addCupboardComponent(angleBrackets);
-            ShoppingCart.addCupboardComponent(angleBrackets);
 
             dataGridView1.Rows.Add("Anglebrackets", angleBracketHeight, " ", null, " ", angleBracketPrice.ToString() + " x4");
 
-            foreach (ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
-            {
-                if (cupCompo is Locker)
-                {
-                    locker = (Locker)cupCompo;
-                    finalCupboard.addCupboardComponent(locker);
-                }
-            }
-            finalCupboard.addCupboardComponent(new List<ICupboardComponents> { angleBrackets, angleBrackets, angleBrackets, angleBrackets });
             
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            string fname = textBox3.Text;
-            string lname = textBox5.Text;
-            string email = textBox7.Text;
-            string phone = textBox9.Text;
 
-            Client newClient = new Client(fname, lname, phone, email);
+            button1.Enabled = false;
 
             
             //TODO add client to DB
 
             //TODO shoppingCart.reset()
 
-            this.Close();
+            //this.Close();
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
+            
             try
             {
                 int quantity = Int32.Parse(textBox12.Text);
+                Locker locker;
+                AngleBracket angleBrackets;
+                Cupboard finalCupboard = new Cupboard();
+                foreach (ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
+                {
+                    if (cupCompo is Locker)
+                    {
+                        locker = (Locker)cupCompo;
+                        finalCupboard.addCupboardComponent(locker);
+                    }
+                    if (cupCompo is AngleBracket)
+                    {
+                        angleBrackets = (AngleBracket)cupCompo;
+                        finalCupboard.addCupboardComponent(angleBrackets);
+                    }
+                }
+
+
+                if (!button1.Enabled)
+                {
+                    string fname = textBox3.Text;
+                    string lname = textBox5.Text;
+                    string email = textBox7.Text;
+                    string phone = textBox9.Text;
+
+                    Client newClient = new Client(fname, lname, phone, email);
+                    OrderForm commande = new OrderForm(newClient);
+                    commande.addCupboard(finalCupboard,quantity);
+                    textBox13.Text = commande.getPrice().ToString();
+                }
+                else
+                    MessageBox.Show("validate personnal information first");
             }
             catch
             {
                 MessageBox.Show("Please enter a valide number");
             }
+
         }
+
     }
 }
