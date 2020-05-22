@@ -112,23 +112,6 @@ namespace projectCS
             get => _componentsList;
         }
 
-        public int doorWidth
-        {
-            get
-            {
-                int width = 0;
-                foreach(CatalogueComponents cataCompo in _componentsList)
-                {
-                    if (cataCompo is Door)
-                    {
-                        width += ((Door)cataCompo).size.width;
-                        break;
-                    }
-                }
-                return width;
-            }
-        }
-
 
         public Locker()
         {

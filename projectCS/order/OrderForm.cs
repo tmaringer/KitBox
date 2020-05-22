@@ -29,13 +29,13 @@ namespace projectCS
             get => _id;
         }
 
+
         /// <summary>
         ///     Takes a client in parameter otherwise create new one with default values.
         /// </summary>
         public OrderForm() : this(new Client())
         {
         }
-
         public OrderForm(Client client)
         {
             this._client = client;
@@ -43,6 +43,7 @@ namespace projectCS
             this._client.addOrderForm(this);
             _id++;
         }
+
 
         /// <summary>
         ///     Takes a cupboard to add to the order form, the number of cupboards by default is 1.

@@ -33,20 +33,6 @@ namespace projectCS
             get => _widthChosen;
         }
 
-        public static int heigth
-        {
-            get
-            {
-                int height = 0;
-                foreach (ICupboardComponents cupcompo in _cupboardComponentsList)
-                {
-                    if (cupcompo is Locker)
-                        height += ((Locker)cupcompo).height;
-                }
-                return height;
-            }
-        }
-
         private static int _depthChosen;
         public static int depthChosen
         {
