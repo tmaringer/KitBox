@@ -22,6 +22,7 @@ namespace kitbox_user_interface_V1
 
             int totalHeight = 0;
             Locker locker;
+            Cupboard finalCupboard = new Cupboard();
             foreach(ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
             {
                 if(cupCompo is Locker)
@@ -69,10 +70,18 @@ namespace kitbox_user_interface_V1
             ShoppingCart.addCupboardComponent(angleBrackets);
             ShoppingCart.addCupboardComponent(angleBrackets);
 
-            dataGridView1.Rows.Add(" ", angleBracketHeight, " ", null, " ", angleBracketPrice.ToString() + " x4");
+            dataGridView1.Rows.Add("Anglebrackets", angleBracketHeight, " ", null, " ", angleBracketPrice.ToString() + " x4");
 
-
-            //TODO add anglebrackets Price
+            foreach (ICupboardComponents cupCompo in ShoppingCart.cupboardComponentsList)
+            {
+                if (cupCompo is Locker)
+                {
+                    locker = (Locker)cupCompo;
+                    finalCupboard.addCupboardComponent(locker);
+                }
+            }
+            finalCupboard.addCupboardComponent(new List<ICupboardComponents> { angleBrackets, angleBrackets, angleBrackets, angleBrackets });
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -81,8 +90,11 @@ namespace kitbox_user_interface_V1
             string fname = textBox3.Text;
             string lname = textBox5.Text;
             string email = textBox7.Text;
+            string phone = textBox9.Text;
 
-            //TODO create client in form order
+            Client newClient = new Client(fname, lname, phone, email);
+
+            
             //TODO add client to DB
 
             //TODO shoppingCart.reset()
@@ -90,5 +102,16 @@ namespace kitbox_user_interface_V1
             this.Close();
         }
 
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int quantity = Int32.Parse(textBox12.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Please enter a valide number");
+            }
+        }
     }
 }

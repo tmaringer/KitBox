@@ -59,8 +59,6 @@ namespace kitbox_user_interface_V1
             comboBox7.Items.AddRange(ColorPannelBaList.Cast<object>().ToArray());
             comboBox9.Items.AddRange(new object[] { "yes", "no" });
 
-            //TODO chercher door width et mettre la plus grande en fonction
-            
             int maxHeight = 0;
             foreach (string heightB in HeightBracketsList)
             {
