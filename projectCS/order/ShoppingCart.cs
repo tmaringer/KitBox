@@ -95,7 +95,10 @@ namespace projectCS
             else
                 return (Locker)_cupboardComponentsList.ElementAt(lockerEmplacement);
         }
-
+       
+        /// <summary>
+        ///     Reset all ShoppingCard variables.
+        /// </summary>
         public static void resetShoppingCard()
         {
             _cupboardComponentsList = new List<ICupboardComponents>();
