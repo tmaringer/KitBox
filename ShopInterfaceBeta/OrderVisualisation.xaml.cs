@@ -180,6 +180,10 @@ namespace ShopInterfaceBeta
             if (ComboBox1.SelectedItem.ToString() != "")
             {
                 FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), DataGrid1);
+                if (DbUtils.Reflist("Status","orders where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\"") != "pending")
+                {
+                    DataGrid1.IsReadOnly = true;
+                }
                 FillComboBox(DbUtils.RefList("CupboardId", "cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), cupboardIds);
                 FlyoutInitialise.Hide();
             }
