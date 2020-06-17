@@ -180,7 +180,7 @@ namespace ShopInterfaceBeta
             if (ComboBox1.SelectedItem.ToString() != "")
             {
                 FillDataGridCup(DbUtils.RefreshDb("cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), DataGrid1);
-                if (DbUtils.Reflist("Status","orders where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\"") != "pending")
+                if (DbUtils.RefList("Status", "orders where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\"")[0] != "pending")
                 {
                     DataGrid1.IsReadOnly = true;
                 }
@@ -318,18 +318,6 @@ namespace ShopInterfaceBeta
                 }
                 Infos.IsEnabled = true;
 
-            }
-            if (DataGrid3.CurrentColumn.Header.ToString() == "Id")
-            {
-                object[] row = (object[])DataGrid3.SelectedItem;
-                string code = row[1].ToString();
-                part.Add(code);
-                part.Add(row[2].ToString());
-                part.Add(boxId);
-                part.Add(cupId);
-                string reference = DbUtils.RefList("Ref", "kitbox where Code = \"" + code + "\"")[0];
-                part.Add(reference);
-                List<string> colors = DbUtils.RefListNd("Colour", "kitbox where Ref = \"" + reference + "\"");
             }
         }
 

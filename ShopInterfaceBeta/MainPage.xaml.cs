@@ -48,7 +48,7 @@ namespace ShopInterfaceBeta
             };
 
             await noConnectionDialog.ShowAsync();
-            //await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
+            await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
         }
 
         private static async void LoginDialog()
@@ -169,17 +169,25 @@ namespace ShopInterfaceBeta
                         ContentFrame.Navigate(typeof(SuppliersUpdate));
                         SuU.IsSelected = true;
                         break;
+                    case @"Dashboard":
+                        ContentFrame.Navigate(typeof(Dashboard));
+                        Dbo.IsSelected = true;
+                        break;
                 }
             }
         }
         private void NavigationBar_Loaded(object sender, RoutedEventArgs e)
         {
             CheckConnection();
+            ContentFrame.Navigate(typeof(Dashboard));
+            Dbo.IsSelected = true;
+            tag = "Dashboard";
+            Header.Text = "Dashboard";
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if ((sender as MainPage).ActualWidth < 900)
+            if ((sender as MainPage).ActualWidth < 1200)
             {
                 Marg.Width = new GridLength(40);
                 logo.Visibility = Visibility.Collapsed;
