@@ -43,7 +43,7 @@ namespace ShopInterfaceBeta
         {
             this.InitializeComponent();
             ComboBox1.Items.Clear();
-            foreach (string i in DbUtils.RefList("OrderId", "orders where Status != \"pending\""))
+            foreach (string i in DbUtils.RefList("OrderId", "orders"))
             {
                 ComboBox1.Items.Add(i);
             }

@@ -184,6 +184,10 @@ namespace ShopInterfaceBeta
                 {
                     DataGrid1.IsReadOnly = true;
                 }
+                else
+                {
+                    DataGrid1.IsReadOnly = false;
+                }
                 FillComboBox(DbUtils.RefList("CupboardId", "cupboards where OrderId = \"" + ComboBox1.SelectedItem.ToString() + "\""), cupboardIds);
                 FlyoutInitialise.Hide();
             }
@@ -210,6 +214,14 @@ namespace ShopInterfaceBeta
                 FillDataGridItem(Sandbox.Angles(cupId), DataGrid3);
                 
                 FillComboBox(DbUtils.RefList("BoxId", "boxes where CupboardId = \"" + cupId + "\""), boxIds);
+                if (DbUtils.RefList("Status", "orders where OrderId = \"" + DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + cupId + "\"")[0] + "\"")[0] != "pending")
+                {
+                    DataGrid2.IsReadOnly = true;
+                }
+                else
+                {
+                    DataGrid2.IsReadOnly = false;
+                }
             }
         }
 
@@ -222,7 +234,15 @@ namespace ShopInterfaceBeta
                 boxId = ((Box)((sender as DataGrid).SelectedItem)).BoxId;
                 string cupboardId = DbUtils.RefList("CupboardId", "boxes where BoxId = \"" + boxId + "\"")[0];
                 FillDataGridItem(Sandbox.ElementList(boxId), DataGrid3);
-                
+                if (DbUtils.RefList("Status", "orders where OrderId = \"" + DbUtils.RefList("OrderId", "cupboards where CupboardId = \"" + cupId + "\"")[0] + "\"")[0] != "pending")
+                {
+                    DataGrid3.IsReadOnly = true;
+                }
+                else
+                {
+                    DataGrid3.IsReadOnly = false;
+                }
+
             }
         }
 

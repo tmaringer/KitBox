@@ -24,7 +24,10 @@ namespace ShopInterfaceBeta
                         Test(orderId, k);
                         if (DbUtils.RefList("Code", "listsitems where OrderId = \"" + orderId + "\" and Code = \"Cup\"").Count == 0)
                         {
-                            DbUtils.InsertDb("listsitems","OrderId,Code,Quantity", "\"" + orderId + "\", \"" + "Cup" + "\", \"" + "1" + "\"");
+                            if (DbUtils.RefList("Colour","kitbox where Code = \"" + k + "\"")[0] != "Glass")
+                            {
+                                DbUtils.InsertDb("listsitems", "OrderId,Code,Quantity", "\"" + orderId + "\", \"" + "Cup" + "\", \"" + "1" + "\"");
+                            }
                         }
                         else
                         {
