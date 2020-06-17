@@ -48,7 +48,8 @@ namespace ShopInterfaceBeta
             };
 
             await noConnectionDialog.ShowAsync();
-            await ComposeEmail("Database help", "help me pleeeeeeeeeeeeeeeaaaaaaaaaaaaaaaaaasssssssssssssssssseeeeeeeeeeeeeeeee");
+            await ComposeEmail("Database help", "I have some troubles with the database.");
+            CoreApplication.Exit();
         }
 
         private static async void LoginDialog()
@@ -169,20 +170,16 @@ namespace ShopInterfaceBeta
                         ContentFrame.Navigate(typeof(SuppliersUpdate));
                         SuU.IsSelected = true;
                         break;
-                    case @"Dashboard":
-                        ContentFrame.Navigate(typeof(Dashboard));
-                        Dbo.IsSelected = true;
-                        break;
                 }
             }
         }
         private void NavigationBar_Loaded(object sender, RoutedEventArgs e)
         {
             CheckConnection();
-            ContentFrame.Navigate(typeof(Dashboard));
-            Dbo.IsSelected = true;
-            tag = "Dashboard";
-            Header.Text = "Dashboard";
+            ContentFrame.Navigate(typeof(OrdersManagement));
+            OrM.IsSelected = true;
+            tag = "Orders management";
+            Header.Text = "Orders management";
         }
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)

@@ -323,7 +323,7 @@ namespace ShopInterfaceBeta
                 foreach (KeyValuePair<string, int> entry in valuesIncStock)
                 {
                     string key = entry.Key;
-                    string month = key.Split('/')[1] + "/" + key.Split('/')[2];
+                    string month = key.Split('-')[0] + "/" + key.Split('-')[1];
                     if (graphMonthIncStock.ContainsKey(month))
                     {
                         graphMonthIncStock[month] = graphMonthIncStock[month] + entry.Value;

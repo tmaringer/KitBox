@@ -30,13 +30,7 @@
     SelectionFollowsFocus="Disabled"
     IsTabStop="False">
             <NavigationView.MenuItems>
-                <NavigationViewItem Margin="0,40,0,0" x:Name="Dbo" x:Uid="AppsNavItem" Content="Dashboard" Tag="Dashboard">
-                    <NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xEC4A;"/>
-                    </NavigationViewItem.Icon>
-                </NavigationViewItem>
-                <NavigationViewItemSeparator/>
-                <NavigationViewItemHeader x:Name="H1" Content="Customers Management"/>
+                <NavigationViewItemHeader Margin="0,40,0,0" x:Name="H1" Content="Customers Management"/>
                 <NavigationViewItem x:Name="OrV" x:Uid="AppsNavItem" Content="Order visualisation" Tag="Order visualisation">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph=""/>

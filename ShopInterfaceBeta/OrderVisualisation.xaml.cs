@@ -259,15 +259,15 @@ namespace ShopInterfaceBeta
                 {
                     if (colour == @"White")
                     {
-                        InfosImage.Source = new BitmapImage(new Uri("Assets/Pictures/Corniere_blanc.png"));
+                        InfosImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Pictures/Corniere_blanc.png"));
                     }
                     else if (colour == @"Brown")
                     {
-                        InfosImage.Source = new BitmapImage(new Uri("Assets/Pictures/Corniere_brown.png"));
+                        InfosImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Pictures/Corniere_brown.png"));
                     }
                     else if (colour == @"Galvanised")
                     {
-                        InfosImage.Source = new BitmapImage(new Uri("Assets/Pictures/Corniere_galv.png"));
+                        InfosImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Pictures/Corniere_galv.png"));
                     }
                     else if (colour == @"Black")
                     {
